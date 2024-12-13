@@ -1,0 +1,148 @@
+name: 🐧🧹 HealthChecks 🖳🗑️
+#MAX_RUNTIME: 02 Minutes */10 * * * * 
+
+on:
+  #push:
+  workflow_dispatch:
+  schedule:
+  #  - cron: "45 03 * * *"  # 03:45 AM UTC --> 09:30 AM Morning NPT
+   - cron: "0 */12 * * *"  # Every 12 Hrs
+
+env:
+  GITHUB_TOKEN: "${{ secrets.TOOLPACKS }}"
+  RCLONE_CF_R2_PUB: "${{ secrets.RCLONE_CF_R2_PUB }}"
+  R2_PUB_REPO: "https://pub.ajam.dev/repos/Azathothas/Toolpacks"
+jobs:
+#------------------------------------------------------------------------------------#
+  check-post:
+    runs-on: ubuntu-latest
+    
+    permissions:
+      contents: write
+      
+    steps:
+      - name: Debloat Runner
+        run: |
+          #Presets
+          set +x ; set +e
+          #--------------#
+          bash <(curl -qfsSL "https://pub.ajam.dev/repos/Azathothas/Arsenal/misc/Github/Runners/Ubuntu/debloat.sh")
+        continue-on-error: true
+        
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          path: main
+          filter: "blob:none" #https://github.blog/2020-12-21-get-up-to-speed-with-partial-clone-and-shallow-clone/
+
+      - name: Setup Env
+        run: |
+          ##presets
+          set +x ; set +e
+          #-------------#
+          ##CoreUtils
+          sudo apt update -y
+          sudo apt install bc coreutils curl dos2unix fdupes jq moreutils wget -y
+          sudo apt-get install apt-transport-https apt-utils ca-certificates coreutils dos2unix gnupg2 jq moreutils p7zip-full rename rsync software-properties-common texinfo tmux util-linux wget -y 2>/dev/null ; sudo apt-get update -y 2>/dev/null
+          #temp
+          SYSTMP="$(dirname $(mktemp -u))" && export SYSTMP="${SYSTMP}"
+          echo "SYSTMP=${SYSTMP}" >> "${GITHUB_ENV}"
+          ##Setup rClone
+          mkdir -p "${HOME}/.config/rclone"
+          echo "${{ secrets.RCLONE_CF_R2_PUB }}" > "${HOME}/.config/rclone/rclone.conf"
+          export RCLONE_STATS="120s" ; echo "RCLONE_STATS=${RCLONE_STATS}" >> "${GITHUB_ENV}"
+          ##User-Agent
+          USER_AGENT="$(curl -qfsSL 'https://pub.ajam.dev/repos/Azathothas/Wordlists/Misc/User-Agents/ua_chrome_macos_latest.txt')" && export USER_AGENT="${USER_AGENT}"
+          echo "USER_AGENT=${USER_AGENT}" >> "${GITHUB_ENV}"
+        continue-on-error: true
+
+      - name: Install Addons
+        run: |
+          #presets
+          set +x ; set +e
+          #-------------#
+          bash <(curl -qfsSL "https://pub.ajam.dev/repos/Azathothas/Arsenal/misc/Linux/install_dev_tools.sh")
+        continue-on-error: true
+
+      - name: Dos2Unix Everything
+        run: |
+          #Presets
+          set +x ; set +e
+          #--------------#
+          cd "${GITHUB_WORKSPACE}/main"
+          find . -type f ! -path "./.git/*" -exec dos2unix {} \; 2>/dev/null
+        continue-on-error: true
+
+      - name: ActionLint
+        run: |
+          #Presets
+          set +x ; set +e
+          #--------------#
+          cd "${GITHUB_WORKSPACE}/main"
+          find ".github/workflows" -type f -name "*ml" -exec actionlint {} \;
+        continue-on-error: true
+
+      - name: Shellcheck
+        run: |
+          #Presets
+          set +x ; set +e
+          #--------------#
+          cd "${GITHUB_WORKSPACE}/main"
+          find ".github" -type f -name '*.sh' -exec shellcheck --exclude="SC2261" --severity=error "{}" \; 2>/dev/null | tee "${GITHUB_WORKSPACE}/main/.github/shellcheck.txt"
+        continue-on-error: true
+
+      - name: Generate Repo Metadata (git-sizer)
+        run: |
+          #Presets
+          set +x ; set +e
+          #--------------#
+          cd "${GITHUB_WORKSPACE}/main"
+          #Dust sizes
+          echo '```mathematica' > "${GITHUB_WORKSPACE}/main/.github/SIZE.md"
+          dust -b -c -i -r -n 99999999 "${GITHUB_WORKSPACE}/main" | tee -a "${GITHUB_WORKSPACE}/main/.github/SIZE.md"
+          dust -b -c -i -r -n 99999999 "${GITHUB_WORKSPACE}/main" | tee "${GITHUB_WORKSPACE}/main/.github/SIZE.txt"
+          echo '```' >> "${GITHUB_WORKSPACE}/main/.github/SIZE.md"
+        continue-on-error: true
+
+      - name: Generate Markdown (Main README.md)
+        run: |
+          #Presets
+          set +x ; set +e ; ulimit -S -s unlimited ; ulimit -f unlimited 2>/dev/null
+          #--------------#
+          cd "${GITHUB_WORKSPACE}/main"
+          #Generate ${GITHUB_WORKSPACE}/main/README.md
+          ##bin.pkgforge.dev/aarch64_arm64_Linux
+          unset MAIN_N BASE_N TOTAL_PACKAGES
+          MAIN_N="$(curl -qfsSL "https://bin.pkgforge.dev/METADATA.json" | jq '.[] | select(.host == "aarch64-Linux") | .main' | jq -r '.[].name' | sort -u | wc -l)" && export MAIN_N="${MAIN_N}"
+          BASE_N="$(curl -qfsSL "https://bin.pkgforge.dev/METADATA.json" | jq '.[] | select(.host == "aarch64-Linux") | .baseutils' | jq -r '.[].name' | sort -u | wc -l)" && export BASE_N="${BASE_N}"
+          export TOTAL_PACKAGES="$((MAIN_N + BASE_N))" && export TOTAL_PACKAGES="$TOTAL_PACKAGES"
+          sed "s|\(https://img.shields.io/badge/Binaries-[(]*\)[0-9]\+|\1${TOTAL_PACKAGES}|" -i "${GITHUB_WORKSPACE}/main/README.md"
+          ##bin.pkgforge.dev/x86_64_Linux/
+          unset MAIN_N BASE_N TOTAL_PACKAGES
+          MAIN_N="$(curl -qfsSL "https://bin.pkgforge.dev/METADATA.json" | jq '.[] | select(.host == "x86_64-Linux") | .main' | jq -r '.[].name' | sort -u | wc -l)" && export MAIN_N="${MAIN_N}"
+          BASE_N="$(curl -qfsSL "https://bin.pkgforge.dev/METADATA.json" | jq '.[] | select(.host == "x86_64-Linux") | .baseutils' | jq -r '.[].name' | sort -u | wc -l)" && export BASE_N="${BASE_N}"
+          export TOTAL_PACKAGES="$((MAIN_N + BASE_N))" && export TOTAL_PACKAGES="$TOTAL_PACKAGES"
+          sed -E "s|(https://img.shields.io/badge/Binaries-[^(]*\([0-9]+\)\+\()[0-9]+|\1${TOTAL_PACKAGES}|" -i "${GITHUB_WORKSPACE}/main/README.md"
+          sed -E "s~(https://bin\.pkgforge\.dev/list\.gif)[^\"]*~\1?$(basename "$(mktemp -u)")=$(basename "$(mktemp -u)")~g" -i "${GITHUB_WORKSPACE}/main/README.md"
+        continue-on-error: true
+
+      - name: Get DateTime & Purge files (=> 95 MB)
+        run: |
+          #Presets
+          set +x ; set +e
+          #--------------#
+          UTC_TIME="$(TZ='UTC' date +'%Y-%m-%d (%I:%M:%S %p)')"
+          echo "UTC_TIME=$UTC_TIME" >> $GITHUB_ENV
+          #Purge
+          find "${GITHUB_WORKSPACE}/main" -path "${GITHUB_WORKSPACE}/main/.git" -prune -o -type f -size +95M -exec rm -rvf "{}" + 2>/dev/null
+        continue-on-error: true
+
+      - uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          repository: ./main        
+          commit_user_name: Azathothas
+          commit_user_email: AjamX101@gmail.com
+          commit_message: "‎‎‏‏‎ ‎"
+          #commit_message: "✅ Updated (Metadata) 🛍️ <-- ${{ env.UTC_TIME }} ⌚"
+          #push_options: '--force'
+        continue-on-error: true
