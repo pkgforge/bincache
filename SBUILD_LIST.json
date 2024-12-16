@@ -1,0 +1,10 @@
+[
+    {
+      "pkg_family": "a-utils",
+      "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/a-utils/static.official.stable.yaml"
+    },
+    {
+      "pkg_family": "curl",
+      "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/curl/static.stunnel.stable.yaml"
+    }
+]
