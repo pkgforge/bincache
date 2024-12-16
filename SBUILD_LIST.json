@@ -1,9 +1,11 @@
 [
     {
+      "_disabled": false,
       "pkg_family": "a-utils",
       "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/a-utils/static.official.stable.yaml"
     },
     {
+      "_disabled": false,
       "pkg_family": "curl",
       "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/curl/static.stunnel.stable.yaml"
     }
