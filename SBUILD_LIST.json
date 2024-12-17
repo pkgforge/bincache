@@ -1,11 +1,13 @@
 [
     {
       "_disabled": false,
+      "ghcrpkg": "ghcr.io/pkgforge/bincache/a-utils/official",
       "pkg_family": "a-utils",
       "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/a-utils/static.official.stable.yaml"
     },
     {
       "_disabled": false,
+      "ghcrpkg": "ghcr.io/pkgforge/bincache/curl/stunnel",
       "pkg_family": "curl",
       "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/curl/static.stunnel.stable.yaml"
     }
