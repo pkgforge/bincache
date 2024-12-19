@@ -32,6 +32,7 @@ find "${SYSTMP}/INITIALIZED" -type f -mmin +720 -exec rm -rvf "{}" \; 2>/dev/nul
 if [ -s "${SYSTMP}/INITIALIZED" ]; then
     echo -e "\n[+] Recently Initialized... (Skipping!)\n"
     export CONTINUE="YES"
+    return 0 || exit 0
 else
  ##Sane Configs
  #In case of removed/privated GH repos
@@ -316,13 +317,15 @@ if [ "${CONTINUE}" == "YES" ]; then
    sudo ldconfig && sudo ldconfig -p
   fi
 ##Clean
- echo "INITIALIZED" > "${SYSTMP}/INITIALIZED"
- rm -rf "${SYSTMP}/init_Debian" 2>/dev/null
- #-------------------------------------------------------#
- ##END
- echo -e "\n\n [+] Finished Initializing $(uname -mnrs) :: at $(TZ='UTC' date +'%A, %Y-%m-%d (%I:%M:%S %p)')\n\n"
- #In case of polluted env 
- unset AR AS CC CFLAGS CPP CXX CPPFLAGS CXXFLAGS DLLTOOL HOST_CC HOST_CXX LD LDFLAGS LIBS NM OBJCOPY OBJDUMP RANLIB READELF SIZE STRINGS STRIP SYSROOT
+ if [ "${CONTINUE}" == "YES" ]; then
+   echo "INITIALIZED" > "${SYSTMP}/INITIALIZED"
+   rm -rf "${SYSTMP}/init_Debian" 2>/dev/null
+   #-------------------------------------------------------#
+   ##END
+   echo -e "\n\n [+] Finished Initializing $(uname -mnrs) :: at $(TZ='UTC' date +'%A, %Y-%m-%d (%I:%M:%S %p)')\n\n"
+   #In case of polluted env 
+   unset AR AS CC CFLAGS CPP CXX CPPFLAGS CXXFLAGS DLLTOOL HOST_CC HOST_CXX LD LDFLAGS LIBS NM OBJCOPY OBJDUMP RANLIB READELF SIZE STRINGS STRIP SYSROOT
+ fi
 fi
 rm -rf "$(realpath .)" && popd >/dev/null 2>&1
 echo -e "\n[+] Continue : ${CONTINUE}\n"
