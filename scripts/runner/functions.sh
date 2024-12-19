@@ -203,7 +203,7 @@ if [[ "${CONTINUE_SBUILD}" == "YES" ]]; then
        '
       #Sanity
        find "${SBUILD_OUTDIR}" -type f -exec touch "{}" \;
-       find "${SBUILD_OUTDIR}" -maxdepth 1 -type f -print | xargs -I "{}" sh -c 'printf "\nFile: $(basename {})\n  Type: $(file -b {})\n  B3sum: $(b3sum {} | cut -d" " -f1)\n  SHA256sum: $(sha256sum {} | cut -d" " -f1)\n  Size: $(du -sh {} | cut -f1)\n"'
+       find "${SBUILD_OUTDIR}" -maxdepth 1 -type f -print | sort -u | xargs -I "{}" sh -c 'printf "\nFile: $(basename {})\n  Type: $(file -b {})\n  B3sum: $(b3sum {} | cut -d" " -f1)\n  SHA256sum: $(sha256sum {} | cut -d" " -f1)\n  Size: $(du -sh {} | cut -f1)\n"'
       #End
        export SBUILD_SUCCESSFUL="YES"
        echo "export SBUILD_SUCCESSFUL='${SBUILD_SUCCESSFUL}'" >> "${OCWD}/ENVPATH"
@@ -475,7 +475,7 @@ if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]]; then
     fi
    else
     echo -e "\n[-] FAILED to Parse ${PKG_FAMILY}/${PKG_NAME} Metadata <-- ["${SBUILD_OUTDIR}/${PROG}.json"]\n"
-    cat "${PKG_JSON}"
+    cat "${PKG_JSON}" 2>/dev/null
     return 1 || exit 1
    fi
 fi
