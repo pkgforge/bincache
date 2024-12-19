@@ -12,9 +12,17 @@
 
 #-------------------------------------------------------#
 ##ENV:$PATH
+USER="$(whoami)" && export USER="${USER}"
+HOME="$(getent passwd ${USER} | cut -d: -f6)" && export HOME="${HOME}"
+export PATH="${HOME}/bin:${HOME}/.cargo/bin:${HOME}/.cargo/env:${HOME}/.go/bin:${HOME}/go/bin:${HOME}/.local/bin:${HOME}/miniconda3/bin:${HOME}/miniconda3/condabin:/usr/local/zig:/usr/local/zig/lib:/usr/local/zig/lib/include:/usr/local/musl/bin:/usr/local/musl/lib:/usr/local/musl/include:${PATH}"
+if command -v awk >/dev/null 2>&1 && command -v sed >/dev/null 2>&1; then
+ PATH="$(echo "${PATH}" | awk 'BEGIN{RS=":";ORS=":"}{gsub(/\n/,"");if(!a[$0]++)print}' | sed 's/:*$//')" ; export PATH
+fi
 HOST_TRIPLET="$(uname -m)-$(uname -s)"
 PKG_REPO="bincache"
-SYSTMP="$(dirname "$(mktemp -u)")"
+if [ -z "${SYSTMP+x}" ] || [ -z "${SYSTMP##*[[:space:]]}" ]; then
+ SYSTMP="$(dirname $(mktemp -u))" && export SYSTMP="${SYSTMP}"
+fi
 TMPDIRS="mktemp -d --tmpdir=${SYSTMP}/pkgforge XXXXXXX_SBUILD"
 USER_AGENT="$(curl -qfsSL 'https://pub.ajam.dev/repos/Azathothas/Wordlists/Misc/User-Agents/ua_chrome_macos_latest.txt')"
 export HOST_TRIPLET PKG_REPO SYSTMP TMPDIRS USER_AGENT
