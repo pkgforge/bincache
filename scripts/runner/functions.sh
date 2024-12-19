@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# VERSION=1.0.1
+# VERSION=1.0.2
 
 #-------------------------------------------------------#
 ## <DO NOT RUN STANDALONE, meant for CI Only>
@@ -33,7 +33,7 @@ setup_env()
  SBUILD_TMPDIR="${SBUILD_OUTDIR}/SBUILD_TMPDIR"
  mkdir -p "${SBUILD_TMPDIR}"
  export BUILD_DIR INPUT_SBUILD SBUILD_OUTDIR SBUILD_TMPDIR
- echo -e "\n[+] Building ${INPUT_SBUILD} --> ${SBUILD_OUTDIR} [$(TZ='UTC' date +'%A, %Y-%m-%d (%I:%M:%S %p)') UTC]\n"
+ echo -e "\n[+] Building ["$(echo "${RECIPE}" | awk -F'/' '{print $(NF-1) "/" $NF}')"] (${INPUT_SBUILD}) --> ${SBUILD_OUTDIR} [$(TZ='UTC' date +'%A, %Y-%m-%d (%I:%M:%S %p)') UTC]\n"
  echo "export INPUT_SBUILD='${INPUT_SBUILD}'" > "${OCWD}/ENVPATH"
  echo "export BUILD_DIR='${BUILD_DIR}'" >> "${OCWD}/ENVPATH"
  echo "export SBUILD_OUTDIR='${SBUILD_OUTDIR}'" >> "${OCWD}/ENVPATH"
@@ -115,16 +115,6 @@ gen_json_from_sbuild()
          else
            SBUILD_PKGVER="$(cat "${SBUILD_OUTDIR}/${SBUILD_PKG}.version" | tr -d '[:space:]')" ; export SBUILD_PKGVER
            echo "[+] Version: ${SBUILD_PKGVER} [${SBUILD_OUTDIR}/${SBUILD_PKG}.version]"
-           if [ -n "${GHCRPKG+x}" ] && [ -n "${GHCRPKG##*[[:space:]]}" ]; then
-             if [[ "$(oras manifest fetch "${GHCRPKG}/${PROG}:${SBUILD_PKGVER}-${HOST_TRIPLET,,}" | jq -r '.annotations["org.opencontainers.image.version"]')" == "${SBUILD_PKGVER}" ]]; then
-               if [[ "${SBUILD_REBUILD}" == "false" ]]; then
-                 echo -e "\n[+] SKIPPED: ${SBUILD_PKG} [${GHCRPKG}/${PROG}:${SBUILD_PKGVER}-${HOST_TRIPLET,,}] (PreBuilt Exists)"
-                 echo -e "[+] ReRun with: '.rebuild == true' (https://github.com/pkgforge/${PKG_REPO}/blob/main/SBUILD_LIST.json)\n"
-                 export CONTINUE_SBUILD="NO"
-                 return 0 || exit 0
-               fi
-             fi
-           fi
          fi
        else
          echo -e "\n[✗] FATAL: Failed to Extract ('x_exec.pkgver')\n"
@@ -176,7 +166,22 @@ if [[ "${CONTINUE_SBUILD}" == "YES" ]]; then
    echo -e "[+] Progs: ${SBUILD_PKGS[*]}"
   fi
   printf "export SBUILD_PKGS='%s'\n" "${SBUILD_PKGS[*]}" >> "${OCWD}/ENVPATH"
+ #check rebuild
+  if [ -n "${GHCRPKG+x}" ] && [ -n "${GHCRPKG##*[[:space:]]}" ]; then
+    for PROG in "${SBUILD_PKGS[@]}"; do
+      if [[ "$(oras manifest fetch "${GHCRPKG}/${PROG}:${SBUILD_PKGVER}-${HOST_TRIPLET,,}" | jq -r '.annotations["org.opencontainers.image.version"]')" == "${SBUILD_PKGVER}" ]]; then
+        if [[ "${SBUILD_REBUILD}" == "false" ]]; then
+          echo -e "\n[+] SKIPPED: ${SBUILD_PKG} [${GHCRPKG}/${PROG}:${SBUILD_PKGVER}-${HOST_TRIPLET,,}] (PreBuilt Exists)"
+          echo -e "[+] ReRun with: '.rebuild == true' (https://github.com/pkgforge/${PKG_REPO}/blob/main/SBUILD_LIST.json)\n"
+          export CONTINUE_SBUILD="NO"
+          return 0 || exit 0
+        fi
+        break
+      fi
+    done
+  fi
  #Run
+  if [[ "${CONTINUE_SBUILD}" == "YES" ]]; then
    check_sane_env
    pushd "${SBUILD_OUTDIR}" >/dev/null 2>&1
      printf "\n" && timeout -k 60m 5m "${TMPXRUN}" ; printf "\n"
@@ -220,6 +225,7 @@ if [[ "${CONTINUE_SBUILD}" == "YES" ]]; then
        echo "export SBUILD_SUCCESSFUL='${SBUILD_SUCCESSFUL}'" >> "${OCWD}/ENVPATH"
      fi
    popd >/dev/null 2>&1
+  fi
  else
    echo -e "\n[✗] FATAL: Could NOT parse ${INPUT_SBUILD} ==> ${TMPJSON}\n"
    return 1 || exit 1

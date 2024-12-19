@@ -96,11 +96,11 @@ export -f sanitize_logs
    for ((i=0; i<${#RECIPES[@]}; i++)); do
     pushd "$($TMPDIRS)" >/dev/null 2>&1
     OCWD="$(realpath .)" ; export OCWD
-    unset CONTINUE_SBUILD GHCRPKG KEEP_LOGS LOGPATH PKG_FAMILY PUSH_SUCCESSFUL SBUILD_SUCCESSFUL
+    unset CONTINUE_SBUILD GHCRPKG KEEP_LOGS LOGPATH PKG_FAMILY PUSH_SUCCESSFUL RECIPE SBUILD_REBUILD SBUILD_SUCCESSFUL
     TEMP_LOG="./BUILD.log"
     #Init
      START_TIME="$(date +%s)" && export START_TIME="${START_TIME}"
-     RECIPE="${RECIPES[i]}"
+     RECIPE="${RECIPES[i]}" ; export RECIPE
      CURRENT_RECIPE=$((i+1))
      echo -e "\n[+] Fetching : ${RECIPE} (${CURRENT_RECIPE}/${TOTAL_RECIPES})\n"
     #Fetch
@@ -110,6 +110,7 @@ export -f sanitize_logs
      SBUILD_SCRIPT="${RECIPE}" && export SBUILD_SCRIPT
      GHCRPKG="$(jq -r '.[] | select(.build_script == env.SBUILD_SCRIPT) | .ghcrpkg' "${SYSTMP}/pkgforge/SBUILD_LIST.json" | tr -d '[:space:]')" && export GHCRPKG
      PKG_FAMILY="$(jq -r '.[] | select(.build_script == env.SBUILD_SCRIPT) | .pkg_family' "${SYSTMP}/pkgforge/SBUILD_LIST.json" | tr -d '[:space:]')" && export PKG_FAMILY
+     SBUILD_REBUILD="$(jq -r '.[] | select(.build_script == env.SBUILD_SCRIPT) | .rebuild' "${SYSTMP}/pkgforge/SBUILD_LIST.json" | tr -d '[:space:]')" && export SBUILD_REBUILD
      #Main
       {
        setup_env "${BUILDSCRIPT}"
