@@ -10,12 +10,13 @@
 #-------------------------------------------------------#
 sbuild_builder()
  {
+  ##Version
    SBB_VERSION="0.0.3" && echo -e "[+] SBUILD Builder Version: ${SBB_VERSION}" ; unset SBB_VERSION 
-   ##Enable Debug 
+  ##Enable Debug 
    if [ "${DEBUG}" = "1" ] || [ "${DEBUG}" = "ON" ]; then
       set -x
    fi
-   ##Get/Set ENVS (from Host)
+  ##Get/Set ENVS (from Host)
    #User
    case "${USER}" in
      "" )
@@ -30,26 +31,50 @@ sbuild_builder()
        ;;
    esac
   ##ENV:$PATH
-  HOME="$(getent passwd ${USER} | cut -d: -f6)" && export HOME="${HOME}"
-  export PATH="${HOME}/bin:${HOME}/.cargo/bin:${HOME}/.cargo/env:${HOME}/.go/bin:${HOME}/go/bin:${HOME}/.local/bin:${HOME}/miniconda3/bin:${HOME}/miniconda3/condabin:/usr/local/zig:/usr/local/zig/lib:/usr/local/zig/lib/include:/usr/local/musl/bin:/usr/local/musl/lib:/usr/local/musl/include:${PATH}"
-  if command -v awk >/dev/null 2>&1 && command -v sed >/dev/null 2>&1; then
-   PATH="$(echo "${PATH}" | awk 'BEGIN{RS=":";ORS=":"}{gsub(/\n/,"");if(!a[$0]++)print}' | sed 's/:*$//')" ; export PATH
-  fi
-  HOST_TRIPLET="$(uname -m)-$(uname -s)"
-  PKG_REPO="bincache"
-  if [ -z "${SYSTMP+x}" ] || [ -z "${SYSTMP##*[[:space:]]}" ]; then
-   SYSTMP="$(dirname $(realpath $(mktemp -u)))" && export SYSTMP="${SYSTMP}"
-   mkdir -p "${SYSTMP}" 2>/dev/null
-  fi
-  TMPDIRS="mktemp -d --tmpdir=${SYSTMP}/pkgforge XXXXXXX_SBUILD"
-  USER_AGENT="$(curl -qfsSL 'https://pub.ajam.dev/repos/Azathothas/Wordlists/Misc/User-Agents/ua_chrome_macos_latest.txt')"
-  export HOST_TRIPLET PKG_REPO SYSTMP TMPDIRS USER_AGENT
-  if [[ "${KEEP_PREVIOUS}" != "YES" ]]; then
-   rm -rf "${SYSTMP}/pkgforge"
-  fi
-  mkdir -p "${SYSTMP}/pkgforge"
+   HOME="$(getent passwd ${USER} | cut -d: -f6)" && export HOME="${HOME}"
+   export PATH="${HOME}/bin:${HOME}/.cargo/bin:${HOME}/.cargo/env:${HOME}/.go/bin:${HOME}/go/bin:${HOME}/.local/bin:${HOME}/miniconda3/bin:${HOME}/miniconda3/condabin:/usr/local/zig:/usr/local/zig/lib:/usr/local/zig/lib/include:/usr/local/musl/bin:/usr/local/musl/lib:/usr/local/musl/include:${PATH}"
+   if command -v awk >/dev/null 2>&1 && command -v sed >/dev/null 2>&1; then
+    PATH="$(echo "${PATH}" | awk 'BEGIN{RS=":";ORS=":"}{gsub(/\n/,"");if(!a[$0]++)print}' | sed 's/:*$//')" ; export PATH
+   fi
+   HOST_TRIPLET="$(uname -m)-$(uname -s)"
+   PKG_REPO="bincache"
+   if [ -z "${SYSTMP+x}" ] || [ -z "${SYSTMP##*[[:space:]]}" ]; then
+    SYSTMP="$(dirname $(realpath $(mktemp -u)))" && export SYSTMP="${SYSTMP}"
+    mkdir -p "${SYSTMP}" 2>/dev/null
+   fi
+   TMPDIRS="mktemp -d --tmpdir=${SYSTMP}/pkgforge XXXXXXX_SBUILD"
+   USER_AGENT="$(curl -qfsSL 'https://pub.ajam.dev/repos/Azathothas/Wordlists/Misc/User-Agents/ua_chrome_macos_latest.txt')"
+   export HOST_TRIPLET PKG_REPO SYSTMP TMPDIRS USER_AGENT
+   if [[ "${KEEP_PREVIOUS}" != "YES" ]]; then
+    rm -rf "${SYSTMP}/pkgforge"
+   fi
+   mkdir -p "${SYSTMP}/pkgforge"
+  ##Get Initial Inputs
+   BUILDSCRIPT="$(mktemp --tmpdir="${SYSTMP}/pkgforge" XXXXX_build.yaml)" && export BUILDSCRIPT="${BUILDSCRIPT}"
+   INPUT_FILE="${1:-$(echo "$@" | tr -d '[:space:]')}"
+   INPUT_FILE="$(realpath ${INPUT_FILE})" ; export INPUT_FILE
+   SELF_NAME="${ARGV0:-${0##*/}}" ; export SELF_NAME
+   if [[ -z "${INPUT_FILE}" ]]; then
+    echo -e "\n[+] Building Everything (Rerun: ${SELF_NAME} /path/to/SBUILD_FILE , if you are building a Single Prog)\n"
+   else
+    if [ -f "${INPUT_FILE}" ] && [ -s "${INPUT_FILE}" ]; then
+      echo -e "\n[+] Building [${INPUT_FILE}] Locally\n"
+      cp -fv "${INPUT_FILE}" "${BUILDSCRIPT}"
+      if [[ -s "${BUILDSCRIPT}" && $(stat -c%s "${BUILDSCRIPT}") -gt 10 ]]; then
+        export LOCAL_SBUILD="YES"
+      else
+        echo -e "\n[✗] FATAL: ${INPUT_FILE} is NOT a Valid file\n"
+      fi
+    else
+      echo -e "\n[✗] FATAL: ${INPUT_FILE} is NOT a file\n"
+      export CONTINUE_SBUILD="NO"
+      return 1 || exit 1
+    fi
+   fi
+  #Clean
+   unset INPUT_FILE SELF_NAME
   #-------------------------------------------------------#
-  
+
   #-------------------------------------------------------#
   ##Init
    INITSCRIPT="$(mktemp --tmpdir=${SYSTMP} XXXXX_init.sh)" && export INITSCRIPT="${INITSCRIPT}"
@@ -106,34 +131,11 @@ sbuild_builder()
       exit 1
    fi
   #-------------------------------------------------------#
-  
+
   #-------------------------------------------------------#
   ##Build
   pushd "$($TMPDIRS)" >/dev/null 2>&1
-  #Get Initial Inputs
-   BUILDSCRIPT="$(mktemp --tmpdir="${SYSTMP}/pkgforge" XXXXX_build.yaml)" && export BUILDSCRIPT="${BUILDSCRIPT}"
-   INPUT_FILE="${1:-$(echo "$@" | tr -d '[:space:]')}"
-   INPUT_FILE="$(realpath ${INPUT_FILE})" ; export INPUT_FILE
-   SELF_NAME="${ARGV0:-${0##*/}}" ; export SELF_NAME
-   if [[ -z "${INPUT_FILE}" ]]; then
-    echo -e "\n[+] Building Everything (Rerun: ${SELF_NAME} /path/to/SBUILD_FILE , if you are building a Single Prog)\n"
-   else
-    if [ -f "${INPUT_FILE}" ] && [ -s "${INPUT_FILE}" ]; then
-      echo -e "\n[+] Building [${INPUT_FILE}] Locally\n"
-      cp -fv "${INPUT_FILE}" "${BUILDSCRIPT}"
-      if [[ -s "${BUILDSCRIPT}" && $(stat -c%s "${BUILDSCRIPT}") -gt 10 ]]; then
-        export LOCAL_SBUILD="YES"
-      else
-        echo -e "\n[✗] FATAL: ${INPUT_FILE} is NOT a Valid file\n"
-      fi
-    else
-      echo -e "\n[✗] FATAL: ${INPUT_FILE} is NOT a file\n"
-      export CONTINUE_SBUILD="NO"
-      return 1 || exit 1
-    fi
-   fi
-  #Proceed
-   unset INPUT_FILE SELF_NAME
+   #If local
    if [[ "${LOCAL_SBUILD}" == "YES" ]]; then
     echo "$(realpath ${BUILDSCRIPT})" > "${SYSTMP}/pkgforge/SBUILD_URLS"
     unset LOCAL_SBUILD
