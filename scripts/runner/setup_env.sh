@@ -57,7 +57,7 @@ else
 fi
 #-------------------------------------------------------#
 unset DOCKER_HOST
-find "${SYSTMP}" -type f -empty -delete 2>/dev/null
+find "${SYSTMP}" -type f -empty -delete -o -type d -empty -delete 2>/dev/null
 history -c 2>/dev/null ; rm -rf "${HOME}/.bash_history" ; pushd "$(mktemp -d)" >/dev/null 2>&1
 source <(curl -qfsSL "https://raw.githubusercontent.com/pkgforge/bincache/refs/heads/main/scripts/runner/builder.sh")
 alias refresh-buildenv='source <(curl -qfsSL "https://raw.githubusercontent.com/pkgforge/bincache/refs/heads/main/scripts/runner/builder.sh")'

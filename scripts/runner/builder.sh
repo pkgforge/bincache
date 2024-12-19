@@ -47,7 +47,7 @@ sbuild_builder()
    export HOST_TRIPLET PKG_REPO SYSTMP TMPDIRS USER_AGENT
    if [[ "${KEEP_PREVIOUS}" != "YES" ]]; then
     rm -rf "${SYSTMP}/pkgforge"
-    find "${SYSTMP}" -type f -empty -delete 2>/dev/null
+    find "${SYSTMP}" -type f -empty -delete -o -type d -empty -delete 2>/dev/null
    fi
    mkdir -p "${SYSTMP}/pkgforge"
   ##Get Initial Inputs
