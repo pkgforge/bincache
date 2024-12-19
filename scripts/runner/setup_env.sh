@@ -63,5 +63,8 @@ source <(curl -qfsSL "https://raw.githubusercontent.com/pkgforge/bincache/refs/h
 alias refresh-buildenv='source <(curl -qfsSL "https://raw.githubusercontent.com/pkgforge/bincache/refs/heads/main/scripts/runner/builder.sh")'
 echo -e "\n[+] Build everything: sbuild-builder"
 echo -e "[+] Build local SBUILD: sbuild-builder /path/to/sbuild"
+echo -e "[+] ENV (Local): PKG_FAMILY=\"\$PKG_FAMILY\"" 
+echo -e "[+] ENV (Local): GHCRPKG_LOCAL=\"ghcr.io/pkgforge/\$REPO/\$PKG_FAMILY/\$PKG_ID\""
+echo -e "[+] Example: PKG_FAMILY=\"curl\" GHCRPKG_LOCAL=\"ghcr.io/pkgforge/bincache/curl/stunnel\" sbuild-builder \"./curl.SBUILD\""
 echo -e "[+] To Refresh Build Env: refresh-buildenv\n"
 #-------------------------------------------------------#

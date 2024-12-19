@@ -83,7 +83,7 @@ sbuild_builder()
    chmod +xwr "${INITSCRIPT}" && source "${INITSCRIPT}"
    #Check
    if [ "${CONTINUE}" != "YES" ]; then
-     echo -e "\n[+] Failed To Initialize\n"
+     echo -e "\n[✗] Failed To Initialize\n"
     exit 1
    fi
   ##Ulimits
@@ -139,7 +139,6 @@ sbuild_builder()
    #If local
    if [[ "${LOCAL_SBUILD}" == "YES" ]]; then
     echo "$(realpath ${BUILDSCRIPT})" > "${SYSTMP}/pkgforge/SBUILD_URLS"
-    unset LOCAL_SBUILD
    else
    #Get URlS
     curl -qfsSL "https://raw.githubusercontent.com/pkgforge/bincache/refs/heads/main/SBUILD_LIST.json" -o "${SYSTMP}/pkgforge/SBUILD_LIST.json"
@@ -169,9 +168,27 @@ sbuild_builder()
      #Run
      if [[ -s "${BUILDSCRIPT}" && $(stat -c%s "${BUILDSCRIPT}") -gt 10 ]]; then
       SBUILD_SCRIPT="${RECIPE}" && export SBUILD_SCRIPT
-      GHCRPKG="$(jq -r '.[] | select(.build_script == env.SBUILD_SCRIPT) | .ghcrpkg' "${SYSTMP}/pkgforge/SBUILD_LIST.json" | tr -d '[:space:]')" && export GHCRPKG
-      PKG_FAMILY="$(jq -r '.[] | select(.build_script == env.SBUILD_SCRIPT) | .pkg_family' "${SYSTMP}/pkgforge/SBUILD_LIST.json" | tr -d '[:space:]')" && export PKG_FAMILY
-      SBUILD_REBUILD="$(jq -r '.[] | select(.build_script == env.SBUILD_SCRIPT) | .rebuild' "${SYSTMP}/pkgforge/SBUILD_LIST.json" | tr -d '[:space:]')" && export SBUILD_REBUILD
+      if [[ "${LOCAL_SBUILD}" == "YES" ]]; then
+       if [ -n "${GHCRPKG_LOCAL+x}" ] && [ -n "${GHCRPKG_LOCAL##*[[:space:]]}" ]; then
+         GHCRPKG="${GHCRPKG_LOCAL}" ; unset GHCRPKG_LOCAL ; export GHCRPKG
+         echo "[+] Setting '.ghcrpkg' --> ${GHCRPKG} [Provided]"
+       fi
+       if [ -n "${PKG_FAMILY_LOCAL+x}" ] && [ -n "${PKG_FAMILY_LOCAL##*[[:space:]]}" ]; then
+         PKG_FAMILY="${PKG_FAMILY_LOCAL}" ; unset PKG_FAMILY_LOCAL ; export PKG_FAMILY
+         echo "[+] Setting '.pkg_family' --> ${PKG_FAMILY} [Provided]"
+       else
+         PKG_FAMILY="$(yq eval '.pkg' | tr -d '[:space:]')" ; export PKG_FAMILY
+         echo "[+] Setting '.pkg_family' --> ${PKG_FAMILY} [Guessed]"
+       fi
+       SBUILD_REBUILD="true" ; export SBUILD_REBUILD
+       unset LOCAL_SBUILD
+      elif [[ -s "${SYSTMP}/pkgforge/SBUILD_LIST.json" && $(stat -c%s "${SYSTMP}/pkgforge/SBUILD_LIST.json") -gt 10 ]]; then
+       GHCRPKG="$(jq -r '.[] | select(.build_script == env.SBUILD_SCRIPT) | .ghcrpkg' "${SYSTMP}/pkgforge/SBUILD_LIST.json" | tr -d '[:space:]')" && export GHCRPKG
+       PKG_FAMILY="$(jq -r '.[] | select(.build_script == env.SBUILD_SCRIPT) | .pkg_family' "${SYSTMP}/pkgforge/SBUILD_LIST.json" | tr -d '[:space:]')" && export PKG_FAMILY
+       SBUILD_REBUILD="$(jq -r '.[] | select(.build_script == env.SBUILD_SCRIPT) | .rebuild' "${SYSTMP}/pkgforge/SBUILD_LIST.json" | tr -d '[:space:]')" && export SBUILD_REBUILD
+      else
+       echo -e "\n[✗] FATAL: No Local SBUILD was Supplied & Remote ${SYSTMP}/pkgforge/SBUILD_LIST.json Does Not Exist\n"
+      fi
       #Main
        {
         setup_env "${BUILDSCRIPT}"
