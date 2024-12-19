@@ -102,14 +102,27 @@
 >
 > !#PrePacked Build ENV (remove --rm to Preserve Container)
 > sudo mkdir -p "/var/lib/containers/tmp"
-> sudo podman run --detach --rm --privileged --network="bridge" --systemd="always" --ulimit="host" --volume="/var/lib/containers/tmp:/tmp" --tz="UTC" --pull="always" --name="bincache-dbg" "docker.io/azathothas/ubuntu-systemd-base:latest"
+> sudo podman run --detach --rm --privileged --network="bridge" --systemd="always" --ulimit="host" --volume="/var/lib/containers/tmp:/tmp" --tz="UTC" --pull="always" --name="bincache-dbg" "docker.io/azathothas/ubuntu-systemd-base:$(uname -m)"
 > #Run an Interactive Session
-> sudo podman exec -it -u "runner" "$(sudo podman ps --filter "name=bincache-dbg" --format json | jq -r '.[] | select(.Image == "docker.io/azathothas/ubuntu-systemd-base:latest") | .Id')" bash
+> sudo podman exec -it -u "runner" "$(sudo podman ps --filter "name=bincache-dbg" --filter "ancestor=docker.io/azathothas/ubuntu-systemd-base:$(uname -m)" --format "{{.ID}}")" bash -l
 > #Inside the container
+> bash <(curl -qfsSL "https://raw.githubusercontent.com/pkgforge/devscripts/main/Linux/install_bins_curl.sh") #Installs needed Tooling
+> export GHCR_TOKEN="GHCR_PKG_RW" #Token for reading/writing Packages to GHCR
+> export GITHUB_TOKEN="GHP_NON_PRIVS" #Token for making Github API Requests to Access Public Assets
+> export GITLAB_TOKEN="GLP_NON_PRIVS" #Token for making Gitlab API Requests to Access Public Assets
 > source <(curl -qfsSL "https://raw.githubusercontent.com/pkgforge/bincache/refs/heads/main/scripts/runner/setup_env.sh")
+> 
 > #Stop & Delete Container
 > sudo podman stop "bincache-dbg"
 > sudo podman rm "bincache-dbg" --force
+>
+> #To delete all images
+> sudo docker image prune -a -f
+> sudo podman image prune -a -f
+>
+> #{WARNING] To reset everything
+> sudo docker system reset -f
+> sudo podman system reset -f
 > ```
 > ---
 > - [Install Sysbox](https://github.com/nestybox/sysbox)
