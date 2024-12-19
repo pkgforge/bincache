@@ -39,15 +39,21 @@ for DEP_CMD in eget gh glab oras rclone soar; do
 done
 if [[ ! -n "${GITHUB_TOKEN}" ]]; then
  echo -e "\n[-] GITHUB_TOKEN is NOT Exported"
- echo -e "Export it to Use GH\n"
+ echo -e "Export it to Use gh (Github)\n"
+else
+ gh auth status
 fi
 if [[ ! -n "${GHCR_TOKEN}" ]]; then
  echo -e "\n[-] GHCR_TOKEN is NOT Exported"
- echo -e "Export it to avoid ghcr\n"
+ echo -e "Export it to avoid ghcr (Github Registry)\n"
+else
+ echo "${GHCR_TOKEN}" | oras login --username "Azathothas" --password-stdin "ghcr.io"
 fi
 if [[ ! -n "${GITLAB_TOKEN}" ]]; then
  echo -e "\n[-] GITLAB_TOKEN is NOT Exported"
- echo -e "Export it to Use GH\n"
+ echo -e "Export it to Use glab (Gitlab)\n"
+else
+ glab auth status
 fi
 #-------------------------------------------------------#
 unset DOCKER_HOST

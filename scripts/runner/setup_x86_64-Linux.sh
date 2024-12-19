@@ -46,7 +46,8 @@ else
      echo -e "\n[-] apt NOT Found"
      echo -e "\n[+] Maybe not on Debian (Debian Based Distro) ?\n"
      #Fail & exit
-     export CONTINUE="NO" && exit 1
+     export CONTINUE="NO"
+     return 1 || exit 1
   else
     #Export as noninteractive
     export DEBIAN_FRONTEND="noninteractive"
@@ -64,7 +65,8 @@ else
      if ! command -v sudo &> /dev/null; then
        echo -e "[-] Failed to Install sudo (Maybe NOT root || NOT enough perms)\n"
        #exit
-       export CONTINUE="NO" && exit 1
+       export CONTINUE="NO"
+       return 1 || exit 1
      fi
    fi
   fi 
@@ -77,7 +79,8 @@ else
        echo -e "\n[-] Passwordless sudo is NOT Configured"
        echo -e "\n[-] READ: https://web.archive.org/web/20230614212916/https://linuxhint.com/setup-sudo-no-password-linux/\n"
        #exit
-       export CONTINUE="NO" && exit 1
+       export CONTINUE="NO"
+       return 1 || exit 1
    fi
   fi
  ##Install Needed CMDs
@@ -87,7 +90,7 @@ else
     case "$(command -v "${DEP_CMD}" 2>/dev/null)" in
         "") echo -e "\n[✗] FATAL: ${DEP_CMD} is NOT INSTALLED\n"
            export CONTINUE="NO"
-            exit 1 ;;
+            return 1 || exit 1 ;;
     esac
  done
  ##Check for GITHUB_TOKEN
@@ -104,7 +107,8 @@ else
     echo -e "\n[-] GITHUB_TOKEN is NOT Exported"
     echo -e "Export it to avoid ratelimits\n"
     eget --rate
-   export CONTINUE="NO" && exit 1
+   export CONTINUE="NO"
+   return 1 || exit 1
   fi
  ##Check for GHCR_TOKEN
   if [ -n "${GHCR_TOKEN+x}" ] && [ -n "${GHCR_TOKEN##*[[:space:]]}" ]; then
@@ -114,7 +118,8 @@ else
   else
     echo -e "\n[-] GHCR_TOKEN is NOT Exported"
     echo -e "Export it to avoid ghcr\n"
-   export CONTINUE="NO" && exit 1
+   export CONTINUE="NO"
+   return 1 || exit 1
   fi
  ##Check for Gitlab Token
   if [ -n "${GITLAB_TOKEN+x}" ] && [ -n "${GITLAB_TOKEN##*[[:space:]]}" ]; then
@@ -203,7 +208,8 @@ if [ "${CONTINUE}" == "YES" ]; then
   #Test
    if ! command -v docker &> /dev/null; then
      echo -e "\n[-] docker NOT Found\n"
-     export CONTINUE="NO" && exit 1
+     export CONTINUE="NO"
+     return 1 || exit 1
    else
      if ! sudo systemctl is-active --quiet docker; then
       sudo service docker restart >/dev/null 2>&1 ; sleep 10
@@ -235,7 +241,8 @@ if [ "${CONTINUE}" == "YES" ]; then
   #Test
   if ! command -v crystal &> /dev/null; then
    echo -e "\n[-] crystal NOT Found\n"
-   export CONTINUE="NO" && exit 1
+   export CONTINUE="NO"
+   return 1 || exit 1
   else
    crystal --version ; shards --version
    sudo ldconfig && sudo ldconfig -p
@@ -249,7 +256,8 @@ if [ "${CONTINUE}" == "YES" ]; then
   #Test
   if ! command -v go &> /dev/null; then
    echo -e "\n[-] go NOT Found\n"
-   export CONTINUE="NO" && exit 1
+   export CONTINUE="NO"
+   return 1 || exit 1
   else
    go version
    sudo ldconfig && sudo ldconfig -p
@@ -285,7 +293,8 @@ if [ "${CONTINUE}" == "YES" ]; then
   #Test
   if ! command -v nix &> /dev/null; then
      echo -e "\n[-] nix NOT Found\n"
-     export CONTINUE="NO" && exit 1
+     export CONTINUE="NO"
+     return 1 || exit 1
   else
      nix --version && nix-channel --list && nix-channel --update
   fi
@@ -297,7 +306,8 @@ if [ "${CONTINUE}" == "YES" ]; then
   #Test: PATH="${HOME}/.cargo/bin:${HOME}/.cargo/env:${PATH}" 
   if ! command -v cargo &> /dev/null; then
    echo -e "\n[-] cargo (rust) NOT Found\n"
-   export CONTINUE="NO" && exit 1
+   export CONTINUE="NO"
+   return 1 || exit 1
   else
    rustup default stable
    rustc --version && cargo --version
