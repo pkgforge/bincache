@@ -10,7 +10,7 @@
 #-------------------------------------------------------#
 sbuild_builder()
  {
-   SBB_VERSION="0.0.2" && echo -e "[+] SBUILD Builder Version: ${SBB_VERSION}" ; unset SBB_VERSION 
+   SBB_VERSION="0.0.3" && echo -e "[+] SBUILD Builder Version: ${SBB_VERSION}" ; unset SBB_VERSION 
    ##Enable Debug 
    if [ "${DEBUG}" = "1" ] || [ "${DEBUG}" = "ON" ]; then
       set -x
@@ -113,6 +113,7 @@ sbuild_builder()
   #Get Initial Inputs
    BUILDSCRIPT="$(mktemp --tmpdir="${SYSTMP}/pkgforge" XXXXX_build.yaml)" && export BUILDSCRIPT="${BUILDSCRIPT}"
    INPUT_FILE="${1:-$(echo "$@" | tr -d '[:space:]')}"
+   INPUT_FILE="$(realpath ${INPUT_FILE})" ; export INPUT_FILE
    SELF_NAME="${ARGV0:-${0##*/}}" ; export SELF_NAME
    if [[ -z "${INPUT_FILE}" ]]; then
     echo -e "\n[+] Building Everything (Rerun: ${SELF_NAME} /path/to/SBUILD_FILE , if you are building a Single Prog)\n"
@@ -123,10 +124,10 @@ sbuild_builder()
       if [[ -s "${BUILDSCRIPT}" && $(stat -c%s "${BUILDSCRIPT}") -gt 10 ]]; then
         export LOCAL_SBUILD="YES"
       else
-        echo -e "\n[✗] FATAL: ${INPUT} is NOT a Valid file\n"
+        echo -e "\n[✗] FATAL: ${INPUT_FILE} is NOT a Valid file\n"
       fi
     else
-      echo -e "\n[✗] FATAL: ${INPUT} is NOT a file\n"
+      echo -e "\n[✗] FATAL: ${INPUT_FILE} is NOT a file\n"
       export CONTINUE_SBUILD="NO"
       return 1 || exit 1
     fi
