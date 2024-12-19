@@ -8,6 +8,7 @@
 ##Env vars
 # (Remote) FORCE_REBUILD_ALL=YES --> Rebuilds everything regardless if prebuilt already exists
 # (Local) SBUILD_REBUILD=true --> Rebuilds Local SBUILD regardless if remote prebuilt already exists
+# KEEP_LOGS="YES" --> Keep Dirs/Files
 #-------------------------------------------------------#
 
 #-------------------------------------------------------#

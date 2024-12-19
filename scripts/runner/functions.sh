@@ -310,7 +310,7 @@ if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]]; then
     "app_id": (.app_id // ""),
     "appstream": (.appstream // ""),
     "category": (.category // []),
-    "description": (env.PKG_DESCRIPTION // (.description[env.PROG] // .description // "")),
+    "description": (env.PKG_DESCRIPTION // (if type == "object" and has("description") and (.description | type == "object") then .description[env.PROG] else .description end // "")),
     "desktop": (.desktop // ""),
     "homepage": (.homepage // []),
     "icon": (env.PKG_ICON // .icon // ""),
