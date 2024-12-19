@@ -207,7 +207,7 @@ if [[ "${CONTINUE_SBUILD}" == "YES" ]]; then
       #End
        export SBUILD_SUCCESSFUL="YES"
        echo "export SBUILD_SUCCESSFUL='${SBUILD_SUCCESSFUL}'" >> "${OCWD}/ENVPATH"
-       echo -e "[✓] SuccessFully Built ${SBUILD_PKG} using ${RECIPE:-INPUT_SBUILD} [$(TZ='UTC' date +'%A, %Y-%m-%d (%I:%M:%S %p)') UTC]"
+       echo -e "[✓] SuccessFully Built ${SBUILD_PKG} using ${SBUILD_SCRIPT_BLOB:-INPUT_SBUILD} [$(TZ='UTC' date +'%A, %Y-%m-%d (%I:%M:%S %p)') UTC]"
        echo -e "[+] Total Size: $(du -sh "${SBUILD_OUTDIR}" 2>/dev/null | awk '{print $1}' 2>/dev/null) (Includes TMPFILES)"
        if [ -d "${OCWD}" ]; then
          echo -e "[+] LOGPATH='${SBUILD_OUTDIR}/${SBUILD_PKG}.log'"
@@ -219,7 +219,7 @@ if [[ "${CONTINUE_SBUILD}" == "YES" ]]; then
          echo "[+] Resetting Version: ${SBUILD_PKGVER} <== [${SBUILD_OUTDIR}/${SBUILD_PKG}.version]"
        fi
      else
-       echo -e "\n[✗] FATAL: Could NOT Build ${SBUILD_PKG} using ${INPUT_SBUILD} [${SBUILD_SCRIPT}]\n"
+       echo -e "\n[✗] FATAL: Could NOT Build ${SBUILD_PKG} using ${INPUT_SBUILD} [${SBUILD_SCRIPT_BLOB}]\n"
        cat "${SBUILD_OUTDIR}/${SBUILD_PKG}.version" 2>/dev/null
        ls "${SBUILD_OUTDIR}" -lah
        return 1 || exit 1
@@ -338,7 +338,7 @@ if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]]; then
     "bsum": (env.PKG_BSUM // ""),
     "build_date": (env.PKG_DATE // ""),
     "build_log": (env.BUILD_LOG // ""),
-    "build_script": (env.SBUILD_SCRIPT // ""),
+    "build_script": (env.SBUILD_SCRIPT_BLOB // ""),
     "download_url": (env.DOWNLOAD_URL // ""),
     "shasum": (env.PKG_SHASUM // ""),
     "size": (env.PKG_SIZE // ""),
@@ -372,6 +372,8 @@ if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]]; then
      BUILD_LOG="$(jq -r '.build_log' "${PKG_JSON}" | tr -d '[:space:]')"
      [[ "${BUILD_LOG}" == "null" ]] && BUILD_LOG=""
      BUILD_SCRIPT="$(jq -r '.build_script' "${PKG_JSON}" | tr -d '[:space:]')"
+     [[ "${BUILD_SCRIPT}" == "null" ]] && unset BUILD_SCRIPT
+     [ -z "${BUILD_SCRIPT}" ] && BUILD_SCRIPT="${SBUILD_SCRIPT_BLOB}"
      PKG_BSUM="$(jq -r '.bsum' "${PKG_JSON}" | tr -d '[:space:]')"
      [[ "${PKG_BSUM}" == "null" ]] && unset PKG_BSUM
      [ -z "${PKG_BSUM}" ] && PKG_BSUM="$(b3sum "${GHCR_PKG}" | grep -oE '^[a-f0-9]{64}' | tr -d '[:space:]')"
@@ -472,7 +474,7 @@ if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]]; then
      --annotation "dev.pkgforge.discord=https://discord.gg/djJUs48Zbu" \
      --annotation "dev.pkgforge.soar.build_date=${PKG_DATE}" \
      --annotation "dev.pkgforge.soar.build_log=${BUILD_LOG}" \
-     --annotation "dev.pkgforge.soar.build_script=${BUILD_SCRIPT}" \
+     --annotation "dev.pkgforge.soar.build_script=${SBUILD_SCRIPT:-BUILD_SCRIPT}" \
      --annotation "dev.pkgforge.soar.bsum=${PKG_BSUM}" \
      --annotation "dev.pkgforge.soar.category=${PKG_CATEGORY}" \
      --annotation "dev.pkgforge.soar.description=${PKG_DESCRIPTION}" \
@@ -542,7 +544,7 @@ cleanup_env()
   rm -rvf "${BUILD_DIR}" 2>/dev/null
  fi
 #Cleanup Env
- unset BUILD_DIR INPUT_SBUILD INPUT_SBUILD_PATH pkg PKG pkg_id PKG_ID pkg_type PKG_TYPE SBUILD_OUTDIR SBUILD_PKG SBUILD_PKGS SBUILD_PKGVER SBUILD_SCRIPT SBUILD_SUCCESSFUL SBUILD_TMPDIR TMPJSON TMPXVER TMPXRUN
+ unset BUILD_DIR INPUT_SBUILD INPUT_SBUILD_PATH pkg PKG pkg_id PKG_ID pkg_type PKG_TYPE SBUILD_OUTDIR SBUILD_PKG SBUILD_PKGS SBUILD_PKGVER SBUILD_SCRIPT SBUILD_SCRIPT_BLOB SBUILD_SUCCESSFUL SBUILD_TMPDIR TMPJSON TMPXVER TMPXRUN
 }
 export -f cleanup_env
 #-------------------------------------------------------#

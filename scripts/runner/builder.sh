@@ -159,7 +159,7 @@ sbuild_builder()
     for ((i=0; i<${#RECIPES[@]}; i++)); do
      pushd "$($TMPDIRS)" >/dev/null 2>&1
      OCWD="$(realpath .)" ; export OCWD
-     unset CONTINUE_SBUILD GHCRPKG KEEP_LOGS LOGPATH PKG_FAMILY PUSH_SUCCESSFUL RECIPE SBUILD_REBUILD SBUILD_SUCCESSFUL
+     unset CONTINUE_SBUILD GHCRPKG KEEP_LOGS LOGPATH PKG_FAMILY PUSH_SUCCESSFUL RECIPE SBUILD_REBUILD SBUILD_SCRIPT SBUILD_SCRIPT_BLOB SBUILD_SUCCESSFUL
      TEMP_LOG="./BUILD.log"
      #Init
       START_TIME="$(date +%s)" && export START_TIME="${START_TIME}"
@@ -175,6 +175,7 @@ sbuild_builder()
      #Run
      if [[ -s "${BUILDSCRIPT}" && $(stat -c%s "${BUILDSCRIPT}") -gt 10 ]]; then
       SBUILD_SCRIPT="${RECIPE}" && export SBUILD_SCRIPT
+      SBUILD_SCRIPT_BLOB="$(echo "${SBUILD_SCRIPT}" | sed -E 's/raw.githubusercontent.com/github.com/; s/refs\/heads/blob/' | tr -d '[:space:]')" ; export SBUILD_SCRIPT_BLOB
       if [[ "${LOCAL_SBUILD}" == "YES" ]]; then
        if [ -n "${GHCRPKG_LOCAL+x}" ] && [ -n "${GHCRPKG_LOCAL##*[[:space:]]}" ]; then
          GHCRPKG="${GHCRPKG_LOCAL}" ; unset GHCRPKG_LOCAL ; export GHCRPKG
