@@ -106,7 +106,7 @@
 > #Run an Interactive Session
 > sudo podman exec -it -u "runner" "$(sudo podman ps --filter "name=bincache-dbg" --format json | jq -r '.[] | select(.Image == "docker.io/azathothas/ubuntu-systemd-base:latest") | .Id')" bash
 > #Inside the container
-> source <(curl -qfsSL "https://raw.githubusercontent.com/pkgforge/bincache/refs/heads/main/scripts/runner/env_$(uname -m)-$(uname -s).sh")
+> source <(curl -qfsSL "https://raw.githubusercontent.com/pkgforge/bincache/refs/heads/main/scripts/runner/setup_env.sh")
 > #Stop & Delete Container
 > sudo podman stop "bincache-dbg"
 > sudo podman rm "bincache-dbg" --force
