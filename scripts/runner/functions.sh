@@ -271,7 +271,7 @@ if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]]; then
       IMG_EXT="${ASSET##*.}"
       IMG_TMP="${SBUILD_TMPDIR}/default.${IMG_EXT}"
       IMG_FILE="${SBUILD_OUTDIR}/${PROG}.${IMG_EXT}"
-      curl -fSL "${BASE_URL}${ASSET}" -o "${IMG_TMP}" 2>/dev/null
+      curl -w "(Tried) <== %{url}\n" -fL "${BASE_URL}${ASSET}" -o "${IMG_TMP}" 2>/dev/null
       if [[ -s "${IMG_TMP}" && $(stat -c%s "${IMG_TMP}") -gt 10 ]]; then
         mv -fv "${IMG_TMP}" "${IMG_FILE}"
         case "${IMG_EXT}" in
@@ -287,7 +287,7 @@ if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]]; then
     elif [[ -s "${SBUILD_OUTDIR}/${PROG}.svg" && $(stat -c%s "${SBUILD_OUTDIR}/${PROG}.svg") -gt 10 ]]; then
      PKG_ICON="$(echo "${DOWNLOAD_URL}" | sed 's/download=[^&]*/download='"${PROG}"'.svg/')" ; export PKG_ICON
     elif [ ! -s "${SBUILD_OUTDIR}/${PROG}.png" ] || [ ! -s "${SBUILD_OUTDIR}/${PROG}.svg" ]; then
-     curl -fSL "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/assets/base.png" -o "${SBUILD_OUTDIR}/${PROG}.png"
+      curl -w "(Tried) <== %{url}\n" -fL "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/assets/base.png" -o "${SBUILD_OUTDIR}/${PROG}.png"
      if [ ! -s "${SBUILD_OUTDIR}/${PROG}.png" ] || [ ! -s "${SBUILD_OUTDIR}/${PROG}.svg" ]; then
       echo '<svg viewBox="0 0 10 10"><circle cx="5" cy="5" r="4" fill="yellow"/></svg>' > "${SBUILD_OUTDIR}/${PROG}.svg"
       PKG_ICON="$(echo "${DOWNLOAD_URL}" | sed 's/download=[^&]*/download='"${PROG}"'.svg/')" ; export PKG_ICON
