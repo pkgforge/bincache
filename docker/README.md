@@ -111,6 +111,9 @@
 > export GITHUB_TOKEN="GHP_NON_PRIVS" #Token for making Github API Requests to Access Public Assets
 > export GITLAB_TOKEN="GLP_NON_PRIVS" #Token for making Gitlab API Requests to Access Public Assets
 > source <(curl -qfsSL "https://raw.githubusercontent.com/pkgforge/bincache/refs/heads/main/scripts/runner/setup_env.sh")
+>
+> #Enable SSHD (replace keys with yours)
+> sudo podman exec -it -u "runner" "bincache-dbg" bash -c 'sudo curl -qfsSL "https://github.com/Azathothas.keys" | sudo sort -u -o "/etc/ssh/authorized_keys" ; sudo systemctl restart sshd'
 > 
 > #Stop & Delete Container
 > sudo podman stop "bincache-dbg"
