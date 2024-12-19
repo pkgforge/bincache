@@ -9,6 +9,13 @@
     {
       "_disabled": false,
       "rebuild": false,  
+      "ghcrpkg": "ghcr.io/pkgforge/bincache/axel/official",
+      "pkg_family": "axel",
+      "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/axel/static.official.stable.yaml"
+    },
+    {
+      "_disabled": false,
+      "rebuild": false,  
       "ghcrpkg": "ghcr.io/pkgforge/bincache/curl/stunnel",
       "pkg_family": "curl",
       "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/curl/static.stunnel.stable.yaml"
