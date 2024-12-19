@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# VERSION=1.0.3
+# VERSION=1.0.4
 
 #-------------------------------------------------------#
 ## <DO NOT RUN STANDALONE, meant for CI Only>
@@ -266,15 +266,22 @@ if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]]; then
    echo "[+] Generating Json for ${SBUILD_PKG} (PROG=${PROG}) ==> ${SBUILD_OUTDIR}/${PROG}.json"
    echo -e "[+] ==> $(echo "${DOWNLOAD_URL}" | sed 's/download=[^&]*/download='"${PROG}"'.json/')"
    if [ -n "${SBUILD_SCRIPT+x}" ] && [ -n "${SBUILD_SCRIPT##*[[:space:]]}" ]; then
-    for src_img in "default.png" "default.svg" "${PROG}.png" "${PROG}.svg"; do
-      tmp_img="${SBUILD_TMPDIR}/${src_img##*/}"
-      curl -qfsSL "${SBUILD_SCRIPT%/*}/assets/${src_img}" -o "${tmp_img}"
-      if [[ -s "${tmp_img}" && $(stat -c%s "${tmp_img}") -gt 10 ]]; then
-       mv -fv "${tmp_img}" "${SBUILD_OUTDIR}/${src_img/default/$PROG}"
-       break
+     BASE_URL="$(echo "${BUILD_SCRIPT}" | sed 's|[^/]*$||')"
+     for ASSET in "assets/default.png" "assets/default.svg" "assets/${PROG}.png" "assets/${PROG}.svg"; do
+      IMG_EXT="${ASSET##*.}"
+      IMG_TMP="${SBUILD_TMPDIR}/default.${IMG_EXT}"
+      IMG_FILE="${SBUILD_OUTDIR}/${PROG}.${IMG_EXT}"
+      curl -qfsSL "${BASE_URL}${ASSET}" -o "${IMG_TMP}" 2>/dev/null
+      if [[ -s "${IMG_TMP}" && $(stat -c%s "${IMG_TMP}") -gt 10 ]]; then
+        mv -fv "${IMG_TMP}" "${IMG_FILE}"
+        case "${IMG_EXT}" in
+          png|svg)
+           break
+           ;;
+        esac
       fi
-    done
-    unset tmp_img src_img
+     done
+    unset BASE_URL EXT IMG_FILE IMG_TMP
     if [[ -s "${SBUILD_OUTDIR}/${PROG}.png" && $(stat -c%s "${SBUILD_OUTDIR}/${PROG}.png") -gt 10 ]]; then
      PKG_ICON="$(echo "${DOWNLOAD_URL}" | sed 's/download=[^&]*/download='"${PROG}"'.png/')"
     elif [[ -s "${SBUILD_OUTDIR}/${PROG}.svg" && $(stat -c%s "${SBUILD_OUTDIR}/${PROG}.svg") -gt 10 ]]; then
