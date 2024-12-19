@@ -160,6 +160,7 @@ sbuild_builder()
     for ((i=0; i<${#RECIPES[@]}; i++)); do
      pushd "$($TMPDIRS)" >/dev/null 2>&1
      OCWD="$(realpath .)" ; export OCWD
+     rm "${OCWD}/ENVPATH" 2>/dev/null
      unset CONTINUE_SBUILD GHCRPKG KEEP_LOGS LOGPATH PKG_FAMILY PUSH_SUCCESSFUL RECIPE SBUILD_REBUILD SBUILD_SCRIPT SBUILD_SCRIPT_BLOB SBUILD_SUCCESSFUL
      TEMP_LOG="./BUILD.log"
      #Init
