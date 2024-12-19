@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# VERSION=1.0.8
+# VERSION=1.0.9
 
 #-------------------------------------------------------#
 ## <DO NOT RUN STANDALONE, meant for CI Only>
@@ -507,10 +507,10 @@ if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]]; then
      ghcr_push+=(--annotation "org.opencontainers.image.vendor=pkgforge")
      ghcr_push+=(--annotation "org.opencontainers.image.version=${PKG_VERSION}")
      ghcr_push+=("${GHCRPKG_URL}:${GHCRPKG_TAG}" "./${PROG}")
-     [[ -s "./${PROG}.json" ]] && ghcr_push+=("./${PROG}.json")
-     [[ -s "./${PROG}.log" ]] && ghcr_push+=("./${PROG}.log")
-     [[ -s "./${PROG}.png" ]] && ghcr_push+=("./${PROG}.png")
-     [[ -s "./${PROG}.svg" ]] && ghcr_push+=("./${PROG}.svg")
+     [[ -f "./${PROG}.json" && -s "./${PROG}.json" ]] && ghcr_push+=("./${PROG}.json")
+     [[ -f "./${PROG}.log" && -s "./${PROG}.log" ]] && ghcr_push+=("./${PROG}.log")
+     [[ -f "./${PROG}.png" && -s "./${PROG}.png" ]] && ghcr_push+=("./${PROG}.png")
+     [[ -f "./${PROG}.svg" && -s "./${PROG}.svg" ]] && ghcr_push+=("./${PROG}.svg")
      "${ghcr_push[@]}"
      if [[ "$(oras manifest fetch "${GHCRPKG_URL}:${GHCRPKG_TAG}" | jq -r '.annotations["org.opencontainers.image.created"]')" == "${PKG_DATE}" ]]; then
        echo -e "\n[+] Registry --> https://${GHCRPKG_URL}"
