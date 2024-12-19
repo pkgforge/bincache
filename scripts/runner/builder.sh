@@ -53,8 +53,12 @@ sbuild_builder()
   ##Get Initial Inputs
    BUILDSCRIPT="$(mktemp --tmpdir="${SYSTMP}/pkgforge" XXXXX_build.yaml)" && export BUILDSCRIPT="${BUILDSCRIPT}"
    INPUT_FILE="${1:-$(echo "$@" | tr -d '[:space:]')}"
-   INPUT_FILE="$(realpath ${INPUT_FILE})" ; export INPUT_FILE
-   SELF_NAME="${ARGV0:-${0##*/}}" ; export SELF_NAME
+   if [ -n "${INPUT_FILE+x}" ] && [ -n "${INPUT_FILE##*[[:space:]]}" ]; then
+     INPUT_FILE="$(realpath ${INPUT_FILE})" ; export INPUT_FILE
+     SELF_NAME="${ARGV0:-${0##*/}}" ; export SELF_NAME
+   else
+     SELF_NAME="sbuild-builder" ; export SELF_NAME
+   fi
    if [[ -z "${INPUT_FILE}" ]]; then
     echo -e "\n[+] Building Everything (Rerun: ${SELF_NAME} /path/to/SBUILD_FILE , if you are building a Single Prog)\n"
    else
@@ -145,7 +149,7 @@ sbuild_builder()
     jq -r '.[] | select(._disabled == false) | .build_script' "${SYSTMP}/pkgforge/SBUILD_LIST.json" | sort -u -o "${SYSTMP}/pkgforge/SBUILD_URLS"
    fi
   #Build
-   echo -e "\n\n[+] Started Building at :: $(TZ='UTC' date +'%A, %Y-%m-%d (%I:%M:%S %p)')\n\n"
+   echo -e "\n==> [+] Started Building at :: $(TZ='UTC' date +'%A, %Y-%m-%d (%I:%M:%S %p)')\n"
    readarray -t RECIPES < "${SYSTMP}/pkgforge/SBUILD_URLS"
    TOTAL_RECIPES="${#RECIPES[@]}" && export TOTAL_RECIPES="${TOTAL_RECIPES}"
    echo -e "\n[+] Total RECIPES :: ${TOTAL_RECIPES}\n"
@@ -219,7 +223,7 @@ sbuild_builder()
      ELAPSED_TIME="$(date -u -d@"$((END_TIME - START_TIME))" "+%H(Hr):%M(Min):%S(Sec)")"
      echo -e "\n[+] Completed (Building|Fetching) ${RECIPE} :: ${ELAPSED_TIME}\n"
     done
-    echo -e "\n\n [+] Finished Building at :: $(TZ='UTC' date +'%A, %Y-%m-%d (%I:%M:%S %p)')\n\n"
+    echo -e "\n==> [+] Finished Building at :: $(TZ='UTC' date +'%A, %Y-%m-%d (%I:%M:%S %p)')\n"
    popd >/dev/null 2>&1
   ##Finish
   #Disable Debug
