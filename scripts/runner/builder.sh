@@ -177,7 +177,7 @@ sbuild_builder()
          PKG_FAMILY="${PKG_FAMILY_LOCAL}" ; unset PKG_FAMILY_LOCAL ; export PKG_FAMILY
          echo "[+] Setting '.pkg_family' --> ${PKG_FAMILY} [Provided]"
        else
-         PKG_FAMILY="$(yq eval '.pkg' | tr -d '[:space:]')" ; export PKG_FAMILY
+         PKG_FAMILY="$(yq eval '.pkg' "${BUILDSCRIPT}" | tr -d '[:space:]')" ; export PKG_FAMILY
          echo "[+] Setting '.pkg_family' --> ${PKG_FAMILY} [Guessed]"
        fi
        SBUILD_REBUILD="true" ; export SBUILD_REBUILD

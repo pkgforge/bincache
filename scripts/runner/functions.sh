@@ -33,7 +33,8 @@ setup_env()
  SBUILD_TMPDIR="${SBUILD_OUTDIR}/SBUILD_TMPDIR"
  mkdir -p "${SBUILD_TMPDIR}"
  export BUILD_DIR INPUT_SBUILD SBUILD_OUTDIR SBUILD_TMPDIR
- echo -e "\n[+] Building ["$(echo "${RECIPE}" | awk -F'/' '{print $(NF-1) "/" $NF}')"] (${INPUT_SBUILD}) --> ${SBUILD_OUTDIR} [$(TZ='UTC' date +'%A, %Y-%m-%d (%I:%M:%S %p)') UTC]\n"
+ #echo -e "\n[+] Building ["$(echo "${RECIPE}" | awk -F'/' '{print $(NF-1) "/" $NF}')"] (${INPUT_SBUILD}) --> ${SBUILD_OUTDIR} [$(TZ='UTC' date +'%A, %Y-%m-%d (%I:%M:%S %p)') UTC]\n"
+ echo -e "\n[+] Building (${RECIPE}) --> ${SBUILD_OUTDIR} [$(TZ='UTC' date +'%A, %Y-%m-%d (%I:%M:%S %p)') UTC]\n"
  echo "export INPUT_SBUILD='${INPUT_SBUILD}'" > "${OCWD}/ENVPATH"
  echo "export BUILD_DIR='${BUILD_DIR}'" >> "${OCWD}/ENVPATH"
  echo "export SBUILD_OUTDIR='${SBUILD_OUTDIR}'" >> "${OCWD}/ENVPATH"
@@ -202,12 +203,12 @@ if [[ "${CONTINUE_SBUILD}" == "YES" ]]; then
        '
       #Sanity
        find "${SBUILD_OUTDIR}" -type f -exec touch "{}" \;
-       find "${SBUILD_OUTDIR}" -maxdepth 1 -type f -print | xargs -I "{}" sh -c 'printf "\nFile: {}\n  Type: $(file -b {})\n  B3sum: $(b3sum {} | cut -d" " -f1)\n  SHA256sum: $(sha256sum {} | cut -d" " -f1)\n  Size: $(du -sh {} | cut -f1)\n"'
+       find "${SBUILD_OUTDIR}" -maxdepth 1 -type f -print | xargs -I "{}" sh -c 'printf "\nFile: $(basename {})\n  Type: $(file -b {})\n  B3sum: $(b3sum {} | cut -d" " -f1)\n  SHA256sum: $(sha256sum {} | cut -d" " -f1)\n  Size: $(du -sh {} | cut -f1)\n"'
       #End
        export SBUILD_SUCCESSFUL="YES"
        echo "export SBUILD_SUCCESSFUL='${SBUILD_SUCCESSFUL}'" >> "${OCWD}/ENVPATH"
-       echo -e "[✓] SuccessFully Built ${SBUILD_PKG} using ${INPUT_SBUILD} [${SBUILD_SCRIPT}] [$(TZ='UTC' date +'%A, %Y-%m-%d (%I:%M:%S %p)') UTC]"
-       echo -e "[+] Total Size: $(du -sh "${SBUILD_OUTDIR}" 2>/dev/null | awk '{print $1}' 2>/dev/null)"
+       echo -e "[✓] SuccessFully Built ${SBUILD_PKG} using ${RECIPE:-INPUT_SBUILD} [$(TZ='UTC' date +'%A, %Y-%m-%d (%I:%M:%S %p)') UTC]"
+       echo -e "[+] Total Size: $(du -sh "${SBUILD_OUTDIR}" 2>/dev/null | awk '{print $1}' 2>/dev/null) (Includes TMPFILES)"
        if [ -d "${OCWD}" ]; then
          echo -e "[+] LOGPATH='${SBUILD_OUTDIR}/${SBUILD_PKG}.log'"
          echo -e "[+] ENVPATH=$(realpath "${OCWD}/ENVPATH")"
