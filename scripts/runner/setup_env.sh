@@ -11,6 +11,7 @@ if [ -z "${SYSTMP+x}" ] || [ -z "${SYSTMP##*[[:space:]]}" ]; then
 fi
 export PATH="${HOME}/bin:${HOME}/.cargo/bin:${HOME}/.cargo/env:${HOME}/.go/bin:${HOME}/go/bin:${HOME}/.local/bin:${HOME}/miniconda3/bin:${HOME}/miniconda3/condabin:/usr/local/zig:/usr/local/zig/lib:/usr/local/zig/lib/include:/usr/local/musl/bin:/usr/local/musl/lib:/usr/local/musl/include:${PATH}"
 PATH="$(echo "${PATH}" | awk 'BEGIN{RS=":";ORS=":"}{gsub(/\n/,"");if(!a[$0]++)print}' | sed 's/:*$//')" ; export PATH
+OWD_TMP="$(realpath .)" ; export OWD_TMP
 PKG_REPO="bincache"
 TMPDIRS="mktemp -d --tmpdir=${SYSTMP}/pkgforge XXXXXXX_SBUILD"
 USER_AGENT="$(curl -qfsSL 'https://pub.ajam.dev/repos/Azathothas/Wordlists/Misc/User-Agents/ua_chrome_macos_latest.txt')"
@@ -30,7 +31,7 @@ sudo systemctl status "docker.service" --no-pager
 #Nix
 source "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh"
 #sg docker newgrp "$(id -gn)"
-cd "${HOME}" ; clear
+cd "${OWD_TMP}" && unset OWD_TMP && clear
 ##Sanity Checks
 for DEP_CMD in eget gh glab oras rclone soar; do
  case "$(command -v "${DEP_CMD}" 2>/dev/null)" in
