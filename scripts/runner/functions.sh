@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# VERSION=1.0.5
+# VERSION=1.0.6
 
 #-------------------------------------------------------#
 ## <DO NOT RUN STANDALONE, meant for CI Only>
@@ -296,7 +296,7 @@ if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]]; then
      fi
     fi
     if [ -n "${PKG_ICON+x}" ] && [ -n "${PKG_ICON##*[[:space:]]}" ]; then
-     echo "[+] Feched Icon for ${SBUILD_PKG} (PROG=${PROG}) ==> ${PKG_ICON}"
+     echo "[+] Fetched Icon for ${SBUILD_PKG} (PROG=${PROG}) ==> ${PKG_ICON}"
     fi
    fi
    cat "${TMPJSON}" | jq -r \
@@ -504,7 +504,7 @@ if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]]; then
      --annotation "org.opencontainers.image.url=${PKG_SRCURL}" \
      --annotation "org.opencontainers.image.vendor=pkgforge" \
      --annotation "org.opencontainers.image.version=${PKG_VERSION}" \
-     "${GHCRPKG_URL}:${GHCRPKG_TAG}" "./${PROG}" "./${PROG}.json" "./${PROG}.log" $([[ -s "./${PROG}.png" || -s "./${PROG}.svg" ]] || echo "")
+     "${GHCRPKG_URL}:${GHCRPKG_TAG}" "./${PROG}" "./${PROG}.json" "./${PROG}.log" $([[ -s "./${PROG}.png" ]] && echo "./${PROG}.png" || [[ -s "./${PROG}.svg" ]] && echo "./${PROG}.svg" || echo "")
      if [[ "$(oras manifest fetch "${GHCRPKG_URL}:${GHCRPKG_TAG}" | jq -r '.annotations["org.opencontainers.image.created"]')" == "${PKG_DATE}" ]]; then
        echo -e "\n[+] Registry --> https://${GHCRPKG_URL}"
        echo -e "[+] ==>'${DOWNLOAD_URL}'\n"
