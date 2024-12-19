@@ -416,6 +416,7 @@ if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]]; then
   #Upload
    [[ ! -s "./${PROG}" ]] && echo -e "\n[✗] \${GHCR_PKG} ${PROG} was NOT Found at CWD\n" && return 1
    [[ ! -s "./${PROG}.json" ]] && echo -e "\n[✗] \${GHCR_PKG}.json ${PROG} was NOT Found at CWD\n" && return 1
+   if [[ -s "./${PROG}" ]]; then
     if [[ ! -s "${LOGPATH}" ]]; then
      echo -e "\n[✗] \${LOGPATH} was NOT Found at CWD\n"
      return 1 || exit 1
@@ -478,6 +479,10 @@ if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]]; then
     cat "${PKG_JSON}" 2>/dev/null
     return 1 || exit 1
    fi
+  else
+   echo -e "\n[✗] \${GHCR_PKG} ${PROG} was NOT Found at CWD\n"
+   return 1 || exit 1
+  fi
 fi
 popd >/dev/null 2>&1
 }
