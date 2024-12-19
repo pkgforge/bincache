@@ -169,7 +169,7 @@ if [[ "${CONTINUE_SBUILD}" == "YES" ]]; then
  #check rebuild
   if [ -n "${GHCRPKG+x}" ] && [ -n "${GHCRPKG##*[[:space:]]}" ]; then
     for PROG in "${SBUILD_PKGS[@]}"; do
-      if [[ "$(oras manifest fetch "${GHCRPKG}/${PROG}:${SBUILD_PKGVER}-${HOST_TRIPLET,,}" | jq -r '.annotations["org.opencontainers.image.version"]')" == "${SBUILD_PKGVER}" ]]; then
+      if [[ "$(oras manifest fetch "${GHCRPKG}/${PROG}:${SBUILD_PKGVER}-${HOST_TRIPLET,,}" 2>/dev/null | jq -r '.annotations["org.opencontainers.image.version"]')" == "${SBUILD_PKGVER}" ]]; then
         if [[ "${SBUILD_REBUILD}" == "false" ]] && [[ "${FORCE_REBUILD_ALL}" != "YES" ]]; then
           echo -e "\n[+] SKIPPED: ${SBUILD_PKG} [${GHCRPKG}/${PROG}:${SBUILD_PKGVER}-${HOST_TRIPLET,,}] (PreBuilt Exists)"
           echo -e "[+] ReRun with: '.rebuild == true' (https://github.com/pkgforge/${PKG_REPO}/blob/main/SBUILD_LIST.json)"
