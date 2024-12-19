@@ -58,4 +58,7 @@ fi
 #-------------------------------------------------------#
 unset DOCKER_HOST
 history -c 2>/dev/null ; rm -rf "${HOME}/.bash_history" ; pushd "$(mktemp -d)" >/dev/null 2>&1
+source <(curl -qfsSL "https://raw.githubusercontent.com/pkgforge/bincache/refs/heads/main/scripts/runner/builder.sh"
+echo -e "\n[+] Build everything: sbuild-builder"
+echo -e "[+] Build local SBUILD: sbuild-builder /path/to/sbuild\n"
 #-------------------------------------------------------#

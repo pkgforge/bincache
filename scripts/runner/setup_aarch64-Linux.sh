@@ -4,7 +4,7 @@
 #-------------------------------------------------------#
 ## <DO NOT RUN STANDALONE, meant for CI Only>
 ## Meant to Setup Build Machine
-## Self: https://raw.githubusercontent.com/pkgforge/bincache/refs/heads/main/scripts/runner/setup_x86_64-Linux.sh
+## Self: https://raw.githubusercontent.com/pkgforge/bincache/refs/heads/main/scripts/runner/setup_aarch64-Linux.sh
 # bash <(curl -qfsSL "https://raw.githubusercontent.com/pkgforge/bincache/refs/heads/main/scripts/runner/setup_$(uname -m)-$(uname -s).sh")
 ###-----------------------------------------------------###
 ### Setups Essential Tools & Preps Sys Environ for Deps ###
@@ -166,7 +166,7 @@ if [ "${CONTINUE}" == "YES" ]; then
   sudo apt install binutils-aarch64-linux-gnu -y 2>/dev/null
   sudo apt-get install "g++-arm-linux-gnueabi" "g++-arm-linux-gnueabihf" "g++-aarch64-linux-gnu" qemu-user-static -y 2>/dev/null
  #libpcap
-  sudo apt install libpcap-dev pcaputils -y 2>/dev/null  
+  sudo apt install libpcap-dev pcaputils -y 2>/dev/null
  #libsqlite3
   sudo apt-get install libsqlite3-dev sqlite3 sqlite3-pcre sqlite3-tools -y 2>/dev/null
  #lzma

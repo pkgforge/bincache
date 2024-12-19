@@ -47,7 +47,7 @@ sbuild_builder()
   if [[ "${KEEP_PREVIOUS}" != "YES" ]]; then
    rm -rf "${SYSTMP}/pkgforge"
   fi
-  mkdir -pv "${SYSTMP}/pkgforge"
+  mkdir -p "${SYSTMP}/pkgforge"
   #-------------------------------------------------------#
   
   #-------------------------------------------------------#
