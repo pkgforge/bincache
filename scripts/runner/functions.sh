@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# VERSION=1.0.7
+# VERSION=1.0.8
 
 #-------------------------------------------------------#
 ## <DO NOT RUN STANDALONE, meant for CI Only>
@@ -468,52 +468,57 @@ if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]]; then
      cp -fv "${LOGPATH}" "${SBUILD_OUTDIR}/${PROG}.log"
      echo -e "[+] ==> $(echo "${DOWNLOAD_URL}" | sed 's/download=[^&]*/download='"${PROG}"'.log/')"
      echo -e "\n[+] Parsing/Uploading ${PKG_FAMILY}/${PKG_NAME} --> https://github.com/orgs/pkgforge/packages/container/package/${PKG_REPO}%2F${PKG_FAMILY:-PKG_NAME}%2F${PKG_NAME} [${HOST_TRIPLET}]"
-     oras push --concurrency "100" --disable-path-validation \
-     --config "/dev/null:application/vnd.oci.empty.v1+json" \
-     --annotation "com.github.package.type=soar_pkg" \
-     --annotation "dev.pkgforge.discord=https://discord.gg/djJUs48Zbu" \
-     --annotation "dev.pkgforge.soar.build_date=${PKG_DATE}" \
-     --annotation "dev.pkgforge.soar.build_log=${BUILD_LOG}" \
-     --annotation "dev.pkgforge.soar.build_script=${SBUILD_SCRIPT:-BUILD_SCRIPT}" \
-     --annotation "dev.pkgforge.soar.bsum=${PKG_BSUM}" \
-     --annotation "dev.pkgforge.soar.category=${PKG_CATEGORY}" \
-     --annotation "dev.pkgforge.soar.description=${PKG_DESCRIPTION}" \
-     --annotation "dev.pkgforge.soar.download_url=${DOWNLOAD_URL}" \
-     --annotation "dev.pkgforge.soar.ghcrpkg=${GHCRPKG_URL}:${GHCRPKG_TAG}" \
-     --annotation "dev.pkgforge.soar.homepage=${PKG_HOMEPAGE:-PKG_SRCURL}" \
-     --annotation "dev.pkgforge.soar.icon=${PKG_ICON}" \
-     --annotation "dev.pkgforge.soar.json=$(jq . ${PKG_JSON})" \
-     --annotation "dev.pkgforge.soar.note=${PKG_NOTE}" \
-     --annotation "dev.pkgforge.soar.pkg=${SBUILD_PKG:-PKG_ORIG}" \
-     --annotation "dev.pkgforge.soar.pkg_family=${PKG_FAMILY}" \
-     --annotation "dev.pkgforge.soar.pkg_name=${PKG_NAME}" \
-     --annotation "dev.pkgforge.soar.pkg_webindex=https://pkgs.pkgforge.dev/stable/${HOST_TRIPLET}/${PKG_FAMILY:-PKG_NAME}/${PKG_NAME}" \
-     --annotation "dev.pkgforge.soar.repology=${PKG_REPOLOGY}" \
-     --annotation "dev.pkgforge.soar.screenshot=${PKG_SCREENSHOT}" \
-     --annotation "dev.pkgforge.soar.shasum=${PKG_SHASUM}" \
-     --annotation "dev.pkgforge.soar.size=${PKG_SIZE}" \
-     --annotation "dev.pkgforge.soar.size_raw=${PKG_SIZE_RAW}" \
-     --annotation "dev.pkgforge.soar.src_url=${PKG_SRCURL:-PKG_HOMEPAGE}" \
-     --annotation "org.opencontainers.image.authors=https://docs.pkgforge.dev/contact/chat" \
-     --annotation "org.opencontainers.image.created=${PKG_DATE}" \
-     --annotation "org.opencontainers.image.description=${PKG_DESCRIPTION}" \
-     --annotation "org.opencontainers.image.documentation=https://pkgs.pkgforge.dev/stable/${HOST_TRIPLET}/${PKG_FAMILY:-PKG_NAME}/${PKG_NAME}" \
-     --annotation "org.opencontainers.image.licenses=blessing" \
-     --annotation "org.opencontainers.image.ref.name=${PKG_VERSION}" \
-     --annotation "org.opencontainers.image.revision=${PKG_SHASUM:-PKG_VERSION}" \
-     --annotation "org.opencontainers.image.source=https://github.com/pkgforge/${PKG_REPO}" \
-     --annotation "org.opencontainers.image.title=${PKG_NAME}" \
-     --annotation "org.opencontainers.image.url=${PKG_SRCURL}" \
-     --annotation "org.opencontainers.image.vendor=pkgforge" \
-     --annotation "org.opencontainers.image.version=${PKG_VERSION}" \
-     "${GHCRPKG_URL}:${GHCRPKG_TAG}" "./${PROG}" "./${PROG}.json" "./${PROG}.log" $([[ -s "./${PROG}.png" ]] && echo "./${PROG}.png" || [[ -s "./${PROG}.svg" ]] && echo "./${PROG}.svg" || echo "")
+     unset ghcr_push ; ghcr_push=(oras push --concurrency "100" --disable-path-validation)
+     ghcr_push+=(--config "/dev/null:application/vnd.oci.empty.v1+json")
+     ghcr_push+=(--annotation "com.github.package.type=soar_pkg")
+     ghcr_push+=(--annotation "dev.pkgforge.discord=https://discord.gg/djJUs48Zbu")
+     ghcr_push+=(--annotation "dev.pkgforge.soar.build_date=${PKG_DATE}")
+     ghcr_push+=(--annotation "dev.pkgforge.soar.build_log=${BUILD_LOG}")
+     ghcr_push+=(--annotation "dev.pkgforge.soar.build_script=${SBUILD_SCRIPT:-BUILD_SCRIPT}")
+     ghcr_push+=(--annotation "dev.pkgforge.soar.bsum=${PKG_BSUM}")
+     ghcr_push+=(--annotation "dev.pkgforge.soar.category=${PKG_CATEGORY}")
+     ghcr_push+=(--annotation "dev.pkgforge.soar.description=${PKG_DESCRIPTION}")
+     ghcr_push+=(--annotation "dev.pkgforge.soar.download_url=${DOWNLOAD_URL}")
+     ghcr_push+=(--annotation "dev.pkgforge.soar.ghcrpkg=${GHCRPKG_URL}:${GHCRPKG_TAG}")
+     ghcr_push+=(--annotation "dev.pkgforge.soar.homepage=${PKG_HOMEPAGE:-PKG_SRCURL}")
+     ghcr_push+=(--annotation "dev.pkgforge.soar.icon=${PKG_ICON}")
+     ghcr_push+=(--annotation "dev.pkgforge.soar.json=$(jq . ${PKG_JSON})")
+     ghcr_push+=(--annotation "dev.pkgforge.soar.note=${PKG_NOTE}")
+     ghcr_push+=(--annotation "dev.pkgforge.soar.pkg=${SBUILD_PKG:-PKG_ORIG}")
+     ghcr_push+=(--annotation "dev.pkgforge.soar.pkg_family=${PKG_FAMILY}")
+     ghcr_push+=(--annotation "dev.pkgforge.soar.pkg_name=${PKG_NAME}")
+     ghcr_push+=(--annotation "dev.pkgforge.soar.pkg_webindex=https://pkgs.pkgforge.dev/stable/${HOST_TRIPLET}/${PKG_FAMILY:-PKG_NAME}/${PKG_NAME}")
+     ghcr_push+=(--annotation "dev.pkgforge.soar.repology=${PKG_REPOLOGY}")
+     ghcr_push+=(--annotation "dev.pkgforge.soar.screenshot=${PKG_SCREENSHOT}")
+     ghcr_push+=(--annotation "dev.pkgforge.soar.shasum=${PKG_SHASUM}")
+     ghcr_push+=(--annotation "dev.pkgforge.soar.size=${PKG_SIZE}")
+     ghcr_push+=(--annotation "dev.pkgforge.soar.size_raw=${PKG_SIZE_RAW}")
+     ghcr_push+=(--annotation "dev.pkgforge.soar.src_url=${PKG_SRCURL:-PKG_HOMEPAGE}")
+     ghcr_push+=(--annotation "org.opencontainers.image.authors=https://docs.pkgforge.dev/contact/chat")
+     ghcr_push+=(--annotation "org.opencontainers.image.created=${PKG_DATE}")
+     ghcr_push+=(--annotation "org.opencontainers.image.description=${PKG_DESCRIPTION}")
+     ghcr_push+=(--annotation "org.opencontainers.image.documentation=https://pkgs.pkgforge.dev/stable/${HOST_TRIPLET}/${PKG_FAMILY:-PKG_NAME}/${PKG_NAME}")
+     ghcr_push+=(--annotation "org.opencontainers.image.licenses=blessing")
+     ghcr_push+=(--annotation "org.opencontainers.image.ref.name=${PKG_VERSION}")
+     ghcr_push+=(--annotation "org.opencontainers.image.revision=${PKG_SHASUM:-PKG_VERSION}")
+     ghcr_push+=(--annotation "org.opencontainers.image.source=https://github.com/pkgforge/${PKG_REPO}")
+     ghcr_push+=(--annotation "org.opencontainers.image.title=${PKG_NAME}")
+     ghcr_push+=(--annotation "org.opencontainers.image.url=${PKG_SRCURL}")
+     ghcr_push+=(--annotation "org.opencontainers.image.vendor=pkgforge")
+     ghcr_push+=(--annotation "org.opencontainers.image.version=${PKG_VERSION}")
+     ghcr_push+=("${GHCRPKG_URL}:${GHCRPKG_TAG}" "./${PROG}")
+     [[ -s "./${PROG}.json" ]] && ghcr_push+=("./${PROG}.json")
+     [[ -s "./${PROG}.log" ]] && ghcr_push+=("./${PROG}.log")
+     [[ -s "./${PROG}.png" ]] && ghcr_push+=("./${PROG}.png")
+     [[ -s "./${PROG}.svg" ]] && ghcr_push+=("./${PROG}.svg")
+     "${ghcr_push[@]}"
      if [[ "$(oras manifest fetch "${GHCRPKG_URL}:${GHCRPKG_TAG}" | jq -r '.annotations["org.opencontainers.image.created"]')" == "${PKG_DATE}" ]]; then
        echo -e "\n[+] Registry --> https://${GHCRPKG_URL}"
        echo -e "[+] ==>'${DOWNLOAD_URL}'\n"
        export PUSH_SUCCESSFUL="YES"
        #rm -rf "${GHCR_PKG}" "${PKG_JSON}" 2>/dev/null
      else
-       echo -e "\n[✗] Failed to Push Artifact to {GHCRPKG_URL}:${GHCRPKG_TAG}\n"
+       echo -e "\n[✗] Failed to Push Artifact to ${GHCRPKG_URL}:${GHCRPKG_TAG}\n"
        export PUSH_SUCCESSFUL="NO"
      fi
      echo "export PUSH_SUCCESSFUL='${PUSH_SUCCESSFUL}'" >> "${OCWD}/ENVPATH"
@@ -544,7 +549,7 @@ cleanup_env()
   rm -rvf "${BUILD_DIR}" 2>/dev/null
  fi
 #Cleanup Env
- unset BUILD_DIR GHCRPKG_URL GHCRPKG_TAG INPUT_SBUILD INPUT_SBUILD_PATH pkg PKG PKG_FAMILY pkg_id PKG_ID pkg_type PKG_TYPE PROG RECIPE SBUILD_OUTDIR SBUILD_PKG SBUILD_PKGS SBUILD_PKGVER SBUILD_REBUILD SBUILD_SCRIPT SBUILD_SCRIPT_BLOB SBUILD_SUCCESSFUL SBUILD_TMPDIR TMPJSON TMPXVER TMPXRUN
+ unset BUILD_DIR ghcr_push GHCRPKG_URL GHCRPKG_TAG INPUT_SBUILD INPUT_SBUILD_PATH pkg PKG PKG_FAMILY pkg_id PKG_ID pkg_type PKG_TYPE PROG RECIPE SBUILD_OUTDIR SBUILD_PKG SBUILD_PKGS SBUILD_PKGVER SBUILD_REBUILD SBUILD_SCRIPT SBUILD_SCRIPT_BLOB SBUILD_SUCCESSFUL SBUILD_TMPDIR TMPJSON TMPXVER TMPXRUN
 }
 export -f cleanup_env
 #-------------------------------------------------------#
