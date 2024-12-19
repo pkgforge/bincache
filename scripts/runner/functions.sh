@@ -245,7 +245,7 @@ generate_json()
 {
 if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]]; then
  #Generate Json for each $progs
- for PROG in "${SBUILD_PKGS[@]}"; do
+ unset PROG ; for PROG in "${SBUILD_PKGS[@]}"; do
   if [[ -s "${SBUILD_OUTDIR}/${PROG}" && $(stat -c%s "${SBUILD_OUTDIR}/${PROG}") -gt 10 ]]; then
    export PROG SBUILD_PKGVER
    if [ -n "${GHCRPKG+x}" ] && [ -n "${GHCRPKG##*[[:space:]]}" ]; then
@@ -271,7 +271,7 @@ if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]]; then
       IMG_EXT="${ASSET##*.}"
       IMG_TMP="${SBUILD_TMPDIR}/default.${IMG_EXT}"
       IMG_FILE="${SBUILD_OUTDIR}/${PROG}.${IMG_EXT}"
-      curl -qfsSL "${BASE_URL}${ASSET}" -o "${IMG_TMP}" 2>/dev/null
+      curl -fSL "${BASE_URL}${ASSET}" -o "${IMG_TMP}" 2>/dev/null
       if [[ -s "${IMG_TMP}" && $(stat -c%s "${IMG_TMP}") -gt 10 ]]; then
         mv -fv "${IMG_TMP}" "${IMG_FILE}"
         case "${IMG_EXT}" in
@@ -287,7 +287,7 @@ if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]]; then
     elif [[ -s "${SBUILD_OUTDIR}/${PROG}.svg" && $(stat -c%s "${SBUILD_OUTDIR}/${PROG}.svg") -gt 10 ]]; then
      PKG_ICON="$(echo "${DOWNLOAD_URL}" | sed 's/download=[^&]*/download='"${PROG}"'.svg/')" ; export PKG_ICON
     elif [ ! -s "${SBUILD_OUTDIR}/${PROG}.png" ] || [ ! -s "${SBUILD_OUTDIR}/${PROG}.svg" ]; then
-     curl -qfsSL "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/assets/base.png" -o "${SBUILD_OUTDIR}/${PROG}.png"
+     curl -fSL "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/assets/base.png" -o "${SBUILD_OUTDIR}/${PROG}.png"
      if [ ! -s "${SBUILD_OUTDIR}/${PROG}.png" ] || [ ! -s "${SBUILD_OUTDIR}/${PROG}.svg" ]; then
       echo '<svg viewBox="0 0 10 10"><circle cx="5" cy="5" r="4" fill="yellow"/></svg>' > "${SBUILD_OUTDIR}/${PROG}.svg"
       PKG_ICON="$(echo "${DOWNLOAD_URL}" | sed 's/download=[^&]*/download='"${PROG}"'.svg/')" ; export PKG_ICON
@@ -544,7 +544,7 @@ cleanup_env()
   rm -rvf "${BUILD_DIR}" 2>/dev/null
  fi
 #Cleanup Env
- unset BUILD_DIR BUILDSCRIPT GHCRPKG_URL GHCRPKG_TAG INPUT_SBUILD INPUT_SBUILD_PATH pkg PKG PKG_FAMILY pkg_id PKG_ID pkg_type PKG_TYPE PROG RECIPE SBUILD_OUTDIR SBUILD_PKG SBUILD_PKGS SBUILD_PKGVER SBUILD_REBUILD SBUILD_SCRIPT SBUILD_SCRIPT_BLOB SBUILD_SUCCESSFUL SBUILD_TMPDIR TMPJSON TMPXVER TMPXRUN
+ unset BUILD_DIR GHCRPKG_URL GHCRPKG_TAG INPUT_SBUILD INPUT_SBUILD_PATH pkg PKG PKG_FAMILY pkg_id PKG_ID pkg_type PKG_TYPE PROG RECIPE SBUILD_OUTDIR SBUILD_PKG SBUILD_PKGS SBUILD_PKGVER SBUILD_REBUILD SBUILD_SCRIPT SBUILD_SCRIPT_BLOB SBUILD_SUCCESSFUL SBUILD_TMPDIR TMPJSON TMPXVER TMPXRUN
 }
 export -f cleanup_env
 #-------------------------------------------------------#

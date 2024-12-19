@@ -63,6 +63,7 @@ history -c 2>/dev/null ; rm -rf "${HOME}/.bash_history" ; pushd "$(mktemp -d)" >
 source <(curl -qfsSL "https://raw.githubusercontent.com/pkgforge/bincache/refs/heads/main/scripts/runner/builder.sh")
 alias refresh-buildenv='source <(curl -qfsSL "https://raw.githubusercontent.com/pkgforge/bincache/refs/heads/main/scripts/runner/builder.sh")'
 echo -e "\n[+] Build everything: sbuild-builder"
+echo -e "[+] ReBuild everything: FORCE_REBUILD_ALL=\"YES\" sbuild-builder"
 echo -e "[+] Build local SBUILD: sbuild-builder /path/to/sbuild"
 echo -e "[+] ENV (Local): PKG_FAMILY_LOCAL=\"\$PKG_FAMILY\"" 
 echo -e "[+] ENV (Local): GHCRPKG_LOCAL=\"ghcr.io/pkgforge/\$REPO/\$PKG_FAMILY/\$PKG_ID\""
