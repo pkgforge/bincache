@@ -338,6 +338,20 @@ if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]]; then
      BUILD_LOG="$(jq -r '.build_log' "${PKG_JSON}" | tr -d '[:space:]')"
      [[ "${BUILD_LOG}" == "null" ]] && BUILD_LOG=""
      BUILD_SCRIPT="$(jq -r '.build_script' "${PKG_JSON}" | tr -d '[:space:]')"
+     if [ -n "${BUILD_SCRIPT+x}" ] && [ -n "${BUILD_SCRIPT##*[[:space:]]}" ]; then
+      for src_img in "default.png" "default.svg" "${PROG}.png" "${PROG}.svg"; do
+        tmp_img="${SBUILD_TMPDIR}/${src_img##*/}"
+        curl -qfsSL "${BUILD_SCRIPT%/*}/assets/${src_img}" -o "${tmp_img}"
+        if [[ -s "${tmp_img}" && $(stat -c%s "${tmp_img}") -gt 10 ]]; then
+         mv -fv "${tmp_img}" "${SBUILD_OUTDIR}/${src_img/default/$PROG}"
+         break
+        fi
+      done
+      if [ ! -s "${SBUILD_OUTDIR}/${PROG}.png" ] || [ ! -s "${SBUILD_OUTDIR}/${PROG}.svg" ]; then
+       curl -qfsSL "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/assets/base.png" -o "${SBUILD_OUTDIR}/${PROG}.png"
+      fi
+      unset tmp_img src_img
+     fi
      PKG_BSUM="$(jq -r '.bsum' "${PKG_JSON}" | tr -d '[:space:]')"
      [[ "${PKG_BSUM}" == "null" ]] && unset PKG_BSUM
      [ -z "${PKG_BSUM}" ] && PKG_BSUM="$(b3sum "${GHCR_PKG}" | grep -oE '^[a-f0-9]{64}' | tr -d '[:space:]')"
@@ -361,6 +375,13 @@ if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]]; then
      [[ "${PKG_HOMEPAGE}" == "null" ]] && PKG_HOMEPAGE=""
      PKG_ICON="$(jq -r 'if .icon | type == "array" then .icon[0] else .icon end' "${PKG_JSON}" | tr -d '[:space:]')"
      [[ "${PKG_ICON}" == "null" ]] && PKG_ICON=""
+     if [[ -s "${SBUILD_OUTDIR}/${PROG}.png" && $(stat -c%s "${SBUILD_OUTDIR}/${PROG}.png") -gt 10 ]]; then
+       PKG_ICON="${PROG}.png"
+     elif [[ -s "${SBUILD_OUTDIR}/${PROG}.svg" && $(stat -c%s "${SBUILD_OUTDIR}/${PROG}.svg") -gt 10 ]]; then
+       PKG_ICON="${PROG}.svg"
+     else
+       echo '<svg viewBox="0 0 10 10"><circle cx="5" cy="5" r="4" fill="yellow"/></svg>' > "${SBUILD_OUTDIR}/${PROG}.svg"
+     fi
      PKG_ID="$(jq -r '.pkg_id' "${PKG_JSON}" | tr -d '[:space:]')"
      [[ "${PKG_ID}" == "null" ]] && PKG_ID="${PKG_FAMILY}"
      PKG_NOTE="$(jq -r 'if .note | type == "array" then .note[0] else .note end' "${PKG_JSON}")"
@@ -462,7 +483,7 @@ if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]]; then
      --annotation "org.opencontainers.image.url=${PKG_SRCURL}" \
      --annotation "org.opencontainers.image.vendor=pkgforge" \
      --annotation "org.opencontainers.image.version=${PKG_VERSION}" \
-     "${GHCRPKG_URL}:${GHCRPKG_TAG}" "./${PROG}" "./${PROG}.json" "./${PROG}.log"
+     "${GHCRPKG_URL}:${GHCRPKG_TAG}" "./${PROG}" "./${PROG}.json" "./${PROG}.log" $([[ -s "./${PROG}.png" || -s "./${PROG}.svg" ]] || echo "")
      if [[ "$(oras manifest fetch "${GHCRPKG_URL}:${GHCRPKG_TAG}" | jq -r '.annotations["org.opencontainers.image.created"]')" == "${PKG_DATE}" ]]; then
        echo -e "\n[+] Registry --> https://${GHCRPKG_URL}"
        echo -e "[+] ==>'${DOWNLOAD_URL}'\n"
