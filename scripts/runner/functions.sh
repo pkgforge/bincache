@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# VERSION=1.0.4
+# VERSION=1.0.5
 
 #-------------------------------------------------------#
 ## <DO NOT RUN STANDALONE, meant for CI Only>
@@ -266,7 +266,7 @@ if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]]; then
    echo "[+] Generating Json for ${SBUILD_PKG} (PROG=${PROG}) ==> ${SBUILD_OUTDIR}/${PROG}.json"
    echo -e "[+] ==> $(echo "${DOWNLOAD_URL}" | sed 's/download=[^&]*/download='"${PROG}"'.json/')"
    if [ -n "${SBUILD_SCRIPT+x}" ] && [ -n "${SBUILD_SCRIPT##*[[:space:]]}" ]; then
-     BASE_URL="$(echo "${BUILD_SCRIPT}" | sed 's|[^/]*$||')"
+     BASE_URL="$(echo "${SBUILD_SCRIPT}" | sed 's|[^/]*$||')"
      for ASSET in "assets/default.png" "assets/default.svg" "assets/${PROG}.png" "assets/${PROG}.svg"; do
       IMG_EXT="${ASSET##*.}"
       IMG_TMP="${SBUILD_TMPDIR}/default.${IMG_EXT}"
@@ -281,19 +281,22 @@ if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]]; then
         esac
       fi
      done
-    unset BASE_URL EXT IMG_FILE IMG_TMP
+    unset BASE_URL EXT IMG_FILE IMG_TMP PKG_ICON
     if [[ -s "${SBUILD_OUTDIR}/${PROG}.png" && $(stat -c%s "${SBUILD_OUTDIR}/${PROG}.png") -gt 10 ]]; then
-     PKG_ICON="$(echo "${DOWNLOAD_URL}" | sed 's/download=[^&]*/download='"${PROG}"'.png/')"
+     PKG_ICON="$(echo "${DOWNLOAD_URL}" | sed 's/download=[^&]*/download='"${PROG}"'.png/')" ; export PKG_ICON
     elif [[ -s "${SBUILD_OUTDIR}/${PROG}.svg" && $(stat -c%s "${SBUILD_OUTDIR}/${PROG}.svg") -gt 10 ]]; then
-     PKG_ICON="$(echo "${DOWNLOAD_URL}" | sed 's/download=[^&]*/download='"${PROG}"'.svg/')"
+     PKG_ICON="$(echo "${DOWNLOAD_URL}" | sed 's/download=[^&]*/download='"${PROG}"'.svg/')" ; export PKG_ICON
     elif [ ! -s "${SBUILD_OUTDIR}/${PROG}.png" ] || [ ! -s "${SBUILD_OUTDIR}/${PROG}.svg" ]; then
      curl -qfsSL "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/assets/base.png" -o "${SBUILD_OUTDIR}/${PROG}.png"
      if [ ! -s "${SBUILD_OUTDIR}/${PROG}.png" ] || [ ! -s "${SBUILD_OUTDIR}/${PROG}.svg" ]; then
       echo '<svg viewBox="0 0 10 10"><circle cx="5" cy="5" r="4" fill="yellow"/></svg>' > "${SBUILD_OUTDIR}/${PROG}.svg"
-      PKG_ICON="$(echo "${DOWNLOAD_URL}" | sed 's/download=[^&]*/download='"${PROG}"'.svg/')"
+      PKG_ICON="$(echo "${DOWNLOAD_URL}" | sed 's/download=[^&]*/download='"${PROG}"'.svg/')" ; export PKG_ICON
      else
-      PKG_ICON="$(echo "${DOWNLOAD_URL}" | sed 's/download=[^&]*/download='"${PROG}"'.png/')"
+      PKG_ICON="$(echo "${DOWNLOAD_URL}" | sed 's/download=[^&]*/download='"${PROG}"'.png/')" ; export PKG_ICON
      fi
+    fi
+    if [ -n "${PKG_ICON+x}" ] && [ -n "${PKG_ICON##*[[:space:]]}" ]; then
+     echo "[+] Feched Icon for ${SBUILD_PKG} (PROG=${PROG}) ==> ${PKG_ICON}"
     fi
    fi
    cat "${TMPJSON}" | jq -r \
