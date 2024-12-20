@@ -102,7 +102,8 @@
 >
 > !#PrePacked Build ENV (remove --rm to Preserve Container)
 > sudo mkdir -p "/var/lib/containers/tmp"
-> sudo podman run --detach --rm --privileged --network="bridge" --systemd="always" --ulimit="host" --volume="/var/lib/containers/tmp:/tmp" --tz="UTC" --pull="always" --name="bincache-dbg" "docker.io/azathothas/ubuntu-systemd-base:$(uname -m)"
+> sudo podman run --detach --privileged --network="bridge" --publish "22222:22" --systemd="always" --ulimit="host" --tz="UTC" --pull="always" --name="bincache-dbg" --hostname "pkgforge-dev" "docker.io/azathothas/ubuntu-systemd-base:$(uname -m)"
+> 
 > #Run an Interactive Session
 > sudo podman exec -it -u "runner" "$(sudo podman ps --filter "name=bincache-dbg" --filter "ancestor=docker.io/azathothas/ubuntu-systemd-base:$(uname -m)" --format "{{.ID}}")" bash -l
 > #Inside the container
@@ -119,6 +120,13 @@
 > sudo podman stop "bincache-dbg"
 > sudo podman rm "bincache-dbg" --force
 >
+> #To stop All Containers
+> sudo docker stop "$(sudo docker ps -q)"
+> sudo podman stop "$(sudo podman ps -q)"
+>
+> sudo docker rm "$(sudo docker ps -a -q)"
+> sudo podman rm "$(sudo podman ps -a -q)"
+> 
 > #To delete all images
 > sudo docker image prune -a -f
 > sudo podman image prune -a -f
