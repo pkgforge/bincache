@@ -1,8 +1,8 @@
 ```mathematica
-128K └─┬ main
- 84K   ├─┬ scripts
- 80K   │ └─┬ runner
- 28K   │   ├── functions.sh
+132K └─┬ main
+ 88K   ├─┬ scripts
+ 84K   │ └─┬ runner
+ 32K   │   ├── functions.sh
  16K   │   ├── setup_x86_64-Linux.sh
  16K   │   ├── setup_aarch64-Linux.sh
  12K   │   ├── builder.sh
