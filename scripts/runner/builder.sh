@@ -55,7 +55,15 @@ sbuild_builder()
    fi
    mkdir -p "${SYSTMP}/pkgforge"
   ##Get Initial Inputs
-   BUILDSCRIPT="$(mktemp --tmpdir="${SYSTMP}/pkgforge" XXXXX_build.yaml)" && export BUILDSCRIPT="${BUILDSCRIPT}"
+   for attempt in {1..4}; do
+    BUILDSCRIPT="$(mktemp --tmpdir="${SYSTMP}/pkgforge" XXXXX_build.yaml)" && export BUILDSCRIPT="${BUILDSCRIPT}" && break
+    echo -e "[-] TMPFILE Creation Failed ($attempt/4) Retrying..."
+    sleep 1
+   done
+   if [[ ! -f "${BUILDSCRIPT}" ]]; then
+   echo -e "\n[✗] FATAL: Failed to create \$BUILDSCRIPT after 4 Retries\n"
+    return 1 || exit 1
+   fi
    INPUT_FILE="${1:-$(echo "$@" | tr -d '[:space:]')}"
    if [ -n "${INPUT_FILE+x}" ] && [ -n "${INPUT_FILE##*[[:space:]]}" ]; then
      INPUT_FILE="$(realpath ${INPUT_FILE})" ; export INPUT_FILE
