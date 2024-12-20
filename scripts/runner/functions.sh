@@ -26,7 +26,7 @@ setup_env()
  if [[ ! -s "${INPUT_SBUILD}" || $(stat -c%s "${INPUT_SBUILD}") -le 10 ]]; then
    echo -e "\n[✗] FATAL: SBUILD (${INPUT_SBUILD}) seems Broken\n"
    export CONTINUE_SBUILD="NO"
-  return 1 || exit 1 
+  return 1 || exit 1
  fi
  BUILD_DIR="$(mktemp -d --tmpdir=${SYSTMP}/pkgforge XXXXXXX_$(basename ${INPUT_SBUILD}))"
  SBUILD_OUTDIR="${BUILD_DIR}/SBUILD_OUTDIR"
