@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# VERSION=1.0.9
+# VERSION=1.1.0
 
 #-------------------------------------------------------#
 ## <DO NOT RUN STANDALONE, meant for CI Only>
@@ -98,7 +98,7 @@ gen_json_from_sbuild()
       if yq eval '.pkgver | length > 0' "${INPUT_SBUILD}" | grep -q true; then
        SBUILD_PKGVER="$(yq eval '.pkgver' "${INPUT_SBUILD}" | tr -d '[:space:]')" ; export SBUILD_PKGVER
        echo "${SBUILD_PKGVER}" > "${SBUILD_OUTDIR}/${SBUILD_PKG}.version"
-       echo "[+] Version: ${SBUILD_PKGVER} [${SBUILD_OUTDIR}/${SBUILD_PKG}.version]"
+       echo "[+] Version: ${SBUILD_PKGVER} ('.pkgver') [${SBUILD_OUTDIR}/${SBUILD_PKG}.version]"
        export CONTINUE_SBUILD="YES"
       else
        echo -e '#!/usr/bin/env '"${SBUILD_SHELL}"'\n\n' > "${TMPXVER}"
@@ -115,7 +115,7 @@ gen_json_from_sbuild()
            return 1 || exit 1
          else
            SBUILD_PKGVER="$(cat "${SBUILD_OUTDIR}/${SBUILD_PKG}.version" | tr -d '[:space:]')" ; export SBUILD_PKGVER
-           echo "[+] Version: ${SBUILD_PKGVER} [${SBUILD_OUTDIR}/${SBUILD_PKG}.version]"
+           echo "[+] Version: ${SBUILD_PKGVER} ('.x_exec.pkgver') [${SBUILD_OUTDIR}/${SBUILD_PKG}.version]"
          fi
        else
          echo -e "\n[✗] FATAL: Failed to Extract ('x_exec.pkgver')\n"
@@ -208,7 +208,7 @@ if [[ "${CONTINUE_SBUILD}" == "YES" ]]; then
        export SBUILD_SUCCESSFUL="YES"
        echo "export SBUILD_SUCCESSFUL='${SBUILD_SUCCESSFUL}'" >> "${OCWD}/ENVPATH"
        echo -e "[✓] SuccessFully Built ${SBUILD_PKG} using ${SBUILD_SCRIPT_BLOB:-INPUT_SBUILD} [$(TZ='UTC' date +'%A, %Y-%m-%d (%I:%M:%S %p)') UTC]"
-       echo -e "[+] Total Size: $(du -sh "${SBUILD_OUTDIR}" 2>/dev/null | awk '{print $1}' 2>/dev/null) (Includes TMPFILES)"
+       echo -e "[+] Total Size: $(du -sh "${SBUILD_OUTDIR}" 2>/dev/null | awk '{print $1}' 2>/dev/null) (Includes DUPES+TMPFILES)"
        if [ -d "${OCWD}" ]; then
          echo -e "[+] LOGPATH='${SBUILD_OUTDIR}/${SBUILD_PKG}.log'"
          echo -e "[+] ENVPATH=$(realpath "${OCWD}/ENVPATH")"
@@ -255,7 +255,7 @@ if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]]; then
    fi
    GHCR_PKG="$(realpath ${SBUILD_OUTDIR}/${PROG})"
    PKG_DATE="$(date --utc +%Y-%m-%dT%H:%M:%S)Z"
-   PKG_DESCRIPTION="$(jq -r 'if (.description | has(env.PROG) and .description[env.PROG] != "") then .description[env.PROG] else (.description // "") end' ${TMPJSON})"
+   PKG_DESCRIPTION="$(jq -r '(env.PKG_DESCRIPTION // (if type == "object" and has("description") and (.description | type == "object") then .description[env.PROG] else .description end // ""))' ${TMPJSON})"
    PKG_BSUM="$(b3sum "${GHCR_PKG}" | grep -oE '^[a-f0-9]{64}' | tr -d '[:space:]')"
    PKG_SHASUM="$(sha256sum "${GHCR_PKG}" | grep -oE '^[a-f0-9]{64}' | tr -d '[:space:]')"
    PKG_SIZE_RAW="$(stat --format="%s" "${GHCR_PKG}" | tr -d '[:space:]')"
