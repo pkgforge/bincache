@@ -1,23 +1,30 @@
 [
     {
       "_disabled": false,
-      "rebuild": false,  
-      "ghcrpkg": "ghcr.io/pkgforge/bincache/a-utils/official",
+      "rebuild": false,
       "pkg_family": "a-utils",
+      "ghcrpkg": "ghcr.io/pkgforge/bincache/a-utils/official",
       "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/a-utils/static.official.stable.yaml"
     },
     {
       "_disabled": false,
-      "rebuild": false,  
-      "ghcrpkg": "ghcr.io/pkgforge/bincache/axel/official",
+      "rebuild": false,
       "pkg_family": "axel",
+      "ghcrpkg": "ghcr.io/pkgforge/bincache/axel/official",
       "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/axel/static.official.stable.yaml"
     },
     {
       "_disabled": false,
-      "rebuild": false,  
-      "ghcrpkg": "ghcr.io/pkgforge/bincache/curl/stunnel",
+      "rebuild": false,
       "pkg_family": "curl",
+      "ghcrpkg": "ghcr.io/pkgforge/bincache/curl/stunnel",
       "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/curl/static.stunnel.stable.yaml"
+    },
+    {
+      "_disabled": false,
+      "rebuild": true,
+      "pkg_family": "soar",
+      "ghcrpkg": "ghcr.io/pkgforge/bincache/soar/official",
+      "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/soar/static.official.stable.yaml"
     }
 ]
