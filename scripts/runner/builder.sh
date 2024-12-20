@@ -151,7 +151,7 @@ sbuild_builder()
 
   #-------------------------------------------------------#
   ##Build
-  pushd "$($TMPDIRS)" >/dev/null 2>&1
+  i=0; until pushd "$($TMPDIRS)" >/dev/null 2>&1 || [ $((i+=1)) -gt 3 ]; do :; done
    #If local
    if [[ "${LOCAL_SBUILD}" == "YES" ]]; then
     echo "$(realpath ${BUILDSCRIPT})" > "${SYSTMP}/pkgforge/SBUILD_URLS"
@@ -166,7 +166,7 @@ sbuild_builder()
    TOTAL_RECIPES="${#RECIPES[@]}" && export TOTAL_RECIPES="${TOTAL_RECIPES}"
    echo -e "\n[+] Total RECIPES :: ${TOTAL_RECIPES}\n"
     for ((i=0; i<${#RECIPES[@]}; i++)); do
-     pushd "$($TMPDIRS)" >/dev/null 2>&1
+     i=0; until pushd "$($TMPDIRS)" >/dev/null 2>&1 || [ $((i+=1)) -gt 3 ]; do :; done
      OCWD="$(realpath .)" ; export OCWD
      rm "${OCWD}/ENVPATH" 2>/dev/null
      unset CONTINUE_SBUILD GHCRPKG KEEP_LOGS LOGPATH PKG_FAMILY PUSH_SUCCESSFUL RECIPE SBUILD_REBUILD SBUILD_SCRIPT SBUILD_SCRIPT_BLOB SBUILD_SUCCESSFUL
