@@ -22,9 +22,16 @@
     },
     {
       "_disabled": false,
-      "rebuild": true,
+      "rebuild": false,
       "pkg_family": "soar",
       "ghcrpkg": "ghcr.io/pkgforge/bincache/soar/official",
       "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/soar/static.official.stable.yaml"
+    },
+    {
+      "_disabled": false,
+      "rebuild": false,
+      "pkg_family": "toru",
+      "ghcrpkg": "ghcr.io/pkgforge/bincache/toru/official",
+      "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/toru/static.official.stable.yaml"
     }
 ]
