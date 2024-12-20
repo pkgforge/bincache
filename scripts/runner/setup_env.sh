@@ -4,6 +4,7 @@
 ##
 
 #-------------------------------------------------------#
+unset BUILD_DIR BUILDSCRIPT CONTINUE CONTINUE_SBUILD END_TIME ghcr_push GHCRPKG GHCRPKG_URL GHCRPKG_TAG INPUT_SBUILD INPUT_SBUILD_PATH INITSCRIPT KEEP_LOGS OCWD pkg PKG PKG_FAMILY pkg_id PKG_ID pkg_type PKG_TYPE PROG PUSH_SUCCESSFUL RECIPE SBUILD_OUTDIR SBUILD_PKG SBUILD_PKGS SBUILD_PKGVER SBUILD_REBUILD SBUILD_SCRIPT SBUILD_SCRIPT_BLOB SBUILD_SUCCESSFUL SBUILD_TMPDIR START_TIME TMPDIRS TMPJSON TMPXVER TMPXRUN TOTAL_RECIPES
 USER="$(whoami)" && export USER="${USER}"
 HOME="$(getent passwd ${USER} | cut -d: -f6)" && export HOME="${HOME}"
 if [ -z "${SYSTMP+x}" ] || [ -z "${SYSTMP##*[[:space:]]}" ]; then
@@ -20,6 +21,7 @@ if [[ "${KEEP_PREVIOUS}" != "YES" ]]; then
  rm -rf "${SYSTMP}/pkgforge"
 fi
 mkdir -pv "${SYSTMP}/pkgforge"
+export DEBIAN_FRONTEND="noninteractive"
 export GIT_TERMINAL_PROMPT="0"
 export GIT_ASKPASS="/bin/echo"
 EGET_TIMEOUT="timeout -k 1m 2m" && export EGET_TIMEOUT="${EGET_TIMEOUT}"
@@ -61,7 +63,7 @@ unset DOCKER_HOST
 find "${SYSTMP}" -mindepth 1 \( -type f -o -type d \) -empty -not -path "$(pwd)" -not -path "$(pwd)/*" -delete 2>/dev/null
 history -c 2>/dev/null ; rm -rf "${HOME}/.bash_history" ; pushd "$(mktemp -d)" >/dev/null 2>&1
 source <(curl -qfsSL "https://raw.githubusercontent.com/pkgforge/bincache/refs/heads/main/scripts/runner/builder.sh")
-alias refresh-buildenv='source <(curl -qfsSL "https://raw.githubusercontent.com/pkgforge/bincache/refs/heads/main/scripts/runner/builder.sh")'
+alias refresh-buildenv='unset BUILD_DIR BUILDSCRIPT CONTINUE CONTINUE_SBUILD END_TIME ghcr_push GHCRPKG GHCRPKG_URL GHCRPKG_TAG INPUT_SBUILD INPUT_SBUILD_PATH INITSCRIPT KEEP_LOGS OCWD pkg PKG PKG_FAMILY pkg_id PKG_ID pkg_type PKG_TYPE PROG PUSH_SUCCESSFUL RECIPE SBUILD_OUTDIR SBUILD_PKG SBUILD_PKGS SBUILD_PKGVER SBUILD_REBUILD SBUILD_SCRIPT SBUILD_SCRIPT_BLOB SBUILD_SUCCESSFUL SBUILD_TMPDIR START_TIME TMPDIRS TMPJSON TMPXVER TMPXRUN TOTAL_RECIPES ; source <(curl -qfsSL "https://raw.githubusercontent.com/pkgforge/bincache/refs/heads/main/scripts/runner/builder.sh")'
 echo -e "\n[+] Build everything: sbuild-builder"
 echo -e "[+] ReBuild everything: FORCE_REBUILD_ALL=\"YES\" sbuild-builder"
 echo -e "[+] Build local SBUILD: sbuild-builder /path/to/sbuild"
