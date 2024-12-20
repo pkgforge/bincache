@@ -162,6 +162,7 @@ sbuild_builder()
    fi
   #Build
    echo -e "\n==> [+] Started Building at :: $(TZ='UTC' date +'%A, %Y-%m-%d (%I:%M:%S %p)')\n"
+   sort -u "${SYSTMP}/pkgforge/SBUILD_URLS" -o"${SYSTMP}/pkgforge/SBUILD_URLS"
    readarray -t RECIPES < "${SYSTMP}/pkgforge/SBUILD_URLS"
    TOTAL_RECIPES="${#RECIPES[@]}" && export TOTAL_RECIPES="${TOTAL_RECIPES}"
    echo -e "\n[+] Total RECIPES :: ${TOTAL_RECIPES}\n"
@@ -226,12 +227,11 @@ sbuild_builder()
        if [[ "${PUSH_SUCCESSFUL}" != "YES" ]]; then
         export KEEP_LOGS="YES"
        fi
-       cleanup_env
      fi
      if [[ "${KEEP_LOGS}" != "YES" ]]; then
-      rm -rf "${BUILDSCRIPT}" "$(realpath .)" && popd >/dev/null 2>&1
+      rm -rf "${BUILDSCRIPT}" "$(realpath .)" && popd >/dev/null 2>&1 ; cleanup_env
      else
-      popd >/dev/null 2>&1
+      popd >/dev/null 2>&1 ; cleanup_env
      fi
      END_TIME="$(date +%s)" && export END_TIME="${END_TIME}"
      ELAPSED_TIME="$(date -u -d@"$((END_TIME - START_TIME))" "+%H(Hr):%M(Min):%S(Sec)")"
