@@ -186,7 +186,7 @@ if [[ "${CONTINUE_SBUILD}" == "YES" ]]; then
   if [[ "${CONTINUE_SBUILD}" == "YES" ]]; then
    check_sane_env
    pushd "${SBUILD_OUTDIR}" >/dev/null 2>&1
-     printf "\n" && timeout -k 60m 5m "${TMPXRUN}" ; printf "\n"
+     printf "\n" && timeout -k 5m 60m "${TMPXRUN}" ; printf "\n"
      if [ -d "${SBUILD_OUTDIR}" ] && [ $(du -s "${SBUILD_OUTDIR}" | cut -f1) -gt 100 ]; then
       #Perms
        sudo chown -R "$(whoami):$(whoami)" "${SBUILD_OUTDIR}"
