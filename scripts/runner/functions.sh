@@ -116,6 +116,10 @@ gen_json_from_sbuild()
          else
            SBUILD_PKGVER="$(cat "${SBUILD_OUTDIR}/${SBUILD_PKG}.version" | tr -d '[:space:]')" ; export SBUILD_PKGVER
            echo "[+] Version: ${SBUILD_PKGVER} ('.x_exec.pkgver') [${SBUILD_OUTDIR}/${SBUILD_PKG}.version]"
+           if [[ "${SBUILD_REBUILD}" == "true" ]]; then
+             echo -e "\n[+] Re Building: ${SBUILD_PKG} [${SBUILD_PKGVER}]"
+             echo -e "[+] Re Run with: '.rebuild == false' (https://github.com/pkgforge/${PKG_REPO}/blob/main/SBUILD_LIST.json)"
+           fi
          fi
        else
          echo -e "\n[✗] FATAL: Failed to Extract ('x_exec.pkgver')\n"
@@ -177,10 +181,6 @@ if [[ "${CONTINUE_SBUILD}" == "YES" ]]; then
           echo -e "[+] Or to Re Build Everything: FORCE_REBUILD_ALL=YES sbuild-builder\n"
           export CONTINUE_SBUILD="NO"
           return 0 || exit 0
-        elif [[ "${SBUILD_REBUILD}" == "true" ]]; then
-          echo -e "\n[+] Re Building: ${SBUILD_PKG} [${GHCRPKG}/${PROG}:${SBUILD_PKGVER}-${HOST_TRIPLET,,}] (PreBuilt Exists)"
-          echo -e "[+] ReRun with: '.rebuild == false' (https://github.com/pkgforge/${PKG_REPO}/blob/main/SBUILD_LIST.json)"
-          export CONTINUE_SBUILD="YES"
         fi
         break
       fi
