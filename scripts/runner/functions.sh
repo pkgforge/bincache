@@ -106,7 +106,7 @@ gen_json_from_sbuild()
        if [[ -s "${TMPXVER}" && $(stat -c%s "${TMPXVER}") -gt 10 ]]; then
          chmod +x "${TMPXVER}"
          {
-          timeout -k 10s 5s "${TMPXVER}"
+          timeout -k 5s 10s "${TMPXVER}"
          } > "${SBUILD_OUTDIR}/${SBUILD_PKG}.version" 2>&1
          if [[ ! -s "${SBUILD_OUTDIR}/${SBUILD_PKG}.version" || $(stat -c%s "${SBUILD_OUTDIR}/${SBUILD_PKG}.version") -le 3 ]]; then
            echo -e "\n[✗] FATAL: Failed to Fetch Version ('x_exec.pkgver')\n"
