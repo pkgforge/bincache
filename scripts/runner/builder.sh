@@ -161,7 +161,7 @@ sbuild_builder()
      pushd "$($TMPDIRS)" >/dev/null 2>&1
      OCWD="$(realpath .)" ; export OCWD
      rm "${OCWD}/ENVPATH" 2>/dev/null
-     unset BUILDSCRIPT CONTINUE_SBUILD GHCRPKG KEEP_LOGS LOGPATH PKG_FAMILY PUSH_SUCCESSFUL RECIPE SBUILD_REBUILD SBUILD_SCRIPT SBUILD_SCRIPT_BLOB SBUILD_SUCCESSFUL
+     unset CONTINUE_SBUILD GHCRPKG KEEP_LOGS LOGPATH PKG_FAMILY PUSH_SUCCESSFUL RECIPE SBUILD_REBUILD SBUILD_SCRIPT SBUILD_SCRIPT_BLOB SBUILD_SUCCESSFUL
      TEMP_LOG="./BUILD.log"
      #Init
       START_TIME="$(date +%s)" && export START_TIME="${START_TIME}"
@@ -221,7 +221,7 @@ sbuild_builder()
        cleanup_env
      fi
      if [[ "${KEEP_LOGS}" != "YES" ]]; then
-      rm -rf "$(realpath .)" && popd >/dev/null 2>&1
+      rm -rf "${BUILDSCRIPT}" "$(realpath .)" && popd >/dev/null 2>&1
      else
       popd >/dev/null 2>&1
      fi
