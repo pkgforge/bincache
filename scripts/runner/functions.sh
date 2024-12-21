@@ -209,12 +209,11 @@ if [[ "${CONTINUE_SBUILD}" == "YES" ]]; then
        find "${SBUILD_OUTDIR}" -type f -exec touch "{}" \;
        find "${SBUILD_OUTDIR}" -maxdepth 1 -type f -print | sort -u | xargs -I "{}" sh -c 'printf "\nFile: $(basename {})\n  Type: $(file -b {})\n  B3sum: $(b3sum {} | cut -d" " -f1)\n  SHA256sum: $(sha256sum {} | cut -d" " -f1)\n  Size: $(du -sh {} | cut -f1)\n"'
       #Checksum
-       echo -e "[+] Generating (b3sum) Checksums ==> [${SBUILD_OUTDIR}/CHECKSUM]"
+       echo -e "\n[+] Generating (b3sum) Checksums ==> [${SBUILD_OUTDIR}/CHECKSUM]"
        find "${SBUILD_OUTDIR}" -maxdepth 1 -type f ! -iname "*CHECKSUM*" -exec b3sum "{}" + | awk '{gsub(".*/", "", $2); print $1 ":" $2}' | tee "${SBUILD_OUTDIR}/CHECKSUM"
-       minisign -Sm "${SBUILD_OUTDIR}/CHECKSUM" -P "${MINISIGN_PUB_KEY}" -s "${HOME}/.minisign/pkgforge.key" -x "CHECKSUM.sig"
       #Sign
-       echo -e "[+] Signing (minisign) ${SBUILD_PKG}... (Verify: https://docs.pkgforge.dev/repositories/pkgforge-stable/security#trust-but-verify)"
-       find "${SBUILD_OUTDIR}" -maxdepth 1 -type f -print0 | sort -zu | xargs -0 -I "{}" minisign -Sm "{}" -P "${MINISIGN_PUB_KEY}" -s "${HOME}/.minisign/pkgforge.key" -x "{}.sig"
+       echo -e "\n[+] Signing ${SBUILD_PKG} (Verify: https://docs.pkgforge.dev/repositories/pkgforge-stable/security#trust-but-verify)"
+       find "${SBUILD_OUTDIR}" -maxdepth 1 -type f ! -name "*.sig" -print0 | sort -zu | xargs -0 -I "{}" minisign -Sm "{}" -P "${MINISIGN_PUB_KEY}" -s "${HOME}/.minisign/pkgforge.key" -x "{}.sig"
        find "${SBUILD_OUTDIR}" -maxdepth 1 -type f -name "*.sig" -exec bash -c 'printf "==> %s\n" "$(basename "{}")"' \; | sort -u
       #End
        export SBUILD_SUCCESSFUL="YES"
