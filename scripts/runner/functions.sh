@@ -233,17 +233,17 @@ if [[ "${CONTINUE_SBUILD}" == "YES" ]]; then
        echo -e "\n[✗] FATAL: Could NOT Build ${SBUILD_PKG} using ${INPUT_SBUILD} [${SBUILD_SCRIPT_BLOB}]\n"
        cat "${SBUILD_OUTDIR}/${SBUILD_PKG}.version" 2>/dev/null
        ls "${SBUILD_OUTDIR}" -lah
-       return 1 || exit 1
        export SBUILD_SUCCESSFUL="NO"
        echo "export SBUILD_SUCCESSFUL='${SBUILD_SUCCESSFUL}'" >> "${OCWD}/ENVPATH"
+       cleanup_env ; return 1 || exit 1
      fi
    popd >/dev/null 2>&1
   fi
  else
    echo -e "\n[✗] FATAL: Could NOT parse ${INPUT_SBUILD} ==> ${TMPJSON}\n"
-   return 1 || exit 1
    export SBUILD_SUCCESSFUL="NO"
    echo "export SBUILD_SUCCESSFUL='${SBUILD_SUCCESSFUL}'" >> "${OCWD}/ENVPATH"
+   cleanup_env ; return 1 || exit 1
  fi
 fi
 }
