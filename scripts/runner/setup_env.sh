@@ -70,5 +70,6 @@ echo -e "[+] Build local SBUILD: sbuild-builder /path/to/sbuild"
 echo -e "[+] ENV (Local): PKG_FAMILY_LOCAL=\"\$PKG_FAMILY\""
 echo -e "[+] ENV (Local): GHCRPKG_LOCAL=\"ghcr.io/pkgforge/\$REPO/\$PKG_FAMILY/\$PKG_ID\""
 echo -e "[+] Example: PKG_FAMILY_LOCAL=\"curl\" GHCRPKG_LOCAL=\"ghcr.io/pkgforge/bincache/curl/stunnel\" sbuild-builder \"./curl.SBUILD\""
+echo -e "[+] To Preserve Logs: KEEP_LOGS=\"YES\""
 echo -e "[+] To Refresh Build Env: refresh-buildenv\n"
 #-------------------------------------------------------#
