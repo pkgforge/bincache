@@ -46,6 +46,7 @@ sbuild_builder()
     SYSTMP="$(dirname $(realpath $(mktemp -u)))" && export SYSTMP="${SYSTMP}"
     mkdir -p "${SYSTMP}" 2>/dev/null
    fi
+   OWD_TMPDIR="$(realpath .)" ; export OWD_TMPDIR
    TMPDIRS="mktemp -d --tmpdir=${SYSTMP}/pkgforge XXXXXXX_SBUILD"
    USER_AGENT="$(curl -qfsSL 'https://pub.ajam.dev/repos/Azathothas/Wordlists/Misc/User-Agents/ua_chrome_macos_latest.txt')"
    export HOST_TRIPLET PKG_REPO SYSTMP TMPDIRS USER_AGENT
@@ -239,6 +240,7 @@ sbuild_builder()
     done
     echo -e "\n==> [+] Finished Building at :: $(TZ='UTC' date +'%A, %Y-%m-%d (%I:%M:%S %p)')\n"
    popd >/dev/null 2>&1
+   cd "${OWD_TMPDIR}" ; unset OWD_TMPDIR
   ##Finish
   #Disable Debug
   if [ "${DEBUG}" = "1" ] || [ "${DEBUG}" = "ON" ]; then
