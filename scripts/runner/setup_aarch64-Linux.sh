@@ -253,7 +253,7 @@ if [ "${CONTINUE}" == "YES" ]; then
   if ! command -v crystal &> /dev/null; then
    echo -e "\n[-] crystal NOT Found\n"
    export CONTINUE="NO"
-   return 1 || exit 1
+   #return 1 || exit 1
   else
    crystal --version ; shards --version
    sudo ldconfig && sudo ldconfig -p
