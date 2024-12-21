@@ -195,12 +195,16 @@ if [[ "${CONTINUE_SBUILD}" == "YES" ]]; then
       #Perms
        sudo chown -R "$(whoami):$(whoami)" "${SBUILD_OUTDIR}"
        find "${SBUILD_OUTDIR}" -type f -exec sudo chmod +xwr "{}" \;
-      #Strip
+      #Rename/strip
        find "${SBUILD_OUTDIR}" -maxdepth 1 -type f -exec file -i "{}" \; |\
-       grep "application/.*executable" | cut -d":" -f1 | xargs realpath |\
+       grep "application/.*executable" | cut -d":" -f1 | xargs realpath | sort -u |\
        xargs -I "{}" bash -c '
          base=$(basename "{}")
-         if [[ "$base" != *.no_strip ]]; then 
+         dir=$(dirname "{}")
+         if [[ "$base" == *.no_strip ]]; then
+             new_name="${base%.no_strip}"
+             mv -fv "{}" "${dir}/${new_name}"
+         else 
              objcopy --remove-section=".comment" --remove-section=".note.*" "{}"
              strip --strip-debug --strip-dwo --strip-unneeded "{}"
          fi

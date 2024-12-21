@@ -224,12 +224,14 @@ sbuild_builder()
         fi
        #} 2>&1 | ts '[%Y-%m-%dT%Hh%Mm%Ss]➜ ' | tee "${TEMP_LOG}"
        } 2>&1 | ts -s '[%H:%M:%S]➜ ' | tee "${TEMP_LOG}"
-       source "${OCWD}/ENVPATH" ; SBUILD_PKGS=($SBUILD_PKGS)
-       if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]]; then
-         sanitize_logs
-         printf '%s\n' "${SBUILD_PKGS[@]}" | xargs -P "$(($(nproc)+1))" -I "{}" bash -c 'upload_to_ghcr "$@"' _ "{}"
-         if [[ "${PUSH_SUCCESSFUL}" != "YES" ]]; then
-          export KEEP_LOGS="YES"
+       if [ -d "${OCWD}" ]; then
+         source "${OCWD}/ENVPATH" ; SBUILD_PKGS=($SBUILD_PKGS)
+         if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]]; then
+           sanitize_logs
+           printf '%s\n' "${SBUILD_PKGS[@]}" | xargs -P "$(($(nproc)+1))" -I "{}" bash -c 'upload_to_ghcr "$@"' _ "{}"
+           if [[ "${PUSH_SUCCESSFUL}" != "YES" ]]; then
+            export KEEP_LOGS="YES"
+           fi
          fi
        fi
      fi
