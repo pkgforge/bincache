@@ -173,7 +173,7 @@ sbuild_builder()
      pushd "$(${TMPDIRS})" >/dev/null 2>&1 || sleep 2 && pushd "$(${TMPDIRS})" >/dev/null 2>&1
      OCWD="$(realpath .)" ; export OCWD
      rm "${OCWD}/ENVPATH" 2>/dev/null
-     unset CONTINUE_SBUILD GHCRPKG KEEP_LOGS LOGPATH PKG_FAMILY PUSH_SUCCESSFUL RECIPE SBUILD_REBUILD SBUILD_SCRIPT SBUILD_SCRIPT_BLOB SBUILD_SUCCESSFUL
+     unset CONTINUE_SBUILD GHCRPKG KEEP_LOGS LOGPATH PKG_FAMILY PUSH_SUCCESSFUL RECIPE SBUILD_PKG SBUILD_REBUILD SBUILD_SCRIPT SBUILD_SCRIPT_BLOB SBUILD_SUCCESSFUL
      TEMP_LOG="./BUILD.log"
      #Init
       START_TIME="$(date +%s)" && export START_TIME="${START_TIME}"
@@ -225,10 +225,12 @@ sbuild_builder()
        #} 2>&1 | ts '[%Y-%m-%dT%Hh%Mm%Ss]➜ ' | tee "${TEMP_LOG}"
        } 2>&1 | ts -s '[%H:%M:%S]➜ ' | tee "${TEMP_LOG}"
        source "${OCWD}/ENVPATH" ; SBUILD_PKGS=($SBUILD_PKGS)
-       sanitize_logs
-       printf '%s\n' "${SBUILD_PKGS[@]}" | xargs -P "$(($(nproc)+1))" -I "{}" bash -c 'upload_to_ghcr "$@"' _ "{}"
-       if [[ "${PUSH_SUCCESSFUL}" != "YES" ]]; then
-        export KEEP_LOGS="YES"
+       if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]]; then
+         sanitize_logs
+         printf '%s\n' "${SBUILD_PKGS[@]}" | xargs -P "$(($(nproc)+1))" -I "{}" bash -c 'upload_to_ghcr "$@"' _ "{}"
+         if [[ "${PUSH_SUCCESSFUL}" != "YES" ]]; then
+          export KEEP_LOGS="YES"
+         fi
        fi
      fi
      if [[ "${KEEP_LOGS}" != "YES" ]]; then
