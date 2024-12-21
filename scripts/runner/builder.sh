@@ -22,18 +22,20 @@ sbuild_builder()
    fi
   ##Get/Set ENVS (from Host)
    #User
-   case "${USER}" in
-     "" )
-       echo "WARNING: \$USER is Unknown"
-       USER="$(whoami)"
-       export USER
-       if [ -z "${USER}" ]; then
-         echo -e "[-] INFO: Setting USER --> ${USER}"
-       else
-         echo -e "[-] WARNING: FAILED to find \$USER"
-       fi
-       ;;
-   esac
+   if [ -z "${USER+x}" ] || [ -z "${USER##*[[:space:]]}" ]; then
+     case "${USER}" in
+       "" )
+         echo "WARNING: \$USER is Unknown"
+         USER="$(whoami)"
+         export USER
+         if [ -z "${USER}" ]; then
+           echo -e "[-] INFO: Setting USER --> ${USER}"
+         else
+           echo -e "[-] WARNING: FAILED to find \$USER"
+         fi
+         ;;
+     esac
+   fi
   ##ENV:$PATH
    HOME="$(getent passwd ${USER} | cut -d: -f6)" && export HOME="${HOME}"
    export PATH="${HOME}/bin:${HOME}/.cargo/bin:${HOME}/.cargo/env:${HOME}/.go/bin:${HOME}/go/bin:${HOME}/.local/bin:${HOME}/miniconda3/bin:${HOME}/miniconda3/condabin:/usr/local/zig:/usr/local/zig/lib:/usr/local/zig/lib/include:/usr/local/musl/bin:/usr/local/musl/lib:/usr/local/musl/include:${PATH}"

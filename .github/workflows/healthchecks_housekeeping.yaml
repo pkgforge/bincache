@@ -25,7 +25,7 @@ jobs:
           #Presets
           set +x ; set +e
           #--------------#
-          bash <(curl -qfsSL "https://pub.ajam.dev/repos/Azathothas/Arsenal/misc/Github/Runners/Ubuntu/debloat.sh")
+          bash <(curl -qfsSL "https://raw.githubusercontent.com/pkgforge/devscripts/refs/heads/main/Github/Runners/debloat_ubuntu.sh")
         continue-on-error: true
         
       - name: Checkout repository
@@ -60,7 +60,7 @@ jobs:
           #presets
           set +x ; set +e
           #-------------#
-          bash <(curl -qfsSL "https://pub.ajam.dev/repos/Azathothas/Arsenal/misc/Linux/install_dev_tools.sh")
+          bash <(curl -qfsSL "https://raw.githubusercontent.com/pkgforge/devscripts/refs/heads/main/Linux/install_bins_curl.sh")
         continue-on-error: true
 
       - name: Dos2Unix Everything
@@ -144,4 +144,20 @@ jobs:
           #commit_message: "‎‎‏‏‎ ‎"
           commit_message: "✅ Updated (Metadata) 🛍️ <-- ${{ env.UTC_TIME }} ⌚"
           #push_options: '--force'
+        continue-on-error: true
+
+      - name: rClone BackUp Repo ("https://pub.ajam.dev/repos/${GITHUB_REPOSITORY}")
+        run: |
+          # Presets
+          set +x ; set +e
+          #--------------#
+          #copy & chdir to Repo
+          cp -fr "${GITHUB_WORKSPACE}/main" "${SYSTMP}/REPO" && cd "${SYSTMP}/REPO"
+          #Git pull
+          git pull origin main --no-edit 2>/dev/null
+          #Del Bloat
+          rm -rf "$(pwd)/.git"
+          #Upload to Pub
+          echo -e "[+] Syncing ${GITHUB_REPOSITORY} to pub.ajam.dev/repos/${GITHUB_REPOSITORY} \n"
+          rclone sync "." "r2:/pub/repos/${GITHUB_REPOSITORY}/" --user-agent="${USER_AGENT}" --buffer-size="10M" --s3-upload-concurrency="50" --s3-chunk-size="10M" --multi-thread-streams="50" --checkers="2000" --transfers="100" --retries="10" --check-first --checksum --copy-links --fast-list --progress
         continue-on-error: true

@@ -27,7 +27,8 @@ jobs:
           #presets
           set -x ; set +e
           #-------------#
-          bash <(curl -qfsSL "https://raw.githubusercontent.com/pkgforge/devscripts/refs/heads/main/Linux/install_bins_curl.sh")
+          #bash <(curl -qfsSL "https://raw.githubusercontent.com/pkgforge/devscripts/refs/heads/main/Linux/install_bins_curl.sh")
+          sudo curl -qfsSL "https://bin.pkgforge.dev/$(uname -m)/rclone" -o "/usr/local/bin/rclone" && sudo chmod +x "/usr/local/bin/rclone"
         continue-on-error: true
 #------------------------------------------------------------------------------------#        
       - name: Setup Env
@@ -101,13 +102,13 @@ jobs:
           path: main
           filter: "blob:none"
 
-      - name: Install Addons
-        run: |
-          #presets
-          set -x ; set +e
-          #-------------#
-          bash <(curl -qfsSL "https://raw.githubusercontent.com/pkgforge/devscripts/refs/heads/main/Linux/install_bins_curl.sh")
-        continue-on-error: true
+      #- name: Install Addons
+      #  run: |
+      #    #presets
+      #    set -x ; set +e
+      #    #-------------#
+      #    bash <(curl -qfsSL "https://raw.githubusercontent.com/pkgforge/devscripts/refs/heads/main/Linux/install_bins_curl.sh")
+      #  continue-on-error: true
 #------------------------------------------------------------------------------------#        
       - name: Setup Env
         run: |
@@ -134,6 +135,40 @@ jobs:
           ##User-Agent
           USER_AGENT="$(curl -qfsSL 'https://pub.ajam.dev/repos/Azathothas/Wordlists/Misc/User-Agents/ua_chrome_macos_latest.txt')" && export USER_AGENT="${USER_AGENT}"
           echo "USER_AGENT=${USER_AGENT}" >> "${GITHUB_ENV}"
+        continue-on-error: true
+
+      - name: Notify (Discord)
+        run: |
+          ##presets
+          set +x ; set +e
+          #-------------#
+          pushd "$(mktemp -d)" >/dev/null 2>&1
+          #Setup Config
+           sudo curl -qfsSL "https://bin.pkgforge.dev/$(uname -m)/notify" -o "/usr/local/bin/notify" && sudo chmod +x "/usr/local/bin/notify"
+           echo 'discord:' > "./notify.yaml"
+           echo '  - id: "portable-apps"' >> "./notify.yaml"
+           echo '    discord_channel: "main"' >> "./notify.yaml"
+           echo '    discord_username: "pkgforge-bot"' >> "./notify.yaml"
+           echo '    discord_format: "{{data}}"' >> "./notify.yaml"
+           echo "    discord_webhook_url: \"${{ secrets.DISCORD_NOTIFY }}\"" >> "./notify.yaml"
+          #Prep Body
+           GH_EVENT="${{ github.event_name }}"
+           GH_WORKFLOW_URL="${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
+           START_TIME="$(date +%s)" && export START_TIME
+           echo "GH_EVENT=${GH_EVENT}" >> "${GITHUB_ENV}"
+           echo "GH_WORKFLOW_URL=${GH_WORKFLOW_URL}" >> "${GITHUB_ENV}"
+           echo "START_TIME=${START_TIME}" >> "${GITHUB_ENV}"
+           rm -rvf "/tmp/PKGFORGE_DISCORD.md" 2>/dev/null
+           echo 'ℹ️ **Triggered** [🛍️ Build 📦 Bincache] (Weekly) ==> https://github.com/pkgforge/bincache/blob/main/.github/workflows/build_x86_64_Linux.yaml' > "/tmp/PKGFORGE_DISCORD.md"
+           echo '**`Arch`**: `x86_64-Linux`' >> "/tmp/PKGFORGE_DISCORD.md"
+           echo '**`Event`**:  `'"${GH_EVENT}"'`' >> "/tmp/PKGFORGE_DISCORD.md"
+           echo '**`Workflow`**: "'${GH_WORKFLOW_URL}'"' >> "/tmp/PKGFORGE_DISCORD.md"
+           echo '**`Maintainer`**: @azathothas' >> "/tmp/PKGFORGE_DISCORD.md"
+           echo '**`Preserving TMPFILES?`**:  `'"${KEEP_LOGS}"'`' >> "/tmp/PKGFORGE_DISCORD.md"
+           echo '**`Rebuilding?`**:  `'"${FORCE_REBUILD_ALL}"'`' >> "/tmp/PKGFORGE_DISCORD.md"
+           cat "/tmp/PKGFORGE_DISCORD.md" | notify -provider-config "./notify.yaml" -bulk -disable-update-check
+           echo -e "\n\n" && cat "/tmp/PKGFORGE_DISCORD.md" && echo -e "\n\n"
+          popd >/dev/null 2>&1
         continue-on-error: true
 
       #- name: Set TZ to (Asia/Kathmandu)
@@ -188,7 +223,9 @@ jobs:
              fi
              ##rClone Upload logs
              rclone copyto "${SYSTMP}/BUILD.log" "r2:/pub/repos/pkgforge/bincache/x86_64-Linux/BUILD.gh.log.txt" --user-agent="${USER_AGENT}" --buffer-size="100M" --s3-upload-concurrency="500" --s3-chunk-size="100M" --multi-thread-streams="500" --checkers="2000" --transfers="1000" --retries="10" --check-first --checksum --copy-links --fast-list --progress
-             rclone copyto "${SYSTMP}/BUILD_FAILED.log" "r2:/pub/repos/pkgforge/bincache/x86_64-Linux/BUILD_FAILED.gh.log.txt" --user-agent="${USER_AGENT}" --buffer-size="100M" --s3-upload-concurrency="500" --s3-chunk-size="100M" --multi-thread-streams="500" --checkers="2000" --transfers="1000" --retries="10" --check-first --checksum --copy-links --fast-list --progress
+             if [[ -s "${SYSTMP}/BUILD_FAILED.log" && $(stat -c%s "${SYSTMP}/BUILD_FAILED.log") -gt 10 ]]; then
+               rclone copyto "${SYSTMP}/BUILD_FAILED.log" "r2:/pub/repos/pkgforge/bincache/x86_64-Linux/BUILD_FAILED.gh.log.txt" --user-agent="${USER_AGENT}" --buffer-size="100M" --s3-upload-concurrency="500" --s3-chunk-size="100M" --multi-thread-streams="500" --checkers="2000" --transfers="1000" --retries="10" --check-first --checksum --copy-links --fast-list --progress
+             fi
           fi
         continue-on-error: true
 #------------------------------------------------------------------------------------#
