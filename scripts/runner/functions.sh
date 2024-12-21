@@ -208,10 +208,18 @@ if [[ "${CONTINUE_SBUILD}" == "YES" ]]; then
       #Sanity
        find "${SBUILD_OUTDIR}" -type f -exec touch "{}" \;
        find "${SBUILD_OUTDIR}" -maxdepth 1 -type f -print | sort -u | xargs -I "{}" sh -c 'printf "\nFile: $(basename {})\n  Type: $(file -b {})\n  B3sum: $(b3sum {} | cut -d" " -f1)\n  SHA256sum: $(sha256sum {} | cut -d" " -f1)\n  Size: $(du -sh {} | cut -f1)\n"'
+      #Checksum
+       echo -e "[+] Generating (b3sum) Checksums ==> [${SBUILD_OUTDIR}/CHECKSUM]"
+       find "${SBUILD_OUTDIR}" -maxdepth 1 -type f ! -iname "*CHECKSUM*" -exec b3sum "{}" + | awk '{gsub(".*/", "", $2); print $1 ":" $2}' | tee "${SBUILD_OUTDIR}/CHECKSUM"
+       minisign -Sm "${SBUILD_OUTDIR}/CHECKSUM" -P "${MINISIGN_PUB_KEY}" -s "${HOME}/.minisign/pkgforge.key" -x "CHECKSUM.sig"
+      #Sign
+       echo -e "[+] Signing (minisign) ${SBUILD_PKG}... (Verify: https://docs.pkgforge.dev/repositories/pkgforge-stable/security#trust-but-verify)"
+       find "${SBUILD_OUTDIR}" -maxdepth 1 -type f -print0 | sort -zu | xargs -0 -I "{}" minisign -Sm "{}" -P "${MINISIGN_PUB_KEY}" -s "${HOME}/.minisign/pkgforge.key" -x "{}.sig"
+       find "${SBUILD_OUTDIR}" -maxdepth 1 -type f -name "*.sig" -exec bash -c 'printf "==> %s\n" "$(basename "{}")"' \; | sort -u
       #End
        export SBUILD_SUCCESSFUL="YES"
        echo "export SBUILD_SUCCESSFUL='${SBUILD_SUCCESSFUL}'" >> "${OCWD}/ENVPATH"
-       echo -e "[✓] SuccessFully Built ${SBUILD_PKG} using ${SBUILD_SCRIPT_BLOB:-INPUT_SBUILD} [$(TZ='UTC' date +'%A, %Y-%m-%d (%I:%M:%S %p)') UTC]"
+       echo -e "\n[✓] SuccessFully Built ${SBUILD_PKG} using ${SBUILD_SCRIPT_BLOB:-INPUT_SBUILD} [$(TZ='UTC' date +'%A, %Y-%m-%d (%I:%M:%S %p)') UTC]\n"
        echo -e "[+] Total Size: $(du -sh "${SBUILD_OUTDIR}" 2>/dev/null | awk '{print $1}' 2>/dev/null) (Includes DUPES+TMPFILES)"
        if [ -d "${OCWD}" ]; then
          echo -e "[+] LOGPATH='${SBUILD_OUTDIR}/${SBUILD_PKG}.log'"
@@ -511,10 +519,17 @@ if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]]; then
      ghcr_push+=(--annotation "org.opencontainers.image.vendor=pkgforge")
      ghcr_push+=(--annotation "org.opencontainers.image.version=${PKG_VERSION}")
      ghcr_push+=("${GHCRPKG_URL}:${GHCRPKG_TAG}" "./${PROG}")
+     [[ -f "./${PROG}.sig" && -s "./${PROG}.sig" ]] && ghcr_push+=("./${PROG}.sig")
+     [[ -f "./CHECKSUM" && -s "./CHECKSUM" ]] && ghcr_push+=("./CHECKSUM")
+     [[ -f "./CHECKSUM.sig" && -s "./CHECKSUM.sig" ]] && ghcr_push+=("./CHECKSUM.sig")
      [[ -f "./${PROG}.json" && -s "./${PROG}.json" ]] && ghcr_push+=("./${PROG}.json")
+     [[ -f "./${PROG}.json.sig" && -s "./${PROG}.json.sig" ]] && ghcr_push+=("./${PROG}.json.sig")
      [[ -f "./${PROG}.log" && -s "./${PROG}.log" ]] && ghcr_push+=("./${PROG}.log")
+     [[ -f "./${PROG}.log.sig" && -s "./${PROG}.log.sig" ]] && ghcr_push+=("./${PROG}.log.sig")
      [[ -f "./${PROG}.png" && -s "./${PROG}.png" ]] && ghcr_push+=("./${PROG}.png")
+     [[ -f "./${PROG}.png.sig" && -s "./${PROG}.png.sig" ]] && ghcr_push+=("./${PROG}.png.sig")
      [[ -f "./${PROG}.svg" && -s "./${PROG}.svg" ]] && ghcr_push+=("./${PROG}.svg")
+     [[ -f "./${PROG}.svg.sig" && -s "./${PROG}.svg.sig" ]] && ghcr_push+=("./${PROG}.svg.sig")
      "${ghcr_push[@]}"
      if [[ "$(oras manifest fetch "${GHCRPKG_URL}:${GHCRPKG_TAG}" | jq -r '.annotations["org.opencontainers.image.created"]')" == "${PKG_DATE}" ]]; then
        echo -e "\n[+] Registry --> https://${GHCRPKG_URL}"

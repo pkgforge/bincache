@@ -87,7 +87,7 @@ else
  ##Install Needed CMDs
   bash <(curl -qfsSL "https://raw.githubusercontent.com/pkgforge/devscripts/main/Linux/install_bins_curl.sh")
  ##Check Needed CMDs
- for DEP_CMD in eget gh glab oras rclone soar; do
+ for DEP_CMD in eget gh glab minisign oras rclone soar; do
     case "$(command -v "${DEP_CMD}" 2>/dev/null)" in
         "") echo -e "\n[✗] FATAL: ${DEP_CMD} is NOT INSTALLED\n"
            export CONTINUE="NO"
@@ -125,10 +125,25 @@ else
  ##Check for Gitlab Token
   if [ -n "${GITLAB_TOKEN+x}" ] && [ -n "${GITLAB_TOKEN##*[[:space:]]}" ]; then
    echo -e "\n[+] GITLAB is Exported"
-   glab auth status
+    glab auth status
   else
-   echo -e "\n[-] GITLAB_TOKEN is NOT Exported"
-   echo -e "Export it to avoid ratelimits\n"
+    echo -e "\n[-] GITLAB_TOKEN is NOT Exported"
+    echo -e "Export it to avoid ratelimits\n"
+   export CONTINUE="NO"
+   return 1 || exit 1
+  fi
+ ##Check for Minisign
+  if [ -n "${MINISIGN_KEY+x}" ] && [ -n "${MINISIGN_KEY##*[[:space:]]}" ]; then
+    mkdir -p "${HOME}/.minisign" && \
+    echo "pkgforge-minisign: minisign encrypted secret key" > "${HOME}/.minisign/pkgforge.key" &&\
+    echo "${MINISIGN_KEY}" >> "${HOME}/.minisign/pkgforge.key"
+   #https://github.com/pkgforge/.github/blob/main/keys/minisign.pub
+    export MINISIGN_PUB_KEY='RWSWp/oBUfND5B2fSmDlYaBXPimGV+r2s9skVRYTQ5cJ+7i6ff/1Nxcr'
+  else
+    echo -e "\n[-] MINISIGN_KEY is NOT Exported"
+    echo -e "Export it to Use minisign (Signing)\n"
+   export CONTINUE="NO"
+   return 1 || exit 1
   fi
 fi
 #-------------------------------------------------------#

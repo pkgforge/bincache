@@ -35,7 +35,7 @@ source "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh"
 #sg docker newgrp "$(id -gn)"
 cd "${OWD_TMP}" && unset OWD_TMP && clear
 ##Sanity Checks
-for DEP_CMD in eget gh glab oras rclone soar; do
+for DEP_CMD in eget gh glab minisign oras rclone soar; do
  case "$(command -v "${DEP_CMD}" 2>/dev/null)" in
      "") echo -e "\n[✗] FATAL: ${DEP_CMD} is NOT INSTALLED\n"
  esac
@@ -57,6 +57,16 @@ if [[ ! -n "${GITLAB_TOKEN}" ]]; then
  echo -e "Export it to Use glab (Gitlab)\n"
 else
  glab auth status
+fi
+if [[ ! -n "${MINISIGN_KEY}" ]]; then
+ echo -e "\n[-] MINISIGN_KEY is NOT Exported"
+ echo -e "Export it to Use minisign (Signing)\n"
+else
+ mkdir -p "${HOME}/.minisign" && \
+ echo "pkgforge-minisign: minisign encrypted secret key" > "${HOME}/.minisign/pkgforge.key" &&\
+ echo "${MINISIGN_KEY}" >> "${HOME}/.minisign/pkgforge.key"
+ #https://github.com/pkgforge/.github/blob/main/keys/minisign.pub
+ export MINISIGN_PUB_KEY='RWSWp/oBUfND5B2fSmDlYaBXPimGV+r2s9skVRYTQ5cJ+7i6ff/1Nxcr'
 fi
 #-------------------------------------------------------#
 unset DOCKER_HOST
