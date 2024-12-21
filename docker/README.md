@@ -129,8 +129,10 @@
 > 
 > #To delete all images
 > sudo docker image prune -a -f
+> sudo docker system prune -a -f
 > sudo podman image prune -a -f
->
+> sudo podman system prune -a -f
+>  
 > #{WARNING] To reset everything
 > sudo docker system reset -f
 > sudo podman system reset -f
