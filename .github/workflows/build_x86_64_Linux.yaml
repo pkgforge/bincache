@@ -274,7 +274,7 @@ jobs:
            echo 'ℹ️ **Completed** [🛍️ Build 📦 Bincache] (Weekly) ==> https://github.com/pkgforge/bincache/blob/main/.github/workflows/build_x86_64_Linux.yaml `['"$(date --utc +'%Y-%m-%dT%H:%M:%S.%3N')"' UTC]`' > "/tmp/PKGFORGE_DISCORD.md"
            echo '**`Arch`**: `x86_64-Linux`' >> "/tmp/PKGFORGE_DISCORD.md"
            echo '**`Event`**:  `'"${GH_EVENT}"'`' >> "/tmp/PKGFORGE_DISCORD.md"
-           echo '**`Logs (ARTIFACTS)`**: "'${ARTIFACT_URL}'"' >> "/tmp/PKGFORGE_DISCORD.md"
+           echo '**`Logs (ARTIFACTS)`**: '${ARTIFACT_URL}' ' >> "/tmp/PKGFORGE_DISCORD.md"
            echo '**`Logs (STDOUT)`**: https://bin.pkgforge.dev/x86_64-Linux/BUILD.log.txt' >> "/tmp/PKGFORGE_DISCORD.md"
            echo '**`Logs (STDERR)`**: https://bin.pkgforge.dev/x86_64-Linux/BUILD_FAILED.log.txt' >> "/tmp/PKGFORGE_DISCORD.md"
            #echo '**`Workflow`**: "'${GH_WORKFLOW_URL}'"' >> "/tmp/PKGFORGE_DISCORD.md"
