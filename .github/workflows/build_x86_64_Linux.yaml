@@ -5,7 +5,7 @@ on:
   schedule:
     - cron: "30 18 * * 1" # 06:30 PM UTC (12:15 AM NPT Mrng Every Tuesday)
 env:
-  FORCE_REBUILD_ALL: "NO" #YES--> Force Rebuild everything
+  FORCE_REBUILD_ALL: "YES" #YES--> Force Rebuild everything
   KEEP_LOGS: "NO" #YES--> Keeps Dirs & Files
 jobs:
 #------------------------------------------------------------------------------------#
@@ -137,7 +137,7 @@ jobs:
           echo "USER_AGENT=${USER_AGENT}" >> "${GITHUB_ENV}"
         continue-on-error: true
 
-      - name: Notify (Discord)
+      - name: Notify (Discord) [Trigger]
         run: |
           ##presets
           set +x ; set +e
@@ -159,11 +159,12 @@ jobs:
            echo "GH_WORKFLOW_URL=${GH_WORKFLOW_URL}" >> "${GITHUB_ENV}"
            echo "START_TIME=${START_TIME}" >> "${GITHUB_ENV}"
            rm -rvf "/tmp/PKGFORGE_DISCORD.md" 2>/dev/null
-           echo 'ℹ️ **Triggered** [🛍️ Build 📦 Bincache] (Weekly) ==> https://github.com/pkgforge/bincache/blob/main/.github/workflows/build_x86_64_Linux.yaml' > "/tmp/PKGFORGE_DISCORD.md"
+           echo 'ℹ️ **Triggered** [🛍️ Build 📦 Bincache] (Weekly) ==> https://github.com/pkgforge/bincache/blob/main/.github/workflows/build_x86_64_Linux.yaml `['"$(date --utc +'%Y-%m-%dT%H:%M:%S.%3N')"']`' > "/tmp/PKGFORGE_DISCORD.md"
            echo '**`Arch`**: `x86_64-Linux`' >> "/tmp/PKGFORGE_DISCORD.md"
            echo '**`Event`**:  `'"${GH_EVENT}"'`' >> "/tmp/PKGFORGE_DISCORD.md"
-           echo '**`Workflow`**: "'${GH_WORKFLOW_URL}'"' >> "/tmp/PKGFORGE_DISCORD.md"
-           echo '**`Maintainer`**: @azathothas' >> "/tmp/PKGFORGE_DISCORD.md"
+           #echo '**`Workflow`**: "'${GH_WORKFLOW_URL}'"' >> "/tmp/PKGFORGE_DISCORD.md"
+           echo '**`Workflow`**: '${GH_WORKFLOW_URL}' ' >> "/tmp/PKGFORGE_DISCORD.md"
+           echo '**`Maintainer`**: @Azathothas' >> "/tmp/PKGFORGE_DISCORD.md"
            echo '**`Preserving TMPFILES?`**:  `'"${KEEP_LOGS}"'`' >> "/tmp/PKGFORGE_DISCORD.md"
            echo '**`Rebuilding?`**:  `'"${FORCE_REBUILD_ALL}"'`' >> "/tmp/PKGFORGE_DISCORD.md"
            cat "/tmp/PKGFORGE_DISCORD.md" | notify -provider-config "./notify.yaml" -bulk -disable-update-check
@@ -239,5 +240,44 @@ jobs:
             compression-level: 0 # no compression, [Default: 6 (GNU Gzip)]
             retention-days: 7
             overwrite: true
+        continue-on-error: true
+#------------------------------------------------------------------------------------#
+      - name: Notify Discord [Completion]
+        run: |
+          ##presets
+          set +x ; set +e
+          #-------------#
+          pushd "$(mktemp -d)" >/dev/null 2>&1
+          #Setup Config
+           sudo curl -qfsSL "https://bin.pkgforge.dev/$(uname -m)/notify" -o "/usr/local/bin/notify" && sudo chmod +x "/usr/local/bin/notify"
+           echo 'discord:' > "./notify.yaml"
+           echo '  - id: "portable-apps"' >> "./notify.yaml"
+           echo '    discord_channel: "main"' >> "./notify.yaml"
+           echo '    discord_username: "pkgforge-bot"' >> "./notify.yaml"
+           echo '    discord_format: "{{data}}"' >> "./notify.yaml"
+           echo "    discord_webhook_url: \"${{ secrets.DISCORD_NOTIFY }}\"" >> "./notify.yaml"
+          #Prep Body
+           ARTIFACT_URL="https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts"
+           END_TIME="$(date +%s)" && export END_TIME="${END_TIME}"
+           SECS="$((END_TIME - START_TIME))"
+           #ELAPSED_TIME="$(date -u -d@"$((END_TIME - START_TIME))" "+%H(Hr):%M(Min):%S(Sec)")"
+           ELAPSED_TIME="$((SECS/86400))(Day):$(date -u -d@$((SECS%86400)) '+%H(Hr):%M(Min):%S(Sec)')"
+           echo "ELAPSED_TIME=${ELAPSED_TIME}" >> "${GITHUB_ENV}"
+           rm -rvf "/tmp/PKGFORGE_DISCORD.md" 2>/dev/null
+           echo 'ℹ️ **Completed** [🛍️ Build 📦 Bincache] (Weekly) ==> https://github.com/pkgforge/bincache/blob/main/.github/workflows/build_x86_64_Linux.yaml `['"$(date --utc +'%Y-%m-%dT%H:%M:%S.%3N')"' UTC]`' > "/tmp/PKGFORGE_DISCORD.md"
+           echo '**`Arch`**: `x86_64-Linux`' >> "/tmp/PKGFORGE_DISCORD.md"
+           echo '**`Event`**:  `'"${GH_EVENT}"'`' >> "/tmp/PKGFORGE_DISCORD.md"
+           echo '**`Logs (ARTIFACTS)`**: "'${ARTIFACT_URL}'"' >> "/tmp/PKGFORGE_DISCORD.md"
+           echo '**`Logs (STDOUT)`**: https://bin.pkgforge.dev/x86_64-Linux/BUILD.log.txt' >> "/tmp/PKGFORGE_DISCORD.md"
+           echo '**`Logs (STDERR)`**: https://bin.pkgforge.dev/x86_64-Linux/BUILD_FAILED.log.txt' >> "/tmp/PKGFORGE_DISCORD.md"
+           #echo '**`Workflow`**: "'${GH_WORKFLOW_URL}'"' >> "/tmp/PKGFORGE_DISCORD.md"
+           echo '**`Workflow`**: '${GH_WORKFLOW_URL}' ' >> "/tmp/PKGFORGE_DISCORD.md"
+           echo '**`Maintainer`**: @Azathothas' >> "/tmp/PKGFORGE_DISCORD.md"
+           echo '**`Preserved TMPFILES?`**:  `'"${KEEP_LOGS}"'`' >> "/tmp/PKGFORGE_DISCORD.md"
+           echo '**`Rebuilt?`**:  `'"${FORCE_REBUILD_ALL}"'`' >> "/tmp/PKGFORGE_DISCORD.md"
+           echo '**`Total Time`**:  `'"${ELAPSED_TIME}"'`' >> "/tmp/PKGFORGE_DISCORD.md"
+           cat "/tmp/PKGFORGE_DISCORD.md" | notify -provider-config "./notify.yaml" -bulk -disable-update-check
+           echo -e "\n\n" && cat "/tmp/PKGFORGE_DISCORD.md" && echo -e "\n\n"
+          popd >/dev/null 2>&1
         continue-on-error: true
 #------------------------------------------------------------------------------------#
