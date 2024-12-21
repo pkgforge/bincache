@@ -151,7 +151,6 @@ sbuild_builder()
 
   #-------------------------------------------------------#
   ##Build
-  i=0; until pushd "$(${TMPDIRS})" >/dev/null 2>&1 || [ $((i+=1)) -gt 3 ]; do :; done
    #If local
    if [[ "${LOCAL_SBUILD}" == "YES" ]]; then
     echo "$(realpath ${BUILDSCRIPT})" > "${SYSTMP}/pkgforge/SBUILD_URLS"
@@ -161,6 +160,7 @@ sbuild_builder()
     jq -r '.[] | select(._disabled == false) | .build_script' "${SYSTMP}/pkgforge/SBUILD_LIST.json" | sort -u -o "${SYSTMP}/pkgforge/SBUILD_URLS"
    fi
   #Build
+   i=0; until pushd "$(${TMPDIRS})" >/dev/null 2>&1 || [ $((i+=1)) -gt 3 ]; do :; done
    echo -e "\n==> [+] Started Building at :: $(TZ='UTC' date +'%A, %Y-%m-%d (%I:%M:%S %p)')\n"
    sort -u "${SYSTMP}/pkgforge/SBUILD_URLS" -o"${SYSTMP}/pkgforge/SBUILD_URLS"
    readarray -t RECIPES < "${SYSTMP}/pkgforge/SBUILD_URLS"
