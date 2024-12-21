@@ -129,6 +129,9 @@ jobs:
           mkdir -p "${HOME}/bin"
           sudo apt update -y
           sudo apt install dos2unix -y
+          ##Setup Minisign
+          mkdir -p "${HOME}/.minisign"
+          echo "${{ secrets.MINISIGN_SIGKEY }}" > "${HOME}/.minisign/pkgforge.key"
           ##Setup rClone
           mkdir -p "${HOME}/.config/rclone"
           echo "${{ secrets.RCLONE_CF_R2_PUB }}" > "${HOME}/.config/rclone/rclone.conf"
