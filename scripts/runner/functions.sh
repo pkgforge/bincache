@@ -479,6 +479,7 @@ if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]]; then
      cp -fv "${LOGPATH}" "${SBUILD_OUTDIR}/${PROG}.log"
      echo -e "[+] ==> $(echo "${DOWNLOAD_URL}" | sed 's/download=[^&]*/download='"${PROG}"'.log/')"
      echo -e "\n[+] Parsing/Uploading ${PKG_FAMILY}/${PKG_NAME} --> https://github.com/orgs/pkgforge/packages/container/package/${PKG_REPO}%2F${PKG_FAMILY:-PKG_NAME}%2F${PKG_NAME} [${HOST_TRIPLET}]"
+     jq . "./${PROG}.json" && echo -e "\n"
      unset ghcr_push ; ghcr_push=(oras push --concurrency "100" --disable-path-validation)
      ghcr_push+=(--config "/dev/null:application/vnd.oci.empty.v1+json")
      ghcr_push+=(--annotation "com.github.package.type=soar_pkg")
