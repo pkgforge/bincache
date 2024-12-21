@@ -2,9 +2,72 @@
     {
       "_disabled": false,
       "rebuild": false,
+      "pkg_family": "7z",
+      "ghcrpkg": "ghcr.io/pkgforge/bincache/7z/official",
+      "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/7z/static.official.stable.yaml"
+    },
+    {
+      "_disabled": false,
+      "rebuild": false,
       "pkg_family": "a-utils",
       "ghcrpkg": "ghcr.io/pkgforge/bincache/a-utils/official",
       "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/a-utils/static.official.stable.yaml"
+    },
+    {
+      "_disabled": false,
+      "rebuild": false,
+      "pkg_family": "act",
+      "ghcrpkg": "ghcr.io/pkgforge/bincache/act/official",
+      "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/act/static.official.stable.yaml"
+    },
+    {
+      "_disabled": false,
+      "rebuild": false,
+      "pkg_family": "actionlint",
+      "ghcrpkg": "ghcr.io/pkgforge/bincache/actionlint/official",
+      "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/actionlint/static.official.stable.yaml"
+    },
+    {
+      "_disabled": false,
+      "rebuild": false,
+      "pkg_family": "age",
+      "ghcrpkg": "ghcr.io/pkgforge/bincache/age/official",
+      "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/age/static.official.stable.yaml"
+    },
+    {
+      "_disabled": false,
+      "rebuild": false,
+      "pkg_family": "agg",
+      "ghcrpkg": "ghcr.io/pkgforge/bincache/agg/official",
+      "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/agg/static.official.stable.yaml"
+    },
+    {
+      "_disabled": false,
+      "rebuild": false,
+      "pkg_family": "aggligator",
+      "ghcrpkg": "ghcr.io/pkgforge/bincache/aggligator/official",
+      "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/aggligator/static.official.stable.yaml"
+    },
+    {
+      "_disabled": false,
+      "rebuild": false,
+      "pkg_family": "agrind",
+      "ghcrpkg": "ghcr.io/pkgforge/bincache/agrind/official",
+      "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/agrind/static.official.stable.yaml"
+    },
+    {
+      "_disabled": false,
+      "rebuild": false,
+      "pkg_family": "airixss",
+      "ghcrpkg": "ghcr.io/pkgforge/bincache/airixss/official",
+      "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/airixss/static.official.stable.yaml"
+    },
+    {
+      "_disabled": false,
+      "rebuild": false,
+      "pkg_family": "aix",
+      "ghcrpkg": "ghcr.io/pkgforge/bincache/aix/official",
+      "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/aix/static.official.stable.yaml"
     },
     {
       "_disabled": false,

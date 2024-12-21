@@ -1,4 +1,4 @@
-name: 🛍️ Build 📀 (Bincache-x86_64-Linux) Packages 📦📀
+name: 🛍️ Build 📀 (Bincache-aarch64-Linux) Packages 📦📀
 
 on:
   workflow_dispatch:
@@ -45,7 +45,7 @@ jobs:
           #GH ENV
           echo "SYSTMP=${SYSTMP}" >> "${GITHUB_ENV}"
           #GH Dirs
-          mkdir -p "${GITHUB_WORKSPACE}/main/x86_64-Linux"
+          mkdir -p "${GITHUB_WORKSPACE}/main/aarch64-Linux"
           #-------------#
           mkdir -p "${HOME}/bin"
           sudo apt update -y
@@ -89,7 +89,7 @@ jobs:
 #------------------------------------------------------------------------------------#
   build-fetch-packages:
     #runs-on: ubuntu-latest
-    runs-on: amd64-linux-bincache
+    runs-on: arm64-linux-bincache
     needs: [presetup]
     timeout-minutes: 3200
     permissions:
@@ -124,7 +124,7 @@ jobs:
           #GH ENV
           echo "SYSTMP=${SYSTMP}" >> "${GITHUB_ENV}"
           #GH Dirs
-          mkdir -p "${GITHUB_WORKSPACE}/main/x86_64-Linux"
+          mkdir -p "${GITHUB_WORKSPACE}/main/aarch64-Linux"
           #-------------#
           mkdir -p "${HOME}/bin"
           sudo apt update -y
@@ -165,8 +165,8 @@ jobs:
            GH_REBUILD_COUNT="$(curl -qfsSL "https://raw.githubusercontent.com/pkgforge/bincache/refs/heads/main/SBUILD_LIST.json" | jq -r '.[].rebuild' | grep -Ei 'true' | wc -l | tr -d '[:space:]')"
            echo "GH_REBUILD_COUNT=${GH_REBUILD_COUNT}" >> "${GITHUB_ENV}"
            rm -rvf "/tmp/PKGFORGE_DISCORD.md" 2>/dev/null
-           echo 'ℹ️ **Triggered** [🛍️ Build 📦 Bincache] (Weekly) ==> https://github.com/pkgforge/bincache/blob/main/.github/workflows/build_x86_64_Linux.yaml `['"$(date --utc +'%Y-%m-%dT%H:%M:%S.%3N')"' UTC]`' > "/tmp/PKGFORGE_DISCORD.md"
-           echo '**`Arch`**: `x86_64-Linux`' >> "/tmp/PKGFORGE_DISCORD.md"
+           echo 'ℹ️ **Triggered** [🛍️ Build 📦 Bincache] (Weekly) ==> https://github.com/pkgforge/bincache/blob/main/.github/workflows/build_aarch64_Linux.yaml `['"$(date --utc +'%Y-%m-%dT%H:%M:%S.%3N')"' UTC]`' > "/tmp/PKGFORGE_DISCORD.md"
+           echo '**`Arch`**: `aarch64-Linux`' >> "/tmp/PKGFORGE_DISCORD.md"
            echo '**`Event`**:  `'"${GH_EVENT}"'`' >> "/tmp/PKGFORGE_DISCORD.md"
            #echo '**`Workflow`**: "'${GH_WORKFLOW_URL}'"' >> "/tmp/PKGFORGE_DISCORD.md"
            echo '**`Workflow`**: '${GH_WORKFLOW_URL}' ' >> "/tmp/PKGFORGE_DISCORD.md"
@@ -230,18 +230,18 @@ jobs:
                 mv "${SYSTMP}/BUILD.gh.log.txt" "${SYSTMP}/BUILD_FAILED.log"
              fi
              ##rClone Upload logs
-             rclone copyto "${SYSTMP}/BUILD.log" "r2:/pub/repos/pkgforge/bincache/x86_64-Linux/BUILD.gh.log.txt" --user-agent="${USER_AGENT}" --buffer-size="100M" --s3-upload-concurrency="500" --s3-chunk-size="100M" --multi-thread-streams="500" --checkers="2000" --transfers="1000" --retries="10" --check-first --checksum --copy-links --fast-list --progress
+             rclone copyto "${SYSTMP}/BUILD.log" "r2:/pub/repos/pkgforge/bincache/aarch64-Linux/BUILD.gh.log.txt" --user-agent="${USER_AGENT}" --buffer-size="100M" --s3-upload-concurrency="500" --s3-chunk-size="100M" --multi-thread-streams="500" --checkers="2000" --transfers="1000" --retries="10" --check-first --checksum --copy-links --fast-list --progress
              if [[ -s "${SYSTMP}/BUILD_FAILED.log" && $(stat -c%s "${SYSTMP}/BUILD_FAILED.log") -gt 10 ]]; then
-               rclone copyto "${SYSTMP}/BUILD_FAILED.log" "r2:/pub/repos/pkgforge/bincache/x86_64-Linux/BUILD_FAILED.gh.log.txt" --user-agent="${USER_AGENT}" --buffer-size="100M" --s3-upload-concurrency="500" --s3-chunk-size="100M" --multi-thread-streams="500" --checkers="2000" --transfers="1000" --retries="10" --check-first --checksum --copy-links --fast-list --progress
+               rclone copyto "${SYSTMP}/BUILD_FAILED.log" "r2:/pub/repos/pkgforge/bincache/aarch64-Linux/BUILD_FAILED.gh.log.txt" --user-agent="${USER_AGENT}" --buffer-size="100M" --s3-upload-concurrency="500" --s3-chunk-size="100M" --multi-thread-streams="500" --checkers="2000" --transfers="1000" --retries="10" --check-first --checksum --copy-links --fast-list --progress
              fi
           fi
         continue-on-error: true
 #------------------------------------------------------------------------------------#
       #Logs & Artifacts  
-      - name: Upload (x86_64-Linux) Artifacts
+      - name: Upload (aarch64-Linux) Artifacts
         uses: actions/upload-artifact@v4
         with:
-            name: Bincache_x86_64-Linux
+            name: Bincache_aarch64-Linux
             path: |
               /tmp/BUILD.log
             compression-level: 0 # no compression, [Default: 6 (GNU Gzip)]
@@ -271,12 +271,12 @@ jobs:
            ELAPSED_TIME="$((SECS/86400))(Day):$(date -u -d@$((SECS%86400)) '+%H(Hr):%M(Min):%S(Sec)')"
            echo "ELAPSED_TIME=${ELAPSED_TIME}" >> "${GITHUB_ENV}"
            rm -rvf "/tmp/PKGFORGE_DISCORD.md" 2>/dev/null
-           echo 'ℹ️ **Completed** [🛍️ Build 📦 Bincache] (Weekly) ==> https://github.com/pkgforge/bincache/blob/main/.github/workflows/build_x86_64_Linux.yaml `['"$(date --utc +'%Y-%m-%dT%H:%M:%S.%3N')"' UTC]`' > "/tmp/PKGFORGE_DISCORD.md"
-           echo '**`Arch`**: `x86_64-Linux`' >> "/tmp/PKGFORGE_DISCORD.md"
+           echo 'ℹ️ **Completed** [🛍️ Build 📦 Bincache] (Weekly) ==> https://github.com/pkgforge/bincache/blob/main/.github/workflows/build_aarch64_Linux.yaml `['"$(date --utc +'%Y-%m-%dT%H:%M:%S.%3N')"' UTC]`' > "/tmp/PKGFORGE_DISCORD.md"
+           echo '**`Arch`**: `aarch64-Linux`' >> "/tmp/PKGFORGE_DISCORD.md"
            echo '**`Event`**:  `'"${GH_EVENT}"'`' >> "/tmp/PKGFORGE_DISCORD.md"
            echo '**`Logs (ARTIFACTS)`**: "'${ARTIFACT_URL}'"' >> "/tmp/PKGFORGE_DISCORD.md"
-           echo '**`Logs (STDOUT)`**: https://bin.pkgforge.dev/x86_64-Linux/BUILD.log.txt' >> "/tmp/PKGFORGE_DISCORD.md"
-           echo '**`Logs (STDERR)`**: https://bin.pkgforge.dev/x86_64-Linux/BUILD_FAILED.log.txt' >> "/tmp/PKGFORGE_DISCORD.md"
+           echo '**`Logs (STDOUT)`**: https://bin.pkgforge.dev/aarch64-Linux/BUILD.log.txt' >> "/tmp/PKGFORGE_DISCORD.md"
+           echo '**`Logs (STDERR)`**: https://bin.pkgforge.dev/aarch64-Linux/BUILD_FAILED.log.txt' >> "/tmp/PKGFORGE_DISCORD.md"
            #echo '**`Workflow`**: "'${GH_WORKFLOW_URL}'"' >> "/tmp/PKGFORGE_DISCORD.md"
            echo '**`Workflow`**: '${GH_WORKFLOW_URL}' ' >> "/tmp/PKGFORGE_DISCORD.md"
            echo '**`Maintainer`**: @Azathothas' >> "/tmp/PKGFORGE_DISCORD.md"
