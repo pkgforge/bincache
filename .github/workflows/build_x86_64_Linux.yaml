@@ -169,7 +169,7 @@ jobs:
            echo "GH_REBUILD_COUNT=${GH_REBUILD_COUNT}" >> "${GITHUB_ENV}"
            rm -rvf "/tmp/PKGFORGE_DISCORD.md" 2>/dev/null
            echo 'ℹ️ **Triggered** [🛍️ Build 📦 Bincache] (Weekly) ==> https://github.com/pkgforge/bincache/blob/main/.github/workflows/build_x86_64_Linux.yaml `['"$(date --utc +'%Y-%m-%dT%H:%M:%S.%3N')"' UTC]`' > "/tmp/PKGFORGE_DISCORD.md"
-           echo '**`Arch`**: `x86_64-Linux`' >> "/tmp/PKGFORGE_DISCORD.md"
+           echo '**`Host`**: `x86_64-Linux`' >> "/tmp/PKGFORGE_DISCORD.md"
            echo '**`Event`**:  `'"${GH_EVENT}"'`' >> "/tmp/PKGFORGE_DISCORD.md"
            #echo '**`Workflow`**: "'${GH_WORKFLOW_URL}'"' >> "/tmp/PKGFORGE_DISCORD.md"
            echo '**`Workflow`**: '${GH_WORKFLOW_URL}' ' >> "/tmp/PKGFORGE_DISCORD.md"
@@ -231,12 +231,17 @@ jobs:
                 mv "${SYSTMP}/BUILD.gh.log.txt" "${SYSTMP}/BUILD.log"
              elif grep -iq "initializing" "${SYSTMP}/BUILD.gh.log.txt"; then
                 mv "${SYSTMP}/BUILD.gh.log.txt" "${SYSTMP}/BUILD_FAILED.log"
+                BUILD_FAILED="YES"
+                echo "BUILD_FAILED=${BUILD_FAILED}" >> "${GITHUB_ENV}"
              fi
              ##rClone Upload logs
-             rclone copyto "${SYSTMP}/BUILD.log" "r2:/pub/repos/pkgforge/bincache/x86_64-Linux/BUILD.gh.log.txt" --user-agent="${USER_AGENT}" --buffer-size="100M" --s3-upload-concurrency="500" --s3-chunk-size="100M" --multi-thread-streams="500" --checkers="2000" --transfers="1000" --retries="10" --check-first --checksum --copy-links --fast-list --progress
-             if [[ -s "${SYSTMP}/BUILD_FAILED.log" && $(stat -c%s "${SYSTMP}/BUILD_FAILED.log") -gt 10 ]]; then
-               rclone copyto "${SYSTMP}/BUILD_FAILED.log" "r2:/pub/repos/pkgforge/bincache/x86_64-Linux/BUILD_FAILED.gh.log.txt" --user-agent="${USER_AGENT}" --buffer-size="100M" --s3-upload-concurrency="500" --s3-chunk-size="100M" --multi-thread-streams="500" --checkers="2000" --transfers="1000" --retries="10" --check-first --checksum --copy-links --fast-list --progress
-             fi
+              rclone copyto "${SYSTMP}/BUILD.log" "r2:/bin/x86_64-Linux/BUILD.gh.log.txt" --user-agent="${USER_AGENT}" --buffer-size="100M" --s3-upload-concurrency="500" --s3-chunk-size="100M" --multi-thread-streams="500" --checkers="2000" --transfers="1000" --retries="10" --check-first --checksum --copy-links --fast-list --progress &
+              rclone copyto "${SYSTMP}/BUILD.log" "r2:/pub/repos/pkgforge/bincache/x86_64-Linux/BUILD.gh.log.txt" --user-agent="${USER_AGENT}" --buffer-size="100M" --s3-upload-concurrency="500" --s3-chunk-size="100M" --multi-thread-streams="500" --checkers="2000" --transfers="1000" --retries="10" --check-first --checksum --copy-links --fast-list --progress &
+              if [[ -s "${SYSTMP}/BUILD_FAILED.log" && $(stat -c%s "${SYSTMP}/BUILD_FAILED.log") -gt 10 ]]; then
+                rclone copyto "${SYSTMP}/BUILD_FAILED.log" r2:/bin/x86_64-Linux/BUILD_FAILED.gh.log.txt" --user-agent="${USER_AGENT}" --buffer-size="100M" --s3-upload-concurrency="500" --s3-chunk-size="100M" --multi-thread-streams="500" --checkers="2000" --transfers="1000" --retries="10" --check-first --checksum --copy-links --fast-list --progress &
+                rclone copyto "${SYSTMP}/BUILD_FAILED.log" "r2:/pub/repos/pkgforge/bincache/x86_64-Linux/BUILD_FAILED.gh.log.txt" --user-agent="${USER_AGENT}" --buffer-size="100M" --s3-upload-concurrency="500" --s3-chunk-size="100M" --multi-thread-streams="500" --checkers="2000" --transfers="1000" --retries="10" --check-first --checksum --copy-links --fast-list --progress &
+              fi
+             wait ; echo
           fi
         continue-on-error: true
 #------------------------------------------------------------------------------------#
@@ -275,11 +280,12 @@ jobs:
            echo "ELAPSED_TIME=${ELAPSED_TIME}" >> "${GITHUB_ENV}"
            rm -rvf "/tmp/PKGFORGE_DISCORD.md" 2>/dev/null
            echo 'ℹ️ **Completed** [🛍️ Build 📦 Bincache] (Weekly) ==> https://github.com/pkgforge/bincache/blob/main/.github/workflows/build_x86_64_Linux.yaml `['"$(date --utc +'%Y-%m-%dT%H:%M:%S.%3N')"' UTC]`' > "/tmp/PKGFORGE_DISCORD.md"
-           echo '**`Arch`**: `x86_64-Linux`' >> "/tmp/PKGFORGE_DISCORD.md"
+           echo '**`Host`**: `x86_64-Linux`' >> "/tmp/PKGFORGE_DISCORD.md"
            echo '**`Event`**:  `'"${GH_EVENT}"'`' >> "/tmp/PKGFORGE_DISCORD.md"
-           echo '**`Logs (ARTIFACTS)`**: '${ARTIFACT_URL}' ' >> "/tmp/PKGFORGE_DISCORD.md"
-           echo '**`Logs (STDOUT)`**: https://bin.pkgforge.dev/x86_64-Linux/BUILD.log.txt' >> "/tmp/PKGFORGE_DISCORD.md"
-           echo '**`Logs (STDERR)`**: https://bin.pkgforge.dev/x86_64-Linux/BUILD_FAILED.log.txt' >> "/tmp/PKGFORGE_DISCORD.md"
+           echo '**`Logs (VERBOSE)`**: https://bin.pkgforge.dev/x86_64-Linux/BUILD.log.txt' >> "/tmp/PKGFORGE_DISCORD.md"
+           if [[ "${BUILD_FAILED}" == "YES" ]]; then
+             echo '**`Logs (FAILED)`**: https://bin.pkgforge.dev/x86_64-Linux/BUILD_FAILED.log.txt' >> "/tmp/PKGFORGE_DISCORD.md"
+           fi           
            #echo '**`Workflow`**: "'${GH_WORKFLOW_URL}'"' >> "/tmp/PKGFORGE_DISCORD.md"
            echo '**`Workflow`**: '${GH_WORKFLOW_URL}' ' >> "/tmp/PKGFORGE_DISCORD.md"
            echo '**`Maintainer`**: @Azathothas' >> "/tmp/PKGFORGE_DISCORD.md"
@@ -288,6 +294,11 @@ jobs:
            echo '**`Preserved TMPFILES?`**:  `'"${KEEP_LOGS}"'`' >> "/tmp/PKGFORGE_DISCORD.md"
            echo '**`Rebuilt?`**:  `'"${FORCE_REBUILD_ALL}"'`' >> "/tmp/PKGFORGE_DISCORD.md"
            echo '**`Total Time`**:  `'"${ELAPSED_TIME}"'`' >> "/tmp/PKGFORGE_DISCORD.md"
+           cat "${SYSTMP}/BUILD.log" | grep -i 'FATAL' | sed -E 's/.*Could NOT Build ([a-z0-9]*\.static).*?(https.*\.yaml\])/\1 [\2/' > "./FAILED.txt"
+           if [[ -s "./FAILED.txt" && $(stat -c%s "./FAILED.txt") -gt 10 ]]; then
+             echo '**`Failed Builds`**: ==>' >> "/tmp/PKGFORGE_DISCORD.md"
+             cat "./FAILED.txt" >> "/tmp/PKGFORGE_DISCORD.md"
+           fi
            cat "/tmp/PKGFORGE_DISCORD.md" | notify -provider-config "./notify.yaml" -bulk -disable-update-check
            echo -e "\n\n" && cat "/tmp/PKGFORGE_DISCORD.md" && echo -e "\n\n"
           popd >/dev/null 2>&1
