@@ -121,17 +121,18 @@
 > sudo podman rm "bincache-dbg" --force
 >
 > #To stop All Containers
-> sudo docker stop "$(sudo docker ps -q)"
-> sudo podman stop "$(sudo podman ps -q)"
+> sudo docker stop
+> sudo podman stop -a
 >
-> sudo docker rm "$(sudo docker ps -a -q)"
-> sudo podman rm "$(sudo podman ps -a -q)"
+> sudo docker rm -f "$(sudo docker ps -aq)"
+> sudo podman rm -f "$(sudo podman ps -aq)"
 > 
-> #To delete all images
-> sudo docker image prune -a -f
-> sudo docker system prune -a -f
-> sudo podman image prune -a -f
-> sudo podman system prune -a -f
+> #To Cleanup Everyhinh
+> sudo docker system df ; sudo docker container prune -f ; sudo docker image prune -a -f ; sudo docker system prune -a -f
+> sudo docker rmi -f "$(sudo docker images -aq)" ; sudo docker system df
+> 
+> sudo podman system df ; sudo podman container prune -f ; sudo podman image prune -a -f ; sudo podman system prune -a -f
+> sudo podman rmi -f "$(sudo podman images -aq)" ; sudo docker system df
 >  
 > #{WARNING] To reset everything
 > sudo docker system reset -f
