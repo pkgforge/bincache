@@ -72,6 +72,258 @@
     {
       "_disabled": false,
       "rebuild": false,
+      "pkg_family": "albafetch",
+      "ghcrpkg": "ghcr.io/pkgforge/bincache/albafetch/official",
+      "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/albafetch/static.official.stable.yaml"
+    },
+    {
+      "_disabled": false,
+      "rebuild": false,
+      "pkg_family": "algernon",
+      "ghcrpkg": "ghcr.io/pkgforge/bincache/algernon/official",
+      "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/algernon/static.official.stable.yaml"
+    },
+    {
+      "_disabled": false,
+      "rebuild": false,
+      "pkg_family": "alist",
+      "ghcrpkg": "ghcr.io/pkgforge/bincache/alist/official",
+      "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/alist/static.official.stable.yaml"
+    },
+    {
+      "_disabled": false,
+      "rebuild": false,
+      "pkg_family": "allxfr",
+      "ghcrpkg": "ghcr.io/pkgforge/bincache/allxfr/official",
+      "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/allxfr/static.official.stable.yaml"
+    },
+    {
+      "_disabled": false,
+      "rebuild": false,
+      "pkg_family": "almalinux",
+      "ghcrpkg": "ghcr.io/pkgforge/bincache/almalinux/official",
+      "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/almalinux/static.official.stable.yaml"
+    },
+    {
+      "_disabled": false,
+      "rebuild": false,
+      "pkg_family": "alpine",
+      "ghcrpkg": "ghcr.io/pkgforge/bincache/alpine/official",
+      "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/alpine/static.official.stable.yaml"
+    },
+    {
+      "_disabled": false,
+      "rebuild": false,
+      "pkg_family": "alterx",
+      "ghcrpkg": "ghcr.io/pkgforge/bincache/alterx/official",
+      "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/alterx/static.official.stable.yaml"
+    },
+    {
+      "_disabled": false,
+      "rebuild": false,
+      "pkg_family": "amass",
+      "ghcrpkg": "ghcr.io/pkgforge/bincache/amass/official",
+      "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/amass/static.official.stable.yaml"
+    },
+    {
+      "_disabled": false,
+      "rebuild": false,
+      "pkg_family": "amazonlinux",
+      "ghcrpkg": "ghcr.io/pkgforge/bincache/amazonlinux/official",
+      "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/amazonlinux/static.official.stable.yaml"
+    },
+    {
+      "_disabled": false,
+      "rebuild": false,
+      "pkg_family": "amp",
+      "ghcrpkg": "ghcr.io/pkgforge/bincache/amp/official",
+      "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/amp/static.official.stable.yaml"
+    },
+    {
+      "_disabled": false,
+      "rebuild": false,
+      "pkg_family": "anakin",
+      "ghcrpkg": "ghcr.io/pkgforge/bincache/anakin/official",
+      "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/anakin/static.official.stable.yaml"
+    },
+    {
+      "_disabled": false,
+      "rebuild": false,
+      "pkg_family": "analyticsrelationships",
+      "ghcrpkg": "ghcr.io/pkgforge/bincache/analyticsrelationships/official",
+      "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/analyticsrelationships/static.official.stable.yaml"
+    },
+    {
+      "_disabled": false,
+      "rebuild": false,
+      "pkg_family": "anew",
+      "ghcrpkg": "ghcr.io/pkgforge/bincache/anew/official",
+      "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/anew/static.official.stable.yaml"
+    },
+    {
+      "_disabled": false,
+      "rebuild": false,
+      "pkg_family": "anew-rs",
+      "ghcrpkg": "ghcr.io/pkgforge/bincache/anew-rs/official",
+      "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/anew-rs/static.official.stable.yaml"
+    },
+    {
+      "_disabled": false,
+      "rebuild": false,
+      "pkg_family": "anewer",
+      "ghcrpkg": "ghcr.io/pkgforge/bincache/anewer/official",
+      "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/anewer/static.official.stable.yaml"
+    },
+    {
+      "_disabled": false,
+      "rebuild": false,
+      "pkg_family": "ani-cli",
+      "ghcrpkg": "ghcr.io/pkgforge/bincache/ani-cli/official",
+      "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/ani-cli/static.official.stable.yaml"
+    },  
+    {
+      "_disabled": false,
+      "rebuild": false,
+      "pkg_family": "apk-tools",
+      "ghcrpkg": "ghcr.io/pkgforge/bincache/apk-static/official",
+      "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/apk-static/static.official.stable.yaml"
+    },
+    {
+      "_disabled": false,
+      "rebuild": false,
+      "pkg_family": "apk.sh",
+      "ghcrpkg": "ghcr.io/pkgforge/bincache/apk.sh/official",
+      "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/apk.sh/static.official.stable.yaml"
+    },
+    {
+      "_disabled": false,
+      "rebuild": false,
+      "pkg_family": "apkeep",
+      "ghcrpkg": "ghcr.io/pkgforge/bincache/apkeep/official",
+      "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/apkeep/static.official.stable.yaml"
+    },
+    {
+      "_disabled": false,
+      "rebuild": false,
+      "pkg_family": "appstream",
+      "ghcrpkg": "ghcr.io/pkgforge/bincache/appstreamcli/probonopd",
+      "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/appstreamcli/static.probonopd.stable.yaml"
+    },
+    {
+      "_disabled": false,
+      "rebuild": false,
+      "pkg_family": "aptly",
+      "ghcrpkg": "ghcr.io/pkgforge/bincache/aptly/official",
+      "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/aptly/static.official.stable.yaml"
+    },
+    {
+      "_disabled": false,
+      "rebuild": false,
+      "pkg_family": "arc",
+      "ghcrpkg": "ghcr.io/pkgforge/bincache/arc/official",
+      "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/arc/static.official.stable.yaml"
+    },
+    {
+      "_disabled": false,
+      "rebuild": false,
+      "pkg_family": "archey",
+      "ghcrpkg": "ghcr.io/pkgforge/bincache/archey/official",
+      "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/archey/static.official.stable.yaml"
+    },
+    {
+      "_disabled": false,
+      "rebuild": false,
+      "pkg_family": "archlinux",
+      "ghcrpkg": "ghcr.io/pkgforge/bincache/archlinux/azathothas",
+      "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/archlinux/static.azathothas.stable.yaml"
+    },
+    {
+      "_disabled": false,
+      "rebuild": false,
+      "pkg_family": "arduino",
+      "ghcrpkg": "ghcr.io/pkgforge/bincache/arduino-cli/official",
+      "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/arduino-cli/static.official.stable.yaml"
+    },
+    {
+      "_disabled": false,
+      "rebuild": false,
+      "pkg_family": "aretext",
+      "ghcrpkg": "ghcr.io/pkgforge/bincache/aretext/official",
+      "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/aretext/static.official.stable.yaml"
+    },
+    {
+      "_disabled": false,
+      "rebuild": false,
+      "pkg_family": "aria2",
+      "ghcrpkg": "ghcr.io/pkgforge/bincache/aria2/abcfy2/continuous",
+      "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/aria2/static.abcfy2.continuous.yaml"
+    },
+    {
+      "_disabled": false,
+      "rebuild": false,
+      "pkg_family": "aria2",
+      "ghcrpkg": "ghcr.io/pkgforge/bincache/aria2/abcfy2",
+      "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/aria2/static.abcfy2.stable.yaml"
+    },
+    {
+      "_disabled": false,
+      "rebuild": false,
+      "pkg_family": "asn",
+      "ghcrpkg": "ghcr.io/pkgforge/bincache/asn/official",
+      "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/asn/static.official.stable.yaml"
+    },
+    {
+      "_disabled": false,
+      "rebuild": false,
+      "pkg_family": "asnmap",
+      "ghcrpkg": "ghcr.io/pkgforge/bincache/asnmap/official",
+      "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/asnmap/static.official.stable.yaml"
+    },
+    {
+      "_disabled": false,
+      "rebuild": false,
+      "pkg_family": "assetfinder",
+      "ghcrpkg": "ghcr.io/pkgforge/bincache/assetfinder/official",
+      "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/assetfinder/static.official.stable.yaml"
+    },
+    {
+      "_disabled": false,
+      "rebuild": false,
+      "pkg_family": "assh",
+      "ghcrpkg": "ghcr.io/pkgforge/bincache/assh/official",
+      "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/assh/static.official.stable.yaml"
+    },
+    {
+      "_disabled": false,
+      "rebuild": false,
+      "pkg_family": "atuin",
+      "ghcrpkg": "ghcr.io/pkgforge/bincache/atuin/official",
+      "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/atuin/static.official.stable.yaml"
+    },
+    {
+      "_disabled": false,
+      "rebuild": false,
+      "pkg_family": "awk",
+      "ghcrpkg": "ghcr.io/pkgforge/bincache/awk/official",
+      "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/awk/static.official.stable.yaml"
+    },
+    {
+      "_disabled": false,
+      "rebuild": false,
+      "pkg_family": "aws-nuke",
+      "ghcrpkg": "ghcr.io/pkgforge/bincache/aws-nuke/official",
+      "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/aws-nuke/static.official.stable.yaml"
+    },
+    {
+      "_disabled": false,
+      "rebuild": false,
+      "pkg_family": "aws-wire-lengths",
+      "ghcrpkg": "ghcr.io/pkgforge/bincache/aws-wire-lengths/official",
+      "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/aws-wire-lengths/static.official.stable.yaml"
+    },
+    {
+      "_disabled": false,
+      "rebuild": false,
       "pkg_family": "axel",
       "ghcrpkg": "ghcr.io/pkgforge/bincache/axel/official",
       "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/axel/static.official.stable.yaml"

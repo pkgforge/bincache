@@ -58,6 +58,20 @@ jobs:
           echo "USER_AGENT=${USER_AGENT}" >> "${GITHUB_ENV}"
         continue-on-error: true
 
+      - name: Sanity Check
+        run: |
+          # Presets
+          set +x ; set +e
+          #--------------#
+          pushd "$(mktemp -d)" >/dev/null 2>&1
+           PKG_COUNT="$(curl -qfsSL "https://raw.githubusercontent.com/pkgforge/bincache/refs/heads/main/SBUILD_LIST.json" | jq -r '.[] | .pkg_family' | wc -l | tr -d '[:space:]')"
+           if [[ "${PKG_COUNT}" -le 10 ]]; then
+             echo -e "\n[+] FATAL: Too few Packages to Build\n"
+            exit 1
+           fi
+          popd >/dev/null 2>&1
+        continue-on-error: false
+
       - name: Set TZ to (Asia/Kathmandu)
         run: |
           # Presets
