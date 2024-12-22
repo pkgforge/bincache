@@ -271,31 +271,42 @@ if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]]; then
    GHCR_PKG="$(realpath ${SBUILD_OUTDIR}/${PROG})"
    PKG_DATE="$(date --utc +%Y-%m-%dT%H:%M:%S)Z"
    PKG_DESCRIPTION="$(jq -r '(env.PKG_DESCRIPTION // (if type == "object" and has("description") and (.description | type == "object") then .description[env.PROG] else .description end // ""))' ${TMPJSON})"
+   PKG_ICON="$(jq -r '.icon' "${TMPJSON}" | tr -d '[:space:]')"
    PKG_BSUM="$(b3sum "${GHCR_PKG}" | grep -oE '^[a-f0-9]{64}' | tr -d '[:space:]')"
    PKG_SHASUM="$(sha256sum "${GHCR_PKG}" | grep -oE '^[a-f0-9]{64}' | tr -d '[:space:]')"
    PKG_SIZE_RAW="$(stat --format="%s" "${GHCR_PKG}" | tr -d '[:space:]')"
    #PKG_SIZE="$(echo "${PKG_SIZE_RAW}" | awk '{byte=$1; if (byte<1024) printf "%.2f B\n", byte; else if (byte<1024**2) printf "%.2f KB\n", byte/1024; else if (byte<1024**3) printf "%.2f MB\n", byte/(1024**2); else printf "%.2f GB\n", byte/(1024**3)}')"
    PKG_SIZE="$(du -sh "${GHCR_PKG}" | awk '{unit=substr($1,length($1)); sub(/[BKMGT]$/,"",$1); print $1 " " unit "B"}')"
    SBUILD_PKGVER="$(cat "${SBUILD_OUTDIR}/${SBUILD_PKG}.version" | tr -d '[:space:]')" ; export SBUILD_PKGVER
-   export GHCR_PKG PROG PKG_BSUM PKG_DATE PKG_SIZE PKG_SIZE_RAW PKG_SHASUM SBUILD_PKGVER
+   export GHCR_PKG PROG PKG_BSUM PKG_DATE PKG_ICON PKG_SIZE PKG_SIZE_RAW PKG_SHASUM SBUILD_PKGVER
    echo "[+] Generating Json for ${SBUILD_PKG} (PROG=${PROG}) ==> ${SBUILD_OUTDIR}/${PROG}.json"
    echo -e "[+] ==> $(echo "${DOWNLOAD_URL}" | sed 's/download=[^&]*/download='"${PROG}"'.json/')"
    if [ -n "${SBUILD_SCRIPT+x}" ] && [ -n "${SBUILD_SCRIPT##*[[:space:]]}" ]; then
-     BASE_URL="$(echo "${SBUILD_SCRIPT}" | sed 's|[^/]*$||')"
-     for ASSET in "assets/default.png" "assets/default.svg" "assets/${PROG}.png" "assets/${PROG}.svg"; do
-      IMG_EXT="${ASSET##*.}"
-      IMG_TMP="${SBUILD_TMPDIR}/default.${IMG_EXT}"
-      IMG_FILE="${SBUILD_OUTDIR}/${PROG}.${IMG_EXT}"
-      curl -w "(Tried) <== %{url}\n" -fL "${BASE_URL}${ASSET}" -o "${IMG_TMP}" 2>/dev/null
-      if [[ -s "${IMG_TMP}" && $(stat -c%s "${IMG_TMP}") -gt 10 ]]; then
-        mv -fv "${IMG_TMP}" "${IMG_FILE}"
-        case "${IMG_EXT}" in
-          png|svg)
-           break
-           ;;
-        esac
-      fi
-     done
+     if echo "${PKG_ICON}" | grep -qE '^https?://'; then
+       if echo "${PKG_ICON}" | grep -qE '\.png$'; then
+         curl -w "(Tried) <== %{url}\n" -fL "${PKG_ICON}" -o "${SBUILD_OUTDIR}/${PROG}.png" 2>/dev/null
+       elif echo "${PKG_ICON}" | grep -qE '\.svg$'; then
+         curl -w "(Tried) <== %{url}\n" -fL "${PKG_ICON}" -o "${SBUILD_OUTDIR}/${PROG}.svg" 2>/dev/null
+       else
+         echo "[-] ${PKG_ICON} Must either be a PNG|SVG Icon"
+       fi
+     else
+       BASE_URL="$(echo "${SBUILD_SCRIPT}" | sed 's|[^/]*$||')"
+       for ASSET in "assets/default.png" "assets/default.svg" "assets/${PROG}.png" "assets/${PROG}.svg"; do
+        IMG_EXT="${ASSET##*.}"
+        IMG_TMP="${SBUILD_TMPDIR}/default.${IMG_EXT}"
+        IMG_FILE="${SBUILD_OUTDIR}/${PROG}.${IMG_EXT}"
+        curl -w "(Tried) <== %{url}\n" -fL "${BASE_URL}${ASSET}" -o "${IMG_TMP}" 2>/dev/null
+        if [[ -s "${IMG_TMP}" && $(stat -c%s "${IMG_TMP}") -gt 10 ]]; then
+          mv -fv "${IMG_TMP}" "${IMG_FILE}"
+          case "${IMG_EXT}" in
+            png|svg)
+             break
+             ;;
+          esac
+        fi
+       done
+     fi
     unset BASE_URL EXT IMG_FILE IMG_TMP PKG_ICON
     if [[ -s "${SBUILD_OUTDIR}/${PROG}.png" && $(stat -c%s "${SBUILD_OUTDIR}/${PROG}.png") -gt 10 ]]; then
      PKG_ICON="$(echo "${DOWNLOAD_URL}" | sed 's/download=[^&]*/download='"${PROG}"'.png/')" ; export PKG_ICON
