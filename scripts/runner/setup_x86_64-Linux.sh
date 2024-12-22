@@ -310,6 +310,7 @@ if [ "${CONTINUE}" == "YES" ]; then
      return 1 || exit 1
   else
      nix --version && nix-channel --list && nix-channel --update
+     nix derivation show "nixpkgs#hello" --impure --refresh --quiet >/dev/null 2>&1
   fi
  ##Purge:
  #sudo rm -rf "/etc/bash.bashrc.backup-before-nix" "/etc/nix" "/nix" "/root/.nix-profile" "/root/.nix-defexpr" "/root/.nix-channels" "/root/.local/state/nix" "/root/.cache/nix" "${HOME}/.nix-profile" "${HOME}/.nix-defexpr" "${HOME}/.nix-channels" "${HOME}/.local/state/nix" "${HOME}/.cache/nix" 2>/dev/null
