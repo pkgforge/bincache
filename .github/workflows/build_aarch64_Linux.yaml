@@ -2,8 +2,8 @@ name: 🛍️ Build 📀 (Bincache-aarch64-Linux) Packages 📦📀
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: "30 18 * * 1" # 06:30 PM UTC (12:15 AM NPT Mrng Every Tuesday)
+  #schedule:
+  #  - cron: "30 18 * * 1" # 06:30 PM UTC (12:15 AM NPT Mrng Every Tuesday)
 env:
   FORCE_REBUILD_ALL: "NO" #YES--> Force Rebuild everything
   KEEP_LOGS: "NO" #YES--> Keeps Dirs & Files
