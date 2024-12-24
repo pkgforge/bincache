@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# VERSION=1.1.0
+# VERSION=1.2.0
 
 #-------------------------------------------------------#
 ## <DO NOT RUN STANDALONE, meant for CI Only>
@@ -98,7 +98,7 @@ gen_json_from_sbuild()
       if yq eval '.pkgver | length > 0' "${INPUT_SBUILD}" | grep -q true; then
        SBUILD_PKGVER="$(yq eval '.pkgver' "${INPUT_SBUILD}" | tr -d '[:space:]')" ; export SBUILD_PKGVER
        echo "${SBUILD_PKGVER}" > "${SBUILD_OUTDIR}/${SBUILD_PKG}.version"
-       echo "[+] Version: ${SBUILD_PKGVER} ('.pkgver') [${SBUILD_OUTDIR}/${SBUILD_PKG}.version]"
+       echo -e "[+] Version: ${SBUILD_PKGVER} ('.pkgver') [${SBUILD_OUTDIR}/${SBUILD_PKG}.version]"
        export CONTINUE_SBUILD="YES"
       else
        echo -e '#!/usr/bin/env '"${SBUILD_SHELL}"'\n\n' > "${TMPXVER}"
@@ -115,7 +115,7 @@ gen_json_from_sbuild()
            return 1 || exit 1
          else
            SBUILD_PKGVER="$(cat "${SBUILD_OUTDIR}/${SBUILD_PKG}.version" | tr -d '[:space:]')" ; export SBUILD_PKGVER
-           echo "[+] Version: ${SBUILD_PKGVER} ('.x_exec.pkgver') [${SBUILD_OUTDIR}/${SBUILD_PKG}.version]"
+           echo -e "[+] Version: ${SBUILD_PKGVER} ('.x_exec.pkgver') [${SBUILD_OUTDIR}/${SBUILD_PKG}.version]"
            if [[ "${SBUILD_REBUILD}" == "true" ]]; then
              echo -e "\n[+] Re Building: ${SBUILD_PKG} [${SBUILD_PKGVER}]"
              echo -e "[+] Re Run with: '.rebuild == false' (https://github.com/pkgforge/${PKG_REPO}/blob/main/SBUILD_LIST.json)"
@@ -212,7 +212,7 @@ if [[ "${CONTINUE_SBUILD}" == "YES" ]]; then
       #License
        if jq --exit-status . "${TMPJSON}" >/dev/null 2>&1; then
          if [[ ! -s "${SBUILD_OUTDIR}/LICENSE" || $(stat -c%s "${SBUILD_OUTDIR}/LICENSE") -le 10 ]]; then
-           echo "\n[+] Fetching LICENSE ==> [${SBUILD_OUTDIR}/LICENSE]"
+           echo -e "\n[+] Fetching LICENSE ==> [${SBUILD_OUTDIR}/LICENSE]"
            unset LICENSE_SRC TMP_LICENSE
            LICENSE_SRC=()
            LICENSE_SRC=("$(jq -r 'if .license and (.license | type == "array") and (.license[0] | type == "object") then if ([.license[] | select(.id and .url)] | length > 0) then [.license[] | select(.id and .url) | .url] | .[] elif ([.license[] | select(.id and .path)] | length > 0) then [.license[] | select(.id and .path) | .path] | .[] else empty end else empty end' ${TMPJSON})")
@@ -222,21 +222,24 @@ if [[ "${CONTINUE_SBUILD}" == "YES" ]]; then
                  curl -w "(License) <== %{url}\n" -fL "${TMP_LICENSE}" -o "${SBUILD_TMPDIR}/LICENSE" 2>/dev/null
                  if [[ -s "${SBUILD_TMPDIR}/LICENSE" && $(stat -c%s "${SBUILD_TMPDIR}/LICENSE") -gt 10 ]]; then
                    mv -fv "${SBUILD_TMPDIR}/LICENSE" "${SBUILD_OUTDIR}/LICENSE"
-                  break 
+                  break
                  fi
                else
                  if [[ -s "${SBUILD_OUTDIR}/${TMP_LICENSE}" && $(stat -c%s "${SBUILD_OUTDIR}/${TMP_LICENSE}") -gt 10 ]]; then
                    mv -fv "${SBUILD_OUTDIR}/${TMP_LICENSE}" "${SBUILD_OUTDIR}/LICENSE"
-                  break 
+                  break
                  fi
                fi
              done
+             if [[ ! -s "${SBUILD_OUTDIR}/LICENSE" || $(stat -c%s "${SBUILD_OUTDIR}/LICENSE") -le 10 ]]; then
+               echo -e "[-] WARNING: No Valid LICENSE Exists at ${SBUILD_OUTDIR}/LICENSE"
+             fi
            else
-             echo "[-] No Valid SRC for LICENSE Exists in ${SBUILD_SCRIPT_BLOB:-RECIPE}"
+             echo -e "[-] No Valid SRC for LICENSE Exists in ${SBUILD_SCRIPT_BLOB:-RECIPE}"
            fi
            unset LICENSE_SRC TMP_LICENSE
          else
-           echo "\n[+] Found LICENSE ==> [${SBUILD_OUTDIR}/LICENSE]"
+           echo -e "\n[+] Found LICENSE ==> [${SBUILD_OUTDIR}/LICENSE]"
          fi
        fi
       #Sanity
@@ -261,7 +264,7 @@ if [[ "${CONTINUE_SBUILD}" == "YES" ]]; then
        fi
        if [[ $(cat "${SBUILD_OUTDIR}/${SBUILD_PKG}.version" | tr -d '[:space:]') != "${SBUILD_PKGVER}" ]]; then
          SBUILD_PKGVER="$(cat ${SBUILD_OUTDIR}/${SBUILD_PKG}.version)" ; export SBUILD_PKGVER
-         echo "[+] Resetting Version: ${SBUILD_PKGVER} <== [${SBUILD_OUTDIR}/${SBUILD_PKG}.version]"
+         echo -e "[+] Resetting Version: ${SBUILD_PKGVER} <== [${SBUILD_OUTDIR}/${SBUILD_PKG}.version]"
        fi
      else
        echo -e "\n[✗] FATAL: Could NOT Build ${SBUILD_PKG} using ${INPUT_SBUILD} [${SBUILD_SCRIPT_BLOB}]\n"
@@ -310,51 +313,64 @@ if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]]; then
    PKG_WEBPAGE="https://pkgs.pkgforge.dev/repo/${PKG_REPO}/${HOST_TRIPLET,,}/${PKG_FAMILY:-PROG}/${PROG}"
    SBUILD_PKGVER="$(cat "${SBUILD_OUTDIR}/${SBUILD_PKG}.version" | tr -d '[:space:]')" ; export SBUILD_PKGVER
    export GHCR_PKG PROG PKG_BSUM PKG_DATE PKG_ICON PKG_SIZE PKG_SIZE_RAW PKG_SHASUM PKG_WEBPAGE SBUILD_PKGVER
-   echo "[+] Generating Json for ${SBUILD_PKG} (PROG=${PROG}) ==> ${SBUILD_OUTDIR}/${PROG}.json"
+   echo -e "\n[+] Generating Json for ${SBUILD_PKG} (PROG=${PROG}) ==> ${SBUILD_OUTDIR}/${PROG}.json"
    echo -e "[+] ==> $(echo "${DOWNLOAD_URL}" | sed 's/download=[^&]*/download='"${PROG}"'.json/')"
    if [ -n "${SBUILD_SCRIPT+x}" ] && [ -n "${SBUILD_SCRIPT##*[[:space:]]}" ]; then
-     if echo "${PKG_ICON}" | grep -qE '^https?://'; then
-       if echo "${PKG_ICON}" | grep -qE '\.png$'; then
-         curl -w "(Tried) <== %{url}\n" -fL "${PKG_ICON}" -o "${SBUILD_OUTDIR}/${PROG}.png" 2>/dev/null
-       elif echo "${PKG_ICON}" | grep -qE '\.svg$'; then
-         curl -w "(Tried) <== %{url}\n" -fL "${PKG_ICON}" -o "${SBUILD_OUTDIR}/${PROG}.svg" 2>/dev/null
+     if [[ ! -s "${SBUILD_OUTDIR}/${PROG}.png" || ! -s "${SBUILD_OUTDIR}/${PROG}.svg" ]]; then
+       echo -e "\n[+] Fetching Icon for ${SBUILD_PKG} (PROG=${PROG}) ==> ${SBUILD_OUTDIR}/${PROG}.{png|svg}"
+       if echo "${PKG_ICON}" | grep -qE '^https?://'; then
+         if echo "${PKG_ICON}" | grep -qE '\.png$'; then
+           curl -w "(Icon) <== %{url}\n" -fL "${PKG_ICON}" -o "${SBUILD_OUTDIR}/${PROG}.png" 2>/dev/null
+         elif echo "${PKG_ICON}" | grep -qE '\.svg$'; then
+           curl -w "(Icon) <== %{url}\n" -fL "${PKG_ICON}" -o "${SBUILD_OUTDIR}/${PROG}.svg" 2>/dev/null
+         else
+           echo -e "[-] ${PKG_ICON} Must either be a PNG|SVG Icon"
+         fi
        else
-         echo "[-] ${PKG_ICON} Must either be a PNG|SVG Icon"
+         BASE_URL="$(echo "${SBUILD_SCRIPT}" | sed 's|[^/]*$||')"
+         if echo "${BASE_URL}" | grep -qE '^https?://'; then
+           for ASSET in "assets/default.png" "assets/default.svg" "assets/${PROG}.png" "assets/${PROG}.svg"; do
+            IMG_EXT="${ASSET##*.}"
+            IMG_TMP="${SBUILD_TMPDIR}/default.${IMG_EXT}"
+            IMG_FILE="${SBUILD_OUTDIR}/${PROG}.${IMG_EXT}"
+            curl -w "(Icon) <== %{url}\n" -fL "${BASE_URL}${ASSET}" -o "${IMG_TMP}" 2>/dev/null
+            if [[ -s "${IMG_TMP}" && $(stat -c%s "${IMG_TMP}") -gt 10 ]]; then
+              mv -fv "${IMG_TMP}" "${IMG_FILE}"
+              case "${IMG_EXT}" in
+                png|svg)
+                 break
+                 ;;
+              esac
+            fi
+           done
+         else
+           echo "[-] \${BASE_URL} [${BASE_URL}] is NOT a Valid URL (Skipping Icon Fetch)"
+         fi
        fi
-     else
-       BASE_URL="$(echo "${SBUILD_SCRIPT}" | sed 's|[^/]*$||')"
-       for ASSET in "assets/default.png" "assets/default.svg" "assets/${PROG}.png" "assets/${PROG}.svg"; do
-        IMG_EXT="${ASSET##*.}"
-        IMG_TMP="${SBUILD_TMPDIR}/default.${IMG_EXT}"
-        IMG_FILE="${SBUILD_OUTDIR}/${PROG}.${IMG_EXT}"
-        curl -w "(Tried) <== %{url}\n" -fL "${BASE_URL}${ASSET}" -o "${IMG_TMP}" 2>/dev/null
-        if [[ -s "${IMG_TMP}" && $(stat -c%s "${IMG_TMP}") -gt 10 ]]; then
-          mv -fv "${IMG_TMP}" "${IMG_FILE}"
-          case "${IMG_EXT}" in
-            png|svg)
-             break
-             ;;
-          esac
+       unset BASE_URL EXT IMG_FILE IMG_TMP PKG_ICON
+       if [[ -s "${SBUILD_OUTDIR}/${PROG}.png" && $(stat -c%s "${SBUILD_OUTDIR}/${PROG}.png") -gt 10 ]]; then
+        PKG_ICON="$(echo "${DOWNLOAD_URL}" | sed 's/download=[^&]*/download='"${PROG}"'.png/')" ; export PKG_ICON
+       elif [[ -s "${SBUILD_OUTDIR}/${PROG}.svg" && $(stat -c%s "${SBUILD_OUTDIR}/${PROG}.svg") -gt 10 ]]; then
+        PKG_ICON="$(echo "${DOWNLOAD_URL}" | sed 's/download=[^&]*/download='"${PROG}"'.svg/')" ; export PKG_ICON
+       elif [ ! -s "${SBUILD_OUTDIR}/${PROG}.png" ] || [ ! -s "${SBUILD_OUTDIR}/${PROG}.svg" ]; then
+         curl -w "(Tried) <== %{url}\n" -fL "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/assets/base.png" -o "${SBUILD_OUTDIR}/${PROG}.png"
+        if [ ! -s "${SBUILD_OUTDIR}/${PROG}.png" ] && [ ! -s "${SBUILD_OUTDIR}/${PROG}.svg" ]; then
+         echo '<svg viewBox="0 0 10 10"><circle cx="5" cy="5" r="4" fill="yellow"/></svg>' > "${SBUILD_OUTDIR}/${PROG}.svg"
+         PKG_ICON="$(echo "${DOWNLOAD_URL}" | sed 's/download=[^&]*/download='"${PROG}"'.svg/')" ; export PKG_ICON
+        else
+         PKG_ICON="$(echo "${DOWNLOAD_URL}" | sed 's/download=[^&]*/download='"${PROG}"'.png/')" ; export PKG_ICON
         fi
-       done
+       fi
+       if [ -n "${PKG_ICON+x}" ] && [ -n "${PKG_ICON##*[[:space:]]}" ]; then
+        echo -e "[+] Fetched Icon for ${SBUILD_PKG} (PROG=${PROG}) ==> ${PKG_ICON}"
+       fi
+     elif [[ -s "${SBUILD_OUTDIR}/${PROG}.png" && $(stat -c%s "${SBUILD_OUTDIR}/${PROG}.png") -gt 10 ]]; then
+       echo -e "\n[+] Found ICON ==> [${SBUILD_OUTDIR}/${PROG}.png]"
+       PKG_ICON="$(echo "${DOWNLOAD_URL}" | sed 's/download=[^&]*/download='"${PROG}"'.png/')" ; export PKG_ICON
+     elif [[ -s "${SBUILD_OUTDIR}/${PROG}.svg" && $(stat -c%s "${SBUILD_OUTDIR}/${PROG}.svg") -gt 10 ]]; then
+       echo -e "\n[+] Found ICON ==> [${SBUILD_OUTDIR}/${PROG}.svg]"
+       PKG_ICON="$(echo "${DOWNLOAD_URL}" | sed 's/download=[^&]*/download='"${PROG}"'.svg/')" ; export PKG_ICON
      fi
-    unset BASE_URL EXT IMG_FILE IMG_TMP PKG_ICON
-    if [[ -s "${SBUILD_OUTDIR}/${PROG}.png" && $(stat -c%s "${SBUILD_OUTDIR}/${PROG}.png") -gt 10 ]]; then
-     PKG_ICON="$(echo "${DOWNLOAD_URL}" | sed 's/download=[^&]*/download='"${PROG}"'.png/')" ; export PKG_ICON
-    elif [[ -s "${SBUILD_OUTDIR}/${PROG}.svg" && $(stat -c%s "${SBUILD_OUTDIR}/${PROG}.svg") -gt 10 ]]; then
-     PKG_ICON="$(echo "${DOWNLOAD_URL}" | sed 's/download=[^&]*/download='"${PROG}"'.svg/')" ; export PKG_ICON
-    elif [ ! -s "${SBUILD_OUTDIR}/${PROG}.png" ] || [ ! -s "${SBUILD_OUTDIR}/${PROG}.svg" ]; then
-      curl -w "(Tried) <== %{url}\n" -fL "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/assets/base.png" -o "${SBUILD_OUTDIR}/${PROG}.png"
-     if [ ! -s "${SBUILD_OUTDIR}/${PROG}.png" ] && [ ! -s "${SBUILD_OUTDIR}/${PROG}.svg" ]; then
-      echo '<svg viewBox="0 0 10 10"><circle cx="5" cy="5" r="4" fill="yellow"/></svg>' > "${SBUILD_OUTDIR}/${PROG}.svg"
-      PKG_ICON="$(echo "${DOWNLOAD_URL}" | sed 's/download=[^&]*/download='"${PROG}"'.svg/')" ; export PKG_ICON
-     else
-      PKG_ICON="$(echo "${DOWNLOAD_URL}" | sed 's/download=[^&]*/download='"${PROG}"'.png/')" ; export PKG_ICON
-     fi
-    fi
-    if [ -n "${PKG_ICON+x}" ] && [ -n "${PKG_ICON##*[[:space:]]}" ]; then
-     echo "[+] Fetched Icon for ${SBUILD_PKG} (PROG=${PROG}) ==> ${PKG_ICON}"
-    fi
    fi
    cat "${TMPJSON}" | jq -r \
    '{

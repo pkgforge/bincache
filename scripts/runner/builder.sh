@@ -15,7 +15,7 @@
 sbuild_builder()
  {
   ##Version
-   SBB_VERSION="0.0.3" && echo -e "[+] SBUILD Builder Version: ${SBB_VERSION}" ; unset SBB_VERSION 
+   SBB_VERSION="0.0.4" && echo -e "[+] SBUILD Builder Version: ${SBB_VERSION}" ; unset SBB_VERSION 
   ##Enable Debug 
    if [ "${DEBUG}" = "1" ] || [ "${DEBUG}" = "ON" ]; then
       set -x
@@ -119,7 +119,7 @@ sbuild_builder()
   sanitize_logs()
   {
   if [[ -s "${TEMP_LOG}" && $(stat -c%s "${TEMP_LOG}") -gt 10 && -n "${LOGPATH}" ]]; then
-   echo -e "[+] Sanitizing $(realpath "${TEMP_LOG}") ==> ${LOGPATH}"
+   echo -e "\n[+] Sanitizing $(realpath "${TEMP_LOG}") ==> ${LOGPATH}"
    if command -v trufflehog &> /dev/null; then
      trufflehog filesystem "${TEMP_LOG}" --no-fail --no-verification --no-update --json 2>/dev/null | jq -r '.Raw' | sed '/{/d' | xargs -I "{}" sh -c 'echo "{}" | tr -d " \t\r\f\v"' | xargs -I "{}" sed "s/{}/ /g" -i "${TEMP_LOG}"
    fi
