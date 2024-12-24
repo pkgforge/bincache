@@ -133,7 +133,7 @@ gen_json_from_sbuild()
       if [[ "${DEBUG_BUILD}" != "NO" ]]; then
        if [[ "${SBUILD_SHELL}" == "bash" ]]; then
          echo 'set -x' >> "${TMPXRUN}"
-         echo 'export SHELLOPTS' >> "${TMPXRUN}"
+         #echo 'export SHELLOPTS' >> "${TMPXRUN}"
        elif [[ "${SBUILD_SHELL}" == "fish" ]]; then  
          echo 'set fish_trace 1' >> "${TMPXRUN}"
          echo 'set -g fish_trace 1' >> "${TMPXRUN}"s
@@ -229,18 +229,18 @@ if [[ "${CONTINUE_SBUILD}" == "YES" ]]; then
            LICENSE_SRC=("$(jq -r 'if .license and (.license | type == "array") and (.license[0] | type == "object") then if ([.license[] | select(.id and .url)] | length > 0) then [.license[] | select(.id and .url) | .url] | .[] elif ([.license[] | select(.id and .file)] | length > 0) then [.license[] | select(.id and .file) | .file] | .[] else empty end else empty end' ${TMPJSON})")
            if [ ${#LICENSE_SRC[@]} -ne 0 ]; then
              for TMP_LICENSE in "${LICENSE_SRC[@]}"; do
+              if [ -n "${TMP_LICENSE+x}" ] && [ -n "${TMP_LICENSE##*[[:space:]]}" ]; then
                if echo "${TMP_LICENSE}" | grep -qE '^https?://'; then
                  curl -w "(License) <== %{url}\n" -fL "${TMP_LICENSE}" -o "${SBUILD_TMPDIR}/LICENSE" 2>/dev/null
                  if [[ -s "${SBUILD_TMPDIR}/LICENSE" && $(stat -c%s "${SBUILD_TMPDIR}/LICENSE") -gt 10 ]]; then
-                   mv -fv "${SBUILD_TMPDIR}/LICENSE" "${SBUILD_OUTDIR}/LICENSE"
+                   mv -fv "${SBUILD_TMPDIR}/LICENSE" "${SBUILD_OUTDIR}/LICENSE" 2>/dev/null
                   break
                  fi
-               else
-                 if [[ -s "${SBUILD_OUTDIR}/${TMP_LICENSE}" && $(stat -c%s "${SBUILD_OUTDIR}/${TMP_LICENSE}") -gt 10 ]]; then
-                   mv -fv "${SBUILD_OUTDIR}/${TMP_LICENSE}" "${SBUILD_OUTDIR}/LICENSE"
+               elif [[ -s "${SBUILD_OUTDIR}/${TMP_LICENSE}" && $(stat -c%s "${SBUILD_OUTDIR}/${TMP_LICENSE}") -gt 10 ]]; then
+                   mv -fv "${SBUILD_OUTDIR}/${TMP_LICENSE}" "${SBUILD_OUTDIR}/LICENSE" 2>/dev/null
                   break
-                 fi
                fi
+              fi
              done
              if [[ ! -s "${SBUILD_OUTDIR}/LICENSE" || $(stat -c%s "${SBUILD_OUTDIR}/LICENSE") -le 10 ]]; then
                echo -e "[-] WARNING: No Valid LICENSE Exists at ${SBUILD_OUTDIR}/LICENSE"
@@ -331,9 +331,9 @@ if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]]; then
        echo -e "\n[+] Fetching Icon for ${SBUILD_PKG} (PROG=${PROG}) ==> ${SBUILD_OUTDIR}/${PROG}.{png|svg}"
        if echo "${PKG_ICON}" | grep -qE '^https?://'; then
          if echo "${PKG_ICON}" | grep -qE '\.png$'; then
-           curl -w "(Icon) <== %{url}\n" -fL "${PKG_ICON}" -o "${SBUILD_OUTDIR}/${PROG}.png" 2>/dev/null
+           curl -w "(Icon PNG) <== %{url}\n" -fL "${PKG_ICON}" -o "${SBUILD_OUTDIR}/${PROG}.png" 2>/dev/null
          elif echo "${PKG_ICON}" | grep -qE '\.svg$'; then
-           curl -w "(Icon) <== %{url}\n" -fL "${PKG_ICON}" -o "${SBUILD_OUTDIR}/${PROG}.svg" 2>/dev/null
+           curl -w "(Icon SVG) <== %{url}\n" -fL "${PKG_ICON}" -o "${SBUILD_OUTDIR}/${PROG}.svg" 2>/dev/null
          else
            echo -e "[-] ${PKG_ICON} Must either be a PNG|SVG Icon"
          fi
@@ -344,7 +344,7 @@ if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]]; then
             IMG_EXT="${ASSET##*.}"
             IMG_TMP="${SBUILD_TMPDIR}/default.${IMG_EXT}"
             IMG_FILE="${SBUILD_OUTDIR}/${PROG}.${IMG_EXT}"
-            curl -w "(Icon) <== %{url}\n" -fL "${BASE_URL}${ASSET}" -o "${IMG_TMP}" 2>/dev/null
+            curl -w "(Trying ${ASSET}) <== %{url}\n" -fL "${BASE_URL}${ASSET}" -o "${IMG_TMP}" 2>/dev/null
             if [[ -s "${IMG_TMP}" && $(stat -c%s "${IMG_TMP}") -gt 10 ]]; then
               mv -fv "${IMG_TMP}" "${IMG_FILE}"
               case "${IMG_EXT}" in
@@ -355,7 +355,7 @@ if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]]; then
             fi
            done
          else
-           echo "[-] \${BASE_URL} [${BASE_URL}] is NOT a Valid URL (Skipping Icon Fetch)"
+           echo "[-] \${BASE_URL} [${BASE_URL}] is NOT a Valid URL (Falling Back to Default Icon)"
          fi
        fi
        unset BASE_URL EXT IMG_FILE IMG_TMP PKG_ICON
@@ -364,7 +364,7 @@ if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]]; then
        elif [[ -s "${SBUILD_OUTDIR}/${PROG}.svg" && $(stat -c%s "${SBUILD_OUTDIR}/${PROG}.svg") -gt 10 ]]; then
         PKG_ICON="$(echo "${DOWNLOAD_URL}" | sed 's/download=[^&]*/download='"${PROG}"'.svg/')" ; export PKG_ICON
        elif [ ! -s "${SBUILD_OUTDIR}/${PROG}.png" ] || [ ! -s "${SBUILD_OUTDIR}/${PROG}.svg" ]; then
-         curl -w "(Tried) <== %{url}\n" -fL "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/assets/base.png" -o "${SBUILD_OUTDIR}/${PROG}.png"
+         curl -w "(Default) <== %{url}\n" -fL "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/assets/base.png" -o "${SBUILD_OUTDIR}/${PROG}.png"
         if [ ! -s "${SBUILD_OUTDIR}/${PROG}.png" ] && [ ! -s "${SBUILD_OUTDIR}/${PROG}.svg" ]; then
          echo '<svg viewBox="0 0 10 10"><circle cx="5" cy="5" r="4" fill="yellow"/></svg>' > "${SBUILD_OUTDIR}/${PROG}.svg"
          PKG_ICON="$(echo "${DOWNLOAD_URL}" | sed 's/download=[^&]*/download='"${PROG}"'.svg/')" ; export PKG_ICON
