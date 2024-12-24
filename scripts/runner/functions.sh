@@ -215,7 +215,7 @@ if [[ "${CONTINUE_SBUILD}" == "YES" ]]; then
            echo -e "\n[+] Fetching LICENSE ==> [${SBUILD_OUTDIR}/LICENSE]"
            unset LICENSE_SRC TMP_LICENSE
            LICENSE_SRC=()
-           LICENSE_SRC=("$(jq -r 'if .license and (.license | type == "array") and (.license[0] | type == "object") then if ([.license[] | select(.id and .url)] | length > 0) then [.license[] | select(.id and .url) | .url] | .[] elif ([.license[] | select(.id and .path)] | length > 0) then [.license[] | select(.id and .path) | .path] | .[] else empty end else empty end' ${TMPJSON})")
+           LICENSE_SRC=("$(jq -r 'if .license and (.license | type == "array") and (.license[0] | type == "object") then if ([.license[] | select(.id and .url)] | length > 0) then [.license[] | select(.id and .url) | .url] | .[] elif ([.license[] | select(.id and .file)] | length > 0) then [.license[] | select(.id and .file) | .file] | .[] else empty end else empty end' ${TMPJSON})")
            if [ ${#LICENSE_SRC[@]} -ne 0 ]; then
              for TMP_LICENSE in "${LICENSE_SRC[@]}"; do
                if echo "${TMP_LICENSE}" | grep -qE '^https?://'; then
