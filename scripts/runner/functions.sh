@@ -277,8 +277,9 @@ if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]]; then
    PKG_SIZE_RAW="$(stat --format="%s" "${GHCR_PKG}" | tr -d '[:space:]')"
    #PKG_SIZE="$(echo "${PKG_SIZE_RAW}" | awk '{byte=$1; if (byte<1024) printf "%.2f B\n", byte; else if (byte<1024**2) printf "%.2f KB\n", byte/1024; else if (byte<1024**3) printf "%.2f MB\n", byte/(1024**2); else printf "%.2f GB\n", byte/(1024**3)}')"
    PKG_SIZE="$(du -sh "${GHCR_PKG}" | awk '{unit=substr($1,length($1)); sub(/[BKMGT]$/,"",$1); print $1 " " unit "B"}')"
+   PKG_WEBPAGE="https://pkgs.pkgforge.dev/repo/${PKG_REPO}/${HOST_TRIPLET,,}/${PKG_FAMILY:-PROG}/${PROG}"
    SBUILD_PKGVER="$(cat "${SBUILD_OUTDIR}/${SBUILD_PKG}.version" | tr -d '[:space:]')" ; export SBUILD_PKGVER
-   export GHCR_PKG PROG PKG_BSUM PKG_DATE PKG_ICON PKG_SIZE PKG_SIZE_RAW PKG_SHASUM SBUILD_PKGVER
+   export GHCR_PKG PROG PKG_BSUM PKG_DATE PKG_ICON PKG_SIZE PKG_SIZE_RAW PKG_SHASUM PKG_WEBPAGE SBUILD_PKGVER
    echo "[+] Generating Json for ${SBUILD_PKG} (PROG=${PROG}) ==> ${SBUILD_OUTDIR}/${PROG}.json"
    echo -e "[+] ==> $(echo "${DOWNLOAD_URL}" | sed 's/download=[^&]*/download='"${PROG}"'.json/')"
    if [ -n "${SBUILD_SCRIPT+x}" ] && [ -n "${SBUILD_SCRIPT##*[[:space:]]}" ]; then
@@ -333,6 +334,7 @@ if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]]; then
     "pkg_family": (env.PKG_FAMILY // ""),
     "pkg_id": (.pkg_id // ""),
     "pkg_name": (env.PROG // .pkg // ""),
+    "pkg_webpage": (env.PKG_WEBPAGE // ""),
     "app_id": (.app_id // ""),
     "appstream": (.appstream // ""),
     "category": (.category // []),
@@ -386,7 +388,7 @@ local PROG="$1"
 pushd "${SBUILD_OUTDIR}" >/dev/null 2>&1
 if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]]; then
  #Clear ENV
-  unset ARCH BUILD_LOG BUILD_SCRIPT DOWNLOAD_URL GHCR_PKG GHCRPKG_TAG PKG_BSUM PKG_CATEGORY PKG_DATE PKG_DESCRIPTION PKG_HOMEPAGE PKG_ICON PKG_JSON PKG_NAME PKG_NOTE PKG_ORIG PKG_REPOLOGY PKG_SCREENSHOT PKG_SHASUM PKG_SIZE PKG_SIZE_RAW PKG_SRCURL PKG_TAG PKG_VERSION PUSH_SUCCESSFUL VERSION
+  unset ARCH BUILD_LOG BUILD_SCRIPT DOWNLOAD_URL GHCR_PKG GHCRPKG_TAG PKG_BSUM PKG_CATEGORY PKG_DATE PKG_DESCRIPTION PKG_HOMEPAGE PKG_ICON PKG_JSON PKG_NAME PKG_NOTE PKG_ORIG PKG_REPOLOGY PKG_SCREENSHOT PKG_SHASUM PKG_SIZE PKG_SIZE_RAW PKG_SRCURL PKG_TAG PKG_VERSION PKG_WEBPAGE PUSH_SUCCESSFUL VERSION
  #Parse
   if jq --exit-status . "${SBUILD_OUTDIR}/${PROG}.json" >/dev/null 2>&1; then
    GHCR_PKG="$(realpath ${SBUILD_OUTDIR})/${PROG}"
@@ -514,7 +516,7 @@ if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]]; then
      ghcr_push+=(--annotation "dev.pkgforge.soar.pkg=${SBUILD_PKG:-PKG_ORIG}")
      ghcr_push+=(--annotation "dev.pkgforge.soar.pkg_family=${PKG_FAMILY}")
      ghcr_push+=(--annotation "dev.pkgforge.soar.pkg_name=${PKG_NAME}")
-     ghcr_push+=(--annotation "dev.pkgforge.soar.pkg_webpage=https://pkgs.pkgforge.dev/app/${PKG_REPO}/${HOST_TRIPLET}/${PKG_FAMILY:-PKG_NAME}/${PKG_NAME}")
+     ghcr_push+=(--annotation "dev.pkgforge.soar.pkg_webpage=https://pkgs.pkgforge.dev/repo/${PKG_REPO}/${HOST_TRIPLET,,}/${PKG_FAMILY:-PKG_NAME}/${PKG_NAME}")
      ghcr_push+=(--annotation "dev.pkgforge.soar.repology=${PKG_REPOLOGY}")
      ghcr_push+=(--annotation "dev.pkgforge.soar.screenshot=${PKG_SCREENSHOT}")
      ghcr_push+=(--annotation "dev.pkgforge.soar.shasum=${PKG_SHASUM}")
@@ -524,7 +526,7 @@ if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]]; then
      ghcr_push+=(--annotation "org.opencontainers.image.authors=https://docs.pkgforge.dev/contact/chat")
      ghcr_push+=(--annotation "org.opencontainers.image.created=${PKG_DATE}")
      ghcr_push+=(--annotation "org.opencontainers.image.description=${PKG_DESCRIPTION}")
-     ghcr_push+=(--annotation "org.opencontainers.image.documentation=https://pkgs.pkgforge.dev/app/${PKG_REPO}/${HOST_TRIPLET}/${PKG_FAMILY:-PKG_NAME}/${PKG_NAME}")
+     ghcr_push+=(--annotation "org.opencontainers.image.documentation=https://pkgs.pkgforge.dev/repo/${PKG_REPO}/${HOST_TRIPLET,,}/${PKG_FAMILY:-PKG_NAME}/${PKG_NAME}")
      ghcr_push+=(--annotation "org.opencontainers.image.licenses=blessing")
      ghcr_push+=(--annotation "org.opencontainers.image.ref.name=${PKG_VERSION}")
      ghcr_push+=(--annotation "org.opencontainers.image.revision=${PKG_SHASUM:-PKG_VERSION}")
@@ -583,7 +585,7 @@ cleanup_env()
   rm -rvf "${BUILD_DIR}" 2>/dev/null
  fi
 #Cleanup Env
- unset BUILD_DIR ghcr_push GHCRPKG_URL GHCRPKG_TAG INPUT_SBUILD INPUT_SBUILD_PATH OCWD pkg PKG PKG_FAMILY pkg_id PKG_ID pkg_type PKG_TYPE PROG SBUILD_OUTDIR SBUILD_PKG SBUILD_PKGS SBUILD_PKGVER SBUILD_REBUILD SBUILD_SCRIPT SBUILD_SCRIPT_BLOB SBUILD_SUCCESSFUL SBUILD_TMPDIR TMPJSON TMPXVER TMPXRUN
+ unset BUILD_DIR ghcr_push GHCRPKG_URL GHCRPKG_TAG INPUT_SBUILD INPUT_SBUILD_PATH OCWD pkg PKG PKG_FAMILY pkg_id PKG_ID pkg_type PKG_TYPE PKG_WEBPAGE PROG SBUILD_OUTDIR SBUILD_PKG SBUILD_PKGS SBUILD_PKGVER SBUILD_REBUILD SBUILD_SCRIPT SBUILD_SCRIPT_BLOB SBUILD_SUCCESSFUL SBUILD_TMPDIR TMPJSON TMPXVER TMPXRUN
 }
 export -f cleanup_env
 #-------------------------------------------------------#
