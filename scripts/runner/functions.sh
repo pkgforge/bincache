@@ -209,6 +209,36 @@ if [[ "${CONTINUE_SBUILD}" == "YES" ]]; then
              strip --strip-debug --strip-dwo --strip-unneeded "{}"
          fi
        '
+      #License
+       if jq --exit-status . "${TMPJSON}" >/dev/null 2>&1; then
+         if [[ ! -s "${SBUILD_OUTDIR}/LICENSE" || $(stat -c%s "${SBUILD_OUTDIR}/LICENSE") -le 10 ]]; then
+           echo "\n[+] Fetching LICENSE ==> [${SBUILD_OUTDIR}/LICENSE]"
+           unset LICENSE_SRC TMP_LICENSE
+           LICENSE_SRC=()
+           LICENSE_SRC=("$(jq -r 'if .license and (.license | type == "array") and (.license[0] | type == "object") then if ([.license[] | select(.id and .url)] | length > 0) then [.license[] | select(.id and .url) | .url] | .[] elif ([.license[] | select(.id and .path)] | length > 0) then [.license[] | select(.id and .path) | .path] | .[] else empty end else empty end' ${TMPJSON})")
+           if [ ${#LICENSE_SRC[@]} -ne 0 ]; then
+             for TMP_LICENSE in "${LICENSE_SRC[@]}"; do
+               if echo "${TMP_LICENSE}" | grep -qE '^https?://'; then
+                 curl -w "(License) <== %{url}\n" -fL "${TMP_LICENSE}" -o "${SBUILD_TMPDIR}/LICENSE" 2>/dev/null
+                 if [[ -s "${SBUILD_TMPDIR}/LICENSE" && $(stat -c%s "${SBUILD_TMPDIR}/LICENSE") -gt 10 ]]; then
+                   mv -fv "${SBUILD_TMPDIR}/LICENSE" "${SBUILD_OUTDIR}/LICENSE"
+                  break 
+                 fi
+               else
+                 if [[ -s "${SBUILD_OUTDIR}/${TMP_LICENSE}" && $(stat -c%s "${SBUILD_OUTDIR}/${TMP_LICENSE}") -gt 10 ]]; then
+                   mv -fv "${SBUILD_OUTDIR}/${TMP_LICENSE}" "${SBUILD_OUTDIR}/LICENSE"
+                  break 
+                 fi
+               fi
+             done
+           else
+             echo "[-] No Valid SRC for LICENSE Exists in ${SBUILD_SCRIPT_BLOB:-RECIPE}"
+           fi
+           unset LICENSE_SRC TMP_LICENSE
+         else
+           echo "\n[+] Found LICENSE ==> [${SBUILD_OUTDIR}/LICENSE]"
+         fi
+       fi
       #Sanity
        find "${SBUILD_OUTDIR}" -type f -exec touch "{}" \;
        find "${SBUILD_OUTDIR}" -maxdepth 1 -type f -print | sort -u | xargs -I "{}" sh -c 'printf "\nFile: $(basename {})\n  Type: $(file -b {})\n  B3sum: $(b3sum {} | cut -d" " -f1)\n  SHA256sum: $(sha256sum {} | cut -d" " -f1)\n  Size: $(du -sh {} | cut -f1)\n"'
@@ -342,8 +372,7 @@ if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]]; then
     "desktop": (.desktop // ""),
     "homepage": (.homepage // []),
     "icon": (env.PKG_ICON // .icon // ""),
-    "license": (.license // []),
-    "maintainer": (.maintainer // []),
+    "license": (if .license then if (.license | type == "array") then if (.license[0] | type == "string") then (.license | unique | sort) elif (.license[0] | type == "object") then ([.license[] | .id] | unique | sort) else [] end else [] end else [] end),
     "note": (
       if (.note | length > 0) then 
         [.note[] | select(. == "" or (. | ascii_downcase | contains("ci only") | not))]
@@ -371,6 +400,7 @@ if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]]; then
     "shasum": (env.PKG_SHASUM // ""),
     "size": (env.PKG_SIZE // ""),
     "size_raw": (env.PKG_SIZE_RAW // ""),
+    "snapshots": (.snapshots // []),
     "rank": (env.RANK // "")
   }' | jq . > "${SBUILD_OUTDIR}/${PROG}.json"
   fi
@@ -539,6 +569,8 @@ if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]]; then
      [[ -f "./${PROG}.sig" && -s "./${PROG}.sig" ]] && ghcr_push+=("./${PROG}.sig")
      [[ -f "./CHECKSUM" && -s "./CHECKSUM" ]] && ghcr_push+=("./CHECKSUM")
      [[ -f "./CHECKSUM.sig" && -s "./CHECKSUM.sig" ]] && ghcr_push+=("./CHECKSUM.sig")
+     [[ -f "./LICENSE" && -s "./LICENSE" ]] && ghcr_push+=("./LICENSE")
+     [[ -f "./LICENSE.sig" && -s "./LICENSE.sig" ]] && ghcr_push+=("./LICENSE.sig")
      [[ -f "./${PROG}.json" && -s "./${PROG}.json" ]] && ghcr_push+=("./${PROG}.json")
      [[ -f "./${PROG}.json.sig" && -s "./${PROG}.json.sig" ]] && ghcr_push+=("./${PROG}.json.sig")
      [[ -f "./${PROG}.log" && -s "./${PROG}.log" ]] && ghcr_push+=("./${PROG}.log")
