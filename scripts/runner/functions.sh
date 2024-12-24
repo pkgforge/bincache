@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# VERSION=1.2.0
+# VERSION=1.2.1
 
 #-------------------------------------------------------#
 ## <DO NOT RUN STANDALONE, meant for CI Only>
@@ -131,7 +131,18 @@ gen_json_from_sbuild()
      #Run      
       echo -e '#!/usr/bin/env '"${SBUILD_SHELL}"'\n\n' > "${TMPXRUN}"
       if [[ "${DEBUG_BUILD}" != "NO" ]]; then
-       echo 'set -x' >> "${TMPXRUN}"
+       if [[ "${SBUILD_SHELL}" == "bash" ]]; then
+         echo 'set -x' >> "${TMPXRUN}"
+         echo 'export SHELLOPTS' >> "${TMPXRUN}"
+       elif [[ "${SBUILD_SHELL}" == "fish" ]]; then  
+         echo 'set fish_trace 1' >> "${TMPXRUN}"
+         echo 'set -g fish_trace 1' >> "${TMPXRUN}"s
+       elif [[ "${SBUILD_SHELL}" == "sh" ]]; then
+         echo 'set -x' >> "${TMPXRUN}"
+       elif [[ "${SBUILD_SHELL}" == "zsh" ]]; then
+         echo 'setopt xtrace' >> "${TMPXRUN}"
+         echo 'export SHELLOPTS' >> "${TMPXRUN}"
+       fi
       fi
       yq '.x_exec.run' "${INPUT_SBUILD}" >> "${TMPXRUN}"
       if [[ -s "${TMPXRUN}" && $(stat -c%s "${TMPXRUN}") -gt 10 ]]; then
