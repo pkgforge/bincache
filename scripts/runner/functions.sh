@@ -279,7 +279,8 @@ if [[ "${CONTINUE_SBUILD}" == "YES" ]]; then
        fi
      else
        echo -e "\n[✗] FATAL: Could NOT Build ${SBUILD_PKG} using ${INPUT_SBUILD} [${SBUILD_SCRIPT_BLOB}]\n"
-       cat "${SBUILD_OUTDIR}/${SBUILD_PKG}.version" 2>/dev/null
+       echo "\n[+] Working Dir: $(realpath ${SBUILD_OUTDIR})"
+       echo "[+] Version [${SBUILD_OUTDIR}/${SBUILD_PKG}.version] ==> $(cat "${SBUILD_OUTDIR}/${SBUILD_PKG}.version" 2>/dev/null)"
        ls "${SBUILD_OUTDIR}" -lah
        export SBUILD_SUCCESSFUL="NO"
        echo "export SBUILD_SUCCESSFUL='${SBUILD_SUCCESSFUL}'" >> "${OCWD}/ENVPATH"
