@@ -244,6 +244,8 @@ if [[ "${CONTINUE_SBUILD}" == "YES" ]]; then
              done
              if [[ ! -s "${SBUILD_OUTDIR}/LICENSE" || $(stat -c%s "${SBUILD_OUTDIR}/LICENSE") -le 10 ]]; then
                echo -e "[-] WARNING: No Valid LICENSE Exists at ${SBUILD_OUTDIR}/LICENSE"
+             elif [[ -s "${SBUILD_OUTDIR}/LICENSE" && $(stat -c%s "${SBUILD_OUTDIR}/LICENSE") -gt 10 ]]; then
+               echo -e "\n" && cat "${SBUILD_OUTDIR}/LICENSE" && echo -e "\n"
              fi
            else
              echo -e "[-] No Valid SRC for LICENSE Exists in ${SBUILD_SCRIPT_BLOB:-RECIPE}"
@@ -251,6 +253,7 @@ if [[ "${CONTINUE_SBUILD}" == "YES" ]]; then
            unset LICENSE_SRC TMP_LICENSE
          else
            echo -e "\n[+] Found LICENSE ==> [${SBUILD_OUTDIR}/LICENSE]"
+           echo -e "\n" && cat "${SBUILD_OUTDIR}/LICENSE" && echo -e "\n"
          fi
        fi
       #Sanity
