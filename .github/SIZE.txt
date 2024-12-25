@@ -1,7 +1,7 @@
-156K └─┬ main
- 96K   ├─┬ scripts
- 92K   │ └─┬ runner
- 32K   │   ├── functions.sh
+160K └─┬ main
+100K   ├─┬ scripts
+ 96K   │ └─┬ runner
+ 36K   │   ├── functions.sh
  16K   │   ├── setup_x86_64-Linux.sh
  16K   │   ├── setup_aarch64-Linux.sh
  16K   │   ├── builder.sh
