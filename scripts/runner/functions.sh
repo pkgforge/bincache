@@ -567,9 +567,9 @@ if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]]; then
      jq . "./${PROG}.json" && echo -e "\n"
      unset ghcr_push ; ghcr_push=(oras push --concurrency "100" --disable-path-validation)
      ghcr_push+=(--config "/dev/null:application/vnd.oci.empty.v1+json")
+     ghcr_push+=(--annotation "com.github.package.type=container")
+     #ghcr_push+=(--annotation "com.github.package.type=homebrew_bottle")
      #ghcr_push+=(--annotation "com.github.package.type=soar_pkg")
-     #ghcr_push+=(--annotation "com.github.package.type=container")
-     ghcr_push+=(--annotation "com.github.package.type=homebrew_bottle")
      ghcr_push+=(--annotation "dev.pkgforge.discord=https://discord.gg/djJUs48Zbu")
      ghcr_push+=(--annotation "dev.pkgforge.soar.build_date=${PKG_DATE}")
      ghcr_push+=(--annotation "dev.pkgforge.soar.build_log=${BUILD_LOG}")
