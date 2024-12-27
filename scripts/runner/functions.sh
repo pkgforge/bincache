@@ -464,6 +464,10 @@ if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]]; then
      BUILD_SCRIPT="$(jq -r '.build_script' "${PKG_JSON}" | tr -d '[:space:]')"
      [[ "${BUILD_SCRIPT}" == "null" ]] && unset BUILD_SCRIPT
      [ -z "${BUILD_SCRIPT}" ] && BUILD_SCRIPT="${SBUILD_SCRIPT_BLOB}"
+     if [ -z "${DOWNLOAD_URL+x}" ] || [ -z "${DOWNLOAD_URL##*[[:space:]]}" ]; then
+       DOWNLOAD_URL="$(jq -r '.download_url' "${PKG_JSON}" | tr -d '[:space:]')"
+       [[ "${DOWNLOAD_URL}" == "null" ]] && DOWNLOAD_URL=""
+     fi
      PKG_BSUM="$(jq -r '.bsum' "${PKG_JSON}" | tr -d '[:space:]')"
      [[ "${PKG_BSUM}" == "null" ]] && unset PKG_BSUM
      [ -z "${PKG_BSUM}" ] && PKG_BSUM="$(b3sum "${GHCR_PKG}" | grep -oE '^[a-f0-9]{64}' | tr -d '[:space:]')"
@@ -486,14 +490,16 @@ if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]]; then
      PKG_HOMEPAGE="$(jq -r 'if .homepage | type == "array" then .homepage[0] else .homepage end' "${PKG_JSON}" | tr -d '[:space:]')"
      [[ "${PKG_HOMEPAGE}" == "null" ]] && PKG_HOMEPAGE=""
      PKG_ICON="$(jq -r 'if .icon | type == "array" then .icon[0] else .icon end' "${PKG_JSON}" | tr -d '[:space:]')"
-     [[ "${PKG_ICON}" == "null" ]] && PKG_ICON=""
-     if [[ -s "${SBUILD_OUTDIR}/${PROG}.png" && $(stat -c%s "${SBUILD_OUTDIR}/${PROG}.png") -gt 10 ]]; then
-       PKG_ICON="$(echo "${DOWNLOAD_URL}" | sed 's/download=[^&]*/download='"${PROG}"'.png/')"
-     elif [[ -s "${SBUILD_OUTDIR}/${PROG}.svg" && $(stat -c%s "${SBUILD_OUTDIR}/${PROG}.svg") -gt 10 ]]; then
-       PKG_ICON="$(echo "${DOWNLOAD_URL}" | sed 's/download=[^&]*/download='"${PROG}"'.svg/')"
-     else
-       echo '<svg viewBox="0 0 10 10"><circle cx="5" cy="5" r="4" fill="yellow"/></svg>' > "${SBUILD_OUTDIR}/${PROG}.svg"
-       PKG_ICON="$(echo "${DOWNLOAD_URL}" | sed 's/download=[^&]*/download='"${PROG}"'.svg/')"
+     [[ "${PKG_ICON}" == "null" ]] && unset PKG_ICON
+     if [ -z "${PKG_ICON+x}" ] || [ -z "${PKG_ICON##*[[:space:]]}" ]; then
+       if [[ -s "${SBUILD_OUTDIR}/${PROG}.png" && $(stat -c%s "${SBUILD_OUTDIR}/${PROG}.png") -gt 3 ]]; then
+         PKG_ICON="$(echo "${DOWNLOAD_URL}" | sed 's/download=[^&]*/download='"${PROG}"'.png/')"
+       elif [[ -s "${SBUILD_OUTDIR}/${PROG}.svg" && $(stat -c%s "${SBUILD_OUTDIR}/${PROG}.svg") -gt 3 ]]; then
+         PKG_ICON="$(echo "${DOWNLOAD_URL}" | sed 's/download=[^&]*/download='"${PROG}"'.svg/')"
+       else
+         echo '<svg viewBox="0 0 10 10"><circle cx="5" cy="5" r="4" fill="yellow"/></svg>' > "${SBUILD_OUTDIR}/${PROG}.svg"
+         PKG_ICON="$(echo "${DOWNLOAD_URL}" | sed 's/download=[^&]*/download='"${PROG}"'.svg/')"
+       fi
      fi
      PKG_ID="$(jq -r '.pkg_id' "${PKG_JSON}" | tr -d '[:space:]')"
      [[ "${PKG_ID}" == "null" ]] && PKG_ID="${PKG_FAMILY}"
@@ -562,7 +568,8 @@ if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]]; then
      unset ghcr_push ; ghcr_push=(oras push --concurrency "100" --disable-path-validation)
      ghcr_push+=(--config "/dev/null:application/vnd.oci.empty.v1+json")
      #ghcr_push+=(--annotation "com.github.package.type=soar_pkg")
-     ghcr_push+=(--annotation "com.github.package.type=container")
+     #ghcr_push+=(--annotation "com.github.package.type=container")
+     ghcr_push+=(--annotation "com.github.package.type=homebrew_bottle")
      ghcr_push+=(--annotation "dev.pkgforge.discord=https://discord.gg/djJUs48Zbu")
      ghcr_push+=(--annotation "dev.pkgforge.soar.build_date=${PKG_DATE}")
      ghcr_push+=(--annotation "dev.pkgforge.soar.build_log=${BUILD_LOG}")
