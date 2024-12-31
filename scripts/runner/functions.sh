@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# VERSION=1.2.5
+# VERSION=1.2.6
 
 #-------------------------------------------------------#
 ## <DO NOT RUN STANDALONE, meant for CI Only>
@@ -67,39 +67,45 @@ fetch_version_upstream()
 {
  #Clear env
  unset PKG_VERSION_UPSTREAM
- #Fetch from Build Output
- if [[ -s "${SBUILD_TMPDIR}/upstream.version" && $(stat -c%s "${SBUILD_TMPDIR}/upstream.version") -gt 10 ]]; then
-   PKG_VERSION_UPSTREAM="$(cat "${SBUILD_TMPDIR}/upstream.version" | tr -d '[:space:]' )" ; export PKG_VERSION_UPSTREAM
-   #Check
-   if [ -n "${PKG_VERSION_UPSTREAM+x}" ] && [ "$(printf '%s' "${PKG_VERSION_UPSTREAM}" | tr -d '[:space:]' | wc -c)" -gt 2 ]; then
-     echo -e "[+] Upstream Version: ${PKG_VERSION_UPSTREAM} ('.SBUILD') [${SBUILD_TMPDIR}/upstream.version]"
-   else
-     echo -e "[-] WARNING: Could NOT Fetch Version from Upstream ('.SBUILD') <== [${SBUILD_TMPDIR}/upstream.version]"
-     export PKG_VERSION_UPSTREAM=""
-     #PKG_VERSION_UPSTREAM="UNKNOWN-$(date --utc +'%y%m%dT%H%M%S')" ; export PKG_VERSION_UPSTREAM
-   fi
- #Fetch from Repology
- elif [[ -n "${PKG_REPOLOGY[*]}" && "${#PKG_REPOLOGY[@]}" -gt 0 ]]; then
-   unset REPOLOGY_PKGVER REPOLOGY_PKG REPOLOGY_VER ; declare -a REPOLOGY_PKGVER=()
-   for REPOLOGY_PKG in "${PKG_REPOLOGY[@]}"; do
-    {
-     #curl -A "${USER_AGENT}" -qfsSL "https://api.rl.pkgforge.dev/api/v1/project/${REPOLOGY_PKG}"
-     REPOLOGY_VER="$(curl -A "${USER_AGENT}" -qfsSL "https://repology.org/api/v1/project/${REPOLOGY_PKG}" 2>/dev/null | jq -r '.. | objects | select(has("version") and ((.. | objects | .repo? | select(. != null)) as $repo |["appget", "baulk", "choco", "chrome", "cygwin", "droid", "macports", "mysys2", "npackd", "opam", "pypi", "ruby", "scoop", "vcpkg", "winget", "yacp"] | index($repo) | not)) | .version' 2>/dev/null | grep -vE '^[A-Za-z]+$|^(.)\1*$' 2>/dev/null | grep -vE '\.[0-9a-f]{6,}$|[0-9a-f]{7,}$' 2>/dev/null | sort --version-sort --unique 2>/dev/null | tail -n 1 2>/dev/null | tr -d '[:space:]' 2>/dev/null)"
-     if [ -n "${REPOLOGY_VER+x}" ] && [ -n "${REPOLOGY_VER##*[[:space:]]}" ]; then
-       REPOLOGY_PKGVER+=("${REPOLOGY_VER}")
+ #Check if it's even needed
+ if echo "${SBUILD_PKGVER}" | grep -q '^HEAD-'; then
+  #Fetch from Build Output
+   if [[ -s "${SBUILD_TMPDIR}/upstream.version" && $(stat -c%s "${SBUILD_TMPDIR}/upstream.version") -gt 10 ]]; then
+     PKG_VERSION_UPSTREAM="$(cat "${SBUILD_TMPDIR}/upstream.version" | tr -d '[:space:]' )" ; export PKG_VERSION_UPSTREAM
+     #Check
+     if [ -n "${PKG_VERSION_UPSTREAM+x}" ] && [ "$(printf '%s' "${PKG_VERSION_UPSTREAM}" | tr -d '[:space:]' | wc -c)" -gt 2 ]; then
+       echo -e "[+] Upstream Version: ${PKG_VERSION_UPSTREAM} ('.SBUILD') [${SBUILD_TMPDIR}/upstream.version]"
+     else
+       echo -e "[-] WARNING: Could NOT Fetch Version from Upstream ('.SBUILD') <== [${SBUILD_TMPDIR}/upstream.version]"
+       export PKG_VERSION_UPSTREAM=""
+       #PKG_VERSION_UPSTREAM="UNKNOWN-$(date --utc +'%y%m%dT%H%M%S')" ; export PKG_VERSION_UPSTREAM
      fi
-    } 2>/dev/null
-   done
-   PKG_VERSION_UPSTREAM="$(printf "%s\n" "${REPOLOGY_PKGVER[@]}" | sort --version-sort --unique | tail -n 1 | tr -d '[:space:]')"
-   unset REPOLOGY_PKGVER REPOLOGY_PKG REPOLOGY_VER ; export PKG_VERSION_UPSTREAM
-   #Check
-   if [ -n "${PKG_VERSION_UPSTREAM+x}" ] && [ "$(printf '%s' "${PKG_VERSION_UPSTREAM}" | tr -d '[:space:]' | wc -c)" -gt 2 ]; then
-     echo -e "[+] Upstream Version: ${PKG_VERSION_UPSTREAM} ('.repology') [${PKG_REPOLOGY[*]}]" ; unset PKG_REPOLOGY
-   else
-     echo -e "[-] WARNING: Could NOT Fetch Version from Upstream ('.repology') [${PKG_REPOLOGY[*]}]" ; unset PKG_REPOLOGY
-     export PKG_VERSION_UPSTREAM=""
-     #PKG_VERSION_UPSTREAM="UNKNOWN-$(date --utc +'%y%m%dT%H%M%S')" ; export PKG_VERSION_UPSTREAM
+  #Fetch from Repology
+   elif [[ -n "${PKG_REPOLOGY[*]}" && "${#PKG_REPOLOGY[@]}" -gt 0 ]]; then
+     unset REPOLOGY_PKGVER REPOLOGY_PKG REPOLOGY_VER ; declare -a REPOLOGY_PKGVER=()
+     for REPOLOGY_PKG in "${PKG_REPOLOGY[@]}"; do
+      {
+       #curl -A "${USER_AGENT}" -qfsSL "https://api.rl.pkgforge.dev/api/v1/project/${REPOLOGY_PKG}"
+       REPOLOGY_VER="$(curl -A "${USER_AGENT}" -qfsSL "https://repology.org/api/v1/project/${REPOLOGY_PKG}" 2>/dev/null | jq -r '.. | objects | select(has("version") and ((.. | objects | .repo? | select(. != null)) as $repo |["appget", "baulk", "choco", "chrome", "cygwin", "droid", "macports", "mysys2", "npackd", "opam", "pypi", "ruby", "scoop", "vcpkg", "winget", "yacp"] | index($repo) | not)) | .version' 2>/dev/null | grep -vE '^[A-Za-z]+$|^(.)\1*$' 2>/dev/null | grep -vE '\.[0-9a-f]{6,}$|[0-9a-f]{7,}$' 2>/dev/null | sort --version-sort --unique 2>/dev/null | tail -n 1 2>/dev/null | tr -d '[:space:]' 2>/dev/null)"
+       if [ -n "${REPOLOGY_VER+x}" ] && [ -n "${REPOLOGY_VER##*[[:space:]]}" ]; then
+         REPOLOGY_PKGVER+=("${REPOLOGY_VER}")
+       fi
+      } 2>/dev/null
+     done
+     PKG_VERSION_UPSTREAM="$(printf "%s\n" "${REPOLOGY_PKGVER[@]}" | sort --version-sort --unique | tail -n 1 | tr -d '[:space:]')"
+     unset REPOLOGY_PKGVER REPOLOGY_PKG REPOLOGY_VER ; export PKG_VERSION_UPSTREAM
+    #Check
+     if [ -n "${PKG_VERSION_UPSTREAM+x}" ] && [ "$(printf '%s' "${PKG_VERSION_UPSTREAM}" | tr -d '[:space:]' | wc -c)" -gt 2 ]; then
+       echo -e "[+] Upstream Version: ${PKG_VERSION_UPSTREAM} ('.repology') [${PKG_REPOLOGY[*]}]" ; unset PKG_REPOLOGY
+     else
+       export PKG_VERSION_UPSTREAM=""
+       #PKG_VERSION_UPSTREAM="UNKNOWN-$(date --utc +'%y%m%dT%H%M%S')" ; export PKG_VERSION_UPSTREAM
+       echo -e "[-] WARNING: Could NOT Fetch Version from Upstream ('.repology') [${PKG_REPOLOGY[*]}]" ; unset PKG_REPOLOGY
+     fi
    fi
+ elif [ -n "${SBUILD_PKGVER+x}" ] && [ "$(printf '%s' "${SBUILD_PKGVER}" | tr -d '[:space:]' | wc -c)" -gt 2 ];then
+   export PKG_VERSION_UPSTREAM="${SBUILD_PKGVER}"
+   echo -e "[+] Upstream Version: ${PKG_VERSION_UPSTREAM} <==> \${SBUILD_PKGVER} [${SBUILD_OUTDIR}/${SBUILD_PKG}.version]"
  fi
 }
 export -f fetch_version_repology
