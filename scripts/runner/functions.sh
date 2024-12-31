@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# VERSION=1.2.7
+# VERSION=1.2.8
 
 #-------------------------------------------------------#
 ## <DO NOT RUN STANDALONE, meant for CI Only>
@@ -34,7 +34,7 @@ setup_env()
  mkdir -p "${SBUILD_TMPDIR}"
  export BUILD_DIR INPUT_SBUILD SBUILD_OUTDIR SBUILD_TMPDIR
  #echo -e "\n[+] Building ["$(echo "${RECIPE}" | awk -F'/' '{print $(NF-1) "/" $NF}')"] (${INPUT_SBUILD}) --> ${SBUILD_OUTDIR} [$(TZ='UTC' date +'%A, %Y-%m-%d (%I:%M:%S %p)') UTC]\n"
- echo -e "\n[+] Building (${SBUILD_SCRIPT_BLOB:-RECIPE}) --> ${SBUILD_OUTDIR} [$(TZ='UTC' date +'%A, %Y-%m-%d (%I:%M:%S %p)') UTC]\n"
+ echo -e "\n[+] Building (${SBUILD_SCRIPT_BLOB:-${RECIPE}}) --> ${SBUILD_OUTDIR} [$(TZ='UTC' date +'%A, %Y-%m-%d (%I:%M:%S %p)') UTC]\n"
  echo "export INPUT_SBUILD='${INPUT_SBUILD}'" > "${OCWD}/ENVPATH"
  echo "export BUILD_DIR='${BUILD_DIR}'" >> "${OCWD}/ENVPATH"
  echo "export SBUILD_OUTDIR='${SBUILD_OUTDIR}'" >> "${OCWD}/ENVPATH"
@@ -301,7 +301,7 @@ if [[ "${CONTINUE_SBUILD}" == "YES" ]]; then
                echo -e "\n" && cat "${SBUILD_OUTDIR}/LICENSE" && echo -e "\n"
              fi
            else
-             echo -e "[-] No Valid SRC for LICENSE Exists in ${SBUILD_SCRIPT_BLOB:-RECIPE}"
+             echo -e "[-] No Valid SRC for LICENSE Exists in ${SBUILD_SCRIPT_BLOB:-${RECIPE}}"
            fi
            unset LICENSE_SRC TMP_LICENSE
          else
@@ -322,7 +322,7 @@ if [[ "${CONTINUE_SBUILD}" == "YES" ]]; then
       #End
        export SBUILD_SUCCESSFUL="YES"
        echo "export SBUILD_SUCCESSFUL='${SBUILD_SUCCESSFUL}'" >> "${OCWD}/ENVPATH"
-       echo -e "\n[✓] SuccessFully Built ${SBUILD_PKG} using ${SBUILD_SCRIPT_BLOB:-INPUT_SBUILD} [$(TZ='UTC' date +'%A, %Y-%m-%d (%I:%M:%S %p)') UTC]\n"
+       echo -e "\n[✓] SuccessFully Built ${SBUILD_PKG} using ${SBUILD_SCRIPT_BLOB:-${INPUT_SBUILD}} [$(TZ='UTC' date +'%A, %Y-%m-%d (%I:%M:%S %p)') UTC]\n"
        echo -e "[+] Total Size: $(du -sh "${SBUILD_OUTDIR}" 2>/dev/null | awk '{print $1}' 2>/dev/null) (Includes DUPES+TMPFILES)"
        if [ -d "${OCWD}" ]; then
          echo -e "[+] LOGPATH='${SBUILD_OUTDIR}/${SBUILD_PKG}.log'"
@@ -378,7 +378,7 @@ if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]]; then
    PKG_SIZE_RAW="$(stat --format="%s" "${GHCR_PKG}" | tr -d '[:space:]')"
    #PKG_SIZE="$(echo "${PKG_SIZE_RAW}" | awk '{byte=$1; if (byte<1024) printf "%.2f B\n", byte; else if (byte<1024**2) printf "%.2f KB\n", byte/1024; else if (byte<1024**3) printf "%.2f MB\n", byte/(1024**2); else printf "%.2f GB\n", byte/(1024**3)}')"
    PKG_SIZE="$(du -sh "${GHCR_PKG}" | awk '{unit=substr($1,length($1)); sub(/[BKMGT]$/,"",$1); print $1 " " unit "B"}')"
-   PKG_WEBPAGE="https://pkgs.pkgforge.dev/repo/${PKG_REPO}/${HOST_TRIPLET,,}/${PKG_FAMILY:-PROG}/${PROG}"
+   PKG_WEBPAGE="https://pkgs.pkgforge.dev/repo/${PKG_REPO}/${HOST_TRIPLET,,}/${PKG_FAMILY:-${PROG}}/${PROG}"
    SBUILD_PKGVER="$(cat "${SBUILD_OUTDIR}/${SBUILD_PKG}.version" | tr -d '[:space:]')" ; export SBUILD_PKGVER
    export GHCR_PKG PROG PKG_BSUM PKG_DATE PKG_ICON PKG_SIZE PKG_SIZE_RAW PKG_SHASUM PKG_WEBPAGE SBUILD_PKGVER
    echo -e "\n[+] Generating Json for ${SBUILD_PKG} (PROG=${PROG}) ==> ${SBUILD_OUTDIR}/${PROG}.json"
@@ -440,17 +440,36 @@ if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]]; then
        PKG_ICON="$(echo "${DOWNLOAD_URL}" | sed 's/download=[^&]*/download='"${PROG}"'.svg/')" ; export PKG_ICON
      fi
    fi
+  #Generate Snapshots
+   unset SNAPSHOT_JSON SNAPSHOT_TAGS
+   if [ -n "${GHCRPKG+x}" ] && [ -n "${GHCRPKG##*[[:space:]]}" ]; then
+     readarray -t "SNAPSHOT_TAGS" < <(curl -qfsSL "https://api.ghcr.pkgforge.dev/pkgforge/$(echo "${GHCRPKG}" | sed ":a; s/\/\//\//g; ta" | sed -E 's|^ghcr\.io/||; s|^/+||; s|/+?$||' | sed ":a; s/\/\//\//g; ta")?tags" | grep -i "$(uname -m)" | uniq)
+   else
+     readarray -t "SNAPSHOT_TAGS" < <(curl -qfsSL "https://api.ghcr.pkgforge.dev/pkgforge/$(echo "${PKG_REPO}/${PKG_FAMILY:-${PKG_NAME}}/${PKG_NAME:-${PKG_FAMILY:-${PKG_ID}}}" | sed ":a; s/\/\//\//g; ta")?tags" | grep -i "$(uname -m)" | uniq)
+   fi
+   if [[ -n "${SNAPSHOT_TAGS[*]}" && "${#SNAPSHOT_TAGS[@]}" -gt 0 ]]; then
+     echo -e "[+] Snapshots: ${SNAPSHOT_TAGS[*]}"
+     SNAPSHOT_JSON=$(printf '%s\n' "${SNAPSHOT_TAGS[@]}" | jq -R . | jq -s 'if type == "array" then . else [] end')
+     export SNAPSHOT_JSON
+   else
+     echo -e "[-] INFO: Snapshots is empty (No Previous Build Exists?)"
+     export SNAPSHOT_JSON="[]"
+   fi
   #Fetch Upstream Version 
    fetch_version_upstream 2>/dev/null
+  #Copy Version
+   cp -fv "${SBUILD_OUTDIR}/${SBUILD_PKG}.version" "${SBUILD_OUTDIR}/${PROG}.version"
+   cp -fv "${SBUILD_OUTDIR}/${SBUILD_PKG}.version.sig" "${SBUILD_OUTDIR}/${PROG}.version.sig"
   #Generate 
-   cat "${TMPJSON}" | jq -r \
+   cat "${TMPJSON}" | jq -r --argjson "snapshots" "${SNAPSHOT_JSON}" \
    '{
     "_disabled": (._disabled | tostring // "unknown"),
     "host": (env.HOST_TRIPLET // ""),
-    "pkg": (env.PROG // .pkg // ""),
+    "pkg": (env.SBUILD_PKG // .pkg // ""),
     "pkg_family": (env.PKG_FAMILY // ""),
     "pkg_id": (.pkg_id // ""),
     "pkg_name": (env.PROG // .pkg // ""),
+    "pkg_type": (env.PKG_TYPE // .pkg_type // ""),
     "pkg_webpage": (env.PKG_WEBPAGE // ""),
     "app_id": (.app_id // ""),
     "appstream": (.appstream // ""),
@@ -489,7 +508,7 @@ if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]]; then
     "shasum": (env.PKG_SHASUM // ""),
     "size": (env.PKG_SIZE // ""),
     "size_raw": (env.PKG_SIZE_RAW // ""),
-    "snapshots": (.snapshots // []),
+    "snapshots": $snapshots,
     "rank": (env.RANK // "")
   }' | jq . > "${SBUILD_OUTDIR}/${PROG}.json"
   fi
@@ -598,7 +617,7 @@ if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]]; then
    if [ -n "${GHCRPKG+x}" ] && [ -n "${GHCRPKG##*[[:space:]]}" ]; then
      GHCRPKG_URL="$(echo "${GHCRPKG}/${PROG}" | sed ':a; s/\/\//\//g; ta')" ; export GHCRPKG_URL
    else
-     GHCRPKG_URL="ghcr.io/pkgforge/${PKG_REPO}/${PKG_FAMILY:-PKG_NAME}/${PKG_ID:-${PKG_FAMILY:-PKG_NAME}}"
+     GHCRPKG_URL="ghcr.io/pkgforge/${PKG_REPO}/${PKG_FAMILY:-${PKG_NAME}}/${PKG_NAME:-${PKG_FAMILY:-${PKG_ID}}}"
      GHCRPKG_URL="$(echo "${GHCRPKG_URL}/${PROG}" | sed ':a; s/\/\//\//g; ta')" ; export GHCRPKG_URL
    fi
    echo "export GHCRPKG_URL='${GHCRPKG_URL}'" >> "${OCWD}/ENVPATH"
@@ -623,7 +642,7 @@ if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]]; then
     else
      cp -fv "${LOGPATH}" "${SBUILD_OUTDIR}/${PROG}.log"
      echo -e "[+] ==> $(echo "${DOWNLOAD_URL}" | sed 's/download=[^&]*/download='"${PROG}"'.log/')"
-     echo -e "\n[+] Parsing/Uploading ${PKG_FAMILY}/${PKG_NAME} --> https://github.com/orgs/pkgforge/packages/container/package/${PKG_REPO}%2F${PKG_FAMILY:-PKG_NAME}%2F${PKG_NAME} [${HOST_TRIPLET}]"
+     echo -e "\n[+] Parsing/Uploading ${PKG_FAMILY}/${PKG_NAME} --> https://github.com/orgs/pkgforge/packages/container/package/${PKG_REPO}%2F${PKG_FAMILY:-${PKG_NAME}}%2F${PKG_NAME} [${HOST_TRIPLET}]"
      jq . "./${PROG}.json" && echo -e "\n"
      unset ghcr_push ; ghcr_push=(oras push --concurrency "100" --disable-path-validation)
      ghcr_push+=(--config "/dev/null:application/vnd.oci.empty.v1+json")
@@ -633,35 +652,35 @@ if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]]; then
      ghcr_push+=(--annotation "dev.pkgforge.discord=https://discord.gg/djJUs48Zbu")
      ghcr_push+=(--annotation "dev.pkgforge.soar.build_date=${PKG_DATE}")
      ghcr_push+=(--annotation "dev.pkgforge.soar.build_log=${BUILD_LOG}")
-     ghcr_push+=(--annotation "dev.pkgforge.soar.build_script=${SBUILD_SCRIPT:-BUILD_SCRIPT}")
+     ghcr_push+=(--annotation "dev.pkgforge.soar.build_script=${SBUILD_SCRIPT:-${BUILD_SCRIPT}}")
      ghcr_push+=(--annotation "dev.pkgforge.soar.bsum=${PKG_BSUM}")
      ghcr_push+=(--annotation "dev.pkgforge.soar.category=${PKG_CATEGORY}")
      ghcr_push+=(--annotation "dev.pkgforge.soar.description=${PKG_DESCRIPTION}")
      ghcr_push+=(--annotation "dev.pkgforge.soar.download_url=${DOWNLOAD_URL}")
      ghcr_push+=(--annotation "dev.pkgforge.soar.ghcrpkg=${GHCRPKG_URL}:${GHCRPKG_TAG}")
-     ghcr_push+=(--annotation "dev.pkgforge.soar.homepage=${PKG_HOMEPAGE:-PKG_SRCURL}")
+     ghcr_push+=(--annotation "dev.pkgforge.soar.homepage=${PKG_HOMEPAGE:-${PKG_SRCURL}}")
      ghcr_push+=(--annotation "dev.pkgforge.soar.icon=${PKG_ICON}")
      ghcr_push+=(--annotation "dev.pkgforge.soar.json=$(jq . ${PKG_JSON})")
      ghcr_push+=(--annotation "dev.pkgforge.soar.note=${PKG_NOTE}")
-     ghcr_push+=(--annotation "dev.pkgforge.soar.pkg=${SBUILD_PKG:-PKG_ORIG}")
+     ghcr_push+=(--annotation "dev.pkgforge.soar.pkg=${SBUILD_PKG:-${PKG_ORIG}}")
      ghcr_push+=(--annotation "dev.pkgforge.soar.pkg_family=${PKG_FAMILY}")
      ghcr_push+=(--annotation "dev.pkgforge.soar.pkg_name=${PKG_NAME}")
-     ghcr_push+=(--annotation "dev.pkgforge.soar.pkg_webpage=https://pkgs.pkgforge.dev/repo/${PKG_REPO}/${HOST_TRIPLET,,}/${PKG_FAMILY:-PKG_NAME}/${PKG_NAME}")
+     ghcr_push+=(--annotation "dev.pkgforge.soar.pkg_webpage=https://pkgs.pkgforge.dev/repo/${PKG_REPO}/${HOST_TRIPLET,,}/${PKG_FAMILY:-${PKG_NAME}}/${PKG_NAME}")
      ghcr_push+=(--annotation "dev.pkgforge.soar.repology=${PKG_REPOLOGY}")
      ghcr_push+=(--annotation "dev.pkgforge.soar.screenshot=${PKG_SCREENSHOT}")
      ghcr_push+=(--annotation "dev.pkgforge.soar.shasum=${PKG_SHASUM}")
      ghcr_push+=(--annotation "dev.pkgforge.soar.size=${PKG_SIZE}")
      ghcr_push+=(--annotation "dev.pkgforge.soar.size_raw=${PKG_SIZE_RAW}")
-     ghcr_push+=(--annotation "dev.pkgforge.soar.src_url=${PKG_SRCURL:-PKG_HOMEPAGE}")
+     ghcr_push+=(--annotation "dev.pkgforge.soar.src_url=${PKG_SRCURL:-${PKG_HOMEPAGE}}")
      ghcr_push+=(--annotation "dev.pkgforge.soar.version=${PKG_VERSION}")
      ghcr_push+=(--annotation "dev.pkgforge.soar.version_upstream=${PKG_VERSION_UPSTREAM}")
      ghcr_push+=(--annotation "org.opencontainers.image.authors=https://docs.pkgforge.dev/contact/chat")
      ghcr_push+=(--annotation "org.opencontainers.image.created=${PKG_DATE}")
      ghcr_push+=(--annotation "org.opencontainers.image.description=${PKG_DESCRIPTION}")
-     ghcr_push+=(--annotation "org.opencontainers.image.documentation=https://pkgs.pkgforge.dev/repo/${PKG_REPO}/${HOST_TRIPLET,,}/${PKG_FAMILY:-PKG_NAME}/${PKG_NAME}")
+     ghcr_push+=(--annotation "org.opencontainers.image.documentation=https://pkgs.pkgforge.dev/repo/${PKG_REPO}/${HOST_TRIPLET,,}/${PKG_FAMILY:-${PKG_NAME}}/${PKG_NAME}")
      ghcr_push+=(--annotation "org.opencontainers.image.licenses=blessing")
      ghcr_push+=(--annotation "org.opencontainers.image.ref.name=${PKG_VERSION}")
-     ghcr_push+=(--annotation "org.opencontainers.image.revision=${PKG_SHASUM:-PKG_VERSION}")
+     ghcr_push+=(--annotation "org.opencontainers.image.revision=${PKG_SHASUM:-${PKG_VERSION}}")
      ghcr_push+=(--annotation "org.opencontainers.image.source=https://github.com/pkgforge/${PKG_REPO}")
      ghcr_push+=(--annotation "org.opencontainers.image.title=${PKG_NAME}")
      ghcr_push+=(--annotation "org.opencontainers.image.url=${PKG_SRCURL}")
@@ -684,7 +703,7 @@ if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]]; then
      "${ghcr_push[@]}"
      if [[ "$(oras manifest fetch "${GHCRPKG_URL}:${GHCRPKG_TAG}" | jq -r '.annotations["org.opencontainers.image.created"]')" == "${PKG_DATE}" ]]; then
        echo -e "\n[+] Registry --> https://${GHCRPKG_URL}"
-       echo -e "[+] ==>'${DOWNLOAD_URL}'\n"
+       echo -e "[+] ==> ${DOWNLOAD_URL} \n"
        export PUSH_SUCCESSFUL="YES"
        #rm -rf "${GHCR_PKG}" "${PKG_JSON}" 2>/dev/null
      else
@@ -719,7 +738,7 @@ cleanup_env()
   rm -rvf "${BUILD_DIR}" 2>/dev/null
  fi
 #Cleanup Env
- unset BUILD_DIR ghcr_push GHCRPKG_URL GHCRPKG_TAG INPUT_SBUILD INPUT_SBUILD_PATH OCWD pkg PKG PKG_FAMILY pkg_id PKG_ID pkg_type PKG_TYPE PKG_VERSION_UPSTREAM PKG_WEBPAGE PROG REPOLOGY_PKG REPOLOGY_PKGVER REPOLOGY_VER SBUILD_OUTDIR SBUILD_PKG SBUILD_PKGS SBUILD_PKGVER SBUILD_REBUILD SBUILD_SCRIPT SBUILD_SCRIPT_BLOB SBUILD_SUCCESSFUL SBUILD_TMPDIR TMPJSON TMPXVER TMPXRUN
+ unset BUILD_DIR ghcr_push GHCRPKG_URL GHCRPKG_TAG INPUT_SBUILD INPUT_SBUILD_PATH OCWD pkg PKG PKG_FAMILY pkg_id PKG_ID pkg_type PKG_TYPE PKG_VERSION_UPSTREAM PKG_WEBPAGE PROG REPOLOGY_PKG REPOLOGY_PKGVER REPOLOGY_VER SBUILD_OUTDIR SBUILD_PKG SBUILD_PKGS SBUILD_PKGVER SBUILD_REBUILD SBUILD_SCRIPT SBUILD_SCRIPT_BLOB SBUILD_SUCCESSFUL SBUILD_TMPDIR SNAPSHOT_JSON SNAPSHOT_TAGS TMPJSON TMPXVER TMPXRUN
 }
 export -f cleanup_env
 #-------------------------------------------------------#
