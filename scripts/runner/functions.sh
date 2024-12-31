@@ -713,6 +713,8 @@ if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]] && [ -n "${GHCRPKG_URL+x}" ] && [ -n "$
      [[ -f "./${PROG}.log.sig" && -s "./${PROG}.log.sig" ]] && ghcr_push+=("./${PROG}.log.sig")
      [[ -f "./${PROG}.png" && -s "./${PROG}.png" ]] && ghcr_push+=("./${PROG}.png")
      [[ -f "./${PROG}.png.sig" && -s "./${PROG}.png.sig" ]] && ghcr_push+=("./${PROG}.png.sig")
+     [[ -f "./${PROG}.version" && -s "./${PROG}.version" ]] && ghcr_push+=("./${PROG}.version")
+     [[ -f "./${PROG}.version.sig" && -s "./${PROG}.version.sig" ]] && ghcr_push+=("./${PROG}.version.sig")
      [[ -f "./${PROG}.svg" && -s "./${PROG}.svg" ]] && ghcr_push+=("./${PROG}.svg")
      [[ -f "./${PROG}.svg.sig" && -s "./${PROG}.svg.sig" ]] && ghcr_push+=("./${PROG}.svg.sig")
      "${ghcr_push[@]}"
