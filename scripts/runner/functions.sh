@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# VERSION=1.2.9
+# VERSION=1.3.0
 
 #-------------------------------------------------------#
 ## <DO NOT RUN STANDALONE, meant for CI Only>
@@ -443,11 +443,11 @@ if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]]; then
   #Generate Snapshots
    unset SNAPSHOT_JSON SNAPSHOT_TAGS TAG_URL
    if [ -n "${GHCRPKG+x}" ] && [ -n "${GHCRPKG##*[[:space:]]}" ]; then
-     TAG_URL="https://api.ghcr.pkgforge.dev/$(echo "${GHCRPKG}" | sed ":a; s/\/\//\//g; ta" | sed -E 's|^ghcr\.io/||; s|^/+||; s|/+?$||' | sed ":a; s/\/\//\//g; ta")?tags"
+     TAG_URL="https://api.ghcr.pkgforge.dev/$(echo "${GHCRPKG}" | sed ":a; s/\/\//\//g; ta" | sed -E 's|^ghcr\.io/||; s|^/+||; s|/+?$||' | sed ":a; s/\/\//\//g; ta")/${PROG}?tags"
      echo -e "[+] Fetching Snapshot Tags <== ${TAG_URL}"
      readarray -t "SNAPSHOT_TAGS" < <(curl -qfsSL "${TAG_URL}" | grep -i "$(uname -m)" | uniq)
    else
-     TAG_URL="https://api.ghcr.pkgforge.dev/pkgforge/$(echo "${PKG_REPO}/${PKG_FAMILY:-${PKG_NAME}}/${PKG_NAME:-${PKG_FAMILY:-${PKG_ID}}}" | sed ":a; s/\/\//\//g; ta")?tags"
+     TAG_URL="https://api.ghcr.pkgforge.dev/pkgforge/$(echo "${PKG_REPO}/${PKG_FAMILY:-${PKG_NAME}}/${PKG_NAME:-${PKG_FAMILY:-${PKG_ID}}}" | sed ":a; s/\/\//\//g; ta")/${PROG}?tags"
      echo -e "[+] Fetching Snapshot Tags <== ${TAG_URL}"
      readarray -t "SNAPSHOT_TAGS" < <(curl -qfsSL "${TAG_URL}" | grep -i "$(uname -m)" | uniq)
    fi
@@ -469,6 +469,7 @@ if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]]; then
    '{
     "_disabled": (._disabled | tostring // "unknown"),
     "host": (env.HOST_TRIPLET // ""),
+    "rank": (env.RANK // ""),
     "pkg": (env.SBUILD_PKG // .pkg // ""),
     "pkg_family": (env.PKG_FAMILY // ""),
     "pkg_id": (.pkg_id // ""),
@@ -512,8 +513,7 @@ if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]]; then
     "shasum": (env.PKG_SHASUM // ""),
     "size": (env.PKG_SIZE // ""),
     "size_raw": (env.PKG_SIZE_RAW // ""),
-    "snapshots": $snapshots,
-    "rank": (env.RANK // "")
+    "snapshots": $snapshots
   }' | jq . > "${SBUILD_OUTDIR}/${PROG}.json"
   fi
  done
