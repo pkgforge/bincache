@@ -15,7 +15,7 @@
 sbuild_builder()
  {
   ##Version
-   SBB_VERSION="0.0.6" && echo -e "[+] SBUILD Builder Version: ${SBB_VERSION}" ; unset SBB_VERSION 
+   SBB_VERSION="0.0.7" && echo -e "[+] SBUILD Builder Version: ${SBB_VERSION}" ; unset SBB_VERSION 
   ##Enable Debug 
    if [ "${DEBUG}" = "1" ] || [ "${DEBUG}" = "ON" ]; then
       set -x
@@ -223,6 +223,7 @@ sbuild_builder()
         if [ -d "${SBUILD_OUTDIR}" ] && [ "$(du -s "${SBUILD_OUTDIR}" | cut -f1)" -gt 100 ]; then
           generate_json
         else
+         echo -e "\n[✗] FATAL: Build Dir [${BUILD_DIR}/SBUILD_OUTDIR] seems Broken\n"
          if [[ "${KEEP_LOGS}" != "YES" ]]; then
           echo 'KEEP_LOGS="YES"' >> "${OCWD}/ENVPATH"
          fi
@@ -235,6 +236,8 @@ sbuild_builder()
            sanitize_logs
            printf '%s\n' "${SBUILD_PKGS[@]}" | xargs -P "$(($(nproc)+1))" -I "{}" bash -c 'upload_to_ghcr "$@"' _ "{}"
            if [[ "${PUSH_SUCCESSFUL}" != "YES" ]]; then
+             echo -e "\n[✗] FATAL: Failed to Push Artifacts ==> [${GHCRPKG}]"
+             echo -e "[+] LOGS (Build Dir): ${BUILD_DIR}/SBUILD_OUTDIR\n"
              if [[ "${KEEP_LOGS}" != "YES" ]]; then
                export KEEP_LOGS="YES"
              fi
