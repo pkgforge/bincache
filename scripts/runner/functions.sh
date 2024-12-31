@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# VERSION=1.2.2
+# VERSION=1.2.3
 
 #-------------------------------------------------------#
 ## <DO NOT RUN STANDALONE, meant for CI Only>
@@ -62,6 +62,33 @@ export -f check_sane_env
 #-------------------------------------------------------#
 
 #-------------------------------------------------------#
+##Fetch Version (Repology) (.version_upstream)
+fetch_version_repology()
+{
+ if [[ -n "${PKG_REPOLOGY[@]}" && "${#PKG_REPOLOGY[@]}" -gt 0 ]]; then
+   unset REPOLOGY_PKGVER REPOLOGY_VER ; declare -a REPOLOGY_PKGVER=()
+   for REPOLOGY_PROG in "${PKG_REPOLOGY[@]}"; do
+    {
+     #curl -A "${USER_AGENT}" -qfsSL "https://api.rl.pkgforge.dev/api/v1/project/${REPOLOGY_PROG}"
+     REPOLOGY_VER="$(curl -A "${USER_AGENT}" -qfsSL "https://repology.org/api/v1/project/${REPOLOGY_PROG}" 2>/dev/null | jq -r '.. | objects | select(has("version") and ((.. | objects | .repo? | select(. != null)) as $repo |["appget", "baulk", "choco", "chrome", "cygwin", "droid", "macports", "mysys2", "npackd", "opam", "pypi", "ruby", "scoop", "vcpkg", "winget", "yacp"] | index($repo) | not)) | .version' 2>/dev/null | grep -vE '^[A-Za-z]+$|^(.)\1*$' 2>/dev/null | grep -vE '\.[0-9a-f]{6,}$|[0-9a-f]{7,}$' 2>/dev/null | sort --version-sort --unique 2>/dev/null | tail -n 1 2>/dev/null | tr -d '[:space:]' 2>/dev/null)"
+     if [ -n "${REPOLOGY_VER+x}" ] && [ -n "${REPOLOGY_VER##*[[:space:]]}" ]; then
+       REPOLOGY_PKGVER+=("${REPOLOGY_VER}")
+     fi
+    } 2>/dev/null
+   done
+   REPOLOGY_PKGVER="$(printf "%s\n" "${REPOLOGY_PKGVER[@]}" | sort --version-sort --unique | tail -n 1 | tr -d '[:space:]')"
+   unset REPOLOGY_PROG REPOLOGY_VER ; export REPOLOGY_PKGVER
+ fi
+ if [ -n "${REPOLOGY_PKGVER+x}" ] && [ -n "${REPOLOGY_PKGVER##*[[:space:]]}" ]; then
+   echo -e "[+] Upstream Version: ${REPOLOGY_PKGVER} ('.repology') [${PKG_REPOLOGY[@]}]" ; unset PKG_REPOLOGY
+ else
+   echo -e "[-] WARNING: Could NOT Fetch Version from Upstream ('.repology') [${PKG_REPOLOGY[@]}]" ; unset PKG_REPOLOGY
+ fi
+}
+export -f fetch_version_repology
+#-------------------------------------------------------#
+
+#-------------------------------------------------------#
 ##Gen Json (SBUILD)
 gen_json_from_sbuild()
 {
@@ -83,6 +110,9 @@ gen_json_from_sbuild()
        pkg="$(jq -r '"\(.pkg | select(. != "null") // "")"' "${TMPJSON}" | sed 's/\.$//' | tr -d '[:space:]')" ; export PKG="${pkg}"
        pkg_id="$(jq -r '"\(.pkg_id | select(. != "null") // "")"' "${TMPJSON}" | sed 's/\.$//' | tr -d '[:space:]')" ; export PKG_ID="${pkg_id}"
        pkg_type="$(jq -r '"\(.pkg_type | select(. != "null") // "")"' "${TMPJSON}" | sed 's/\.$//' | tr -d '[:space:]')" ; export PKG_TYPE="${pkg_type}"
+       unset PKG_REPOLOGY ; PKG_REPOLOGY=()
+       PKG_REPOLOGY=($(jq -r 'if .repology | type == "array" then .repology[] else .repology end' "${TMPJSON}" 2>/dev/null))
+       PKG_REPOLOGY=($(printf "%s\n" "${PKG_REPOLOGY[@]}" 2>/dev/null | sort | uniq)) ; export PKG_REPOLOGY
        SBUILD_PKG="$(echo "${pkg}.${pkg_type}" | sed 's/\.$//' | tr -d '[:space:]')"
        export pkg pkg_id pkg_type SBUILD_PKG
        echo "export SBUILD_PKG='${SBUILD_PKG}'" >> "${OCWD}/ENVPATH"
@@ -99,6 +129,7 @@ gen_json_from_sbuild()
        SBUILD_PKGVER="$(yq eval '.pkgver' "${INPUT_SBUILD}" | tr -d '[:space:]')" ; export SBUILD_PKGVER
        echo "${SBUILD_PKGVER}" > "${SBUILD_OUTDIR}/${SBUILD_PKG}.version"
        echo -e "[+] Version: ${SBUILD_PKGVER} ('.pkgver') [${SBUILD_OUTDIR}/${SBUILD_PKG}.version]"
+       fetch_version_repology 2>/dev/null
        export CONTINUE_SBUILD="YES"
       else
        echo -e '#!/usr/bin/env '"${SBUILD_SHELL}"'\n\n' > "${TMPXVER}"
@@ -116,6 +147,7 @@ gen_json_from_sbuild()
          else
            SBUILD_PKGVER="$(cat "${SBUILD_OUTDIR}/${SBUILD_PKG}.version" | tr -d '[:space:]')" ; export SBUILD_PKGVER
            echo -e "[+] Version: ${SBUILD_PKGVER} ('.x_exec.pkgver') [${SBUILD_OUTDIR}/${SBUILD_PKG}.version]"
+           fetch_version_repology 2>/dev/null
            if [[ "${SBUILD_REBUILD}" == "true" ]]; then
              echo -e "\n[+] Re Building: ${SBUILD_PKG} [${SBUILD_PKGVER}]"
              echo -e "[+] Re Run with: '.rebuild == false' (https://github.com/pkgforge/${PKG_REPO}/blob/main/SBUILD_LIST.json)"
@@ -424,6 +456,7 @@ if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]]; then
     "src_url": (.src_url // []),
     "tag": (.tag // []),
     "version": (env.SBUILD_PKGVER // ""),
+    "version_upstream: (env.REPOLOGY_PKGVER // ""),
     "bsum": (env.PKG_BSUM // ""),
     "build_date": (env.PKG_DATE // ""),
     "build_log": (env.BUILD_LOG // ""),
@@ -450,7 +483,7 @@ local PROG="$1"
 pushd "${SBUILD_OUTDIR}" >/dev/null 2>&1
 if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]]; then
  #Clear ENV
-  unset ARCH BUILD_LOG BUILD_SCRIPT DOWNLOAD_URL GHCR_PKG GHCRPKG_TAG PKG_BSUM PKG_CATEGORY PKG_DATE PKG_DESCRIPTION PKG_HOMEPAGE PKG_ICON PKG_JSON PKG_NAME PKG_NOTE PKG_ORIG PKG_REPOLOGY PKG_SCREENSHOT PKG_SHASUM PKG_SIZE PKG_SIZE_RAW PKG_SRCURL PKG_TAG PKG_VERSION PKG_WEBPAGE PUSH_SUCCESSFUL VERSION
+  unset ARCH BUILD_LOG BUILD_SCRIPT DOWNLOAD_URL GHCR_PKG GHCRPKG_TAG PKG_BSUM PKG_CATEGORY PKG_DATE PKG_DESCRIPTION PKG_HOMEPAGE PKG_ICON PKG_JSON PKG_NAME PKG_NOTE PKG_ORIG PKG_REPOLOGY PKG_SCREENSHOT PKG_SHASUM PKG_SIZE PKG_SIZE_RAW PKG_SRCURL PKG_TAG PKG_VERSION PKG_VERSION_UPSTREAM PKG_WEBPAGE PUSH_SUCCESSFUL VERSION
  #Parse
   if jq --exit-status . "${SBUILD_OUTDIR}/${PROG}.json" >/dev/null 2>&1; then
    GHCR_PKG="$(realpath ${SBUILD_OUTDIR})/${PROG}"
@@ -531,6 +564,12 @@ if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]]; then
        fi
      fi
      echo "export PKG_VERSION='${PKG_VERSION}'" >> "${OCWD}/ENVPATH"
+     PKG_VERSION_UPSTREAM="$(jq -r '.version_upstream' "${PKG_JSON}" | tr -d '[:space:]')"
+     [[ "${PKG_VERSION_UPSTREAM}" == "null" ]] && unset PKG_VERSION_UPSTREAM
+     if [ -z "${SYSTMP+x}" ] || [ -z "${SYSTMP##*[[:space:]]}" ]; then
+       PKG_VERSION_UPSTREAM="unknown-$(date --utc +'%y%m%dT%H%M%S')"
+     fi
+     echo "export PKG_VERSION_UPSTREAM='${PKG_VERSION_UPSTREAM}'" >> "${OCWD}/ENVPATH"
    else
      echo -e "\n[✗] No Valid \$GHCR_PKG was Provided\n"
     return 1 || exit 1
@@ -593,6 +632,8 @@ if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]]; then
      ghcr_push+=(--annotation "dev.pkgforge.soar.size=${PKG_SIZE}")
      ghcr_push+=(--annotation "dev.pkgforge.soar.size_raw=${PKG_SIZE_RAW}")
      ghcr_push+=(--annotation "dev.pkgforge.soar.src_url=${PKG_SRCURL:-PKG_HOMEPAGE}")
+     ghcr_push+=(--annotation "dev.pkgforge.soar.version=${PKG_VERSION}")
+     ghcr_push+=(--annotation "dev.pkgforge.soar.version_upstream=${PKG_VERSION_UPSTREAM}")
      ghcr_push+=(--annotation "org.opencontainers.image.authors=https://docs.pkgforge.dev/contact/chat")
      ghcr_push+=(--annotation "org.opencontainers.image.created=${PKG_DATE}")
      ghcr_push+=(--annotation "org.opencontainers.image.description=${PKG_DESCRIPTION}")
@@ -657,7 +698,7 @@ cleanup_env()
   rm -rvf "${BUILD_DIR}" 2>/dev/null
  fi
 #Cleanup Env
- unset BUILD_DIR ghcr_push GHCRPKG_URL GHCRPKG_TAG INPUT_SBUILD INPUT_SBUILD_PATH OCWD pkg PKG PKG_FAMILY pkg_id PKG_ID pkg_type PKG_TYPE PKG_WEBPAGE PROG SBUILD_OUTDIR SBUILD_PKG SBUILD_PKGS SBUILD_PKGVER SBUILD_REBUILD SBUILD_SCRIPT SBUILD_SCRIPT_BLOB SBUILD_SUCCESSFUL SBUILD_TMPDIR TMPJSON TMPXVER TMPXRUN
+ unset BUILD_DIR ghcr_push GHCRPKG_URL GHCRPKG_TAG INPUT_SBUILD INPUT_SBUILD_PATH OCWD pkg PKG PKG_FAMILY pkg_id PKG_ID pkg_type PKG_TYPE PKG_WEBPAGE PROG REPOLOGY_PKGVER SBUILD_OUTDIR SBUILD_PKG SBUILD_PKGS SBUILD_PKGVER SBUILD_REBUILD SBUILD_SCRIPT SBUILD_SCRIPT_BLOB SBUILD_SUCCESSFUL SBUILD_TMPDIR TMPJSON TMPXVER TMPXRUN
 }
 export -f cleanup_env
 #-------------------------------------------------------#
