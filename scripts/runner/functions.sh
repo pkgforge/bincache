@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# VERSION=1.3.2+1
+# VERSION=1.3.3
 
 #-------------------------------------------------------#
 ## <DO NOT RUN STANDALONE, meant for CI Only>
@@ -440,6 +440,8 @@ if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]]; then
        PKG_ICON="$(echo "${DOWNLOAD_URL}" | sed 's/download=[^&]*/download='"${PROG}"'.svg/')" ; export PKG_ICON
      fi
    fi
+  #Generate Manifest
+   unset PKG_MANIFEST ; PKG_MANIFEST="$(echo "${DOWNLOAD_URL}" | sed 's/download=[^&]*/manifest/')" ; export PKG_MANIFEST
   #Generate Snapshots
    unset GHCRPKG_URL SNAPSHOT_JSON SNAPSHOT_TAGS TAG_URL
    if [ -n "${GHCRPKG+x}" ] && [ -n "${GHCRPKG##*[[:space:]]}" ]; then
@@ -520,6 +522,7 @@ if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]]; then
     "build_script": (env.SBUILD_SCRIPT_BLOB // ""),
     "download_url": (env.DOWNLOAD_URL // ""),
     "ghcr_url": (if (env.GHCRPKG_URL // "") | startswith("https://") then (env.GHCRPKG_URL // "") else "https://" + (env.GHCRPKG_URL // "") end),
+    "manifest_url": (env.PKG_MANIFEST // ""),
     "shasum": (env.PKG_SHASUM // ""),
     "size": (env.PKG_SIZE // ""),
     "size_raw": (env.PKG_SIZE_RAW // ""),
@@ -747,7 +750,7 @@ cleanup_env()
   rm -rvf "${BUILD_DIR}" 2>/dev/null
  fi
 #Cleanup Env
- unset BUILD_DIR ghcr_push GHCRPKG_URL GHCRPKG_TAG INPUT_SBUILD INPUT_SBUILD_PATH MANIFEST_URL OCWD pkg PKG PKG_FAMILY pkg_id PKG_ID pkg_type PKG_TYPE PKG_VERSION_UPSTREAM PKG_WEBPAGE PROG REPOLOGY_PKG REPOLOGY_PKGVER REPOLOGY_VER SBUILD_OUTDIR SBUILD_PKG SBUILD_PKGS SBUILD_PKGVER SBUILD_REBUILD SBUILD_SCRIPT SBUILD_SCRIPT_BLOB SBUILD_SUCCESSFUL SBUILD_TMPDIR SNAPSHOT_JSON SNAPSHOT_TAGS TAG_URL TMPJSON TMPXVER TMPXRUN
+ unset BUILD_DIR ghcr_push GHCRPKG_URL GHCRPKG_TAG INPUT_SBUILD INPUT_SBUILD_PATH MANIFEST_URL OCWD pkg PKG PKG_FAMILY pkg_id PKG_ID PKG_MANIFEST pkg_type PKG_TYPE PKG_VERSION_UPSTREAM PKG_WEBPAGE PROG REPOLOGY_PKG REPOLOGY_PKGVER REPOLOGY_VER SBUILD_OUTDIR SBUILD_PKG SBUILD_PKGS SBUILD_PKGVER SBUILD_REBUILD SBUILD_SCRIPT SBUILD_SCRIPT_BLOB SBUILD_SUCCESSFUL SBUILD_TMPDIR SNAPSHOT_JSON SNAPSHOT_TAGS TAG_URL TMPJSON TMPXVER TMPXRUN
 }
 export -f cleanup_env
 #-------------------------------------------------------#
