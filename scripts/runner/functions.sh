@@ -443,7 +443,7 @@ if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]]; then
   #Generate Snapshots
    unset SNAPSHOT_JSON SNAPSHOT_TAGS
    if [ -n "${GHCRPKG+x}" ] && [ -n "${GHCRPKG##*[[:space:]]}" ]; then
-     readarray -t "SNAPSHOT_TAGS" < <(curl -qfsSL "https://api.ghcr.pkgforge.dev/pkgforge/$(echo "${GHCRPKG}" | sed ":a; s/\/\//\//g; ta" | sed -E 's|^ghcr\.io/||; s|^/+||; s|/+?$||' | sed ":a; s/\/\//\//g; ta")?tags" | grep -i "$(uname -m)" | uniq)
+     readarray -t "SNAPSHOT_TAGS" < <(curl -qfsSL "https://api.ghcr.pkgforge.dev/$(echo "${GHCRPKG}" | sed ":a; s/\/\//\//g; ta" | sed -E 's|^ghcr\.io/||; s|^/+||; s|/+?$||' | sed ":a; s/\/\//\//g; ta")?tags" | grep -i "$(uname -m)" | uniq)
    else
      readarray -t "SNAPSHOT_TAGS" < <(curl -qfsSL "https://api.ghcr.pkgforge.dev/pkgforge/$(echo "${PKG_REPO}/${PKG_FAMILY:-${PKG_NAME}}/${PKG_NAME:-${PKG_FAMILY:-${PKG_ID}}}" | sed ":a; s/\/\//\//g; ta")?tags" | grep -i "$(uname -m)" | uniq)
    fi
