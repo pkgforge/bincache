@@ -235,6 +235,7 @@ sbuild_builder()
          if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]]; then
            sanitize_logs
            printf '%s\n' "${SBUILD_PKGS[@]}" | xargs -P "$(($(nproc)+1))" -I "{}" bash -c 'upload_to_ghcr "$@"' _ "{}"
+           source "${OCWD}/ENVPATH"
            if [[ "${PUSH_SUCCESSFUL}" != "YES" ]]; then
              echo -e "\n[✗] FATAL: Failed to Push Artifacts ==> [${GHCRPKG}]"
              echo -e "[+] LOGS (Build Dir): ${BUILD_DIR}/SBUILD_OUTDIR\n"
