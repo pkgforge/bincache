@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# VERSION=1.3.1
+# VERSION=1.3.2
 
 #-------------------------------------------------------#
 ## <DO NOT RUN STANDALONE, meant for CI Only>
@@ -519,6 +519,7 @@ if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]]; then
     "build_log": (env.BUILD_LOG // ""),
     "build_script": (env.SBUILD_SCRIPT_BLOB // ""),
     "download_url": (env.DOWNLOAD_URL // ""),
+    "ghcr_url": (if (env.GHCRPKG_URL // "") | startswith("https://") then (env.GHCRPKG_URL // "") else "https://" + (env.GHCRPKG_URL // "") end)
     "shasum": (env.PKG_SHASUM // ""),
     "size": (env.PKG_SIZE // ""),
     "size_raw": (env.PKG_SIZE_RAW // ""),
