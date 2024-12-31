@@ -450,15 +450,16 @@ if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]]; then
    fi
    if [ -n "${GHCRPKG+x}" ] && [ -n "${GHCRPKG##*[[:space:]]}" ]; then
      TAG_URL="https://api.ghcr.pkgforge.dev/$(echo "${GHCRPKG}" | sed ':a; s/\/\//\//g; ta' | sed -E 's|^ghcr\.io/||; s|^/+||; s|/+?$||' | sed ':a; s/\/\//\//g; ta')/${PROG}?tags"
-     echo -e "[+] Fetching Snapshot Tags <== ${TAG_URL}"
+     echo -e "[+] Fetching Snapshot Tags <== ${TAG_URL} [\$GHCRPKG]"
      #readarray -t "SNAPSHOT_TAGS" < <(curl -qfsSL "${TAG_URL}" | grep -i "$(uname -m)" | uniq)
      readarray -t "SNAPSHOT_TAGS" < <(oras repo tags "${GHCRPKG_URL}" | grep -i "$(uname -m)" | uniq)
    else
      TAG_URL="https://api.ghcr.pkgforge.dev/pkgforge/$(echo "${PKG_REPO}/${PKG_FAMILY:-${PKG_NAME}}/${PKG_NAME:-${PKG_FAMILY:-${PKG_ID}}}" | sed ':a; s/\/\//\//g; ta')/${PROG}?tags"
-     echo -e "[+] Fetching Snapshot Tags <== ${TAG_URL}"
+     echo -e "[+] Fetching Snapshot Tags <== ${TAG_URL} [NO \$GHCRPKG]"
      #readarray -t "SNAPSHOT_TAGS" < <(curl -qfsSL "${TAG_URL}" | grep -i "$(uname -m)" | uniq)
      readarray -t "SNAPSHOT_TAGS" < <(oras repo tags "${GHCRPKG_URL}" | grep -i "$(uname -m)" | uniq)
    fi
+   echo "export GHCRPKG_URL='${GHCRPKG_URL}'" >> "${OCWD}/ENVPATH"
    if [[ -n "${SNAPSHOT_TAGS[*]}" && "${#SNAPSHOT_TAGS[@]}" -gt 0 ]]; then
      echo -e "[+] Snapshots: ${SNAPSHOT_TAGS[*]}"
      SNAPSHOT_JSON=$(printf '%s\n' "${SNAPSHOT_TAGS[@]}" | jq -R . | jq -s 'if type == "array" then . else [] end')
@@ -626,7 +627,6 @@ if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]] && [ -n "${GHCRPKG_URL+x}" ] && [ -n "$
      echo -e "\n[✗] No Valid \$GHCR_PKG was Provided\n"
     return 1 || exit 1
    fi
-   echo "export GHCRPKG_URL='${GHCRPKG_URL}'" >> "${OCWD}/ENVPATH"
    GHCRPKG_TAG="${PKG_VERSION}-${HOST_TRIPLET,,}"
    echo "export GHCRPKG_TAG='${GHCRPKG_TAG}'" >> "${OCWD}/ENVPATH"
    if [ -n "${GHCRPKG_URL+x}" ] && [ -n "${GHCRPKG_TAG+x}" ]; then
