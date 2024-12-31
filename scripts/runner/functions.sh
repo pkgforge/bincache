@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# VERSION=1.3.5
+# VERSION=1.3.6
 
 #-------------------------------------------------------#
 ## <DO NOT RUN STANDALONE, meant for CI Only>
@@ -315,6 +315,7 @@ if [[ "${CONTINUE_SBUILD}" == "YES" ]]; then
       #Checksum
        echo -e "\n[+] Generating (b3sum) Checksums ==> [${SBUILD_OUTDIR}/CHECKSUM]"
        find "${SBUILD_OUTDIR}" -maxdepth 1 -type f ! -iname "*CHECKSUM*" -exec b3sum "{}" + | awk '{gsub(".*/", "", $2); print $1 ":" $2}' | tee "${SBUILD_OUTDIR}/CHECKSUM"
+       sed 's/\.\(appimage\|appbundle\|dynamic\|flatimage\|gameimage\|nixappimage\|runimage\|static\)//g' -i "${SBUILD_OUTDIR}/CHECKSUM"
       #Sign
        echo -e "\n[+] Signing ${SBUILD_PKG} (Verify: https://docs.pkgforge.dev/repositories/pkgforge-stable/security#trust-but-verify)"
        find "${SBUILD_OUTDIR}" -maxdepth 1 -type f ! -name "*.sig" -print0 | sort -zu | xargs -0 -I "{}" minisign -Sm "{}" -P "${MINISIGN_PUB_KEY}" -s "${HOME}/.minisign/pkgforge.key" -x "{}.sig"
@@ -689,9 +690,11 @@ if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]] && [ -n "${GHCRPKG_URL+x}" ] && [ -n "$
      return 1 || exit 1
     else
      cp -fv "${LOGPATH}" "${SBUILD_OUTDIR}/${PROG}.log"
+     minisign -Sm "${SBUILD_OUTDIR}/${PROG}.log" -P "${MINISIGN_PUB_KEY}" -s "${HOME}/.minisign/pkgforge.key" -x "${SBUILD_OUTDIR}/${PROG}.log.sig"
      echo -e "[+] ==> $(echo "${DOWNLOAD_URL}" | sed 's/download=[^&]*/download='"${PROG}"'.log/')"
      echo -e "\n[+] Parsing/Uploading ${PKG_FAMILY}/${PKG_NAME} --> https://github.com/orgs/pkgforge/packages/container/package/${PKG_REPO}%2F${PKG_FAMILY:-${PKG_NAME}}%2F${PKG_NAME} [${HOST_TRIPLET}]"
      jq . "./${PROG}.json" && echo -e "\n"
+     minisign -Sm "./${PROG}.json" -P "${MINISIGN_PUB_KEY}" -s "${HOME}/.minisign/pkgforge.key" -x "./${PROG}.json.sig"
      unset ghcr_push ; ghcr_push=(oras push --concurrency "100" --disable-path-validation)
      ghcr_push+=(--config "/dev/null:application/vnd.oci.empty.v1+json")
      ghcr_push+=(--annotation "com.github.package.type=container")
@@ -755,7 +758,7 @@ if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]] && [ -n "${GHCRPKG_URL+x}" ] && [ -n "$
      "${ghcr_push[@]}"
      if [[ "$(oras manifest fetch "${GHCRPKG_URL}:${GHCRPKG_TAG}" | jq -r '.annotations["org.opencontainers.image.created"]')" == "${PKG_DATE}" ]]; then
        echo -e "\n[+] Registry --> https://${GHCRPKG_URL}"
-       echo -e "[+] ==> ${DOWNLOAD_URL} \n"
+       echo -e "[+] ==> ${MANIFEST_URL:-${DOWNLOAD_URL}} \n"
        export PUSH_SUCCESSFUL="YES"
        #rm -rf "${GHCR_PKG}" "${PKG_JSON}" 2>/dev/null
      else
