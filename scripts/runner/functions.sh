@@ -540,7 +540,7 @@ local PROG="$1"
 pushd "${SBUILD_OUTDIR}" >/dev/null 2>&1
 if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]] && [ -n "${GHCRPKG_URL+x}" ] && [ -n "${GHCRPKG_URL##*[[:space:]]}" ]; then
  #Clear ENV
-  unset ARCH BUILD_LOG BUILD_SCRIPT DOWNLOAD_URL GHCR_PKG GHCRPKG_TAG PKG_BSUM PKG_CATEGORY PKG_DATE PKG_DESCRIPTION PKG_HOMEPAGE PKG_ICON PKG_JSON PKG_NAME PKG_NOTE PKG_ORIG PKG_REPOLOGY PKG_SCREENSHOT PKG_SHASUM PKG_SIZE PKG_SIZE_RAW PKG_SRCURL PKG_TAG PKG_VERSION PKG_VERSION_UPSTREAM PKG_WEBPAGE PUSH_SUCCESSFUL VERSION
+  unset ARCH BUILD_LOG BUILD_SCRIPT DOWNLOAD_URL GHCR_PKG GHCRPKG_TAG MANIFEST_URL PKG_BSUM PKG_CATEGORY PKG_DATE PKG_DESCRIPTION PKG_HOMEPAGE PKG_ICON PKG_JSON PKG_NAME PKG_NOTE PKG_ORIG PKG_REPOLOGY PKG_SCREENSHOT PKG_SHASUM PKG_SIZE PKG_SIZE_RAW PKG_SRCURL PKG_TAG PKG_VERSION PKG_VERSION_UPSTREAM PKG_WEBPAGE PUSH_SUCCESSFUL VERSION
  #Parse
   if jq --exit-status . "${SBUILD_OUTDIR}/${PROG}.json" >/dev/null 2>&1; then
    GHCR_PKG="$(realpath ${SBUILD_OUTDIR})/${PROG}"
@@ -631,9 +631,10 @@ if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]] && [ -n "${GHCRPKG_URL+x}" ] && [ -n "$
    GHCRPKG_TAG="${PKG_VERSION}-${HOST_TRIPLET,,}"
    echo "export GHCRPKG_TAG='${GHCRPKG_TAG}'" >> "${OCWD}/ENVPATH"
    if [ -n "${GHCRPKG_URL+x}" ] && [ -n "${GHCRPKG_TAG+x}" ]; then
-     DOWNLOAD_URL="$(echo "${GHCRPKG_URL}" | sed 's|^ghcr.io|https://api.ghcr.pkgforge.dev|' | sed ':a; s/\/\//\//g; ta')?tag=${GHCRPKG_TAG}&download=${PROG}"
-     export DOWNLOAD_URL
+     DOWNLOAD_URL="$(echo "${GHCRPKG_URL}" | sed 's|^ghcr.io|https://api.ghcr.pkgforge.dev|' | sed ':a; s/\/\//\//g; ta')?tag=${GHCRPKG_TAG}&download=${PROG}" ; export DOWNLOAD_URL
      echo "export DOWNLOAD_URL='${DOWNLOAD_URL}'" >> "${OCWD}/ENVPATH"
+     MANIFEST_URL="$(echo "${GHCRPKG_URL}" | sed 's|^ghcr.io|https://api.ghcr.pkgforge.dev|' | sed ':a; s/\/\//\//g; ta')?tag=${GHCRPKG_TAG}&manifest" ; export MANIFEST_URL
+     echo "export MANIFEST_URL='${MANIFEST_URL}'" >> "${OCWD}/ENVPATH"
    fi
    PKG_SIZE="$(jq -r '.size' "${PKG_JSON}" | tr -d '[:space:]')"
    PKG_SIZE="${PKG_SIZE:-$(du -sh "${GHCR_PKG}" | awk '{unit=substr($1,length($1)); sub(/[BKMGT]$/,"",$1); print $1 " " unit "B"}')}"
@@ -664,10 +665,11 @@ if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]] && [ -n "${GHCRPKG_URL+x}" ] && [ -n "$
      ghcr_push+=(--annotation "dev.pkgforge.soar.category=${PKG_CATEGORY}")
      ghcr_push+=(--annotation "dev.pkgforge.soar.description=${PKG_DESCRIPTION}")
      ghcr_push+=(--annotation "dev.pkgforge.soar.download_url=${DOWNLOAD_URL}")
-     ghcr_push+=(--annotation "dev.pkgforge.soar.ghcrpkg=${GHCRPKG_URL}:${GHCRPKG_TAG}")
+     ghcr_push+=(--annotation "dev.pkgforge.soar.ghcr_pkg=${GHCRPKG_URL}:${GHCRPKG_TAG}")
      ghcr_push+=(--annotation "dev.pkgforge.soar.homepage=${PKG_HOMEPAGE:-${PKG_SRCURL}}")
      ghcr_push+=(--annotation "dev.pkgforge.soar.icon=${PKG_ICON}")
      ghcr_push+=(--annotation "dev.pkgforge.soar.json=$(jq . ${PKG_JSON})")
+     ghcr_push+=(--annotation "dev.pkgforge.soar.manifest_url=${MANIFEST_URL}")
      ghcr_push+=(--annotation "dev.pkgforge.soar.note=${PKG_NOTE}")
      ghcr_push+=(--annotation "dev.pkgforge.soar.pkg=${SBUILD_PKG:-${PKG_ORIG}}")
      ghcr_push+=(--annotation "dev.pkgforge.soar.pkg_family=${PKG_FAMILY}")
@@ -745,7 +747,7 @@ cleanup_env()
   rm -rvf "${BUILD_DIR}" 2>/dev/null
  fi
 #Cleanup Env
- unset BUILD_DIR ghcr_push GHCRPKG_URL GHCRPKG_TAG INPUT_SBUILD INPUT_SBUILD_PATH OCWD pkg PKG PKG_FAMILY pkg_id PKG_ID pkg_type PKG_TYPE PKG_VERSION_UPSTREAM PKG_WEBPAGE PROG REPOLOGY_PKG REPOLOGY_PKGVER REPOLOGY_VER SBUILD_OUTDIR SBUILD_PKG SBUILD_PKGS SBUILD_PKGVER SBUILD_REBUILD SBUILD_SCRIPT SBUILD_SCRIPT_BLOB SBUILD_SUCCESSFUL SBUILD_TMPDIR SNAPSHOT_JSON SNAPSHOT_TAGS TAG_URL TMPJSON TMPXVER TMPXRUN
+ unset BUILD_DIR ghcr_push GHCRPKG_URL GHCRPKG_TAG INPUT_SBUILD INPUT_SBUILD_PATH MANIFEST_URL OCWD pkg PKG PKG_FAMILY pkg_id PKG_ID pkg_type PKG_TYPE PKG_VERSION_UPSTREAM PKG_WEBPAGE PROG REPOLOGY_PKG REPOLOGY_PKGVER REPOLOGY_VER SBUILD_OUTDIR SBUILD_PKG SBUILD_PKGS SBUILD_PKGVER SBUILD_REBUILD SBUILD_SCRIPT SBUILD_SCRIPT_BLOB SBUILD_SUCCESSFUL SBUILD_TMPDIR SNAPSHOT_JSON SNAPSHOT_TAGS TAG_URL TMPJSON TMPXVER TMPXRUN
 }
 export -f cleanup_env
 #-------------------------------------------------------#
