@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# VERSION=1.3.6
+# VERSION=1.3.7
 
 #-------------------------------------------------------#
 ## <DO NOT RUN STANDALONE, meant for CI Only>
@@ -635,11 +635,14 @@ if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]] && [ -n "${GHCRPKG_URL+x}" ] && [ -n "$
      if [ -z "${PKG_ICON+x}" ] || [ -z "${PKG_ICON##*[[:space:]]}" ]; then
        if [[ -s "${SBUILD_OUTDIR}/${PROG}.png" && $(stat -c%s "${SBUILD_OUTDIR}/${PROG}.png") -gt 3 ]]; then
          PKG_ICON="$(echo "${DOWNLOAD_URL}" | sed 's/download=[^&]*/download='"${PROG}"'.png/')"
+         minisign -Sm "${SBUILD_OUTDIR}/${PROG}.png" -P "${MINISIGN_PUB_KEY}" -s "${HOME}/.minisign/pkgforge.key" -x "${SBUILD_OUTDIR}/${PROG}.png.sig"
        elif [[ -s "${SBUILD_OUTDIR}/${PROG}.svg" && $(stat -c%s "${SBUILD_OUTDIR}/${PROG}.svg") -gt 3 ]]; then
          PKG_ICON="$(echo "${DOWNLOAD_URL}" | sed 's/download=[^&]*/download='"${PROG}"'.svg/')"
+         minisign -Sm "${SBUILD_OUTDIR}/${PROG}.svg" -P "${MINISIGN_PUB_KEY}" -s "${HOME}/.minisign/pkgforge.key" -x "${SBUILD_OUTDIR}/${PROG}.svg.sig"
        else
          echo '<svg viewBox="0 0 10 10"><circle cx="5" cy="5" r="4" fill="yellow"/></svg>' > "${SBUILD_OUTDIR}/${PROG}.svg"
          PKG_ICON="$(echo "${DOWNLOAD_URL}" | sed 's/download=[^&]*/download='"${PROG}"'.svg/')"
+         minisign -Sm "${SBUILD_OUTDIR}/${PROG}.svg" -P "${MINISIGN_PUB_KEY}" -s "${HOME}/.minisign/pkgforge.key" -x "${SBUILD_OUTDIR}/${PROG}.svg.sig"
        fi
      fi
     #pkg_id 
