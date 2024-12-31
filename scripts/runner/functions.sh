@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# VERSION=1.2.6
+# VERSION=1.2.7
 
 #-------------------------------------------------------#
 ## <DO NOT RUN STANDALONE, meant for CI Only>
@@ -480,7 +480,7 @@ if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]]; then
     "src_url": (.src_url // []),
     "tag": (.tag // []),
     "version": (env.SBUILD_PKGVER // ""),
-    "version_upstream: (env.PKG_VERSION_UPSTREAM // ""),
+    "version_upstream": (env.PKG_VERSION_UPSTREAM // ""),
     "bsum": (env.PKG_BSUM // ""),
     "build_date": (env.PKG_DATE // ""),
     "build_log": (env.BUILD_LOG // ""),

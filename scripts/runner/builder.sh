@@ -15,7 +15,7 @@
 sbuild_builder()
  {
   ##Version
-   SBB_VERSION="0.0.5" && echo -e "[+] SBUILD Builder Version: ${SBB_VERSION}" ; unset SBB_VERSION 
+   SBB_VERSION="0.0.6" && echo -e "[+] SBUILD Builder Version: ${SBB_VERSION}" ; unset SBB_VERSION 
   ##Enable Debug 
    if [ "${DEBUG}" = "1" ] || [ "${DEBUG}" = "ON" ]; then
       set -x
@@ -164,7 +164,7 @@ sbuild_builder()
    fi
   #Build
    i=0; until pushd "$(${TMPDIRS})" >/dev/null 2>&1 || [ $((i+=1)) -gt 3 ]; do :; done
-   echo -e "\n==> [+] Started Building at :: $(TZ='UTC' date +'%A, %Y-%m-%d (%I:%M:%S %p)')\n"
+   echo -e "\n==> [+] Started Building at :: $(TZ='UTC' date +'%A, %Y-%m-%d (%I:%M:%S %p)') UTC\n"
    sort -u "${SYSTMP}/pkgforge/SBUILD_URLS" -o"${SYSTMP}/pkgforge/SBUILD_URLS"
    readarray -t RECIPES < "${SYSTMP}/pkgforge/SBUILD_URLS"
    TOTAL_RECIPES="${#RECIPES[@]}" && export TOTAL_RECIPES="${TOTAL_RECIPES}"
@@ -251,7 +251,7 @@ sbuild_builder()
      ELAPSED_TIME="$(date -u -d@"$((END_TIME - START_TIME))" "+%H(Hr):%M(Min):%S(Sec)")"
      echo -e "\n[+] Completed (Building|Fetching) ${RECIPE} :: ${ELAPSED_TIME}\n"
     done
-    echo -e "\n==> [+] Finished Building at :: $(TZ='UTC' date +'%A, %Y-%m-%d (%I:%M:%S %p)')\n"
+    echo -e "\n==> [+] Finished Building at :: $(TZ='UTC' date +'%A, %Y-%m-%d (%I:%M:%S %p)') UTC\n"
    popd >/dev/null 2>&1
    cd "${OWD_TMPDIR}" ; unset OWD_TMPDIR
   ##Finish
