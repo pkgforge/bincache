@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# VERSION=1.3.4
+# VERSION=1.3.5
 
 #-------------------------------------------------------#
 ## <DO NOT RUN STANDALONE, meant for CI Only>
@@ -546,29 +546,32 @@ local PROG="$1"
 pushd "${SBUILD_OUTDIR}" >/dev/null 2>&1
 if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]] && [ -n "${GHCRPKG_URL+x}" ] && [ -n "${GHCRPKG_URL##*[[:space:]]}" ]; then
  #Clear ENV
-  unset ARCH BUILD_LOG BUILD_SCRIPT DOWNLOAD_URL GHCR_PKG GHCRPKG_TAG MANIFEST_URL PKG_BSUM PKG_CATEGORY PKG_DATE PKG_DESCRIPTION PKG_HOMEPAGE PKG_ICON PKG_JSON PKG_NAME PKG_NOTE PKG_ORIG PKG_REPOLOGY PKG_SCREENSHOT PKG_SHASUM PKG_SIZE PKG_SIZE_RAW PKG_SRCURL PKG_TAG PKG_VERSION PKG_VERSION_UPSTREAM PKG_WEBPAGE PUSH_SUCCESSFUL VERSION
- #Parse
+  unset ARCH BUILD_LOG BUILD_SCRIPT DOWNLOAD_URL GHCR_PKG GHCRPKG_TAG MANIFEST_URL METADATA_URL PKG_BSUM PKG_CATEGORY PKG_DATE PKG_DESCRIPTION PKG_HOMEPAGE PKG_ICON PKG_JSON PKG_NAME PKG_NOTE PKG_ORIG PKG_REPOLOGY PKG_SCREENSHOT PKG_SHASUM PKG_SIZE PKG_SIZE_RAW PKG_SRCURL PKG_TAG PKG_VERSION PKG_VERSION_UPSTREAM PKG_WEBPAGE PUSH_SUCCESSFUL VERSION
+ #Parse (in order of dependencies)
   if jq --exit-status . "${SBUILD_OUTDIR}/${PROG}.json" >/dev/null 2>&1; then
+  #Artifact to Upload
    GHCR_PKG="$(realpath ${SBUILD_OUTDIR})/${PROG}"
+  #json 
    PKG_JSON="$(realpath ${SBUILD_OUTDIR}/${PROG}.json)"
    export GHCR_PKG PKG_JSON
    echo "export PKG_JSON='${PKG_JSON}'" >> "${OCWD}/ENVPATH"
+  #If Artifact exists 
    if [[ -s "${GHCR_PKG}" && $(stat -c%s "${GHCR_PKG}") -gt 100 ]]; then
+    #pkg_name
      PKG_NAME="$(jq -r '.pkg_name' "${PKG_JSON}" | tr -d '[:space:]')"
+    #build_log 
      BUILD_LOG="$(jq -r '.build_log' "${PKG_JSON}" | tr -d '[:space:]')"
      [[ "${BUILD_LOG}" == "null" ]] && BUILD_LOG=""
+    #build_script 
      BUILD_SCRIPT="$(jq -r '.build_script' "${PKG_JSON}" | tr -d '[:space:]')"
      [[ "${BUILD_SCRIPT}" == "null" ]] && unset BUILD_SCRIPT
      [ -z "${BUILD_SCRIPT}" ] && BUILD_SCRIPT="${SBUILD_SCRIPT_BLOB}"
+    #download_url 
      if [ -z "${DOWNLOAD_URL+x}" ] || [ -z "${DOWNLOAD_URL##*[[:space:]]}" ]; then
        DOWNLOAD_URL="$(jq -r '.download_url' "${PKG_JSON}" | tr -d '[:space:]')"
-       [[ "${DOWNLOAD_URL}" == "null" ]] && DOWNLOAD_URL=""
+       [[ "${DOWNLOAD_URL}" == "null" ]] && unset DOWNLOAD_URL
      fi
-     PKG_BSUM="$(jq -r '.bsum' "${PKG_JSON}" | tr -d '[:space:]')"
-     [[ "${PKG_BSUM}" == "null" ]] && unset PKG_BSUM
-     [ -z "${PKG_BSUM}" ] && PKG_BSUM="$(b3sum "${GHCR_PKG}" | grep -oE '^[a-f0-9]{64}' | tr -d '[:space:]')"
-     PKG_CATEGORY="$(jq -r 'if .category | type == "array" then .category[0] else .category end' "${PKG_JSON}" | tr -d '[:space:]')"
-     [[ "${PKG_CATEGORY}" == "null" ]] && PKG_CATEGORY=""
+    #build_date 
      PKG_DATE="$(jq -r '.build_date' "${PKG_JSON}" | tr -d '[:space:]')"
      [[ "${PKG_DATE}" == "null" ]] && unset PKG_DATE
      if [ -z "${PKG_DATE+x}" ] || [ -z "${PKG_DATE##*[[:space:]]}" ]; then
@@ -578,13 +581,54 @@ if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]] && [ -n "${GHCRPKG_URL+x}" ] && [ -n "$
        PKG_DATETMP="${PKG_DATE}"
        PKG_DATE="$(echo "${PKG_DATETMP}" | sed 's/ZZ\+/Z/Ig')" ; unset PKG_DATETMP
      fi
+    #version 
+     PKG_VERSION="$(jq -r '.version' "${PKG_JSON}" | tr -d '[:space:]')"
+     if [[ "${PKG_VERSION}" == "latest" ]]; then
+       if [[ -n "${PKG_DATE}" ]]; then
+         PKG_VERSION="$(echo ${PKG_DATE} | tr -cd '0-9')"
+       else
+         PKG_VERSION="$(date --utc +'%y%m%dT%H%M%S')"
+       fi
+     fi
+     echo "export PKG_VERSION='${PKG_VERSION}'" >> "${OCWD}/ENVPATH"
+    #version_upstream 
+     PKG_VERSION_UPSTREAM="$(jq -r '.version_upstream' "${PKG_JSON}" | tr -d '[:space:]')"
+     [[ "${PKG_VERSION_UPSTREAM}" == "null" ]] && unset PKG_VERSION_UPSTREAM
+     echo "export PKG_VERSION_UPSTREAM='${PKG_VERSION_UPSTREAM}'" >> "${OCWD}/ENVPATH"     
+    #tag 
+     GHCRPKG_TAG="${PKG_VERSION}-${HOST_TRIPLET,,}"
+     echo "export GHCRPKG_TAG='${GHCRPKG_TAG}'" >> "${OCWD}/ENVPATH"
+    #Sanity Check download_url
+     if [ -n "${DOWNLOAD_URL+x}" ] && [ -n "${DOWNLOAD_URL##*[[:space:]]}" ]; then
+       echo "export DOWNLOAD_URL='${DOWNLOAD_URL}'" >> "${OCWD}/ENVPATH"
+     else
+       DOWNLOAD_URL="$(echo "${GHCRPKG_URL}" | sed 's|^ghcr.io|https://api.ghcr.pkgforge.dev|' | sed ':a; s/\/\//\//g; ta')?tag=${GHCRPKG_TAG}&download=${PROG}" ; export DOWNLOAD_URL
+       echo "export DOWNLOAD_URL='${DOWNLOAD_URL}'" >> "${OCWD}/ENVPATH"
+     fi
+    #Manifests & Metadata URLs
+     if [ -n "${GHCRPKG_URL+x}" ] && [ -n "${GHCRPKG_TAG+x}" ]; then
+       MANIFEST_URL="$(echo "${GHCRPKG_URL}" | sed 's|^ghcr.io|https://api.ghcr.pkgforge.dev|' | sed ':a; s/\/\//\//g; ta')?tag=${GHCRPKG_TAG}&manifest" ; export MANIFEST_URL
+       echo "export MANIFEST_URL='${MANIFEST_URL}'" >> "${OCWD}/ENVPATH"
+       METADATA_URL="$(echo "${DOWNLOAD_URL}" | sed 's/download=[^&]*/download='"${PROG}"'.json/')" ; export METADATA_URL
+       echo "export METADATA_URL='${METADATA_URL}'" >> "${OCWD}/ENVPATH"
+     fi
+    #bsum
+     PKG_BSUM="$(jq -r '.bsum' "${PKG_JSON}" | tr -d '[:space:]')"
+     [[ "${PKG_BSUM}" == "null" ]] && unset PKG_BSUM
+     [ -z "${PKG_BSUM}" ] && PKG_BSUM="$(b3sum "${GHCR_PKG}" | grep -oE '^[a-f0-9]{64}' | tr -d '[:space:]')"
+    #category 
+     PKG_CATEGORY="$(jq -r 'if .category | type == "array" then .category[0] else .category end' "${PKG_JSON}" | tr -d '[:space:]')"
+     [[ "${PKG_CATEGORY}" == "null" ]] && PKG_CATEGORY=""
+    #description 
      PKG_DESCRIPTION="$(jq -r '.description' "${PKG_JSON}")"
      if [ -z "${PKG_FAMILY+x}" ] || [ -z "${PKG_FAMILY##*[[:space:]]}" ]; then
        PKG_FAMILY="$(jq -r '.pkg_family' "${PKG_JSON}" | tr -d '[:space:]')"
        [[ "${PKG_FAMILY}" == "null" ]] && PKG_FAMILY="${PKG_NAME}"
      fi
+    #homepage 
      PKG_HOMEPAGE="$(jq -r 'if .homepage | type == "array" then .homepage[0] else .homepage end' "${PKG_JSON}" | tr -d '[:space:]')"
      [[ "${PKG_HOMEPAGE}" == "null" ]] && PKG_HOMEPAGE=""
+    #icon 
      PKG_ICON="$(jq -r 'if .icon | type == "array" then .icon[0] else .icon end' "${PKG_JSON}" | tr -d '[:space:]')"
      [[ "${PKG_ICON}" == "null" ]] && unset PKG_ICON
      if [ -z "${PKG_ICON+x}" ] || [ -z "${PKG_ICON##*[[:space:]]}" ]; then
@@ -597,18 +641,25 @@ if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]] && [ -n "${GHCRPKG_URL+x}" ] && [ -n "$
          PKG_ICON="$(echo "${DOWNLOAD_URL}" | sed 's/download=[^&]*/download='"${PROG}"'.svg/')"
        fi
      fi
+    #pkg_id 
      PKG_ID="$(jq -r '.pkg_id' "${PKG_JSON}" | tr -d '[:space:]')"
      [[ "${PKG_ID}" == "null" ]] && PKG_ID="${PKG_FAMILY}"
+    #note 
      PKG_NOTE="$(jq -r 'if .note | type == "array" then .note[0] else .note end' "${PKG_JSON}")"
      [[ "${PKG_NOTE}" == "null" ]] && PKG_NOTE=""
+    #pkg (original name) 
      PKG_ORIG="$(jq -r '.pkg' "${PKG_JSON}" | tr -d '[:space:]')"
+    #repology 
      PKG_REPOLOGY="$(jq -r 'if .repology | type == "array" then .repology[0] else .repology end' "${PKG_JSON}" | tr -d '[:space:]')"
      [[ "${PKG_REPOLOGY}" == "null" ]] && PKG_REPOLOGY=""
+    #screenshots 
      PKG_SCREENSHOT="$(jq -r 'if .screenshots | type == "array" then .screenshots[0] else .screenshots end' "${PKG_JSON}" | tr -d '[:space:]')"
      [[ "${PKG_SCREENSHOT}" == "null" ]] && PKG_SCREENSHOT=""
+    #shasum 
      PKG_SHASUM="$(jq -r '.shasum' "${PKG_JSON}" | tr -d '[:space:]')"
      [[ "${PKG_SHASUM}" == "null" ]] && unset PKG_SHASUM
      [ -z "${PKG_SHASUM}" ] && PKG_SHASUM="$(sha256sum "${GHCR_PKG}" | grep -oE '^[a-f0-9]{64}' | tr -d '[:space:]')"
+    #src_url 
      PKG_SRCURL="$(jq -r 'if .src_url | type == "array" then .src_url[0] else .src_url end' "${PKG_JSON}" | tr -d '[:space:]')"
      [[ "${PKG_SRCURL}" == "null" ]] && unset PKG_SRCURL
      if [[ -n "${PKG_SRCURL}" ]]; then
@@ -616,36 +667,19 @@ if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]] && [ -n "${GHCRPKG_URL+x}" ] && [ -n "$
      elif [[ -n "${PKG_HOMEPAGE}" ]]; then
        PKG_SRCURL="${PKG_HOMEPAGE}"
      fi
+    #tag 
      PKG_TAG="$(jq -r 'if .tag | type == "array" then .tag[0] else .tag end' "${PKG_JSON}" | tr -d '[:space:]')"
      [[ "${PKG_TAG}" == "null" ]] && PKG_TAG=""
-     PKG_VERSION="$(jq -r '.version' "${PKG_JSON}" | tr -d '[:space:]')"
-     if [[ "${PKG_VERSION}" == "latest" ]]; then
-       if [[ -n "${PKG_DATE}" ]]; then
-         PKG_VERSION="$(echo ${PKG_DATE} | tr -cd '0-9')"
-       else
-         PKG_VERSION="$(date --utc +'%y%m%dT%H%M%S')"
-       fi
-     fi
-     echo "export PKG_VERSION='${PKG_VERSION}'" >> "${OCWD}/ENVPATH"
-     PKG_VERSION_UPSTREAM="$(jq -r '.version_upstream' "${PKG_JSON}" | tr -d '[:space:]')"
-     [[ "${PKG_VERSION_UPSTREAM}" == "null" ]] && unset PKG_VERSION_UPSTREAM
-     echo "export PKG_VERSION_UPSTREAM='${PKG_VERSION_UPSTREAM}'" >> "${OCWD}/ENVPATH"
+    #size 
+     PKG_SIZE="$(jq -r '.size' "${PKG_JSON}" | tr -d '[:space:]')"
+     PKG_SIZE="${PKG_SIZE:-$(du -sh "${GHCR_PKG}" | awk '{unit=substr($1,length($1)); sub(/[BKMGT]$/,"",$1); print $1 " " unit "B"}')}"
+    #size_raw 
+     PKG_SIZE_RAW="$(jq -r '.size_raw' "${PKG_JSON}" | tr -d '[:space:]')"
+     PKG_SIZE_RAW="${PKG_SIZE_RAW:-$(stat --format="%s" "${GHCR_PKG}" | tr -d '[:space:]')}"
    else
      echo -e "\n[✗] No Valid \$GHCR_PKG was Provided\n"
     return 1 || exit 1
    fi
-   GHCRPKG_TAG="${PKG_VERSION}-${HOST_TRIPLET,,}"
-   echo "export GHCRPKG_TAG='${GHCRPKG_TAG}'" >> "${OCWD}/ENVPATH"
-   if [ -n "${GHCRPKG_URL+x}" ] && [ -n "${GHCRPKG_TAG+x}" ]; then
-     DOWNLOAD_URL="$(echo "${GHCRPKG_URL}" | sed 's|^ghcr.io|https://api.ghcr.pkgforge.dev|' | sed ':a; s/\/\//\//g; ta')?tag=${GHCRPKG_TAG}&download=${PROG}" ; export DOWNLOAD_URL
-     echo "export DOWNLOAD_URL='${DOWNLOAD_URL}'" >> "${OCWD}/ENVPATH"
-     MANIFEST_URL="$(echo "${GHCRPKG_URL}" | sed 's|^ghcr.io|https://api.ghcr.pkgforge.dev|' | sed ':a; s/\/\//\//g; ta')?tag=${GHCRPKG_TAG}&manifest" ; export MANIFEST_URL
-     echo "export MANIFEST_URL='${MANIFEST_URL}'" >> "${OCWD}/ENVPATH"
-   fi
-   PKG_SIZE="$(jq -r '.size' "${PKG_JSON}" | tr -d '[:space:]')"
-   PKG_SIZE="${PKG_SIZE:-$(du -sh "${GHCR_PKG}" | awk '{unit=substr($1,length($1)); sub(/[BKMGT]$/,"",$1); print $1 " " unit "B"}')}"
-   PKG_SIZE_RAW="$(jq -r '.size_raw' "${PKG_JSON}" | tr -d '[:space:]')"
-   PKG_SIZE_RAW="${PKG_SIZE_RAW:-$(stat --format="%s" "${GHCR_PKG}" | tr -d '[:space:]')}"
   #Upload
    [[ ! -s "./${PROG}" ]] && echo -e "\n[✗] \${GHCR_PKG} ${PROG} was NOT Found at CWD\n" && return 1
    [[ ! -s "./${PROG}.json" ]] && echo -e "\n[✗] \${GHCR_PKG}.json ${PROG} was NOT Found at CWD\n" && return 1
@@ -676,6 +710,7 @@ if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]] && [ -n "${GHCRPKG_URL+x}" ] && [ -n "$
      ghcr_push+=(--annotation "dev.pkgforge.soar.icon=${PKG_ICON}")
      ghcr_push+=(--annotation "dev.pkgforge.soar.json=$(jq . ${PKG_JSON})")
      ghcr_push+=(--annotation "dev.pkgforge.soar.manifest_url=${MANIFEST_URL}")
+     ghcr_push+=(--annotation "dev.pkgforge.soar.metadata_url=${METADATA_URL}")
      ghcr_push+=(--annotation "dev.pkgforge.soar.note=${PKG_NOTE}")
      ghcr_push+=(--annotation "dev.pkgforge.soar.pkg=${SBUILD_PKG:-${PKG_ORIG}}")
      ghcr_push+=(--annotation "dev.pkgforge.soar.pkg_family=${PKG_FAMILY}")
