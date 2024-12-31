@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# VERSION=1.3.0
+# VERSION=1.3.1
 
 #-------------------------------------------------------#
 ## <DO NOT RUN STANDALONE, meant for CI Only>
@@ -441,15 +441,23 @@ if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]]; then
      fi
    fi
   #Generate Snapshots
-   unset SNAPSHOT_JSON SNAPSHOT_TAGS TAG_URL
+   unset GHCRPKG_URL SNAPSHOT_JSON SNAPSHOT_TAGS TAG_URL
    if [ -n "${GHCRPKG+x}" ] && [ -n "${GHCRPKG##*[[:space:]]}" ]; then
-     TAG_URL="https://api.ghcr.pkgforge.dev/$(echo "${GHCRPKG}" | sed ":a; s/\/\//\//g; ta" | sed -E 's|^ghcr\.io/||; s|^/+||; s|/+?$||' | sed ":a; s/\/\//\//g; ta")/${PROG}?tags"
-     echo -e "[+] Fetching Snapshot Tags <== ${TAG_URL}"
-     readarray -t "SNAPSHOT_TAGS" < <(curl -qfsSL "${TAG_URL}" | grep -i "$(uname -m)" | uniq)
+     GHCRPKG_URL="$(echo "${GHCRPKG}/${PROG}" | sed ':a; s/\/\//\//g; ta')" ; export GHCRPKG_URL
    else
-     TAG_URL="https://api.ghcr.pkgforge.dev/pkgforge/$(echo "${PKG_REPO}/${PKG_FAMILY:-${PKG_NAME}}/${PKG_NAME:-${PKG_FAMILY:-${PKG_ID}}}" | sed ":a; s/\/\//\//g; ta")/${PROG}?tags"
+     GHCRPKG_URL="ghcr.io/pkgforge/${PKG_REPO}/${PKG_FAMILY:-${PKG_NAME}}/${PKG_NAME:-${PKG_FAMILY:-${PKG_ID}}}"
+     GHCRPKG_URL="$(echo "${GHCRPKG_URL}/${PROG}" | sed ':a; s/\/\//\//g; ta')" ; export GHCRPKG_URL
+   fi
+   if [ -n "${GHCRPKG+x}" ] && [ -n "${GHCRPKG##*[[:space:]]}" ]; then
+     TAG_URL="https://api.ghcr.pkgforge.dev/$(echo "${GHCRPKG}" | sed ':a; s/\/\//\//g; ta' | sed -E 's|^ghcr\.io/||; s|^/+||; s|/+?$||' | sed ':a; s/\/\//\//g; ta')/${PROG}?tags"
      echo -e "[+] Fetching Snapshot Tags <== ${TAG_URL}"
-     readarray -t "SNAPSHOT_TAGS" < <(curl -qfsSL "${TAG_URL}" | grep -i "$(uname -m)" | uniq)
+     #readarray -t "SNAPSHOT_TAGS" < <(curl -qfsSL "${TAG_URL}" | grep -i "$(uname -m)" | uniq)
+     readarray -t "SNAPSHOT_TAGS" < <(oras repo tags "${GHCRPKG_URL}" | grep -i "$(uname -m)" | uniq)
+   else
+     TAG_URL="https://api.ghcr.pkgforge.dev/pkgforge/$(echo "${PKG_REPO}/${PKG_FAMILY:-${PKG_NAME}}/${PKG_NAME:-${PKG_FAMILY:-${PKG_ID}}}" | sed ':a; s/\/\//\//g; ta')/${PROG}?tags"
+     echo -e "[+] Fetching Snapshot Tags <== ${TAG_URL}"
+     #readarray -t "SNAPSHOT_TAGS" < <(curl -qfsSL "${TAG_URL}" | grep -i "$(uname -m)" | uniq)
+     readarray -t "SNAPSHOT_TAGS" < <(oras repo tags "${GHCRPKG_URL}" | grep -i "$(uname -m)" | uniq)
    fi
    if [[ -n "${SNAPSHOT_TAGS[*]}" && "${#SNAPSHOT_TAGS[@]}" -gt 0 ]]; then
      echo -e "[+] Snapshots: ${SNAPSHOT_TAGS[*]}"
@@ -528,7 +536,7 @@ upload_to_ghcr()
 {
 local PROG="$1"
 pushd "${SBUILD_OUTDIR}" >/dev/null 2>&1
-if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]]; then
+if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]] && [ -n "${GHCRPKG_URL+x}" ] && [ -n "${GHCRPKG_URL##*[[:space:]]}" ]; then
  #Clear ENV
   unset ARCH BUILD_LOG BUILD_SCRIPT DOWNLOAD_URL GHCR_PKG GHCRPKG_TAG PKG_BSUM PKG_CATEGORY PKG_DATE PKG_DESCRIPTION PKG_HOMEPAGE PKG_ICON PKG_JSON PKG_NAME PKG_NOTE PKG_ORIG PKG_REPOLOGY PKG_SCREENSHOT PKG_SHASUM PKG_SIZE PKG_SIZE_RAW PKG_SRCURL PKG_TAG PKG_VERSION PKG_VERSION_UPSTREAM PKG_WEBPAGE PUSH_SUCCESSFUL VERSION
  #Parse
@@ -618,16 +626,10 @@ if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]]; then
      echo -e "\n[✗] No Valid \$GHCR_PKG was Provided\n"
     return 1 || exit 1
    fi
-   if [ -n "${GHCRPKG+x}" ] && [ -n "${GHCRPKG##*[[:space:]]}" ]; then
-     GHCRPKG_URL="$(echo "${GHCRPKG}/${PROG}" | sed ':a; s/\/\//\//g; ta')" ; export GHCRPKG_URL
-   else
-     GHCRPKG_URL="ghcr.io/pkgforge/${PKG_REPO}/${PKG_FAMILY:-${PKG_NAME}}/${PKG_NAME:-${PKG_FAMILY:-${PKG_ID}}}"
-     GHCRPKG_URL="$(echo "${GHCRPKG_URL}/${PROG}" | sed ':a; s/\/\//\//g; ta')" ; export GHCRPKG_URL
-   fi
    echo "export GHCRPKG_URL='${GHCRPKG_URL}'" >> "${OCWD}/ENVPATH"
    GHCRPKG_TAG="${PKG_VERSION}-${HOST_TRIPLET,,}"
    echo "export GHCRPKG_TAG='${GHCRPKG_TAG}'" >> "${OCWD}/ENVPATH"
-   if [ -n "${GHCRPKG+x}" ] && [ -n "${GHCRPKG_TAG+x}" ]; then
+   if [ -n "${GHCRPKG_URL+x}" ] && [ -n "${GHCRPKG_TAG+x}" ]; then
      DOWNLOAD_URL="$(echo "${GHCRPKG_URL}" | sed 's|^ghcr.io|https://api.ghcr.pkgforge.dev|' | sed ':a; s/\/\//\//g; ta')?tag=${GHCRPKG_TAG}&download=${PROG}"
      export DOWNLOAD_URL
      echo "export DOWNLOAD_URL='${DOWNLOAD_URL}'" >> "${OCWD}/ENVPATH"
