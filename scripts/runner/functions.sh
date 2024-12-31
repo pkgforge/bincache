@@ -173,7 +173,7 @@ if [[ "${CONTINUE_SBUILD}" == "YES" ]]; then
  #Get Progs
   if jq -e '.provides // empty' "${TMPJSON}" > /dev/null; then
    SBUILD_PKGS=()
-   SBUILD_PKGS=($(jq -r '.provides[]' "${TMPJSON}"))
+   SBUILD_PKGS=($(jq -r '.provides[]' "${TMPJSON}" | awk -F: '{print $1}'))
    SBUILD_PKGS+=("${PKG}")
    SBUILD_PKGS=($(printf "%s\n" "${SBUILD_PKGS[@]}" | sort | uniq)) ; export SBUILD_PKGS
    echo -e "[+] Progs: ${SBUILD_PKGS[*]}"
