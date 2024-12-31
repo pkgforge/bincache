@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# VERSION=1.2.8
+# VERSION=1.2.9
 
 #-------------------------------------------------------#
 ## <DO NOT RUN STANDALONE, meant for CI Only>
@@ -441,11 +441,15 @@ if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]]; then
      fi
    fi
   #Generate Snapshots
-   unset SNAPSHOT_JSON SNAPSHOT_TAGS
+   unset SNAPSHOT_JSON SNAPSHOT_TAGS TAG_URL
    if [ -n "${GHCRPKG+x}" ] && [ -n "${GHCRPKG##*[[:space:]]}" ]; then
-     readarray -t "SNAPSHOT_TAGS" < <(curl -qfsSL "https://api.ghcr.pkgforge.dev/$(echo "${GHCRPKG}" | sed ":a; s/\/\//\//g; ta" | sed -E 's|^ghcr\.io/||; s|^/+||; s|/+?$||' | sed ":a; s/\/\//\//g; ta")?tags" | grep -i "$(uname -m)" | uniq)
+     TAG_URL="https://api.ghcr.pkgforge.dev/$(echo "${GHCRPKG}" | sed ":a; s/\/\//\//g; ta" | sed -E 's|^ghcr\.io/||; s|^/+||; s|/+?$||' | sed ":a; s/\/\//\//g; ta")?tags"
+     echo -e "[+] Fetching Snapshot Tags <== ${TAG_URL}"
+     readarray -t "SNAPSHOT_TAGS" < <(curl -qfsSL "${TAG_URL}" | grep -i "$(uname -m)" | uniq)
    else
-     readarray -t "SNAPSHOT_TAGS" < <(curl -qfsSL "https://api.ghcr.pkgforge.dev/pkgforge/$(echo "${PKG_REPO}/${PKG_FAMILY:-${PKG_NAME}}/${PKG_NAME:-${PKG_FAMILY:-${PKG_ID}}}" | sed ":a; s/\/\//\//g; ta")?tags" | grep -i "$(uname -m)" | uniq)
+     TAG_URL="https://api.ghcr.pkgforge.dev/pkgforge/$(echo "${PKG_REPO}/${PKG_FAMILY:-${PKG_NAME}}/${PKG_NAME:-${PKG_FAMILY:-${PKG_ID}}}" | sed ":a; s/\/\//\//g; ta")?tags"
+     echo -e "[+] Fetching Snapshot Tags <== ${TAG_URL}"
+     readarray -t "SNAPSHOT_TAGS" < <(curl -qfsSL "${TAG_URL}" | grep -i "$(uname -m)" | uniq)
    fi
    if [[ -n "${SNAPSHOT_TAGS[*]}" && "${#SNAPSHOT_TAGS[@]}" -gt 0 ]]; then
      echo -e "[+] Snapshots: ${SNAPSHOT_TAGS[*]}"
@@ -738,7 +742,7 @@ cleanup_env()
   rm -rvf "${BUILD_DIR}" 2>/dev/null
  fi
 #Cleanup Env
- unset BUILD_DIR ghcr_push GHCRPKG_URL GHCRPKG_TAG INPUT_SBUILD INPUT_SBUILD_PATH OCWD pkg PKG PKG_FAMILY pkg_id PKG_ID pkg_type PKG_TYPE PKG_VERSION_UPSTREAM PKG_WEBPAGE PROG REPOLOGY_PKG REPOLOGY_PKGVER REPOLOGY_VER SBUILD_OUTDIR SBUILD_PKG SBUILD_PKGS SBUILD_PKGVER SBUILD_REBUILD SBUILD_SCRIPT SBUILD_SCRIPT_BLOB SBUILD_SUCCESSFUL SBUILD_TMPDIR SNAPSHOT_JSON SNAPSHOT_TAGS TMPJSON TMPXVER TMPXRUN
+ unset BUILD_DIR ghcr_push GHCRPKG_URL GHCRPKG_TAG INPUT_SBUILD INPUT_SBUILD_PATH OCWD pkg PKG PKG_FAMILY pkg_id PKG_ID pkg_type PKG_TYPE PKG_VERSION_UPSTREAM PKG_WEBPAGE PROG REPOLOGY_PKG REPOLOGY_PKGVER REPOLOGY_VER SBUILD_OUTDIR SBUILD_PKG SBUILD_PKGS SBUILD_PKGVER SBUILD_REBUILD SBUILD_SCRIPT SBUILD_SCRIPT_BLOB SBUILD_SUCCESSFUL SBUILD_TMPDIR SNAPSHOT_JSON SNAPSHOT_TAGS TAG_URL TMPJSON TMPXVER TMPXRUN
 }
 export -f cleanup_env
 #-------------------------------------------------------#
