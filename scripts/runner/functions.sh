@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# VERSION=1.2.3
+# VERSION=1.2.4
 
 #-------------------------------------------------------#
 ## <DO NOT RUN STANDALONE, meant for CI Only>
@@ -65,7 +65,7 @@ export -f check_sane_env
 ##Fetch Version (Repology) (.version_upstream)
 fetch_version_repology()
 {
- if [[ -n "${PKG_REPOLOGY[@]}" && "${#PKG_REPOLOGY[@]}" -gt 0 ]]; then
+ if [[ -n "${PKG_REPOLOGY[*]}" && "${#PKG_REPOLOGY[@]}" -gt 0 ]]; then
    unset REPOLOGY_PKGVER REPOLOGY_VER ; declare -a REPOLOGY_PKGVER=()
    for REPOLOGY_PROG in "${PKG_REPOLOGY[@]}"; do
     {
@@ -80,9 +80,9 @@ fetch_version_repology()
    unset REPOLOGY_PROG REPOLOGY_VER ; export REPOLOGY_PKGVER
  fi
  if [ -n "${REPOLOGY_PKGVER+x}" ] && [ -n "${REPOLOGY_PKGVER##*[[:space:]]}" ]; then
-   echo -e "[+] Upstream Version: ${REPOLOGY_PKGVER} ('.repology') [${PKG_REPOLOGY[@]}]" ; unset PKG_REPOLOGY
+   echo -e "[+] Upstream Version: ${REPOLOGY_PKGVER} ('.repology') [${PKG_REPOLOGY[*]}]" ; unset PKG_REPOLOGY
  else
-   echo -e "[-] WARNING: Could NOT Fetch Version from Upstream ('.repology') [${PKG_REPOLOGY[@]}]" ; unset PKG_REPOLOGY
+   echo -e "[-] WARNING: Could NOT Fetch Version from Upstream ('.repology') [${PKG_REPOLOGY[*]}]" ; unset PKG_REPOLOGY
  fi
 }
 export -f fetch_version_repology
