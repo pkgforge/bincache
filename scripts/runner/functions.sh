@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# VERSION=1.3.3
+# VERSION=1.3.4
 
 #-------------------------------------------------------#
 ## <DO NOT RUN STANDALONE, meant for CI Only>
@@ -440,8 +440,6 @@ if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]]; then
        PKG_ICON="$(echo "${DOWNLOAD_URL}" | sed 's/download=[^&]*/download='"${PROG}"'.svg/')" ; export PKG_ICON
      fi
    fi
-  #Generate Manifest
-   unset PKG_MANIFEST ; PKG_MANIFEST="$(echo "${DOWNLOAD_URL}" | sed 's/download=[^&]*/manifest/')" ; export PKG_MANIFEST
   #Generate Snapshots
    unset GHCRPKG_URL SNAPSHOT_JSON SNAPSHOT_TAGS TAG_URL
    if [ -n "${GHCRPKG+x}" ] && [ -n "${GHCRPKG##*[[:space:]]}" ]; then
@@ -450,7 +448,12 @@ if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]]; then
      GHCRPKG_URL="ghcr.io/pkgforge/${PKG_REPO}/${PKG_FAMILY:-${PKG_NAME}}/${PKG_NAME:-${PKG_FAMILY:-${PKG_ID}}}"
      GHCRPKG_URL="$(echo "${GHCRPKG_URL}/${PROG}" | sed ':a; s/\/\//\//g; ta')" ; export GHCRPKG_URL
    fi
-   if [ -n "${GHCRPKG+x}" ] && [ -n "${GHCRPKG##*[[:space:]]}" ]; then
+   echo "export GHCRPKG_URL='${GHCRPKG_URL}'" >> "${OCWD}/ENVPATH"
+   if [ -n "${GHCRPKG_URL+x}" ] && [ -n "${GHCRPKG_URL##*[[:space:]]}" ]; then
+    #Generate Manifest
+     unset PKG_MANIFEST ; PKG_MANIFEST="$(echo "${DOWNLOAD_URL}" | sed 's/download=[^&]*/manifest/')" ; export PKG_MANIFEST
+     unset PKG_GHCR ; PKG_GHCR="${GHCRPKG_URL}:${SBUILD_PKGVER}-${HOST_TRIPLET,,}" ; export PKG_GHCR
+    #Generate Tags
      TAG_URL="https://api.ghcr.pkgforge.dev/$(echo "${GHCRPKG}" | sed ':a; s/\/\//\//g; ta' | sed -E 's|^ghcr\.io/||; s|^/+||; s|/+?$||' | sed ':a; s/\/\//\//g; ta')/${PROG}?tags"
      echo -e "[+] Fetching Snapshot Tags <== ${TAG_URL} [\$GHCRPKG]"
      #readarray -t "SNAPSHOT_TAGS" < <(curl -qfsSL "${TAG_URL}" | grep -i "$(uname -m)" | uniq)
@@ -461,7 +464,6 @@ if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]]; then
      #readarray -t "SNAPSHOT_TAGS" < <(curl -qfsSL "${TAG_URL}" | grep -i "$(uname -m)" | uniq)
      readarray -t "SNAPSHOT_TAGS" < <(oras repo tags "${GHCRPKG_URL}" | grep -i "$(uname -m)" | uniq)
    fi
-   echo "export GHCRPKG_URL='${GHCRPKG_URL}'" >> "${OCWD}/ENVPATH"
    if [[ -n "${SNAPSHOT_TAGS[*]}" && "${#SNAPSHOT_TAGS[@]}" -gt 0 ]]; then
      echo -e "[+] Snapshots: ${SNAPSHOT_TAGS[*]}"
      SNAPSHOT_JSON=$(printf '%s\n' "${SNAPSHOT_TAGS[@]}" | jq -R . | jq -s 'if type == "array" then . else [] end')
@@ -521,6 +523,7 @@ if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]]; then
     "build_log": (env.BUILD_LOG // ""),
     "build_script": (env.SBUILD_SCRIPT_BLOB // ""),
     "download_url": (env.DOWNLOAD_URL // ""),
+    "ghcr_pkg": (env.PKG_GHCR // ""),
     "ghcr_url": (if (env.GHCRPKG_URL // "") | startswith("https://") then (env.GHCRPKG_URL // "") else "https://" + (env.GHCRPKG_URL // "") end),
     "manifest_url": (env.PKG_MANIFEST // ""),
     "shasum": (env.PKG_SHASUM // ""),
@@ -750,7 +753,7 @@ cleanup_env()
   rm -rvf "${BUILD_DIR}" 2>/dev/null
  fi
 #Cleanup Env
- unset BUILD_DIR ghcr_push GHCRPKG_URL GHCRPKG_TAG INPUT_SBUILD INPUT_SBUILD_PATH MANIFEST_URL OCWD pkg PKG PKG_FAMILY pkg_id PKG_ID PKG_MANIFEST pkg_type PKG_TYPE PKG_VERSION_UPSTREAM PKG_WEBPAGE PROG REPOLOGY_PKG REPOLOGY_PKGVER REPOLOGY_VER SBUILD_OUTDIR SBUILD_PKG SBUILD_PKGS SBUILD_PKGVER SBUILD_REBUILD SBUILD_SCRIPT SBUILD_SCRIPT_BLOB SBUILD_SUCCESSFUL SBUILD_TMPDIR SNAPSHOT_JSON SNAPSHOT_TAGS TAG_URL TMPJSON TMPXVER TMPXRUN
+ unset BUILD_DIR ghcr_push GHCRPKG_URL GHCRPKG_TAG INPUT_SBUILD INPUT_SBUILD_PATH MANIFEST_URL OCWD pkg PKG PKG_FAMILY PKG_GHCR pkg_id PKG_ID PKG_MANIFEST pkg_type PKG_TYPE PKG_VERSION_UPSTREAM PKG_WEBPAGE PROG REPOLOGY_PKG REPOLOGY_PKGVER REPOLOGY_VER SBUILD_OUTDIR SBUILD_PKG SBUILD_PKGS SBUILD_PKGVER SBUILD_REBUILD SBUILD_SCRIPT SBUILD_SCRIPT_BLOB SBUILD_SUCCESSFUL SBUILD_TMPDIR SNAPSHOT_JSON SNAPSHOT_TAGS TAG_URL TMPJSON TMPXVER TMPXRUN
 }
 export -f cleanup_env
 #-------------------------------------------------------#
