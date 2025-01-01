@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# VERSION=1.3.7
+# VERSION=1.3.7-1
 
 #-------------------------------------------------------#
 ## <DO NOT RUN STANDALONE, meant for CI Only>
@@ -319,7 +319,7 @@ if [[ "${CONTINUE_SBUILD}" == "YES" ]]; then
       #Sign
        echo -e "\n[+] Signing ${SBUILD_PKG} (Verify: https://docs.pkgforge.dev/repositories/pkgforge-stable/security#trust-but-verify)"
        find "${SBUILD_OUTDIR}" -maxdepth 1 -type f ! -name "*.sig" -print0 | sort -zu | xargs -0 -I "{}" minisign -Sm "{}" -P "${MINISIGN_PUB_KEY}" -s "${HOME}/.minisign/pkgforge.key" -x "{}.sig"
-       find "${SBUILD_OUTDIR}" -maxdepth 1 -type f -name "*.sig" -exec bash -c 'printf "==> %s\n" "$(basename "{}")"' \; | sort -u
+       #find "${SBUILD_OUTDIR}" -maxdepth 1 -type f -name "*.sig" -exec bash -c 'printf "==> %s\n" "$(basename "{}")"' \; | sort -u
       #End
        export SBUILD_SUCCESSFUL="YES"
        echo "export SBUILD_SUCCESSFUL='${SBUILD_SUCCESSFUL}'" >> "${OCWD}/ENVPATH"
