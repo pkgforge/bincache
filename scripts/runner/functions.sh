@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# VERSION=1.3.8
+# VERSION=1.3.9
 
 #-------------------------------------------------------#
 ## <DO NOT RUN STANDALONE, meant for CI Only>
@@ -534,6 +534,7 @@ if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]]; then
     "size_raw": (env.PKG_SIZE_RAW // ""),
     "snapshots": $snapshots
   }' | jq . > "${SBUILD_OUTDIR}/${PROG}.json"
+   echo -e "\n" && jq . "${SBUILD_OUTDIR}/${PROG}.json" ; echo -e "\n"
   fi
  done
 fi
