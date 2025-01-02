@@ -71,6 +71,8 @@ sbuild_builder()
    if [ -n "${INPUT_FILE+x}" ] && [ -n "${INPUT_FILE##*[[:space:]]}" ]; then
      if [ ! -f "$(realpath ${INPUT_FILE})" ] || [ ! -s "$(realpath ${INPUT_FILE})" ]; then
        echo -e "\n[✗] FATAL: ${INPUT_FILE} is NOT a Valid file\n"
+       export CONTINUE_SBUILD="NO"
+       return 1 || exit 1
      else
        INPUT_FILE="$(realpath ${INPUT_FILE})" ; export INPUT_FILE
        SELF_NAME="${ARGV0:-${0##*/}}" ; export SELF_NAME
