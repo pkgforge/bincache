@@ -239,7 +239,7 @@ sbuild_builder()
         check_sane_env
         gen_json_from_sbuild
         build_progs
-        if [ -d "${SBUILD_OUTDIR}" ] && [ "$(du -s "${SBUILD_OUTDIR}" | cut -f1)" -gt 100 ]; then
+        if [ -d "${SBUILD_OUTDIR}" ] && [ "$(du -s "${SBUILD_OUTDIR}" | cut -f1)" -gt 10 ]; then
           generate_json
         elif [[ "${SBUILD_SKIPPED}" != "YES" ]]; then
           echo -e "\n[✗] FATAL: Build Dir [${BUILD_DIR}/SBUILD_OUTDIR] seems Broken\n"

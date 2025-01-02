@@ -135,7 +135,7 @@ else
  ##Check for Minisign
   if [[ ! -s "${HOME}/.minisign/pkgforge.key" || $(stat -c%s "${HOME}/.minisign/pkgforge.key") -le 10 ]]; then
     if [ -n "${MINISIGN_KEY+x}" ] && [ -n "${MINISIGN_KEY##*[[:space:]]}" ]; then
-      mkdir -p "${HOME}/.minisign" && \
+      mkdir -pv "${HOME}/.minisign" && \
       echo 'pkgforge-minisign: minisign encrypted secret key' > "${HOME}/.minisign/pkgforge.key" &&\
       echo "${MINISIGN_KEY}" >> "${HOME}/.minisign/pkgforge.key"
      #https://github.com/pkgforge/.github/blob/main/keys/minisign.pub
@@ -146,6 +146,8 @@ else
      export CONTINUE="NO"
      return 1 || exit 1
     fi
+  else
+   export MINISIGN_PUB_KEY='RWSWp/oBUfND5B2fSmDlYaBXPimGV+r2s9skVRYTQ5cJ+7i6ff/1Nxcr'
   fi
 fi
 #-------------------------------------------------------#

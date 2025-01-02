@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# VERSION=1.4.1
+# VERSION=1.4.2
 
 #-------------------------------------------------------#
 ## <DO NOT RUN STANDALONE, meant for CI Only>
@@ -36,7 +36,7 @@ setup_env()
  #echo -e "\n[+] Building ["$(echo "${RECIPE}" | awk -F'/' '{print $(NF-1) "/" $NF}')"] (${INPUT_SBUILD}) --> ${SBUILD_OUTDIR} [$(TZ='UTC' date +'%A, %Y-%m-%d (%I:%M:%S %p)') UTC]\n"
  echo -e "\n[+] Building (${SBUILD_SCRIPT_BLOB:-${RECIPE}}) --> ${SBUILD_OUTDIR} [$(TZ='UTC' date +'%A, %Y-%m-%d (%I:%M:%S %p)') UTC]\n"
  echo -e "\n" && echo '###################################################################' && \
- cat "${INPUT_SBUILD}" && echo '###################################################################' && echo -e "\n\n"
+ cat "${INPUT_SBUILD}" && echo -e "\n" && echo '###################################################################' && echo -e "\n\n"
  echo "export INPUT_SBUILD='${INPUT_SBUILD}'" > "${OCWD}/ENVPATH"
  echo "export BUILD_DIR='${BUILD_DIR}'" >> "${OCWD}/ENVPATH"
  echo "export SBUILD_OUTDIR='${SBUILD_OUTDIR}'" >> "${OCWD}/ENVPATH"
@@ -161,7 +161,7 @@ gen_json_from_sbuild()
        if [[ -s "${TMPXVER}" && $(stat -c%s "${TMPXVER}") -gt 10 ]]; then
          chmod +x "${TMPXVER}"
          {
-          timeout -k 5s 10s "${TMPXVER}"
+          timeout -k 10s 30s "${TMPXVER}"
          } > "${SBUILD_OUTDIR}/${SBUILD_PKG}.version" 2>&1
          if [[ ! -s "${SBUILD_OUTDIR}/${SBUILD_PKG}.version" || $(stat -c%s "${SBUILD_OUTDIR}/${SBUILD_PKG}.version") -le 3 ]]; then
            echo -e "\n[✗] FATAL: Failed to Fetch Version ('x_exec.pkgver')\n"
@@ -716,7 +716,7 @@ if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]] && [[ -s "${GHCR_PKG}" ]]; then
      echo -e "\n[+] Parsing/Uploading ${PKG_FAMILY}/${PKG_NAME} --> https://github.com/orgs/pkgforge/packages/container/package/${PKG_REPO}%2F${PKG_FAMILY:-${PKG_NAME}}%2F${PKG_NAME} [${HOST_TRIPLET}]"
      jq . "./${PROG}.json" && echo -e "\n"
      minisign -Sm "./${PROG}.json" -P "${MINISIGN_PUB_KEY}" -s "${HOME}/.minisign/pkgforge.key" -x "./${PROG}.json.sig"
-     unset ghcr_push ; ghcr_push=(oras push --concurrency "100" --disable-path-validation)
+     unset ghcr_push ; ghcr_push=(oras push --concurrency "50" --disable-path-validation)
      ghcr_push+=(--config "/dev/null:application/vnd.oci.empty.v1+json")
      ghcr_push+=(--annotation "com.github.package.type=container")
      #ghcr_push+=(--annotation "com.github.package.type=homebrew_bottle")
@@ -782,11 +782,13 @@ if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]] && [[ -s "${GHCR_PKG}" ]]; then
        echo -e "[+] ==> ${MANIFEST_URL:-${DOWNLOAD_URL}} \n"
        export PUSH_SUCCESSFUL="YES"
        #rm -rf "${GHCR_PKG}" "${PKG_JSON}" 2>/dev/null
+       echo "export PUSH_SUCCESSFUL=YES" >> "${OCWD}/ENVPATH"
      else
        echo -e "\n[✗] Failed to Push Artifact to ${GHCRPKG_URL}:${GHCRPKG_TAG}\n"
        export PUSH_SUCCESSFUL="NO"
+       echo "export PUSH_SUCCESSFUL=NO" >> "${OCWD}/ENVPATH"
+       return 1 || exit 1
      fi
-     echo "export PUSH_SUCCESSFUL='${PUSH_SUCCESSFUL}'" >> "${OCWD}/ENVPATH"
     fi
    else
     echo -e "\n[-] FAILED to Parse ${PKG_FAMILY}/${PKG_NAME} Metadata <-- ["${SBUILD_OUTDIR}/${PROG}.json"]\n"
