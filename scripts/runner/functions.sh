@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# VERSION=1.3.7-1
+# VERSION=1.3.8
 
 #-------------------------------------------------------#
 ## <DO NOT RUN STANDALONE, meant for CI Only>
@@ -228,7 +228,7 @@ if [[ "${CONTINUE_SBUILD}" == "YES" ]]; then
  #Get Progs
   if jq -e '.provides // empty' "${TMPJSON}" > /dev/null; then
    SBUILD_PKGS=()
-   SBUILD_PKGS=($(jq -r '.provides[]' "${TMPJSON}" | awk -F: '{print $1}'))
+   SBUILD_PKGS=($(jq -r '.provides[]' "${TMPJSON}" | awk -F'[:=]' '{print $1}'))
    SBUILD_PKGS+=("${PKG}")
    SBUILD_PKGS=($(printf "%s\n" "${SBUILD_PKGS[@]}" | sort | uniq)) ; export SBUILD_PKGS
    echo -e "[+] Progs: ${SBUILD_PKGS[*]}"
