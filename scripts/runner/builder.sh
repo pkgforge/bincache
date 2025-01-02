@@ -15,7 +15,7 @@
 sbuild_builder()
  {
   ##Version
-   SBB_VERSION="0.1.1" && echo -e "[+] SBUILD Builder Version: ${SBB_VERSION}" ; unset SBB_VERSION
+   SBB_VERSION="0.1.2" && echo -e "[+] SBUILD Builder Version: ${SBB_VERSION}" ; unset SBB_VERSION
   ##Enable Debug 
    if [ "${DEBUG}" = "1" ] || [ "${DEBUG}" = "ON" ]; then
       set -x
@@ -180,7 +180,12 @@ sbuild_builder()
      pushd "$(${TMPDIRS})" >/dev/null 2>&1 || sleep 2 && pushd "$(${TMPDIRS})" >/dev/null 2>&1
      OCWD="$(realpath .)" ; export OCWD
      rm "${OCWD}/ENVPATH" 2>/dev/null
-     unset CONTINUE_SBUILD GHCRPKG LOGPATH PKG_FAMILY PUSH_SUCCESSFUL RECIPE SBUILD_PKG SBUILD_REBUILD SBUILD_SCRIPT SBUILD_SCRIPT_BLOB SBUILD_SKIPPED SBUILD_SUCCESSFUL
+     if [[ "${LOCAL_SBUILD}" == "YES" ]] && [[ "${SBUILD_REBUILD}" != "false" ]]; then
+       export SBUILD_REBUILD="true"
+     else
+       unset SBUILD_REBUILD
+     fi
+     unset CONTINUE_SBUILD GHCRPKG LOGPATH PKG_FAMILY PUSH_SUCCESSFUL RECIPE SBUILD_PKG SBUILD_SCRIPT SBUILD_SCRIPT_BLOB SBUILD_SKIPPED SBUILD_SUCCESSFUL
      if [[ "${KEEP_LOGS}" != "YES" ]]; then
        unset KEEP_LOGS
      fi
@@ -212,10 +217,6 @@ sbuild_builder()
          PKG_FAMILY="$(yq eval '.pkg' "${BUILDSCRIPT}" | tr -d '[:space:]')" ; export PKG_FAMILY
          echo "[+] Setting '.pkg_family' --> ${PKG_FAMILY} [Guessed]"
        fi
-       if [[ "${SBUILD_REBUILD}" != "false" ]]; then
-         SBUILD_REBUILD="true"
-       fi
-       export SBUILD_REBUILD
        unset LOCAL_SBUILD
       elif [[ -s "${SYSTMP}/pkgforge/SBUILD_LIST.json" && $(stat -c%s "${SYSTMP}/pkgforge/SBUILD_LIST.json") -gt 10 ]]; then
        GHCRPKG="$(jq -r '.[] | select(.build_script == env.SBUILD_SCRIPT) | .ghcr_pkg' "${SYSTMP}/pkgforge/SBUILD_LIST.json" | tr -d '[:space:]')" && export GHCRPKG
