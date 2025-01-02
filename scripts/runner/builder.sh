@@ -15,7 +15,7 @@
 sbuild_builder()
  {
   ##Version
-   SBB_VERSION="0.0.8" && echo -e "[+] SBUILD Builder Version: ${SBB_VERSION}" ; unset SBB_VERSION 
+   SBB_VERSION="0.0.9" && echo -e "[+] SBUILD Builder Version: ${SBB_VERSION}" ; unset SBB_VERSION 
   ##Enable Debug 
    if [ "${DEBUG}" = "1" ] || [ "${DEBUG}" = "ON" ]; then
       set -x
@@ -131,7 +131,8 @@ sbuild_builder()
       -e '/.*access_key_id.*/Id' \
       -e '/.*secret_access_key.*/Id' \
       -e '/.*cloudflarestorage.*/Id' -i "${TEMP_LOG}"
-   sed '/.*\[+\] Total Size.*/I,$ { /.*\[+\] Total Size.*/I p; d }' -i "${TEMP_LOG}"
+   #sed '/.*\[+\] Total Size.*/I,$ { /.*\[+\] Total Size.*/I p; d }' -i "${TEMP_LOG}"
+   sed '/\(LOGPATH\|ENVPATH\)=/d' -i "${TEMP_LOG}"
       #grep -viE 'github_pat|ghp_|glpat|hf_|token|access_key_id|secret_access_key|cloudflarestorage' "${TEMP_LOG}" | tee "${LOGPATH}" && rm "${TEMP_LOG}" 2>/dev/null
       #mv -fv "${TEMP_LOG}" "${LOGPATH}" && rm "${TEMP_LOG}" 2>/dev/null
       echo '\\\\====================== Package Forge ======================////' > "${LOGPATH}"
