@@ -15,7 +15,7 @@
 sbuild_builder()
  {
   ##Version
-   SBB_VERSION="0.1.2" && echo -e "[+] SBUILD Builder Version: ${SBB_VERSION}" ; unset SBB_VERSION
+   SBB_VERSION="0.1.3" && echo -e "[+] SBUILD Builder Version: ${SBB_VERSION}" ; unset SBB_VERSION
   ##Enable Debug 
    if [ "${DEBUG}" = "1" ] || [ "${DEBUG}" = "ON" ]; then
       set -x
@@ -69,8 +69,12 @@ sbuild_builder()
    fi
    INPUT_FILE="${1:-$(echo "$@" | tr -d '[:space:]')}"
    if [ -n "${INPUT_FILE+x}" ] && [ -n "${INPUT_FILE##*[[:space:]]}" ]; then
-     INPUT_FILE="$(realpath ${INPUT_FILE})" ; export INPUT_FILE
-     SELF_NAME="${ARGV0:-${0##*/}}" ; export SELF_NAME
+     if [ ! -f "$(realpath ${INPUT_FILE})" ] || [ ! -s "$(realpath ${INPUT_FILE})" ]; then
+       echo -e "\n[✗] FATAL: ${INPUT_FILE} is NOT a Valid file\n"
+     else
+       INPUT_FILE="$(realpath ${INPUT_FILE})" ; export INPUT_FILE
+       SELF_NAME="${ARGV0:-${0##*/}}" ; export SELF_NAME
+     fi
    else
      SELF_NAME="sbuild-builder" ; export SELF_NAME
    fi

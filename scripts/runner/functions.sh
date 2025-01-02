@@ -110,7 +110,7 @@ fetch_version_upstream()
    echo -e "[+] Upstream Version: ${PKG_VERSION_UPSTREAM} <==> \${SBUILD_PKGVER} [${SBUILD_OUTDIR}/${SBUILD_PKG}.version]"
  fi
 }
-export -f fetch_version_repology
+export -f fetch_version_upstream
 #-------------------------------------------------------#
 
 #-------------------------------------------------------#
