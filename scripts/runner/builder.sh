@@ -15,7 +15,7 @@
 sbuild_builder()
  {
   ##Version
-   SBB_VERSION="0.1.0" && echo -e "[+] SBUILD Builder Version: ${SBB_VERSION}" ; unset SBB_VERSION 
+   SBB_VERSION="0.1.1" && echo -e "[+] SBUILD Builder Version: ${SBB_VERSION}" ; unset SBB_VERSION
   ##Enable Debug 
    if [ "${DEBUG}" = "1" ] || [ "${DEBUG}" = "ON" ]; then
       set -x
@@ -212,7 +212,10 @@ sbuild_builder()
          PKG_FAMILY="$(yq eval '.pkg' "${BUILDSCRIPT}" | tr -d '[:space:]')" ; export PKG_FAMILY
          echo "[+] Setting '.pkg_family' --> ${PKG_FAMILY} [Guessed]"
        fi
-       SBUILD_REBUILD="true" ; export SBUILD_REBUILD
+       if [[ "${SBUILD_REBUILD}" != "false" ]]; then
+         SBUILD_REBUILD="true"
+       fi
+       export SBUILD_REBUILD
        unset LOCAL_SBUILD
       elif [[ -s "${SYSTMP}/pkgforge/SBUILD_LIST.json" && $(stat -c%s "${SYSTMP}/pkgforge/SBUILD_LIST.json") -gt 10 ]]; then
        GHCRPKG="$(jq -r '.[] | select(.build_script == env.SBUILD_SCRIPT) | .ghcr_pkg' "${SYSTMP}/pkgforge/SBUILD_LIST.json" | tr -d '[:space:]')" && export GHCRPKG
