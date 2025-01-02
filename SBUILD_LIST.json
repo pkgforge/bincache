@@ -1,7 +1,7 @@
 [
   {
     "_disabled": false,
-    "rebuild": true,
+    "rebuild": false,
     "pkg_family": "7z",
     "description": "Command line archiver utility",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/7z/official",
@@ -73,7 +73,7 @@
   },
   {
     "_disabled": false,
-    "rebuild": true,
+    "rebuild": false,
     "pkg_family": "aix",
     "description": "AIx is a cli tool to interact with Large Language Models (LLM) APIs",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/aix/official",
@@ -81,7 +81,7 @@
   },
   {
     "_disabled": false,
-    "rebuild": true,
+    "rebuild": false,
     "pkg_family": "albafetch",
     "description": "Faster neofetch alternative, written in C",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/albafetch/official",
@@ -89,7 +89,7 @@
   },
   {
     "_disabled": false,
-    "rebuild": true,
+    "rebuild": false,
     "pkg_family": "algernon",
     "description": "Small self-contained pure-Go web server with Lua, Teal, Markdown, HTTP/2, QUIC, Redis and PostgreSQL support",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/algernon/official",
@@ -97,7 +97,7 @@
   },
   {
     "_disabled": false,
-    "rebuild": true,
+    "rebuild": false,
     "pkg_family": "alist",
     "description": "A file list/WebDAV program that supports multiple storages",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/alist/official",
@@ -129,7 +129,7 @@
   },
   {
     "_disabled": false,
-    "rebuild": true,
+    "rebuild": false,
     "pkg_family": "alterx",
     "description": "Fast and customizable subdomain wordlist generator using DSL",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/alterx/official",
@@ -145,7 +145,7 @@
   },
   {
     "_disabled": false,
-    "rebuild": true,
+    "rebuild": false,
     "pkg_family": "amazonlinux",
     "description": "Portable Ephemeral AmazonLinux Docker Image (DockerC)",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/amazonlinux/official",
@@ -233,7 +233,7 @@
   },
   {
     "_disabled": false,
-    "rebuild": true,
+    "rebuild": false,
     "pkg_family": "appstream",
     "description": "Tool to work with AppStream metadata",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/appstreamcli/probonopd",
@@ -273,7 +273,7 @@
   },
   {
     "_disabled": false,
-    "rebuild": true,
+    "rebuild": false,
     "pkg_family": "arduino",
     "description": "Arduino command line tool",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/arduino-cli/official",
@@ -289,7 +289,7 @@
   },
   {
     "_disabled": false,
-    "rebuild": true,
+    "rebuild": false,
     "pkg_family": "aria2",
     "description": "A multi-protocol (HTTP/HTTPS, FTP, SFTP, BitTorrent & Metalink) & multi-source command-line download utility",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/aria2/abcfy2/continuous",
@@ -297,7 +297,7 @@
   },
   {
     "_disabled": false,
-    "rebuild": true,
+    "rebuild": false,
     "pkg_family": "aria2",
     "description": "A multi-protocol (HTTP/HTTPS, FTP, SFTP, BitTorrent & Metalink) & multi-source command-line download utility",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/aria2/abcfy2",
@@ -457,7 +457,7 @@
   },
   {
     "_disabled": false,
-    "rebuild": true,
+    "rebuild": false,
     "pkg_family": "curl",
     "description": "Command Line Tools for working with URLs (curl & trurl)",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/curl/stunnel",

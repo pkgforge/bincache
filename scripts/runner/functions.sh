@@ -776,7 +776,7 @@ if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]] && [[ -s "${GHCR_PKG}" ]]; then
      [[ -f "./${PROG}.version.sig" && -s "./${PROG}.version.sig" ]] && ghcr_push+=("./${PROG}.version.sig")
      [[ -f "./${PROG}.svg" && -s "./${PROG}.svg" ]] && ghcr_push+=("./${PROG}.svg")
      [[ -f "./${PROG}.svg.sig" && -s "./${PROG}.svg.sig" ]] && ghcr_push+=("./${PROG}.svg.sig")
-     "${ghcr_push[@]}"
+     "${ghcr_push[@]}" && sleep 1
      if [[ "$(oras manifest fetch "${GHCRPKG_URL}:${GHCRPKG_TAG}" | jq -r '.annotations["org.opencontainers.image.created"]')" == "${PKG_DATE}" ]]; then
        echo -e "\n[+] Registry --> https://${GHCRPKG_URL}"
        echo -e "[+] ==> ${MANIFEST_URL:-${DOWNLOAD_URL}} \n"
@@ -784,6 +784,7 @@ if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]] && [[ -s "${GHCR_PKG}" ]]; then
        #rm -rf "${GHCR_PKG}" "${PKG_JSON}" 2>/dev/null
        echo "export PUSH_SUCCESSFUL=YES" >> "${OCWD}/ENVPATH"
      else
+       oras manifest fetch "${GHCRPKG_URL}:${GHCRPKG_TAG}" | jq .
        echo -e "\n[✗] Failed to Push Artifact to ${GHCRPKG_URL}:${GHCRPKG_TAG}\n"
        export PUSH_SUCCESSFUL="NO"
        echo "export PUSH_SUCCESSFUL=NO" >> "${OCWD}/ENVPATH"

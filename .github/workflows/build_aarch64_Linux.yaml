@@ -5,7 +5,7 @@ on:
   #schedule:
   #  - cron: "30 18 * * 1" # 06:30 PM UTC (12:15 AM NPT Mrng Every Tuesday)
 env:
-  FORCE_REBUILD_ALL: "NO" #YES--> Force Rebuild everything
+  FORCE_REBUILD_ALL: "YES" #YES--> Force Rebuild everything
   KEEP_LOGS: "NO" #YES--> Keeps Dirs & Files
   NOTIFY_DISCORD: "NO" #NO--> Don't send Notifications to Discord
 jobs:
