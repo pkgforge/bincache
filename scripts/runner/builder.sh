@@ -188,6 +188,8 @@ sbuild_builder()
      rm "${OCWD}/ENVPATH" 2>/dev/null
      if [[ "${LOCAL_SBUILD}" == "YES" ]] && [[ "${SBUILD_REBUILD}" != "false" ]]; then
        export SBUILD_REBUILD="true"
+     elif [[ "${LOCAL_SBUILD}" == "YES" ]] && [[ "${SBUILD_REBUILD}" == "false" ]]; then
+       export SBUILD_REBUILD="false"
      else
        unset SBUILD_REBUILD
      fi
