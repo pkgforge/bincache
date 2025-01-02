@@ -15,7 +15,7 @@
 sbuild_builder()
  {
   ##Version
-   SBB_VERSION="0.0.9" && echo -e "[+] SBUILD Builder Version: ${SBB_VERSION}" ; unset SBB_VERSION 
+   SBB_VERSION="0.1.0" && echo -e "[+] SBUILD Builder Version: ${SBB_VERSION}" ; unset SBB_VERSION 
   ##Enable Debug 
    if [ "${DEBUG}" = "1" ] || [ "${DEBUG}" = "ON" ]; then
       set -x
@@ -180,7 +180,7 @@ sbuild_builder()
      pushd "$(${TMPDIRS})" >/dev/null 2>&1 || sleep 2 && pushd "$(${TMPDIRS})" >/dev/null 2>&1
      OCWD="$(realpath .)" ; export OCWD
      rm "${OCWD}/ENVPATH" 2>/dev/null
-     unset CONTINUE_SBUILD GHCRPKG LOGPATH PKG_FAMILY PUSH_SUCCESSFUL RECIPE SBUILD_PKG SBUILD_REBUILD SBUILD_SCRIPT SBUILD_SCRIPT_BLOB SBUILD_SUCCESSFUL
+     unset CONTINUE_SBUILD GHCRPKG LOGPATH PKG_FAMILY PUSH_SUCCESSFUL RECIPE SBUILD_PKG SBUILD_REBUILD SBUILD_SCRIPT SBUILD_SCRIPT_BLOB SBUILD_SKIPPED SBUILD_SUCCESSFUL
      if [[ "${KEEP_LOGS}" != "YES" ]]; then
        unset KEEP_LOGS
      fi
@@ -229,11 +229,11 @@ sbuild_builder()
         build_progs
         if [ -d "${SBUILD_OUTDIR}" ] && [ "$(du -s "${SBUILD_OUTDIR}" | cut -f1)" -gt 100 ]; then
           generate_json
-        else
-         echo -e "\n[✗] FATAL: Build Dir [${BUILD_DIR}/SBUILD_OUTDIR] seems Broken\n"
-         if [[ "${KEEP_LOGS}" != "YES" ]]; then
-          echo 'KEEP_LOGS="YES"' >> "${OCWD}/ENVPATH"
-         fi
+        elif [[ "${SBUILD_SKIPPED}" != "YES" ]]; then
+          echo -e "\n[✗] FATAL: Build Dir [${BUILD_DIR}/SBUILD_OUTDIR] seems Broken\n"
+          if [[ "${KEEP_LOGS}" != "YES" ]]; then
+           echo 'KEEP_LOGS="YES"' >> "${OCWD}/ENVPATH"
+          fi
         fi
        #} 2>&1 | ts '[%Y-%m-%dT%Hh%Mm%Ss]➜ ' | tee "${TEMP_LOG}"
        } 2>&1 | ts -s '[%H:%M:%S]➜ ' | tee "${TEMP_LOG}"
