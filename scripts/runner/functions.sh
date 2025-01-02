@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# VERSION=1.4.0
+# VERSION=1.4.1
 
 #-------------------------------------------------------#
 ## <DO NOT RUN STANDALONE, meant for CI Only>
@@ -360,6 +360,26 @@ export -f build_progs
 #-------------------------------------------------------#
 
 #-------------------------------------------------------#
+##Generate ghcrpkg_url
+generate_ghcrpkgurl()
+{
+ unset GHCRPKG_URL
+ if [ -n "${GHCRPKG+x}" ] && [ -n "${GHCRPKG##*[[:space:]]}" ]; then
+   GHCRPKG_URL="$(echo "${GHCRPKG}/${PROG}" | sed ':a; s/\/\//\//g; ta')" ; export GHCRPKG_URL
+ elif [ -n "${PKG_REPO##*[[:space:]]}" ] && [ -n "${PKG_FAMILY##*[[:space:]]}" ] || [ -n "${PKG_NAME##*[[:space:]]}" ]; then
+   GHCRPKG_URL="ghcr.io/pkgforge/${PKG_REPO}/${PKG_FAMILY:-${PKG_NAME}}/${PKG_NAME:-${PKG_FAMILY:-${PKG_ID}}}"
+   GHCRPKG_URL="$(echo "${GHCRPKG_URL}/${PROG}" | sed ':a; s/\/\//\//g; ta')" ; export GHCRPKG_URL
+ fi
+ if [ -z "${GHCRPKG_URL+x}" ]; then
+   echo -e "\n[✗] FATAL: Could NOT generate \${GHCRPKG_URL}\n"
+   return 1 || exit 1
+   export CONTINUE_SBUILD="NO"
+ fi
+}
+export -f generate_ghcrpkgurl
+#-------------------------------------------------------#
+
+#-------------------------------------------------------#
 ##Generate Json
 generate_json()
 {
@@ -446,12 +466,7 @@ if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]]; then
    fi
   #Generate Snapshots
    unset GHCRPKG_URL SNAPSHOT_JSON SNAPSHOT_TAGS TAG_URL
-   if [ -n "${GHCRPKG+x}" ] && [ -n "${GHCRPKG##*[[:space:]]}" ]; then
-     GHCRPKG_URL="$(echo "${GHCRPKG}/${PROG}" | sed ':a; s/\/\//\//g; ta')" ; export GHCRPKG_URL
-   else
-     GHCRPKG_URL="ghcr.io/pkgforge/${PKG_REPO}/${PKG_FAMILY:-${PKG_NAME}}/${PKG_NAME:-${PKG_FAMILY:-${PKG_ID}}}"
-     GHCRPKG_URL="$(echo "${GHCRPKG_URL}/${PROG}" | sed ':a; s/\/\//\//g; ta')" ; export GHCRPKG_URL
-   fi
+   generate_ghcrpkgurl
    echo "export GHCRPKG_URL='${GHCRPKG_URL}'" >> "${OCWD}/ENVPATH"
    if [ -n "${GHCRPKG_URL+x}" ] && [ -n "${GHCRPKG_URL##*[[:space:]]}" ]; then
     #Generate Manifest
@@ -549,16 +564,14 @@ upload_to_ghcr()
 {
 local PROG="$1"
 pushd "${SBUILD_OUTDIR}" >/dev/null 2>&1
-if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]] && [ -n "${GHCRPKG_URL+x}" ] && [ -n "${GHCRPKG_URL##*[[:space:]]}" ]; then
+unset GHCR_PKG ; GHCR_PKG="$(realpath ${SBUILD_OUTDIR})/${PROG}" ; export GHCR_PKG
+if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]] && [[ -s "${GHCR_PKG}" ]]; then
  #Clear ENV
-  unset ARCH BUILD_LOG BUILD_SCRIPT DOWNLOAD_URL GHCR_PKG GHCRPKG_TAG MANIFEST_URL METADATA_URL PKG_BSUM PKG_CATEGORY PKG_DATE PKG_DESCRIPTION PKG_HOMEPAGE PKG_ICON PKG_JSON PKG_NAME PKG_NOTE PKG_ORIG PKG_REPOLOGY PKG_SCREENSHOT PKG_SHASUM PKG_SIZE PKG_SIZE_RAW PKG_SRCURL PKG_TAG PKG_VERSION PKG_VERSION_UPSTREAM PKG_WEBPAGE PUSH_SUCCESSFUL VERSION
+  unset ARCH BUILD_LOG BUILD_SCRIPT DOWNLOAD_URL GHCRPKG_TAG GHCRPKG_URL MANIFEST_URL METADATA_URL PKG_BSUM PKG_CATEGORY PKG_DATE PKG_DESCRIPTION PKG_HOMEPAGE PKG_ICON PKG_JSON PKG_NAME PKG_NOTE PKG_ORIG PKG_REPOLOGY PKG_SCREENSHOT PKG_SHASUM PKG_SIZE PKG_SIZE_RAW PKG_SRCURL PKG_TAG PKG_VERSION PKG_VERSION_UPSTREAM PKG_WEBPAGE PUSH_SUCCESSFUL VERSION
  #Parse (in order of dependencies)
   if jq --exit-status . "${SBUILD_OUTDIR}/${PROG}.json" >/dev/null 2>&1; then
-  #Artifact to Upload
-   GHCR_PKG="$(realpath ${SBUILD_OUTDIR})/${PROG}"
   #json 
-   PKG_JSON="$(realpath ${SBUILD_OUTDIR}/${PROG}.json)"
-   export GHCR_PKG PKG_JSON
+   PKG_JSON="$(realpath ${SBUILD_OUTDIR}/${PROG}.json)" ; export PKG_JSON
    echo "export PKG_JSON='${PKG_JSON}'" >> "${OCWD}/ENVPATH"
   #If Artifact exists 
    if [[ -s "${GHCR_PKG}" && $(stat -c%s "${GHCR_PKG}") -gt 100 ]]; then
@@ -604,6 +617,7 @@ if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]] && [ -n "${GHCRPKG_URL+x}" ] && [ -n "$
      GHCRPKG_TAG="${PKG_VERSION}-${HOST_TRIPLET,,}"
      echo "export GHCRPKG_TAG='${GHCRPKG_TAG}'" >> "${OCWD}/ENVPATH"
     #Sanity Check download_url
+     generate_ghcrpkgurl
      if [ -n "${DOWNLOAD_URL+x}" ] && [ -n "${DOWNLOAD_URL##*[[:space:]]}" ]; then
        echo "export DOWNLOAD_URL='${DOWNLOAD_URL}'" >> "${OCWD}/ENVPATH"
      else
