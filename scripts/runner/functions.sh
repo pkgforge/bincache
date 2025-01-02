@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# VERSION=1.4.2
+# VERSION=1.4.3
 
 #-------------------------------------------------------#
 ## <DO NOT RUN STANDALONE, meant for CI Only>
@@ -395,7 +395,7 @@ if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]]; then
    fi
    GHCR_PKG="$(realpath ${SBUILD_OUTDIR}/${PROG})"
    PKG_DATE="$(date --utc +%Y-%m-%dT%H:%M:%S)Z"
-   PKG_DESCRIPTION="$(jq -r '(env.PKG_DESCRIPTION // (if type == "object" and has("description") and (.description | type == "object") then .description[env.PROG] else .description end // ""))' ${TMPJSON})"
+   PKG_DESCRIPTION="$(jq -r '(env.PKG_DESCRIPTION // (if type == "object" and has("description") and (.description | type == "object") then (if env.PROG != null and (.description[env.PROG] != null) then .description[env.PROG] else .description["_default"] end) else .description end // ""))' ${TMPJSON})"
    PKG_ICON="$(jq -r '.icon' "${TMPJSON}" | tr -d '[:space:]')"
    PKG_BSUM="$(b3sum "${GHCR_PKG}" | grep -oE '^[a-f0-9]{64}' | tr -d '[:space:]')"
    PKG_SHASUM="$(sha256sum "${GHCR_PKG}" | grep -oE '^[a-f0-9]{64}' | tr -d '[:space:]')"
@@ -511,7 +511,7 @@ if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]]; then
     "app_id": (.app_id // ""),
     "appstream": (.appstream // ""),
     "category": (.category // []),
-    "description": (env.PKG_DESCRIPTION // (if type == "object" and has("description") and (.description | type == "object") then .description[env.PROG] else .description end // "")),
+    "description": (env.PKG_DESCRIPTION // (if type == "object" and has("description") and (.description | type == "object") then (if env.PROG != null and (.description[env.PROG] != null) then .description[env.PROG] else .description["_default"] end) else .description end // "")),
     "desktop": (.desktop // ""),
     "homepage": (.homepage // []),
     "icon": (env.PKG_ICON // .icon // ""),
