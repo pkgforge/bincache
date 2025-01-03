@@ -281,7 +281,7 @@ if [ "${CONTINUE}" == "YES" ]; then
  ##Install Guix: https://guix.gnu.org/manual/en/html_node/Installation.html
   curl -qfsSL "https://git.savannah.gnu.org/cgit/guix.git/plain/etc/guix-install.sh" -o "./guix-install.sh"
   chmod +x "./guix-install.sh" && yes '' | sudo "./guix-install.sh" --uninstall 2>/dev/null
-  yes '' | sudo "./guix-install.sh"
+  yes '' | sudo "./guix-install.sh" 
   #Test
   if ! command -v guix &> /dev/null; then
    echo -e "\n[-] guix NOT Found\n"
@@ -290,8 +290,10 @@ if [ "${CONTINUE}" == "YES" ]; then
   else
    yes '' | guix install glibc-locales
    export GUIX_LOCPATH="${HOME}/.guix-profile/lib/locale"
-   guix --version
-   sudo guix pull --cores="$(($(nproc)+1))" --max-jobs="$(($(nproc)+1))" --details
+   curl -qfsSL "https://raw.githubusercontent.com/pkgforge/devscripts/refs/heads/main/Linux/nonguix.channels.scm" | sudo tee "/root/.config/guix/channels.scm"
+   guix pull --cores="$(($(nproc)+1))" --max-jobs="$(($(nproc)+1))" &
+   sudo guix pull --cores="$(($(nproc)+1))" --max-jobs="$(($(nproc)+1))" &
+   wait ; guix --version
   fi
  #------------------------------# 
  ##Install Meson & Ninja

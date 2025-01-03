@@ -49,7 +49,7 @@ sbuild_builder()
     mkdir -p "${SYSTMP}" 2>/dev/null
    fi
    OWD_TMPDIR="$(realpath .)" ; export OWD_TMPDIR
-   TMPDIRS="mktemp -d --tmpdir=${SYSTMP}/pkgforge XXXXXXX_SBUILD"
+   TMPDIRS="mktemp -d --tmpdir=${SYSTMP}/pkgforge XXXXXXXXX_SBUILD"
    USER_AGENT="$(curl -qfsSL 'https://pub.ajam.dev/repos/Azathothas/Wordlists/Misc/User-Agents/ua_chrome_macos_latest.txt')"
    export HOST_TRIPLET PKG_REPO SYSTMP TMPDIRS USER_AGENT
    if [[ "${KEEP_PREVIOUS}" != "YES" ]]; then
@@ -59,7 +59,7 @@ sbuild_builder()
    mkdir -p "${SYSTMP}/pkgforge"
   ##Get Initial Inputs
    for attempt in {1..4}; do
-    BUILDSCRIPT="$(mktemp --tmpdir="${SYSTMP}/pkgforge" XXXXX_build.yaml)" && export BUILDSCRIPT="${BUILDSCRIPT}" && break
+    BUILDSCRIPT="$(mktemp --tmpdir="${SYSTMP}/pkgforge" XXXXXXXXX_build.yaml)" && export BUILDSCRIPT="${BUILDSCRIPT}" && break
     echo -e "[-] TMPFILE Creation Failed ($attempt/4) Retrying..."
     sleep 1
    done
@@ -103,7 +103,7 @@ sbuild_builder()
 
   #-------------------------------------------------------#
   ##Init
-   INITSCRIPT="$(mktemp --tmpdir=${SYSTMP} XXXXX_init.sh)" && export INITSCRIPT="${INITSCRIPT}"
+   INITSCRIPT="$(mktemp --tmpdir=${SYSTMP} XXXXXXXXX_init.sh)" && export INITSCRIPT="${INITSCRIPT}"
    curl -qfsSL "https://raw.githubusercontent.com/pkgforge/bincache/refs/heads/main/scripts/runner/setup_${HOST_TRIPLET}.sh" -o "${INITSCRIPT}"
    chmod +xwr "${INITSCRIPT}" && source "${INITSCRIPT}"
    #Check
