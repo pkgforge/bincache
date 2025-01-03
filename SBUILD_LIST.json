@@ -404,6 +404,14 @@
     "rebuild": false,
     "pkg_family": "bash",
     "description": "GNU Bourne-Again Shell, the de facto standard shell on Linux",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/bash/gnuguix",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/bash/static.gnuguix.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "bash",
+    "description": "GNU Bourne-Again Shell, the de facto standard shell on Linux",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/bash/nixpkgs",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/bash/static.nixpkgs.stable.yaml"
   },
