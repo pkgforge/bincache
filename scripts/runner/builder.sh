@@ -15,7 +15,7 @@
 sbuild_builder()
  {
   ##Version
-   SBB_VERSION="0.1.3" && echo -e "[+] SBUILD Builder Version: ${SBB_VERSION}" ; unset SBB_VERSION
+   SBB_VERSION="0.1.4" && echo -e "[+] SBUILD Builder Version: ${SBB_VERSION}" ; unset SBB_VERSION
   ##Enable Debug 
    if [ "${DEBUG}" = "1" ] || [ "${DEBUG}" = "ON" ]; then
       set -x
@@ -205,7 +205,14 @@ sbuild_builder()
       echo -e "\n[+] Fetching : ${RECIPE} (${CURRENT_RECIPE}/${TOTAL_RECIPES})\n"
      #Fetch
       if echo "${RECIPE}" | grep -E -q '^https?://'; then
-       curl -qfsSL "${RECIPE}" -o "${BUILDSCRIPT}" ; chmod +xwr "${BUILDSCRIPT}"
+       if curl -qfsSL "${RECIPE}" -o "${BUILDSCRIPT}"; then
+         echo -e "==> ${RECIPE}"
+         chmod -v +xwr "${BUILDSCRIPT}"
+       else
+         echo -e "\n[✗] FATAL: Failed to fetch Remote SBUILD [${RECIPE}]\n"
+         export CONTINUE_SBUILD="NO"
+         return 1 || exit 1
+       fi
       elif [ -s "${BUILDSCRIPT}" ]; then
        realpath "${BUILDSCRIPT}"
       fi
@@ -232,6 +239,8 @@ sbuild_builder()
        SBUILD_REBUILD="$(jq -r '.[] | select(.build_script == env.SBUILD_SCRIPT) | .rebuild' "${SYSTMP}/pkgforge/SBUILD_LIST.json" | tr -d '[:space:]')" && export SBUILD_REBUILD
       else
        echo -e "\n[✗] FATAL: No Local SBUILD was Supplied & Remote ${SYSTMP}/pkgforge/SBUILD_LIST.json Does Not Exist\n"
+       export CONTINUE_SBUILD="NO"
+       return 1 || exit 1
       fi
       #Main
        {

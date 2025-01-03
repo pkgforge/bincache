@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# VERSION=1.4.3
+# VERSION=1.4.5
 
 #-------------------------------------------------------#
 ## <DO NOT RUN STANDALONE, meant for CI Only>
@@ -130,6 +130,7 @@ gen_json_from_sbuild()
     ##Check & Set
      if [[ "$(yq '._disabled' "${INPUT_SBUILD}")" == "true" ]]; then
        echo -e "\n[✗] FATAL: SBUILD (${INPUT_SBUILD}) is Disabled ('_disabled: true')\n"
+       yq 'select(has("_disabled_reason")) | .["_disabled_reason"]' "${INPUT_SBUILD}"
        exit 1
      else
        pkg="$(jq -r '"\(.pkg | select(. != "null") // "")"' "${TMPJSON}" | sed 's/\.$//' | tr -d '[:space:]')" ; export PKG="${pkg}"
@@ -161,9 +162,9 @@ gen_json_from_sbuild()
        if [[ -s "${TMPXVER}" && $(stat -c%s "${TMPXVER}") -gt 10 ]]; then
          chmod +x "${TMPXVER}"
          {
-          timeout -k 10s 30s "${TMPXVER}"
-         } > "${SBUILD_OUTDIR}/${SBUILD_PKG}.version" 2>&1
-         if [[ ! -s "${SBUILD_OUTDIR}/${SBUILD_PKG}.version" || $(stat -c%s "${SBUILD_OUTDIR}/${SBUILD_PKG}.version") -le 3 ]]; then
+          timeout -k 10s 60s "${TMPXVER}"
+         } > "${SBUILD_OUTDIR}/${SBUILD_PKG}.version" 2>&1 ; sleep 1
+         if [[ ! -s "${SBUILD_OUTDIR}/${SBUILD_PKG}.version" || $(stat -c%s "${SBUILD_OUTDIR}/${SBUILD_PKG}.version") -le 2 ]]; then
            echo -e "\n[✗] FATAL: Failed to Fetch Version ('x_exec.pkgver')\n"
            cat "${TMPXVER}" ; echo ; cat "${SBUILD_OUTDIR}/${SBUILD_PKG}.version"
            export CONTINUE_SBUILD="NO"
