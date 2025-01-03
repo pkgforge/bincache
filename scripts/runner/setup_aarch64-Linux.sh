@@ -277,6 +277,22 @@ if [ "${CONTINUE}" == "YES" ]; then
    go version
    sudo ldconfig && sudo ldconfig -p
   fi
+ #----------------------#          
+ ##Install Guix: https://guix.gnu.org/manual/en/html_node/Installation.html
+  curl -qfsSL "https://git.savannah.gnu.org/cgit/guix.git/plain/etc/guix-install.sh" -o "./guix-install.sh"
+  chmod +x "./guix-install.sh" && yes '' | sudo "./guix-install.sh" --uninstall 2>/dev/null
+  yes '' | sudo "./guix-install.sh"
+  #Test
+  if ! command -v guix &> /dev/null; then
+   echo -e "\n[-] guix NOT Found\n"
+   export CONTINUE="NO"
+   return 1 || exit 1
+  else
+   yes '' | guix install glibc-locales
+   export GUIX_LOCPATH="${HOME}/.guix-profile/lib/locale"
+   guix --version
+   sudo guix pull --cores="$(($(nproc)+1))" --max-jobs="$(($(nproc)+1))" --details
+  fi
  #------------------------------# 
  ##Install Meson & Ninja
   #Install
