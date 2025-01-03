@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# VERSION=1.4.5
+# VERSION=1.4.6
 
 #-------------------------------------------------------#
 ## <DO NOT RUN STANDALONE, meant for CI Only>
@@ -717,13 +717,17 @@ if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]] && [[ -s "${GHCR_PKG}" ]]; then
      echo -e "\n[+] Parsing/Uploading ${PKG_FAMILY}/${PKG_NAME} --> https://github.com/orgs/pkgforge/packages/container/package/${PKG_REPO}%2F${PKG_FAMILY:-${PKG_NAME}}%2F${PKG_NAME} [${HOST_TRIPLET}]"
      jq . "./${PROG}.json" && echo -e "\n"
      minisign -Sm "./${PROG}.json" -P "${MINISIGN_PUB_KEY}" -s "${HOME}/.minisign/pkgforge.key" -x "./${PROG}.json.sig"
-     unset ghcr_push ; ghcr_push=(oras push --concurrency "50" --disable-path-validation)
+     unset ghcr_push ; ghcr_push=(oras push --concurrency "10" --disable-path-validation)
      ghcr_push+=(--config "/dev/null:application/vnd.oci.empty.v1+json")
      ghcr_push+=(--annotation "com.github.package.type=container")
      #ghcr_push+=(--annotation "com.github.package.type=homebrew_bottle")
      #ghcr_push+=(--annotation "com.github.package.type=soar_pkg")
      ghcr_push+=(--annotation "dev.pkgforge.discord=https://discord.gg/djJUs48Zbu")
      ghcr_push+=(--annotation "dev.pkgforge.soar.build_date=${PKG_DATE}")
+     if [ -n "${GITHUB_SERVER_URL+x}" ] && [ -n "${GITHUB_REPOSITORY+x}" ] && [ -n "${GITHUB_RUN_ID+x}" ]; then
+       ghcr_push+=(--annotation "dev.pkgforge.soar.build_ghactions=${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}")
+       ghcr_push+=(--annotation "dev.pkgforge.soar.build_id=${GITHUB_RUN_ID}")
+     fi
      ghcr_push+=(--annotation "dev.pkgforge.soar.build_log=${BUILD_LOG}")
      ghcr_push+=(--annotation "dev.pkgforge.soar.build_script=${SBUILD_SCRIPT:-${BUILD_SCRIPT}}")
      ghcr_push+=(--annotation "dev.pkgforge.soar.bsum=${PKG_BSUM}")
