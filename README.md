@@ -24,6 +24,8 @@
     <br> 
 </p>
 
+---
+- This repository [builds, compiles & bundles](https://github.com/pkgforge/bincache/actions) [SoarPkgs](https://github.com/pkgforge/soarpkgs/) & provides [PreBuilt Package Cache](https://docs.pkgforge.dev/repositories/bincache/cache) for [Soar](https://github.com/pkgforge/soar)
 ```bash
 .
 ├── keys --> Public Keys to verify signed artifacts
@@ -48,7 +50,7 @@
 > - [**`Request a New Package`**](https://docs.pkgforge.dev/repositories/bincache/package-request)
 > - [**`Differences from Soarpkgs`**](https://docs.pkgforge.dev/repositories/bincache/differences)
 > - **`Requirements to add a PKG to` [`BinCache`](https://docs.pkgforge.dev/repositories/bincache/package-request)**
-> - [**`DMCA/Copyright/PKG Removal`**](https://docs.pkgforge.dev/repositories/bincache/dmca-or-copyright-cease-and-desist)
+> - [**`DMCA/Copyright/PKG Removal`**](https://docs.pkgforge.dev/repositories/soarpkgs/dmca-or-copyright-cease-and-desist)
 > - [**`FAQs`**](https://docs.pkgforge.dev/repositories/bincache/faq)
 > - [**`Security`**](https://docs.pkgforge.dev/repositories/bincache/security)
 > - [**`Contact Us`**](https://docs.pkgforge.dev/contact/chat)
@@ -57,7 +59,7 @@
 
 ---
 #### Repo Analytics
-![Alt](https://repobeats.axiom.co/api/embed/2ddc6c95e39c4faa970897442245e76156c45167.svg "Repobeats analytics image")
+[![Alt](https://repobeats.axiom.co/api/embed/2ddc6c95e39c4faa970897442245e76156c45167.svg "Repobeats analytics image")](https://github.com/pkgforge/bincache/graphs/contributors)
 [![Stargazers](https://reporoster.com/stars/dark/pkgforge/bincache)](https://github.com/pkgforge/bincache/stargazers)
-[![Stargazers over time](https://starchart.cc/pkgforge/bincache.svg)](https://starchart.cc/pkgforge/bincache)
+[![Stargazers over time](https://starchart.cc/pkgforge/bincache.svg?variant=dark)](https://starchart.cc/pkgforge/bincache)
 <div align="center">
