@@ -87,7 +87,7 @@ else
  ##Install Needed CMDs
   bash <(curl -qfsSL "https://raw.githubusercontent.com/pkgforge/devscripts/main/Linux/install_bins_curl.sh")
  ##Check Needed CMDs
- for DEP_CMD in eget gh glab minisign oras rclone soar; do
+ for DEP_CMD in eget gh glab minisign oras rclone shellcheck soar; do
     case "$(command -v "${DEP_CMD}" 2>/dev/null)" in
         "") echo -e "\n[✗] FATAL: ${DEP_CMD} is NOT INSTALLED\n"
            export CONTINUE="NO"
