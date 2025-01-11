@@ -31,7 +31,7 @@ setup_env()
  fi
  BUILD_DIR="$(mktemp -d --tmpdir=${SYSTMP}/pkgforge XXXXXXX_$(basename "${INPUT_SBUILD}" | tr -d 'X'))"
  SBUILD_OUTDIR="${BUILD_DIR}/SBUILD_OUTDIR"
- SBUILD_TMPDIR="${SBUILD_OUTDIR}/SBUILD_TMPDIR"
+ SBUILD_TMPDIR="${SBUILD_OUTDIR}/SBUILD_TEMP"
  mkdir -p "${SBUILD_TMPDIR}"
  export BUILD_DIR INPUT_SBUILD SBUILD_OUTDIR SBUILD_TMPDIR
  #echo -e "\n[+] Building ["$(echo "${RECIPE}" | awk -F'/' '{print $(NF-1) "/" $NF}')"] (${INPUT_SBUILD}) --> ${SBUILD_OUTDIR} [$(TZ='UTC' date +'%A, %Y-%m-%d (%I:%M:%S %p)') UTC]\n"
@@ -226,7 +226,7 @@ gen_json_from_sbuild()
          #echo 'export SHELLOPTS' >> "${TMPXRUN}"
        elif [[ "${SBUILD_SHELL}" == "fish" ]]; then  
          echo 'set fish_trace 1' >> "${TMPXRUN}"
-         echo 'set -g fish_trace 1' >> "${TMPXRUN}"s
+         echo 'set -g fish_trace 1' >> "${TMPXRUN}"
        elif [[ "${SBUILD_SHELL}" == "sh" ]]; then
          echo 'set -x' >> "${TMPXRUN}"
        elif [[ "${SBUILD_SHELL}" == "zsh" ]]; then
@@ -466,7 +466,7 @@ if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]]; then
    echo -e "\n[+] Generating Json for ${SBUILD_PKG} (PROG=${PROG}) ==> ${SBUILD_OUTDIR}/${PROG}.json"
    echo -e "[+] ==> $(echo "${DOWNLOAD_URL}" | sed 's/download=[^&]*/download='"${PROG}"'.json/')"
    if [ -n "${SBUILD_SCRIPT+x}" ] && [[ "${SBUILD_SCRIPT}" =~ ^[^[:space:]]+$ ]]; then
-     if [[ ! -s "${SBUILD_OUTDIR}/${PROG}.png" || ! -s "${SBUILD_OUTDIR}/${PROG}.svg" ]]; then
+     if [[ ! -s "${SBUILD_OUTDIR}/${PROG}.png" && ! -s "${SBUILD_OUTDIR}/${PROG}.svg" ]]; then
        echo -e "\n[+] Fetching Icon for ${SBUILD_PKG} (PROG=${PROG}) ==> ${SBUILD_OUTDIR}/${PROG}.{png|svg}"
        if echo "${PKG_ICON}" | grep -qE '^https?://'; then
          if echo "${PKG_ICON}" | grep -qE '\.png$'; then
@@ -502,7 +502,7 @@ if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]]; then
         PKG_ICON="$(echo "${DOWNLOAD_URL}" | sed 's/download=[^&]*/download='"${PROG}"'.png/')" ; export PKG_ICON
        elif [[ -s "${SBUILD_OUTDIR}/${PROG}.svg" && $(stat -c%s "${SBUILD_OUTDIR}/${PROG}.svg") -gt 10 ]]; then
         PKG_ICON="$(echo "${DOWNLOAD_URL}" | sed 's/download=[^&]*/download='"${PROG}"'.svg/')" ; export PKG_ICON
-       elif [ ! -s "${SBUILD_OUTDIR}/${PROG}.png" ] || [ ! -s "${SBUILD_OUTDIR}/${PROG}.svg" ]; then
+       elif [ ! -s "${SBUILD_OUTDIR}/${PROG}.png" ] && [ ! -s "${SBUILD_OUTDIR}/${PROG}.svg" ]; then
          curl -w "(Default) <== %{url}\n" -fL "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/assets/base.png" -o "${SBUILD_OUTDIR}/${PROG}.png"
         if [ ! -s "${SBUILD_OUTDIR}/${PROG}.png" ] && [ ! -s "${SBUILD_OUTDIR}/${PROG}.svg" ]; then
          echo '<svg viewBox="0 0 10 10"><circle cx="5" cy="5" r="4" fill="yellow"/></svg>' > "${SBUILD_OUTDIR}/${PROG}.svg"
@@ -574,8 +574,12 @@ if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]]; then
   #Fetch Upstream Version 
    fetch_version_upstream 2>/dev/null
   #Copy Version
-   cp -fv "${SBUILD_OUTDIR}/${SBUILD_PKG}.version" "${SBUILD_OUTDIR}/${PROG}.version"
-   cp -fv "${SBUILD_OUTDIR}/${SBUILD_PKG}.version.sig" "${SBUILD_OUTDIR}/${PROG}.version.sig"
+   if [[ -s "${SBUILD_OUTDIR}/${SBUILD_PKG}.version" && ! -s "${SBUILD_OUTDIR}/${PROG}.version" ]]; then
+     cp -fv "${SBUILD_OUTDIR}/${SBUILD_PKG}.version" "${SBUILD_OUTDIR}/${PROG}.version"
+   fi
+   if [[ -s "${SBUILD_OUTDIR}/${SBUILD_PKG}.version.sig" && ! -s "${SBUILD_OUTDIR}/${PROG}.version.sig" ]]; then
+     cp -fv "${SBUILD_OUTDIR}/${SBUILD_PKG}.version.sig" "${SBUILD_OUTDIR}/${PROG}.version.sig"
+   fi
   #Generate 
    if ! echo "${SNAPSHOT_JSON}" | jq empty 2>/dev/null; then
      SNAPSHOT_JSON="[]"
