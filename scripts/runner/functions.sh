@@ -20,7 +20,7 @@
 setup_env()
 {
  ##Version
- SBF_VERSION="1.5.8" && echo -e "[+] SBUILD Functions Version: ${SBF_VERSION}" ; unset SBF_VERSION
+ SBF_VERSION="1.6.0" && echo -e "[+] SBUILD Functions Version: ${SBF_VERSION}" ; unset SBF_VERSION
  ##Input    
  INPUT_SBUILD="${1:-$(echo "$@" | tr -d '[:space:]')}"
  INPUT_SBUILD_PATH="$(realpath ${INPUT_SBUILD})" ; export INPUT_SBUILD="${INPUT_SBUILD_PATH}"
@@ -273,24 +273,21 @@ if [[ "${CONTINUE_SBUILD}" == "YES" ]]; then
   fi
   printf "export SBUILD_PKGS='%s'\n" "${SBUILD_PKGS[*]}" >> "${OCWD}/ENVPATH"
  #check rebuild
+  declare -a FOUND_ARTIFACTS=()
   if [ -n "${GHCRPKG+x}" ] && [[ "${GHCRPKG}" =~ ^[^[:space:]]+$ ]]; then
+    unset GHCRPKG_TAG; GHCRPKG_TAG="$(echo "${SBUILD_PKGVER}-${HOST_TRIPLET,,}" | sed 's/[^a-zA-Z0-9._-]/_/g; s/_*$//')" ; export GHCRPKG_TAG
     for PROG in "${SBUILD_PKGS[@]}"; do
-      oras manifest fetch "${GHCRPKG}/${PROG}:${SBUILD_PKGVER}-${HOST_TRIPLET,,}" 2>/dev/null | jq . > "${SBUILD_TMPDIR}/MANIFEST.json"
+      oras manifest fetch "${GHCRPKG}/${PROG}:${GHCRPKG_TAG}" 2>/dev/null | jq . > "${SBUILD_TMPDIR}/MANIFEST.json"
       if [[ "$(jq -r '.annotations["org.opencontainers.image.version"]' "${SBUILD_TMPDIR}/MANIFEST.json")" == "${SBUILD_PKGVER}" ]]; then
          if [[ "$(jq -r '.. | .["org.opencontainers.image.title"]? // empty' "${SBUILD_TMPDIR}/MANIFEST.json" | sort -u | grep -E "^${PROG}$" | tr -d '[:space:]')" == "${PROG}" ]]; then
            if [[ "${SBUILD_REBUILD}" == "false" ]] && [[ "${FORCE_REBUILD_ALL}" != "YES" ]]; then
-             echo -e "\n[+] SKIPPED: ${SBUILD_PKG} [${GHCRPKG}/${PROG}:${SBUILD_PKGVER}-${HOST_TRIPLET,,}] (PreBuilt Exists)"
-             echo -e "==> ARTIFACTS: \n$(jq -r '.. | .["org.opencontainers.image.title"]? // empty' "${SBUILD_TMPDIR}/MANIFEST.json" | sort -u)\n"
-             echo -e "[+] ReRun with: '.rebuild == true' (https://github.com/pkgforge/${PKG_REPO}/blob/main/SBUILD_LIST.json)"
-             echo -e "[+] Or: SBUILD_REBUILD=\"true\""
-             echo -e "[+] Or: Re Build Everything: FORCE_REBUILD_ALL=\"YES\" sbuild-builder\n"
+             echo -e "\n[+] FOUND: ${SBUILD_PKG} [${GHCRPKG}/${PROG}:${GHCRPKG_TAG}] (PreBuilt Exists)"
+             FOUND_ARTIFACTS+=("${PROG}")
              export SBUILD_SKIPPED="YES"
              export CONTINUE_SBUILD="NO"
-             return 0 || exit 0
            fi
-           break
          else
-           echo -e "\n[+] TAG: ${SBUILD_PKG} [${GHCRPKG}/${PROG}:${SBUILD_PKGVER}-${HOST_TRIPLET,,}] (PreBuilt Exists)"
+           echo -e "\n[+] TAG: ${SBUILD_PKG} [${GHCRPKG}/${PROG}:${GHCRPKG_TAG}] (PreBuilt Exists)"
            echo -e "==> ARTIFACTS: \n$(jq -r '.. | .["org.opencontainers.image.title"]? // empty' "${SBUILD_TMPDIR}/MANIFEST.json" | sort -u)\n"
            echo -e "[-] FATAL: PROG ${PROG} DOES NOT Exist (Last Build Failed?)"
            echo -e "[+] Re Building: ${SBUILD_PKG} [${SBUILD_PKGVER}]\n"
@@ -299,6 +296,21 @@ if [[ "${CONTINUE_SBUILD}" == "YES" ]]; then
          fi
       fi
     done
+    if [[ "${#FOUND_ARTIFACTS[@]}" -eq "${#SBUILD_PKGS[@]}" ]]; then
+     echo -e "\n[+] SKIPPED: All packages found with correct versions"
+     echo -e "==> ARTIFACTS: \n$(jq -r '.. | .["org.opencontainers.image.title"]? // empty' "${SBUILD_TMPDIR}/MANIFEST.json" | sort -u)\n"
+     echo -e "[+] ReRun with: '.rebuild == true' (https://github.com/pkgforge/${PKG_REPO}/blob/main/SBUILD_LIST.json)"
+     echo -e "[+] Or: SBUILD_REBUILD=\"true\""
+     echo -e "[+] Or: Re Build Everything: FORCE_REBUILD_ALL=\"YES\" sbuild-builder\n"
+     export SBUILD_SKIPPED="YES"
+     export CONTINUE_SBUILD="NO"
+    else
+     echo -e "\n[-] Missing packages. Found: ${FOUND_ARTIFACTS[*]}"
+     echo -e "[+] Expected: ${SBUILD_PKGS[*]}"
+     echo -e "[+] Continuing with build...\n"
+     export CONTINUE_SBUILD="YES"
+    fi
+    unset FOUND_ARTIFACTS
   fi
  #Run
   if [[ "${CONTINUE_SBUILD}" == "YES" ]]; then
@@ -455,10 +467,10 @@ if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]]; then
    generate_ghcrpkgurl
    echo "export GHCRPKG_URL='${GHCRPKG_URL}'" >> "${OCWD}/ENVPATH"
    if [ -n "${GHCRPKG+x}" ] && [[ "${GHCRPKG}" =~ ^[^[:space:]]+$ ]]; then
-     DOWNLOAD_URL="$(echo "${GHCRPKG}/${PROG}" | sed 's|^ghcr.io|https://api.ghcr.pkgforge.dev|' | sed ':a; s|^\(https://\)\([^/]\)/\(/\)|\1\2/\3|; ta')?tag=${SBUILD_PKGVER}-${HOST_TRIPLET,,}&download=${PROG}"
+     DOWNLOAD_URL="$(echo "${GHCRPKG}/${PROG}" | sed 's|^ghcr.io|https://api.ghcr.pkgforge.dev|' | sed ':a; s|^\(https://\)\([^/]\)/\(/\)|\1\2/\3|; ta')?tag=${GHCRPKG_TAG}&download=${PROG}"
      BUILD_LOG="$(echo "${DOWNLOAD_URL}" | sed 's/download=[^&]*/download='"${PROG}"'.log/')"
    elif [ -n "${GHCRPKG_URL+x}" ] && [[ "${GHCRPKG_URL}" =~ ^[^[:space:]]+$ ]]; then
-     DOWNLOAD_URL="$(echo "${GHCRPKG_URL}" | sed 's|^ghcr.io|https://api.ghcr.pkgforge.dev|' | sed ':a; s|^\(https://\)\([^/]\)/\(/\)|\1\2/\3|; ta')?tag=${SBUILD_PKGVER}-${HOST_TRIPLET,,}&download=${PROG}"
+     DOWNLOAD_URL="$(echo "${GHCRPKG_URL}" | sed 's|^ghcr.io|https://api.ghcr.pkgforge.dev|' | sed ':a; s|^\(https://\)\([^/]\)/\(/\)|\1\2/\3|; ta')?tag=${GHCRPKG_TAG}&download=${PROG}"
      BUILD_LOG="$(echo "${DOWNLOAD_URL}" | sed 's/download=[^&]*/download='"${PROG}"'.log/')"
    fi
    export BUILD_LOG DOWNLOAD_URL
@@ -536,7 +548,7 @@ if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]]; then
    if [ -n "${GHCRPKG_URL+x}" ] && [[ "${GHCRPKG_URL}" =~ ^[^[:space:]]+$ ]]; then
     #Generate Manifest
      unset PKG_MANIFEST ; PKG_MANIFEST="$(echo "${DOWNLOAD_URL}" | sed 's/download=[^&]*/manifest/')" ; export PKG_MANIFEST
-     unset PKG_GHCR ; PKG_GHCR="${GHCRPKG_URL}:${SBUILD_PKGVER}-${HOST_TRIPLET,,}" ; export PKG_GHCR
+     unset PKG_GHCR ; PKG_GHCR="${GHCRPKG_URL}:${GHCRPKG_TAG}" ; export PKG_GHCR
     #Generate Tags
      TAG_URL="https://api.ghcr.pkgforge.dev/$(echo "${GHCRPKG}" | sed ':a; s|^\(https://\)\([^/]\)/\(/\)|\1\2/\3|; ta' | sed -E 's|^ghcr\.io/||; s|^/+||; s|/+?$||' | sed ':a; s|^\(https://\)\([^/]\)/\(/\)|\1\2/\3|; ta')/${PROG}?tags"
      echo -e "[+] Fetching Snapshot Tags <== ${TAG_URL} [\$GHCRPKG]"
@@ -703,7 +715,7 @@ if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]] && [[ -s "${GHCR_PKG}" ]]; then
      [[ "${PKG_VERSION_UPSTREAM}" == "null" ]] && unset PKG_VERSION_UPSTREAM
      echo "export PKG_VERSION_UPSTREAM='${PKG_VERSION_UPSTREAM}'" >> "${OCWD}/ENVPATH"     
     #tag 
-     GHCRPKG_TAG="${PKG_VERSION}-${HOST_TRIPLET,,}"
+     GHCRPKG_TAG="$(echo "${PKG_VERSION}-${HOST_TRIPLET,,}" | sed 's/[^a-zA-Z0-9._-]/_/g; s/_*$//')" ; export GHCRPKG_TAG
      echo "export GHCRPKG_TAG='${GHCRPKG_TAG}'" >> "${OCWD}/ENVPATH"
     #Sanity Check download_url
      generate_ghcrpkgurl
@@ -805,7 +817,8 @@ if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]] && [[ -s "${GHCR_PKG}" ]]; then
      echo -e "\n[+] Parsing/Uploading ${PKG_FAMILY}/${PKG_NAME} --> https://github.com/orgs/pkgforge/packages/container/package/${PKG_REPO}%2F${PKG_FAMILY:-${PKG_NAME}}%2F${PKG_NAME} [${HOST_TRIPLET}]"
      jq . "./${PROG}.json" && echo -e "\n"
      minisign -Sm "./${PROG}.json" -P "${MINISIGN_PUB_KEY}" -s "${HOME}/.minisign/pkgforge.key" -x "./${PROG}.json.sig"
-     unset ghcr_push ; ghcr_push=(oras push --concurrency "10" --disable-path-validation)
+     #unset ghcr_push ; ghcr_push=(oras push --concurrency "10" --disable-path-validation)
+     unset ghcr_push ; ghcr_push=(oras push --disable-path-validation)
      ghcr_push+=(--config "/dev/null:application/vnd.oci.empty.v1+json")
      ghcr_push+=(--annotation "com.github.package.type=container")
      #ghcr_push+=(--annotation "com.github.package.type=homebrew_bottle")
@@ -910,7 +923,7 @@ cleanup_env()
   rm -rvf "${BUILD_DIR}" 2>/dev/null
  fi
 #Cleanup Env
- unset BUILD_DIR BUILD_GHACTIONS BUILD_ID ghcr_push GHCRPKG_URL GHCRPKG_TAG INPUT_SBUILD INPUT_SBUILD_PATH MANIFEST_URL OCWD pkg PKG PKG_FAMILY PKG_GHCR pkg_id PKG_ID PKG_MANIFEST pkg_type PKG_TYPE PKG_VERSION_UPSTREAM PKG_WEBPAGE PROG REPOLOGY_PKG REPOLOGY_PKGVER REPOLOGY_VER SBUILD_OUTDIR SBUILD_PKG SBUILD_PKGS SBUILD_PKGVER SBUILD_REBUILD SBUILD_SCRIPT SBUILD_SCRIPT_BLOB SBUILD_SKIPPED SBUILD_SUCCESSFUL SBUILD_TMPDIR SNAPSHOT_JSON SNAPSHOT_TAGS TAG_URL TMPJSON TMPXVER TMPXRUN
+ unset ARTIFACTS_DIR BUILD_DIR BUILD_GHACTIONS BUILD_ID ghcr_push GHCRPKG_URL GHCRPKG_TAG INPUT_SBUILD INPUT_SBUILD_PATH MANIFEST_URL OCWD pkg PKG PKG_APPSTREAM PKG_DESKTOP PKG_FAMILY PKG_GHCR pkg_id PKG_ID PKG_MANIFEST pkg_type PKG_TYPE PKG_VERSION_UPSTREAM PKG_WEBPAGE PROG REPOLOGY_PKG REPOLOGY_PKGVER REPOLOGY_VER SBUILD_OUTDIR SBUILD_PKG SBUILD_PKGS SBUILD_PKGVER SBUILD_REBUILD SBUILD_SCRIPT SBUILD_SCRIPT_BLOB SBUILD_SKIPPED SBUILD_SUCCESSFUL SBUILD_TMPDIR SNAPSHOT_JSON SNAPSHOT_TAGS TAG_URL TMPJSON TMPXVER TMPXRUN
 }
 export -f cleanup_env
 #-------------------------------------------------------#
