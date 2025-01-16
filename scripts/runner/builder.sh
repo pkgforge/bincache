@@ -15,7 +15,7 @@
 sbuild_builder()
  {
   ##Version
-   SBB_VERSION="0.1.8" && echo -e "[+] SBUILD Builder Version: ${SBB_VERSION}" ; unset SBB_VERSION
+   SBB_VERSION="0.1.9" && echo -e "[+] SBUILD Builder Version: ${SBB_VERSION}" ; unset SBB_VERSION
   ##Enable Debug 
    if [ "${DEBUG}" = "1" ] || [ "${DEBUG}" = "ON" ]; then
       set -x
@@ -196,6 +196,7 @@ sbuild_builder()
    #Get URlS
     curl -qfsSL "https://raw.githubusercontent.com/pkgforge/bincache/refs/heads/main/SBUILD_LIST.json" -o "${SYSTMP}/pkgforge/SBUILD_LIST.json"
     jq -r '.[] | select(._disabled == false) | .build_script' "${SYSTMP}/pkgforge/SBUILD_LIST.json" | sort -u -o "${SYSTMP}/pkgforge/SBUILD_URLS"
+    sed 's|https://github.com/pkgforge/soarpkgs/blob/main/binaries|https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries|g' -i "${SYSTMP}/pkgforge/SBUILD_URLS"
    fi
   #Build
    i=0; until pushd "$(${TMPDIRS})" >/dev/null 2>&1 || [ $((i+=1)) -gt 3 ]; do :; done
