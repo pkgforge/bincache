@@ -1098,6 +1098,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "deoptimizer",
+    "description": "Machine code de-optimizer to bypass AV",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/deoptimizer/official",
+    "build_script": "https://github.com/pkgforge/soarpkgs/blob/main/binaries/deoptimizer/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "desktop-file-utils",
     "description": "Utilities for working with Desktop Entry files",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/desktop-file-utils/nixpkgs",
