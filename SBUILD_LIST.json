@@ -178,18 +178,18 @@
   {
     "_disabled": false,
     "rebuild": false,
-    "pkg_family": "anew",
-    "description": "A tool for adding new lines to files, skipping duplicates",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/anew/official",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/anew/static.official.source.yaml"
-  },
-  {
-    "_disabled": false,
-    "rebuild": false,
     "pkg_family": "anew-rs",
     "description": "An efficient way to filter duplicate lines from input, à la uniq",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/anew-rs/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/anew-rs/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "anew",
+    "description": "A tool for adding new lines to files, skipping duplicates",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/anew/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/anew/static.official.source.yaml"
   },
   {
     "_disabled": false,
@@ -292,16 +292,16 @@
     "rebuild": false,
     "pkg_family": "aria2",
     "description": "A multi-protocol (HTTP/HTTPS, FTP, SFTP, BitTorrent & Metalink) & multi-source command-line download utility",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/aria2/abcfy2/continuous",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/aria2/static.abcfy2.continuous.yaml"
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/aria2/abcfy2",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/aria2/static.abcfy2.stable.yaml"
   },
   {
     "_disabled": false,
     "rebuild": false,
     "pkg_family": "aria2",
     "description": "A multi-protocol (HTTP/HTTPS, FTP, SFTP, BitTorrent & Metalink) & multi-source command-line download utility",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/aria2/abcfy2",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/aria2/static.abcfy2.stable.yaml"
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/aria2/abcfy2/continuous",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/aria2/static.abcfy2.continuous.yaml"
   },
   {
     "_disabled": false,
@@ -630,6 +630,14 @@
     "description": "A tool to bypass 4xx HTTP responses",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/byp4xx/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/byp4xx/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "caddy",
+    "description": "A powerful, enterprise-ready, and extensible HTTP/2 + HTTP/3 web server with automatic HTTPS",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/caddy/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/caddy/static.official.stable.yaml"
   },
   {
     "_disabled": false,
@@ -1010,10 +1018,26 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "csvtk",
+    "description": "A cross-platform, efficient and practical CSV/TSV toolkit",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/csvtk/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/csvtk/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "ct_monitor",
     "description": "Certificate Transparency log monitor",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/ct_monitor/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/ct_monitor/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "ctrsploit",
+    "description": "A Penetration Toolkit for Container Environments",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/ctrsploit/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/ctrsploit/static.official.source.yaml"
   },
   {
     "_disabled": false,
@@ -1026,10 +1050,26 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "curlie",
+    "description": "Frontend to cURL that adds the ease of use of HTTPie",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/curlie/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/curlie/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "cut-cdn",
     "description": "Removing CDN IPs from the list of IP addresses",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/cut-cdn/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/cut-cdn/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "cvemap",
+    "description": "A structured and easily navigable interface to various vulnerability databases",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/cvemap/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/cvemap/static.official.source.yaml"
   },
   {
     "_disabled": false,
@@ -1050,6 +1090,22 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "dalfox",
+    "description": "A powerful open-source XSS scanner and utility focused on automation",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/dalfox/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/dalfox/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "dasel",
+    "description": "Select, put and delete data from JSON, TOML, YAML, XML and CSV files with a single tool",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/dasel/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/dasel/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "datadash",
     "description": "Visualize and graph data in the terminal",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/datadash/official",
@@ -1062,6 +1118,22 @@
     "description": "Command-line date and time calculation, conversion, and comparison",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/dateutils/nixpkgs",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/dateutils/static.nixpkgs.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "daytona",
+    "description": "The Open Source Dev Environment Manager",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/daytona/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/daytona/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "dbbench",
+    "description": "A simple Database Benchmarking tool",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/dbbench/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/dbbench/static.official.source.yaml"
   },
   {
     "_disabled": false,
@@ -1090,6 +1162,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "ddns-go",
+    "description": "Simple and easy to use DDNS",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/ddns-go/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/ddns-go/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "delta",
     "description": "A syntax-highlighting pager for git, diff, and grep output",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/delta/official",
@@ -1110,6 +1190,14 @@
     "description": "Utilities for working with Desktop Entry files",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/desktop-file-utils/nixpkgs",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/desktop-file-utils/static.nixpkgs.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "diffoci",
+    "description": "Diff for Docker and OCI container images",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/diffoci/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/diffoci/static.official.source.yaml"
   },
   {
     "_disabled": false,
@@ -1138,6 +1226,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "dnslookup",
+    "description": "Simple command line utility to make DNS lookups to the specified server",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/dnslookup/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/dnslookup/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "dnsperf",
     "description": "Tools that measure performance of authoritative Domain Name services (DNS)",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/dnsperf/nixpkgs",
@@ -1162,10 +1258,26 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "dnsx",
+    "description": "Multi-purpose DNS toolkit allow to run multiple DNS queries",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/dnsx/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/dnsx/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "doas",
     "description": "A portable fork of the OpenBSD doas command",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/doas/nixpkgs",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/doas/static.nixpkgs.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "doggo",
+    "description": "Command-line DNS Client for Humans",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/doggo/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/doggo/static.official.source.yaml"
   },
   {
     "_disabled": false,
@@ -1190,6 +1302,22 @@
     "description": "Drive performance measurement tool",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/dperf/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/dperf/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "dsieve",
+    "description": "Filter and enrich a list of subdomains by level",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/dsieve/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/dsieve/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "duf",
+    "description": "Disk Usage/Free Utility",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/duf/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/duf/static.official.source.yaml"
   },
   {
     "_disabled": false,
@@ -1250,6 +1378,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "enc",
+    "description": "A modern and friendly CLI alternative to GnuPG",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/enc/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/enc/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "encode",
     "description": "Encode|Decode input from stdin",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/encode/official",
@@ -1278,6 +1414,14 @@
     "description": "Run arbitrary commands when files change",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/entr/nixpkgs",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/entr/static.nixpkgs.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "enumerepo",
+    "description": "List all public repositories for (valid) GitHub usernames",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/enumerepo/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/enumerepo/static.official.source.yaml"
   },
   {
     "_disabled": false,
@@ -1338,6 +1482,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "falconhound",
+    "description": "FalconHound is a blue team multi-tool",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/falconhound/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/falconhound/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "fblog",
     "description": "Small command-line JSON Log viewer",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/fblog/official",
@@ -1374,6 +1526,14 @@
     "description": "Fast, simple, recursive content discovery tool",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/feroxbuster/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/feroxbuster/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "ffuf",
+    "description": "Fast web fuzzer written in Go",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/ffuf/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/ffuf/static.official.source.yaml"
   },
   {
     "_disabled": false,
@@ -1418,10 +1578,42 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "fingerprintx",
+    "description": "Standalone utility for service discovery on open ports",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/fingerprintx/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/fingerprintx/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "flawz",
     "description": "A Terminal UI for browsing security vulnerabilities (CVEs)",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/flawz/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/flawz/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "fq",
+    "description": "CLI tool and REPL for working with binary data inspired by jq",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/fq/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/fq/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "freeze",
+    "description": "Tool to generate images of code and terminal output",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/freeze/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/freeze/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "fscan",
+    "description": "A comprehensive intranet scanning tool",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/fscan/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/fscan/static.official.source.yaml"
   },
   {
     "_disabled": false,
@@ -1490,6 +1682,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "gdu",
+    "description": "Fast disk usage calculator with console interface",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/gdu/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/gdu/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "geonet",
     "description": "Network tools that run from multiple geographic locations using the GeoNet API",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/geonet/official",
@@ -1498,10 +1698,50 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "getghrel",
+    "description": "CLI tool to locate and download the latest release assets from GitHub",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/getghrel/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/getghrel/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "gettext",
     "description": "Command line archiver utility",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/gettext/nixpkgs",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/gettext/static.nixpkgs.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "gf",
+    "description": "A wrapper around grep",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/gf/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/gf/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "gfx",
+    "description": "A wrapper around gf",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/gfx/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/gfx/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "ghfetch",
+    "description": "CLI tool to fetch GitHub user information and show like neofetch",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/ghfetch/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/ghfetch/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "ghorg",
+    "description": "Quickly clone or backup an entire org/users repositories into one directory",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/ghorg/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/ghorg/static.official.source.yaml"
   },
   {
     "_disabled": false,
@@ -1578,6 +1818,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "gitleaks",
+    "description": "Scan git repos (or files) for secrets using regex and entropy",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/gitleaks/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/gitleaks/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "gitoxide",
     "description": "An idiomatic, lean, fast & safe pure Rust implementation of Git",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/gitoxide/official",
@@ -1586,10 +1834,26 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "gitql",
+    "description": "A git query language",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/gitql/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/gitql/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "gitui",
-    "description": "Blazing 💥 fast terminal-ui for git written in rust 🦀",
+    "description": "Blazing fast terminal-ui for git written in rust",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/gitui/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/gitui/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "glow",
+    "description": "Render markdown on the CLI",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/glow/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/glow/static.official.source.yaml"
   },
   {
     "_disabled": false,
@@ -1626,6 +1890,22 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "goawk",
+    "description": "A POSIX-compliant AWK interpreter written in Go, with CSV support",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/goawk/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/goawk/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "gobuster",
+    "description": "A Directory/File, DNS and VHost busting tool",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/gobuster/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/gobuster/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "gobusybox",
     "description": "Tools for compiling many Go commands into one binary to save space",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/gobusybox/official",
@@ -1642,10 +1922,50 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "gocurl",
+    "description": "Simplified version of curl written in pure Go",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/gocurl/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/gocurl/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "godnsbench",
+    "description": "Simple DNS bench util that supports encrypted protocols",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/godnsbench/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/godnsbench/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "gofireprox",
+    "description": "FireProx written in Go",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/gofireprox/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/gofireprox/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "gojq",
+    "description": "Pure Go implementation of jq with yaml support",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/gojq/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/gojq/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "golinkfinder",
     "description": "A fast and minimal JS endpoint extractor",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/golinkfinder/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/golinkfinder/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "gomuks",
+    "description": "Terminal-based Matrix client written in Go",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/gomuks/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/gomuks/static.official.source.yaml"
   },
   {
     "_disabled": false,
@@ -1666,10 +1986,34 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "gopass",
+    "description": "The slightly more awesome standard unix password manager for teams",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/gopass/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/gopass/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "gorilla",
     "description": "Tool for generating wordlists or extending an existing one using mutations",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/gorilla/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/gorilla/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "gosec",
+    "description": "Go source code static analyzer, focusing on security",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/gosec/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/gosec/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "gosmee",
+    "description": "Command line server and client for webhooks deliveries",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/gosmee/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/gosmee/static.official.source.yaml"
   },
   {
     "_disabled": false,
@@ -1746,6 +2090,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "gup",
+    "description": "Update binaries installed by go install with goroutines",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/gup/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/gup/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "gzip",
     "description": "GNU file compression/decompression Utilities",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/gzip/nixpkgs",
@@ -1806,6 +2158,14 @@
     "description": "Command line archiver utility",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/hashcat-utils/nixpkgs",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/hashcat-utils/static.nixpkgs.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "hcloud",
+    "description": "A command-line interface for Hetzner Cloud",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/hcloud/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/hcloud/static.official.stable.yaml"
   },
   {
     "_disabled": false,
@@ -1914,6 +2274,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "httpx",
+    "description": "Fast and multi-purpose HTTP toolkit",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/httpx/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/httpx/static.official.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "hub",
     "description": "A command-line tool that makes git easier to use with GitHub",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/hub/official",
@@ -1970,6 +2338,22 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "indextree",
+    "description": "Generates the tree of the directory listing page",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/indextree/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/indextree/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "invidtui",
+    "description": "A TUI based Invidious client",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/invidtui/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/invidtui/static.official.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "iotop-c",
     "description": "A top-like utility for checking I/O load",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/iotop-c/nixpkgs",
@@ -1990,6 +2374,14 @@
     "description": "A TCP, UDP, and SCTP network bandwidth measurement tool",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/iperf3/nixpkgs",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/iperf3/static.nixpkgs.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "iperf3",
+    "description": "A tool for network performance measurement and tuning",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/iperf3/userdocs",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/iperf3/static.userdocs.stable.yaml"
   },
   {
     "_disabled": false,
@@ -2034,6 +2426,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "jira-cli",
+    "description": "Feature-rich interactive Jira command line",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/jira-cli/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/jira-cli/static.official.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "jnv",
     "description": "interactive JSON filter using jq",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/jnv/official",
@@ -2046,6 +2446,14 @@
     "description": "A tool to put running programs into background/foreground & provide Job Control to any Shell",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/job-security/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/job-security/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "jqp",
+    "description": "TUI playground to experiment with jq",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/jqp/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/jqp/static.official.source.yaml"
   },
   {
     "_disabled": false,
@@ -2070,6 +2478,14 @@
     "description": "A tool for hacking/security testing to JWT",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/jwt-hack/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/jwt-hack/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "k9s",
+    "description": "Terminal UI to interact with Kubernetes clusters",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/k9s/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/k9s/static.official.stable.yaml"
   },
   {
     "_disabled": false,
@@ -2138,10 +2554,34 @@
   {
     "_disabled": false,
     "rebuild": false,
-    "pkg_family": "libaws-cli",
-    "description": "A simpler way to declare aws infrastructure that is easy to use and extend",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/libaws/official",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/libaws-cli/static.official.source.yaml"
+    "pkg_family": "kubo",
+    "description": "Tools for Inter Platnetary File System (IPFS)",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/kubo/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/kubo/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "ladder",
+    "description": "Selfhosted alternative to 12ft.io. and 1ft.io",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/ladder/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/ladder/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "lazydocker",
+    "description": "TUI for docker resource visualization and management",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/lazydocker/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/lazydocker/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "lazygit",
+    "description": "simple terminal UI for git commands",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/lazygit/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/lazygit/static.official.source.yaml"
   },
   {
     "_disabled": false,
@@ -2154,6 +2594,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "lf",
+    "description": "Terminal file manager",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/lf/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/lf/static.official.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "libarchive",
     "description": "Multi-format archive and compression Tools",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/libarchive/nixpkgs",
@@ -2162,10 +2610,42 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "libaws-cli",
+    "description": "A simpler way to declare aws infrastructure that is easy to use and extend",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/libaws/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/libaws-cli/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "libtree",
     "description": "Tree ldd with an option to bundle dependencies into a single folder",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/libtree/nixpkgs",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/libtree/static.nixpkgs.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "litefs",
+    "description": "FUSE-based file system for replicating SQLite databases across a cluster of machines",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/litefs/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/litefs/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "logdy",
+    "description": "Web based real-time log viewer",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/logdy/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/logdy/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "logtimer",
+    "description": "Add timestamp to output",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/logtimer/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/logtimer/static.official.source.yaml"
   },
   {
     "_disabled": false,
@@ -2194,6 +2674,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "lux",
+    "description": "Fast, simple and clean video downloader",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/lux/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/lux/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "mabel",
     "description": "A fancy BitTorrent client for the terminal",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/mabel/official",
@@ -2218,6 +2706,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "mani",
+    "description": "CLI tool to manage multiple repositories",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/mani/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/mani/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "mantra",
     "description": "Tool used to hunt down API key leaks in JS files and pages",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/mantra/official",
@@ -2238,6 +2734,14 @@
     "description": "Asynchronous port scanner",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/masscan/nixpkgs",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/masscan/static.nixpkgs.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "matterbridge",
+    "description": "Multi-protocols (IRC/XMPP/Mattermost/Slack/Matrix/etc) bridge",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/matterbridge/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/matterbridge/static.official.stable.yaml"
   },
   {
     "_disabled": false,
@@ -2274,6 +2778,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "melange",
+    "description": "Build APKs from source code",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/melange/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/melange/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "meli",
     "description": "Terminal Mail Client",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/meli/official",
@@ -2282,10 +2794,42 @@
   {
     "_disabled": false,
     "rebuild": false,
-    "pkg_family": "minio-warp",
-    "description": "S3 benchmarking tool",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/warp/official",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/minio-warp/static.official.source.yaml"
+    "pkg_family": "mgwls",
+    "description": "Combine words from two wordlist files and concatenate them with an optional delimiter",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/mgwls/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/mgwls/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "micro",
+    "description": "Modern and intuitive terminal-based text editor",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/micro/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/micro/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "miller",
+    "description": "Combination of sed,awk,cut,join,sort utils for CSV, Json, TSV & more",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/miller/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/miller/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "miniflux",
+    "description": "Minimalist and opinionated feed reader",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/miniflux/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/miniflux/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "minify",
+    "description": "Tool to minify web formats like HTML5, CSS3, JS, JSON, SVG, XML & More",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/minify/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/minify/static.official.stable.yaml"
   },
   {
     "_disabled": false,
@@ -2314,6 +2858,30 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "mksub",
+    "description": "Generate tens of thousands of subdomain combinations in a matter of seconds",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/mksub/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/mksub/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "mmv",
+    "description": "Move/copy/append/link multiple files according to a set of wildcard patterns",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/mmv/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/mmv/static.official.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "moac",
+    "description": "Generate passwords and analyze their strength given physical limits to computation",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/moac/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/moac/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "monolith",
     "description": "CLI tool for saving complete web pages as a single HTML file",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/monolith/official",
@@ -2330,7 +2898,7 @@
   {
     "_disabled": false,
     "rebuild": false,
-    "pkg_family": "mtdutils",
+    "pkg_family": "mtd-utils",
     "description": "Tools for MTD filesystems [mtd-utils]",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/mtdutils/nixpkgs",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/mtd-utils/static.nixpkgs.stable.yaml"
@@ -2386,6 +2954,30 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "nerdctl",
+    "description": "Docker-compatible CLI for containerd, with support for Compose, Rootless, eStargz, OCIcrypt, IPFS",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/nerdctl/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/nerdctl/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "net-tools",
+    "description": "A set of tools for controlling the network subsystem in Linux",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/net-tools/nixpkgs",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/net-tools/static.nixpkgs.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "netbird",
+    "description": "WireGuard-based mesh network",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/netbird/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/netbird/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "netcat",
     "description": "TCP/IP swiss army knife (GNU-variant)",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/netcat-gnu/nixpkgs",
@@ -2402,6 +2994,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "netmaker",
+    "description": "WireGuard automation from homelab to enterprise",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/netmaker/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/netmaker/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "netscanner",
     "description": "Network scanner with features like WiFi scanning, packetdump and more",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/netscanner/official",
@@ -2410,10 +3010,10 @@
   {
     "_disabled": false,
     "rebuild": false,
-    "pkg_family": "net-tools",
-    "description": "A set of tools for controlling the network subsystem in Linux",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/net-tools/nixpkgs",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/net-tools/static.nixpkgs.stable.yaml"
+    "pkg_family": "nfpm",
+    "description": "A simple deb, rpm, apk, ipk, and arch linux packager",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/nfpm/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/nfpm/static.official.stable.yaml"
   },
   {
     "_disabled": false,
@@ -2434,18 +3034,18 @@
   {
     "_disabled": false,
     "rebuild": false,
-    "pkg_family": "nmap",
-    "description": "Utilities for Network Discovery and Security Auditing",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/nmap/nixpkgs",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/nmap/static.nixpkgs.stable.yaml"
-  },
-  {
-    "_disabled": false,
-    "rebuild": false,
     "pkg_family": "nmap-formatter",
     "description": "A tool to convert NMAP results to html, csv, json, markdown, graphviz (dot) or sqlite",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/nmap-formatter/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/nmap-formatter/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "nmap",
+    "description": "Utilities for Network Discovery and Security Auditing",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/nmap/nixpkgs",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/nmap/static.nixpkgs.stable.yaml"
   },
   {
     "_disabled": false,
@@ -2470,6 +3070,30 @@
     "description": "Finds secrets and sensitive information in textual data and Git history",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/noseyparker/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/noseyparker/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "notify",
+    "description": "Send the output from any tool to Slack, Discord, Telegram & More",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/notify/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/notify/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "nrich",
+    "description": "Quickly analyze all IPs in a file and see which ones have open ports/vulnerabilities using Shodan",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/nrich/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/nrich/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "nuclei",
+    "description": "Fast and customizable vulnerability scanner based on simple YAML based DSL",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/nuclei/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/nuclei/static.official.stable.yaml"
   },
   {
     "_disabled": false,
@@ -2514,6 +3138,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "ooniprobe",
+    "description": "OONI Probe Engine and CLI",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/ooniprobe/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/ooniprobe/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "openapi-tui",
     "description": "Terminal UI to list, browse and run APIs defined with OpenAPI spec",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/openapi-tui/official",
@@ -2554,6 +3186,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "oras",
+    "description": "OCI registry client - manage content like artifacts, images, packages",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/oras/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/oras/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "osmedeus",
     "description": "A Workflow Engine for Offensive Security",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/osmedeus/official",
@@ -2578,6 +3218,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "ov",
+    "description": "Feature-rich terminal-based text viewer & pager",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/ov/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/ov/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "passdetective",
     "description": "Scans command history to detect mistakenly written passwords, API keys, and secrets",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/passdetective/official",
@@ -2598,6 +3246,22 @@
     "description": "ELF utils that can check files for security relevant properties",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/pax-utils/nixpkgs",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/pax-utils/static.nixpkgs.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "pdfcpu",
+    "description": "A PDF processor written in Go",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/pdfcpu/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/pdfcpu/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "pencode",
+    "description": "Complex payload encoder",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/pencode/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/pencode/static.official.source.yaml"
   },
   {
     "_disabled": false,
@@ -2634,6 +3298,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "pingtunnel",
+    "description": "Reliably tunnel TCP connections over ICMP packets",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/pingtunnel/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/pingtunnel/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "pixterm",
     "description": "Draw images in your ANSI terminal with true color",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/pixterm/official",
@@ -2654,6 +3326,14 @@
     "description": "A network monitoring tool with bandwidth tracking",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/pktstat/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/pktstat/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "planor",
+    "description": "TUI client for cloud services (AWS, Vultr, Heroku, Render.com, Fleek & More)",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/planor/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/planor/static.official.stable.yaml"
   },
   {
     "_disabled": false,
@@ -2698,6 +3378,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "procs",
+    "description": "A modern replacement for ps written in Rust",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/procs/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/procs/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "proot",
     "description": "User-space implementation of chroot, bind mount, and binfmt_misc",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/proot/gnuguix",
@@ -2734,6 +3422,14 @@
     "description": "Monitor linux processes without root permissions",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/pspy/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/pspy/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "puredns",
+    "description": "Fast domain resolver and subdomain bruteforcing with accurate wildcard filtering",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/puredns/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/puredns/static.official.source.yaml"
   },
   {
     "_disabled": false,
@@ -2794,6 +3490,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "reader",
+    "description": "A minimal command line reader offering better readability of web pages on the CLI",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/reader/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/reader/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "realm-tavern",
     "description": "parallel | xargs in rust",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/realm-tavern/official",
@@ -2826,6 +3530,22 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "regclient",
+    "description": "Docker and OCI Registry Client Tools",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/regclient/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/regclient/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "rekor",
+    "description": "Software Supply Chain Transparency Log",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/rekor/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/rekor/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "relic",
     "description": "A tool for adding Digital Signatures to operating system packages for Linux and Windows",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/relic/official",
@@ -2838,6 +3558,14 @@
     "description": "A scope generation tool for Burp Suite & ZAP",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/rescope/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/rescope/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "restic",
+    "description": "Fast, secure, efficient backup program",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/restic/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/restic/static.official.stable.yaml"
   },
   {
     "_disabled": false,
@@ -2954,14 +3682,6 @@
   {
     "_disabled": false,
     "rebuild": false,
-    "pkg_family": "s6",
-    "description": "A small suite of programs for UNIX, designed to allow process supervision",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/s6/nixpkgs",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/s6/static.nixpkgs.stable.yaml"
-  },
-  {
-    "_disabled": false,
-    "rebuild": false,
     "pkg_family": "s6-dns",
     "description": "A suite of DNS client programs and libraries for Unix systems",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/s6-dns/nixpkgs",
@@ -3006,6 +3726,14 @@
     "description": "A set of tools to manage system services for s6-based systems",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/s6-rc/nixpkgs",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/s6-rc/static.nixpkgs.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "s6",
+    "description": "A small suite of programs for UNIX, designed to allow process supervision",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/s6/nixpkgs",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/s6/static.nixpkgs.stable.yaml"
   },
   {
     "_disabled": false,
@@ -3086,6 +3814,14 @@
     "description": "Signature-based file format identification",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/siegfried/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/siegfried/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "simplex-chat",
+    "description": "A 100% private-by-design chat platform for the command-line",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/simplex-chat/ppkg",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/simplex-chat/static.ppkg.stable.yaml"
   },
   {
     "_disabled": false,
@@ -3178,18 +3914,18 @@
   {
     "_disabled": false,
     "rebuild": false,
-    "pkg_family": "squashfs-tools",
-    "description": "Tools for creating and unpacking squashfs filesystems",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/squashfs-tools/nixpkgs",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/squashfs-tools/static.nixpkgs.stable.yaml"
-  },
-  {
-    "_disabled": false,
-    "rebuild": false,
     "pkg_family": "squashfs-tools-ng",
     "description": "New Set of Tools for working with SquashFS Images [alias=squashfstools-ng:squashfstoolsng]",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/squashfs-tools-ng/nixpkgs",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/squashfs-tools-ng/static.nixpkgs.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "squashfs-tools",
+    "description": "Tools for creating and unpacking squashfs filesystems",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/squashfs-tools/nixpkgs",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/squashfs-tools/static.nixpkgs.stable.yaml"
   },
   {
     "_disabled": false,
@@ -3594,6 +4330,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "minio-warp",
+    "description": "S3 benchmarking tool",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/warp/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/minio-warp/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "waybackrobots",
     "description": "Enumerate old versions of robots.txt paths using Wayback Machine for content discovery",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/waybackrobots/official",
@@ -3626,6 +4370,22 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "wget",
+    "description": "Tool for retrieving files using HTTP, HTTPS, and FTP",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/wget/ppkg",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/wget/static.ppkg.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "wget2",
+    "description": "The successor of GNU Wget, a file and recursive website downloader",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/wget2/ppkg",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/wget2/static.ppkg.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "which",
     "description": "Shows the full path of (shell) commands",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/which/nixpkgs",
@@ -3653,6 +4413,14 @@
     "pkg_family": "wireguard",
     "description": "Rust Userspace implementation of WireGuard",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/wireguard-rs/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/wireguard/static.rs.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "wireguard",
+    "description": "Rust Userspace implementation of WireGuard",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/wireguard/rs",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/wireguard/static.rs.source.yaml"
   },
   {
