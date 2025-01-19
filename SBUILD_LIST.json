@@ -1101,7 +1101,7 @@
     "pkg_family": "deoptimizer",
     "description": "Machine code de-optimizer to bypass AV",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/deoptimizer/official",
-    "build_script": "https://github.com/pkgforge/soarpkgs/blob/main/binaries/deoptimizer/static.official.source.yaml"
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/deoptimizer/static.official.source.yaml"
   },
   {
     "_disabled": false,
