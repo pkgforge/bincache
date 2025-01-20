@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
   schedule:
   #  - cron: "45 03 * * *"  # 03:45 AM UTC --> 09:30 AM Morning NPT
-   - cron: "0 */12 * * *"  # Every 12 Hrs
+   - cron: "0 */8 * * *"  # Every 12 Hrs
 
 #env:
   #GHCR_TOKEN: "${{ secrets.GHCR_TOKEN }}"
