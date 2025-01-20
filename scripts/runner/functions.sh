@@ -332,10 +332,14 @@ if [[ "${CONTINUE_SBUILD}" == "YES" ]]; then
        xargs -I "{}" bash -c '
          base=$(basename "{}")
          dir=$(dirname "{}")
+         if [[ "$base" == *.archive ]]; then
+           new_name="${base%.archive}"
+           mv -fv "{}" "${dir}/${new_name}"
+         fi
          if [[ "$base" == *.no_strip ]]; then
            new_name="${base%.no_strip}"
            mv -fv "{}" "${dir}/${new_name}"
-         else 
+         else
            objcopy --remove-section=".comment" --remove-section=".note.*" "{}"
            strip --strip-debug --strip-dwo --strip-unneeded "{}"
          fi
