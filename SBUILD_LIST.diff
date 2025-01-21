@@ -2498,6 +2498,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "hugo",
+    "description": "Fast and Flexible Static Site Generator",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/hugo/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/hugo/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "hurl",
     "description": "CLI to run HTTP requests defined in simple plain text format",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/hurl/nixpkgs",
@@ -2986,6 +2994,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "mailpit",
+    "description": "Email and SMTP testing tool with API for developers",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/mailpit/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/mailpit/static.official.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "mani",
     "description": "CLI tool to manage multiple repositories",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/mani/official",
@@ -3074,6 +3090,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "mergerfs",
+    "description": "A featureful union filesystem",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/mergerfs/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/mergerfs/static.official.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "mgwls",
     "description": "Combine words from two wordlist files and concatenate them with an optional delimiter",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/mgwls/official",
@@ -3126,6 +3150,14 @@
     "description": "Geographical Download Redirector for Distributing Files Efficiently across a set of Mirrors",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/mirrorbits/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/mirrorbits/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "mise",
+    "description": "Polyglot runtime and dev tool version manager",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/mise/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/mise/static.official.stable.yaml"
   },
   {
     "_disabled": false,
@@ -5130,6 +5162,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "xclip",
+    "description": "Command line interface to the X11 clipboard",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/xclip/ppkg",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/xclip/static.ppkg.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "xcp",
     "description": "Modern Alternative to cp with extended features",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/xcp/official",
@@ -5150,6 +5190,14 @@
     "description": "Command-line XML and HTML beautifier and content extractor",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/xq/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/xq/static.official.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "xsel",
+    "description": "Command-line program for manipulating the X selection (Clipboard)",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/xsel/ppkg",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/xsel/static.ppkg.stable.yaml"
   },
   {
     "_disabled": false,
