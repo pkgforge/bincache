@@ -1,7 +1,7 @@
 [
   {
     "_disabled": false,
-    "rebuild": false,
+    "rebuild": true,
     "pkg_family": "7z",
     "description": "Command line archiver utility",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/7z/official",
@@ -293,7 +293,7 @@
     "pkg_family": "aria2",
     "description": "A multi-protocol (HTTP/HTTPS, FTP, SFTP, BitTorrent & Metalink) & multi-source command-line download utility",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/aria2/abcfy2",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/aria2/static.abcfy2.stable.yaml"
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/aria2/static.abcfy2.continuous.yaml"
   },
   {
     "_disabled": false,
@@ -3262,6 +3262,14 @@
     "description": "Fast and modern Gopher, Gemini and finger terminal client",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/ncgopher/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/ncgopher/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "neofetch",
+    "description": "A CLI system information tool (Updated Fork)",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/neofetch/hyfetch",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/neofetch/static.hyfetch.stable.yaml"
   },
   {
     "_disabled": false,
