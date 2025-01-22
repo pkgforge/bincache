@@ -1,7 +1,7 @@
 [
   {
     "_disabled": false,
-    "rebuild": true,
+    "rebuild": false,
     "pkg_family": "7z",
     "description": "Command line archiver utility",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/7z/official",
