@@ -293,7 +293,7 @@
     "pkg_family": "aria2",
     "description": "A multi-protocol (HTTP/HTTPS, FTP, SFTP, BitTorrent & Metalink) & multi-source command-line download utility",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/aria2/abcfy2",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/aria2/static.abcfy2.stable.yaml"
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/aria2/static.abcfy2.continuous.yaml"
   },
   {
     "_disabled": false,
@@ -643,6 +643,14 @@
     "_disabled": false,
     "rebuild": false,
     "pkg_family": "bubblewrap",
+    "description": "Namespaces-powered chroot-like solution for Unprivileged Sandboxing (Patched)",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/bubblewrap/glibc/patched",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/bubblewrap/static.patched.glibc.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "bubblewrap",
     "description": "Namespaces-powered chroot-like solution for Unprivileged Sandboxing",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/bubblewrap/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/bubblewrap/static.official.source.yaml"
@@ -666,6 +674,30 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "busybox",
+    "description": "Tiny versions of many common UNIX utilities into a single small executable (Multicall)",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/busybox/glibc",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/busybox/static.standalone.glibc.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "busybox",
+    "description": "Tiny versions of many common UNIX utilities into a single small executable (Multicall)",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/busybox/nixpkgs",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/busybox/static.nixpkgs.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "busybox",
+    "description": "Tiny versions of many common UNIX utilities into a single small executable (Multicall)",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/busybox/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/busybox/static.standalone.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "byp4xx",
     "description": "A tool to bypass 4xx HTTP responses",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/byp4xx/official",
@@ -675,9 +707,9 @@
     "_disabled": false,
     "rebuild": false,
     "pkg_family": "caddy",
-    "description": "A powerful, enterprise-ready, and extensible HTTP/2 + HTTP/3 web server with automatic HTTPS (Beta)",
+    "description": "A powerful, enterprise-ready, and extensible HTTP/2 + HTTP/3 web server with automatic HTTPS",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/caddy/official",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/caddy/static.official.beta.yaml"
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/caddy/static.official.stable.yaml"
   },
   {
     "_disabled": false,
