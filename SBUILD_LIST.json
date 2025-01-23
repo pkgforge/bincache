@@ -442,6 +442,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "bench",
+    "description": "A quick & easy Benchmarking Script to Auto test I/O & Bandwidth",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/bench/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/bench/static.official.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "berty",
     "description": "An open, secure, offline-first, peer-to-peer and zero trust messaging app",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/berty/official",
@@ -454,6 +462,14 @@
     "description": "Effortless binary manager",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/bin/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/bin/static.official.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "bin2video",
+    "description": "Tool for encoding files as videos",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/bin2video/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/bin2video/static.official.source.yaml"
   },
   {
     "_disabled": false,
@@ -618,10 +634,66 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "bubblewrap",
+    "description": "Namespaces-powered chroot-like solution for Unprivileged Sandboxing",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/bubblewrap/glibc",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/bubblewrap/static.glibc.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "bubblewrap",
+    "description": "Namespaces-powered chroot-like solution for Unprivileged Sandboxing",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/bubblewrap/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/bubblewrap/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "bubblewrap",
+    "description": "Namespaces-powered chroot-like solution for Unprivileged Sandboxing",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/bubblewrap/patched",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/bubblewrap/static.patched.source.yaml"
+  },  
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "bubblewrap",
+    "description": "Namespaces-powered chroot-like solution for Unprivileged Sandboxing (Patched)",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/bubblewrap/glibc/patched",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/bubblewrap/static.patched.glibc.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "bucketloot",
     "description": "Automated S3-compatible bucket inspector",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/bucketloot/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/bucketloot/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "busybox",
+    "description": "Tiny versions of many common UNIX utilities into a single small executable (Multicall)",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/busybox/glibc",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/busybox/static.standalone.glibc.yaml"
+  },  
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "busybox",
+    "description": "Tiny versions of many common UNIX utilities into a single small executable (Multicall)",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/busybox/nixpkgs",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/busybox/static.nixpkgs.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "busybox",
+    "description": "Tiny versions of many common UNIX utilities into a single small executable (Multicall)",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/busybox/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/busybox/static.standalone.source.yaml"
   },
   {
     "_disabled": false,
@@ -2890,6 +2962,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "lklfuse",
+    "description": "Use LKL to mount Linux-supported filesystems in userspace via FUSE",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/lklfuse/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/lklfuse/static.official.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "lnav",
     "description": "Log file navigator",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/lnav/official",
@@ -3434,6 +3514,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "nvme-cli",
+    "description": "NVMe user space tooling for Linux",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/nvme-cli/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/nvme-cli/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "oksh",
     "description": "Portable OpenBSD ksh, based on the Public Domain Korn Shell (pdksh)",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/oksh/nixpkgs",
@@ -3790,6 +3878,14 @@
     "description": "User-space implementation of chroot, bind mount, and binfmt_misc",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/proot/gnuguix",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/proot/static.gnuguix.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "proot",
+    "description": "User-space implementation of chroot, mount --bind and binfmt_misc",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/proot/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/proot/static.official.stable.yaml"
   },
   {
     "_disabled": false,
@@ -5438,6 +5534,22 @@
     "description": "Modern Alternative to cp with extended features",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/xcp/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/xcp/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "xdo",
+    "description": "Small X utility to perform elementary actions on windows",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/xdo/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/xdo/static.official.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "xdotool",
+    "description": "Simulate keyboard input and mouse activity, move and resize windows",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/xdotool/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/xdotool/static.official.stable.yaml"
   },
   {
     "_disabled": false,
