@@ -675,7 +675,7 @@
     "_disabled": false,
     "rebuild": false,
     "pkg_family": "busybox",
-    "description": "Tiny versions of many common UNIX utilities into a single small executable (Multicall)",
+    "description": "Tiny versions of many common UNIX utilities into a single small executable (Standalone)",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/busybox/glibc",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/busybox/static.standalone.glibc.yaml"
   },  
@@ -691,7 +691,7 @@
     "_disabled": false,
     "rebuild": false,
     "pkg_family": "busybox",
-    "description": "Tiny versions of many common UNIX utilities into a single small executable (Multicall)",
+    "description": "Tiny versions of many common UNIX utilities into a single small executable (Standalone)",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/busybox/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/busybox/static.standalone.source.yaml"
   },
