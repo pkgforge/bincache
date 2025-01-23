@@ -442,6 +442,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "bench",
+    "description": "A quick & easy Benchmarking Script to Auto test I/O & Bandwidth",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/bench/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/bench/static.official.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "berty",
     "description": "An open, secure, offline-first, peer-to-peer and zero trust messaging app",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/berty/official",
@@ -454,6 +462,14 @@
     "description": "Effortless binary manager",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/bin/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/bin/static.official.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "bin2video",
+    "description": "Tool for encoding files as videos",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/bin2video/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/bin2video/static.official.source.yaml"
   },
   {
     "_disabled": false,
@@ -618,6 +634,30 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "bubblewrap",
+    "description": "Namespaces-powered chroot-like solution for Unprivileged Sandboxing",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/bubblewrap/glibc",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/bubblewrap/static.glibc.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "bubblewrap",
+    "description": "Namespaces-powered chroot-like solution for Unprivileged Sandboxing",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/bubblewrap/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/bubblewrap/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "bubblewrap",
+    "description": "Namespaces-powered chroot-like solution for Unprivileged Sandboxing (Patched)",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/bubblewrap/patched",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/bubblewrap/static.patched.glibc.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "bucketloot",
     "description": "Automated S3-compatible bucket inspector",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/bucketloot/official",
@@ -635,9 +675,9 @@
     "_disabled": false,
     "rebuild": false,
     "pkg_family": "caddy",
-    "description": "A powerful, enterprise-ready, and extensible HTTP/2 + HTTP/3 web server with automatic HTTPS",
+    "description": "A powerful, enterprise-ready, and extensible HTTP/2 + HTTP/3 web server with automatic HTTPS (Beta)",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/caddy/official",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/caddy/static.official.stable.yaml"
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/caddy/static.official.beta.yaml"
   },
   {
     "_disabled": false,
@@ -3438,6 +3478,14 @@
     "description": "Shell with a focus on structured data",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/nushell/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/nushell/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "nvme-cli",
+    "description": "NVMe user space tooling for Linux",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/nvme-cli/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/nvme-cli/static.official.source.yaml"
   },
   {
     "_disabled": false,
