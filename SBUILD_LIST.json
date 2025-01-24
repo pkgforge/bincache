@@ -986,6 +986,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "colorized-logs",
+    "description": "Tools for logs with ANSI color",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/colorized-logs/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/colorized-logs/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "containerd",
     "description": "An open and reliable container runtime",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/containerd/official",
@@ -997,6 +1005,14 @@
     "pkg_family": "coreutils",
     "description": "GNU File, Shell, and Text utilities",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/coreutils/multicall",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/coreutils/static.multicall.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "coreutils",
+    "description": "GNU File, Shell, and Text utilities",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/coreutils/multicall/glibc",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/coreutils/static.multicall.glibc.yaml"
   },
   {
@@ -1013,6 +1029,14 @@
     "pkg_family": "coreutils",
     "description": "GNU File, Shell, and Text utilities",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/coreutils/standalone",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/coreutils/static.standalone.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "coreutils",
+    "description": "GNU File, Shell, and Text utilities",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/coreutils/standalone/glibc",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/coreutils/static.standalone.glibc.yaml"
   },
   {
@@ -1030,6 +1054,14 @@
     "description": "Cross-platform Rust rewrite of the GNU coreutils",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/coreutils_uutils/standalone",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/coreutils/static.standalone.uutils.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "coreutils",
+    "description": "GNU coreutils in V-Lang",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/coreutils/vlang",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/coreutils/static.vlang.source.yaml"
   },
   {
     "_disabled": false,
@@ -1686,6 +1718,14 @@
     "description": "FalconHound is a blue team multi-tool",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/falconhound/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/falconhound/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "fastfetch",
+    "description": "Fast and feature-rich tool displaying system information",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/fastfetch/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/fastfetch/static.official.source.yaml"
   },
   {
     "_disabled": false,
