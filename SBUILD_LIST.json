@@ -643,6 +643,14 @@
     "_disabled": false,
     "rebuild": false,
     "pkg_family": "bubblewrap",
+    "description": "Namespaces-powered chroot-like solution for Unprivileged Sandboxing (Patched)",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/bubblewrap/glibc/patched",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/bubblewrap/static.patched.glibc.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "bubblewrap",
     "description": "Namespaces-powered chroot-like solution for Unprivileged Sandboxing",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/bubblewrap/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/bubblewrap/static.official.source.yaml"
@@ -654,14 +662,6 @@
     "description": "Namespaces-powered chroot-like solution for Unprivileged Sandboxing",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/bubblewrap/patched",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/bubblewrap/static.patched.source.yaml"
-  },  
-  {
-    "_disabled": false,
-    "rebuild": false,
-    "pkg_family": "bubblewrap",
-    "description": "Namespaces-powered chroot-like solution for Unprivileged Sandboxing (Patched)",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/bubblewrap/glibc/patched",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/bubblewrap/static.patched.glibc.yaml"
   },
   {
     "_disabled": false,
@@ -678,7 +678,7 @@
     "description": "Tiny versions of many common UNIX utilities into a single small executable (Standalone)",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/busybox/glibc",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/busybox/static.standalone.glibc.yaml"
-  },  
+  },
   {
     "_disabled": false,
     "rebuild": false,
@@ -694,6 +694,14 @@
     "description": "Tiny versions of many common UNIX utilities into a single small executable (Standalone)",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/busybox/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/busybox/static.standalone.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "busybox",
+    "description": "Tiny versions of many common UNIX utilities into a single small executable (Standalone)",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/busybox/standalone",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/busybox/static.standalone.glibc.yaml"
   },
   {
     "_disabled": false,
@@ -982,6 +990,46 @@
     "description": "An open and reliable container runtime",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/containerd/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/containerd/static.official.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "coreutils",
+    "description": "GNU File, Shell, and Text utilities",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/coreutils/multicall",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/coreutils/static.multicall.glibc.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "coreutils",
+    "description": "GNU File, Shell, and Text utilities",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/coreutils/nixpkgs",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/coreutils/static.nixpkgs.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "coreutils",
+    "description": "GNU File, Shell, and Text utilities",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/coreutils/standalone",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/coreutils/static.standalone.glibc.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "coreutils",
+    "description": "Cross-platform Rust rewrite of the GNU coreutils",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/coreutils_uutils/multicall",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/coreutils/static.multicall.uutils.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "coreutils",
+    "description": "Cross-platform Rust rewrite of the GNU coreutils",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/coreutils_uutils/standalone",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/coreutils/static.standalone.uutils.yaml"
   },
   {
     "_disabled": false,
