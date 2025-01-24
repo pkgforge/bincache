@@ -20,7 +20,7 @@
 setup_env()
 {
  ##Version
- SBF_VERSION="1.6.3" && echo -e "[+] SBUILD Functions Version: ${SBF_VERSION}" ; unset SBF_VERSION
+ SBF_VERSION="1.6.4" && echo -e "[+] SBUILD Functions Version: ${SBF_VERSION}" ; unset SBF_VERSION
  ##Input    
  INPUT_SBUILD="${1:-$(echo "$@" | tr -d '[:space:]')}"
  INPUT_SBUILD_PATH="$(realpath ${INPUT_SBUILD})" ; export INPUT_SBUILD="${INPUT_SBUILD_PATH}"
@@ -63,6 +63,34 @@ check_sane_env()
   fi
 }
 export -f check_sane_env
+#-------------------------------------------------------#
+
+#-------------------------------------------------------#
+##Cleanup & Purge Containers
+cleanup_containers()
+{
+ #Alpine 
+  ( docker stop "alpine-builder" >/dev/null 2>&1 ; docker rm "alpine-builder" >/dev/null 2>&1 ) &>/dev/null
+  ( sudo docker stop "alpine-builder" >/dev/null 2>&1 ; sudo docker rm "alpine-builder" >/dev/null 2>&1 ) &>/dev/null
+ #Alpine-mimalloc 
+  ( docker stop "alpine-builder-mimalloc" >/dev/null 2>&1 ; docker rm "alpine-builder-mimalloc" >/dev/null 2>&1 ) &>/dev/null
+  ( sudo docker stop "alpine-builder-mimalloc" >/dev/null 2>&1 ; sudo docker rm "alpine-builder-mimalloc" >/dev/null 2>&1 ) &>/dev/null
+ #Archlinux 
+  ( docker stop "archlinux-builder" >/dev/null 2>&1 ; docker rm "archlinux-builder" >/dev/null 2>&1 ) &>/dev/null
+  ( sudo docker stop "archlinux-builder" >/dev/null 2>&1 ; sudo docker rm "archlinux-builder" >/dev/null 2>&1 ) &>/dev/null
+ #Debian 
+  ( docker stop "debian-builder" >/dev/null 2>&1 ; docker rm "debian-builder" >/dev/null 2>&1 ) &>/dev/null
+  ( sudo docker stop "debian-builder" >/dev/null 2>&1 ; sudo docker rm "debian-builder" >/dev/null 2>&1 ) &>/dev/null
+ #Debian-Unstable 
+  ( docker stop "debian-builder-unstable" >/dev/null 2>&1 ; docker rm "debian-builder-unstable" >/dev/null 2>&1 ) &>/dev/null
+  ( sudo docker stop "debian-builder-unstable" >/dev/null 2>&1 ; sudo docker rm "debian-builder-unstable" >/dev/null 2>&1 ) &>/dev/null
+ #Ubuntu 
+  ( docker stop "ubuntu-builder" >/dev/null 2>&1 ; docker rm "ubuntu-builder" >/dev/null 2>&1 ) &>/dev/null
+  ( sudo docker stop "ubuntu-builder" >/dev/null 2>&1 ; sudo docker rm "ubuntu-builder" >/dev/null 2>&1 ) &>/dev/null
+ #Cleanup 
+  wait >/dev/null 2>&1 ; echo
+}
+export -f cleanup_containers
 #-------------------------------------------------------#
 
 #-------------------------------------------------------#
@@ -325,7 +353,8 @@ if [[ "${CONTINUE_SBUILD}" == "YES" ]]; then
   if [[ "${CONTINUE_SBUILD}" == "YES" ]]; then
    check_sane_env
    pushd "${SBUILD_OUTDIR}" >/dev/null 2>&1
-     printf "\n" && timeout -k 5m 60m "${TMPXRUN}" ; printf "\n"
+     cleanup_containers
+     printf "\n" && timeout -k 5m 60m "${TMPXRUN}" ; printf "\n" && cleanup_containers
      if [ -d "${SBUILD_OUTDIR}" ] && [ $(du -s "${SBUILD_OUTDIR}" | cut -f1) -gt 10 ]; then
       #Perms
        sudo chown -R "$(whoami):$(whoami)" "${SBUILD_OUTDIR}"
