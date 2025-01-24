@@ -715,9 +715,9 @@
     "_disabled": false,
     "rebuild": false,
     "pkg_family": "caddy",
-    "description": "A powerful, enterprise-ready, and extensible HTTP/2 + HTTP/3 web server with automatic HTTPS",
+    "description": "A powerful, enterprise-ready, and extensible HTTP/2 + HTTP/3 web server with automatic HTTPS (Beta)",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/caddy/official",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/caddy/static.official.stable.yaml"
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/caddy/static.official.beta.yaml"
   },
   {
     "_disabled": false,
@@ -990,6 +990,46 @@
     "description": "An open and reliable container runtime",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/containerd/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/containerd/static.official.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "coreutils",
+    "description": "GNU File, Shell, and Text utilities",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/coreutils/multicall",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/coreutils/static.multicall.glibc.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "coreutils",
+    "description": "GNU File, Shell, and Text utilities",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/coreutils/nixpkgs",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/coreutils/static.nixpkgs.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "coreutils",
+    "description": "GNU File, Shell, and Text utilities",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/coreutils/standalone",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/coreutils/static.standalone.glibc.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "coreutils",
+    "description": "Cross-platform Rust rewrite of the GNU coreutils",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/coreutils_uutils/multicall",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/coreutils/static.multicall.uutils.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "coreutils",
+    "description": "Cross-platform Rust rewrite of the GNU coreutils",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/coreutils_uutils/standalone",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/coreutils/static.standalone.uutils.yaml"
   },
   {
     "_disabled": false,
