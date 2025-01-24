@@ -31,7 +31,7 @@ setup_env()
  fi
  BUILD_DIR="$(mktemp -d --tmpdir=${SYSTMP}/pkgforge XXXXXXX_$(basename "${INPUT_SBUILD}" | tr -d 'X'))"
  SBUILD_OUTDIR="${BUILD_DIR}/SBUILD_OUTDIR"
- SBUILD_TMPDIR="${SBUILD_OUTDIR}/SBUILD_TEMP"
+ SBUILD_TMPDIR="${SBUILD_OUTDIR}/SBUILD_TEMP/tmp"
  mkdir -p "${SBUILD_TMPDIR}"
  export BUILD_DIR INPUT_SBUILD SBUILD_OUTDIR SBUILD_TMPDIR
  #echo -e "\n[+] Building ["$(echo "${RECIPE}" | awk -F'/' '{print $(NF-1) "/" $NF}')"] (${INPUT_SBUILD}) --> ${SBUILD_OUTDIR} [$(TZ='UTC' date +'%A, %Y-%m-%d (%I:%M:%S %p)') UTC]\n"

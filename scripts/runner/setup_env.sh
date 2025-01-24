@@ -7,6 +7,7 @@
 unset BUILD_DIR BUILDSCRIPT CONTINUE CONTINUE_SBUILD END_TIME ghcr_push GHCRPKG GHCRPKG_URL GHCRPKG_TAG INPUT_SBUILD INPUT_SBUILD_PATH INITSCRIPT KEEP_LOGS OCWD pkg PKG PKG_FAMILY pkg_id PKG_ID pkg_type PKG_TYPE PROG PUSH_SUCCESSFUL RECIPE SBUILD_OUTDIR SBUILD_PKG SBUILD_PKGS SBUILD_PKGVER SBUILD_REBUILD SBUILD_SCRIPT SBUILD_SCRIPT_BLOB SBUILD_SUCCESSFUL SBUILD_TMPDIR START_TIME TMPDIRS TMPJSON TMPXVER TMPXRUN TOTAL_RECIPES
 USER="$(whoami)" && export USER="${USER}"
 HOME="$(getent passwd ${USER} | cut -d: -f6)" && export HOME="${HOME}"
+HOST_TRIPLET="$(uname -m)-$(uname -s)"
 if [ -z "${SYSTMP+x}" ] || [ -z "${SYSTMP##*[[:space:]]}" ]; then
  SYSTMP="$(dirname $(mktemp -u))" && export SYSTMP="${SYSTMP}"
 fi
@@ -24,6 +25,9 @@ mkdir -pv "${SYSTMP}/pkgforge"
 export DEBIAN_FRONTEND="noninteractive"
 export GIT_TERMINAL_PROMPT="0"
 export GIT_ASKPASS="/bin/echo"
+export NIXPKGS_ALLOW_BROKEN="1"
+export NIXPKGS_ALLOW_UNFREE="1"
+export NIXPKGS_ALLOW_UNSUPPORTED_SYSTEM="1"
 EGET_TIMEOUT="timeout -k 1m 2m" && export EGET_TIMEOUT="${EGET_TIMEOUT}"
 sudo groupadd docker 2>/dev/null ; sudo usermod -aG docker "${USER}" 2>/dev/null
 if ! sudo systemctl is-active --quiet docker; then
