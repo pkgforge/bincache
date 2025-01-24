@@ -293,7 +293,7 @@
     "pkg_family": "aria2",
     "description": "A multi-protocol (HTTP/HTTPS, FTP, SFTP, BitTorrent & Metalink) & multi-source command-line download utility",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/aria2/abcfy2",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/aria2/static.abcfy2.stable.yaml"
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/aria2/static.abcfy2.continuous.yaml"
   },
   {
     "_disabled": false,
@@ -986,6 +986,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "colorized-logs",
+    "description": "Tools for logs with ANSI color",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/colorized-logs/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/colorized-logs/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "containerd",
     "description": "An open and reliable container runtime",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/containerd/official",
@@ -1030,6 +1038,14 @@
     "description": "Cross-platform Rust rewrite of the GNU coreutils",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/coreutils_uutils/standalone",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/coreutils/static.standalone.uutils.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "coreutils",
+    "description": "Cross-platform Rust rewrite of the GNU coreutils",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/coreutils_uutils/vlang",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/coreutils/static.vlang.source.yaml"
   },
   {
     "_disabled": false,
@@ -1686,6 +1702,14 @@
     "description": "FalconHound is a blue team multi-tool",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/falconhound/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/falconhound/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "fastfetch",
+    "description": "Fast and feature-rich tool displaying system information",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/fastfetch/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/fastfetch/static.official.source.yaml"
   },
   {
     "_disabled": false,
