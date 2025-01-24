@@ -293,7 +293,7 @@
     "pkg_family": "aria2",
     "description": "A multi-protocol (HTTP/HTTPS, FTP, SFTP, BitTorrent & Metalink) & multi-source command-line download utility",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/aria2/abcfy2",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/aria2/static.abcfy2.continuous.yaml"
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/aria2/static.abcfy2.stable.yaml"
   },
   {
     "_disabled": false,
@@ -659,9 +659,9 @@
     "_disabled": false,
     "rebuild": false,
     "pkg_family": "bubblewrap",
-    "description": "Namespaces-powered chroot-like solution for Unprivileged Sandboxing (Patched)",
+    "description": "Namespaces-powered chroot-like solution for Unprivileged Sandboxing",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/bubblewrap/patched",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/bubblewrap/static.patched.glibc.yaml"
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/bubblewrap/static.patched.source.yaml"
   },
   {
     "_disabled": false,
@@ -707,9 +707,9 @@
     "_disabled": false,
     "rebuild": false,
     "pkg_family": "caddy",
-    "description": "A powerful, enterprise-ready, and extensible HTTP/2 + HTTP/3 web server with automatic HTTPS (Beta)",
+    "description": "A powerful, enterprise-ready, and extensible HTTP/2 + HTTP/3 web server with automatic HTTPS",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/caddy/official",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/caddy/static.official.beta.yaml"
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/caddy/static.official.stable.yaml"
   },
   {
     "_disabled": false,
