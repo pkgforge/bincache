@@ -358,10 +358,9 @@ if [[ "${CONTINUE_SBUILD}" == "YES" ]]; then
    pushd "${SBUILD_OUTDIR}" >/dev/null 2>&1
      cleanup_containers
      printf "\n" && timeout -k 5m 60m "${TMPXRUN}" ; printf "\n" && cleanup_containers
+     sudo chown -Rv "$(whoami):$(whoami)" "${SBUILD_OUTDIR}" 2>/dev/null
+     find "${SBUILD_OUTDIR}" -type f -exec sudo chmod -v +xwr "{}" \; 2>/dev/null
      if [ -d "${SBUILD_OUTDIR}" ] && [ $(du -s "${SBUILD_OUTDIR}" | cut -f1) -gt 10 ]; then
-      #Perms
-       sudo chown -R "$(whoami):$(whoami)" "${SBUILD_OUTDIR}"
-       find "${SBUILD_OUTDIR}" -type f -exec sudo chmod +xwr "{}" \;
       #Rename/strip
        find "${SBUILD_OUTDIR}" -maxdepth 1 -type f -exec file -i "{}" \; |\
        grep "application/.*executable" | cut -d":" -f1 | xargs realpath | sort -u |\
