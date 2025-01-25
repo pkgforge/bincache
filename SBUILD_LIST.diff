@@ -1029,7 +1029,7 @@
     "pkg_family": "coreutils",
     "description": "GNU File, Shell, and Text utilities",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/coreutils/standalone",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/coreutils/static.standalone.glibc.yaml"
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/coreutils/static.standalone.source.yaml"
   },
   {
     "_disabled": false,
@@ -1062,14 +1062,6 @@
     "description": "Cross-platform Rust rewrite of the GNU coreutils",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/coreutils_uutils/standalone",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/coreutils/static.standalone.uutils.yaml"
-  },
-  {
-    "_disabled": false,
-    "rebuild": false,
-    "pkg_family": "coreutils",
-    "description": "GNU coreutils in V-Lang",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/coreutils_uutils/vlang",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/coreutils/static.vlang.source.yaml"
   },
   {
     "_disabled": false,
