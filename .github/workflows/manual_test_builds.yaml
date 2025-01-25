@@ -31,8 +31,8 @@ on:
         description: Debug Mode (Verbose with set -x) [Default ==> False]
         type: choice
         options:
-          - "true"
           - "false"
+          - "true"
 
       logs:
         description: Keep Logs? (Preserves Working Dir) [Default ==> True]
