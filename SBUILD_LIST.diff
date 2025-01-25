@@ -293,7 +293,7 @@
     "pkg_family": "aria2",
     "description": "A multi-protocol (HTTP/HTTPS, FTP, SFTP, BitTorrent & Metalink) & multi-source command-line download utility",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/aria2/abcfy2",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/aria2/static.abcfy2.continuous.yaml"
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/aria2/static.abcfy2.stable.yaml"
   },
   {
     "_disabled": false,
@@ -1012,6 +1012,14 @@
     "rebuild": false,
     "pkg_family": "coreutils",
     "description": "GNU File, Shell, and Text utilities",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/coreutils/multicall/glibc",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/coreutils/static.multicall.glibc.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "coreutils",
+    "description": "GNU File, Shell, and Text utilities",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/coreutils/nixpkgs",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/coreutils/static.nixpkgs.stable.yaml"
   },
@@ -1021,7 +1029,23 @@
     "pkg_family": "coreutils",
     "description": "GNU File, Shell, and Text utilities",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/coreutils/standalone",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/coreutils/static.standalone.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "coreutils",
+    "description": "GNU File, Shell, and Text utilities",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/coreutils/standalone/glibc",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/coreutils/static.standalone.glibc.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "coreutils",
+    "description": "GNU coreutils in V-Lang",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/coreutils/vlang",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/coreutils/static.vlang.source.yaml"
   },
   {
     "_disabled": false,
@@ -1038,14 +1062,6 @@
     "description": "Cross-platform Rust rewrite of the GNU coreutils",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/coreutils_uutils/standalone",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/coreutils/static.standalone.uutils.yaml"
-  },
-  {
-    "_disabled": false,
-    "rebuild": false,
-    "pkg_family": "coreutils",
-    "description": "Cross-platform Rust rewrite of the GNU coreutils",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/coreutils_uutils/vlang",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/coreutils/static.vlang.source.yaml"
   },
   {
     "_disabled": false,
@@ -3235,7 +3251,7 @@
     "_disabled": false,
     "rebuild": false,
     "pkg_family": "meli",
-    "description": "🐝 Terminal Mail Client",
+    "description": "Terminal Mail Client",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/meli/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/meli/static.official.source.yaml"
   },
