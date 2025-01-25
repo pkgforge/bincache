@@ -8,9 +8,10 @@ on:
     inputs:
 
       host:
-        description: Host (Arch+OS)
+        description: Host (Arch+OS) [ALL ==> Run on All Hosts]
         type: choice
         options:
+          - "ALL"
           - "aarch64-Linux"
           - "x86_64-Linux"
 
@@ -48,7 +49,14 @@ on:
           - "false"
 jobs:
   build:
-    runs-on: ${{ inputs.host == 'aarch64-Linux' && 'ubuntu-24.04-arm' || inputs.host == 'x86_64-Linux' && 'ubuntu-latest' || 'ubuntu-latest' }}
+    strategy:
+      matrix:
+        include:
+          - host: ${{ inputs.host == 'ALL' && 'aarch64-Linux' || inputs.host }}
+            runner: ${{ inputs.host == 'ALL' && 'ubuntu-24.04-arm' || (inputs.host == 'aarch64-Linux' && 'ubuntu-24.04-arm' || 'ubuntu-latest') }}
+          - host: ${{ inputs.host == 'ALL' && 'x86_64-Linux' || inputs.host }}
+            runner: ${{ inputs.host == 'ALL' && 'ubuntu-latest' || (inputs.host == 'x86_64-Linux' && 'ubuntu-latest' || 'ubuntu-latest') }}
+    runs-on: ${{ matrix.runner }}
     timeout-minutes: 90
     permissions:
       attestations: write
@@ -57,7 +65,7 @@ jobs:
       packages: write
 
     steps:
-      - name: Validate Required Secrets
+      - name: Validate Required Secrets [${{ matrix.host }}<==>${{ matrix.runner }}]
         env:
           RO_GHTOKEN: ${{ secrets.RO_GHTOKEN }}
           RO_GLTOKEN: ${{ secrets.RO_GLTOKEN }}
@@ -76,7 +84,7 @@ jobs:
           fi
         continue-on-error: false
 
-      - name: Parse Input
+      - name: Parse Input [${{ matrix.host }}<==>${{ matrix.runner }}]
         run: |
           ##presets
           set +x ; set +e
@@ -126,7 +134,7 @@ jobs:
            popd >/dev/null 2>&1
         continue-on-error: false
 
-      - name: Setup Env
+      - name: Setup Env [${{ matrix.host }}<==>${{ matrix.runner }}]
         run: |
           ##presets
           set +x ; set +e
@@ -151,7 +159,7 @@ jobs:
           echo "USER_AGENT=${USER_AGENT}" >> "${GITHUB_ENV}"
         continue-on-error: true
 
-      - name: BUILD
+      - name: BUILD [${{ matrix.host }}<==>${{ matrix.runner }}]
         env:
           #GHCR_TOKEN: "${{ secrets.GHCR_TOKEN }}" #Needs Actions' Token if we want to make the packages public
           GHCR_TOKEN: "${{ github.token }}"
@@ -188,7 +196,7 @@ jobs:
         continue-on-error: true
 
     ##Logs & Artifacts
-      - name: Get DateTime
+      - name: Get DateTime [${{ matrix.host }}<==>${{ matrix.runner }}]
         run: |
           #Presets
           set +x ; set +e
@@ -197,10 +205,10 @@ jobs:
           echo "UTC_TIME=${UTC_TIME}" >> "${GITHUB_ENV}"
         continue-on-error: true
 
-      - name: Upload (LOG) Artifacts
+      - name: Upload (LOG) Artifacts [${{ matrix.host }}<==>${{ matrix.runner }}]
         uses: actions/upload-artifact@v4
         with:
-            name: Bincache_TEST
+            name: Bincache_TEST_${{ matrix.host }}
             path: |
               /tmp/BUILD.log
               /tmp/BUILD_ARTIFACTS.7z
@@ -209,7 +217,7 @@ jobs:
             overwrite: true
         continue-on-error: true     
 
-      - name: Attest Build Provenance
+      - name: Attest Build Provenance [${{ matrix.host }}<==>${{ matrix.runner }}]
         uses: actions/attest-build-provenance@v2.2.0
         with:
           subject-name: "build-logs-test-builds-${{ env.UTC_TIME }}"
