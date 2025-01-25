@@ -97,8 +97,10 @@ jobs:
              export KEEP_LOGS="NO"
            else
              export KEEP_LOGS="YES"
+             export GITHUB_TEST_BUILD="YES"
            fi
            echo "KEEP_LOGS=${KEEP_LOGS}" >> "${GITHUB_ENV}"
+           echo "GITHUB_TEST_BUILD=${GITHUB_TEST_BUILD}" >> "${GITHUB_ENV}"
           ##PKG_FAMILY_LOCAL
            PKG_FAMILY_LOCAL="$(echo "${{ github.event.inputs.pkg-family }}" | tr -d '[:space:]')"
            export PKG_FAMILY_LOCAL
@@ -165,11 +167,12 @@ jobs:
            curl -qfsSL "https://raw.githubusercontent.com/pkgforge/bincache/refs/heads/main/scripts/runner/builder.sh" -o "${SYSTMP}/BUILDER.sh"
            dos2unix --quiet "${SYSTMP}/BUILDER.sh" ; chmod +xwr "${SYSTMP}/BUILDER.sh"
            ##Run with STDOUT + LOGS
-            DEBUG="${DEBUG}" \
-            KEEP_LOGS="${KEEP_LOGS}" \
-            PKG_FAMILY_LOCAL="${PKG_FAMILY_LOCAL}" \
-            GHCRPKG_LOCAL="${GHCRPKG_LOCAL}" \
-            SBUILD_REBUILD="${SBUILD_REBUILD}" \
+            export DEBUG="${DEBUG}"
+            export KEEP_LOGS="${KEEP_LOGS}"
+            export PKG_FAMILY_LOCAL="${PKG_FAMILY_LOCAL}"
+            export GHCRPKG_LOCAL="${GHCRPKG_LOCAL}"
+            export SBUILD_REBUILD="${SBUILD_REBUILD}"
+            export GITHUB_TEST_BUILD="${GITHUB_TEST_BUILD}"
             bash "${SYSTMP}/BUILDER.sh" "${SBUILD_FILE_URL}" | tee "${SYSTMP}/BUILD.log" 2>&1
            ##Purge Tokens (in case set -x & gh didn't redact)
            cat "${SYSTMP}/BUILD.log" | ansi2txt > "${SYSTMP}/BUILD.gh.log.txt"
@@ -200,6 +203,7 @@ jobs:
             name: Bincache_TEST
             path: |
               /tmp/BUILD.log
+              /tmp/BUILD_ARTIFACTS.7z
             compression-level: 0 # no compression, [Default: 6 (GNU Gzip)]
             retention-days: 30
             overwrite: true
