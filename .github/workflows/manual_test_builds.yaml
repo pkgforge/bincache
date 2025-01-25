@@ -57,6 +57,25 @@ jobs:
       packages: write
 
     steps:
+      - name: Validate Required Secrets
+        env:
+          RO_GHTOKEN: ${{ secrets.RO_GHTOKEN }}
+          RO_GLTOKEN: ${{ secrets.RO_GLTOKEN }}
+          MINISIGN_KEY: ${{ secrets.MINISIGN_KEY }}
+        run: |
+          ##presets
+          set +x ; set +e
+          #-------------#
+          # Check if any of the required secrets are missing
+          if [ -z "${RO_GHTOKEN##*[[:space:]]}" ] || [ -z "${RO_GLTOKEN##*[[:space:]]}" ] || [ -z "${MINISIGN_KEY##*[[:space:]]}" ]; then
+            echo "::error::One or more required secrets are missing:"
+            [ -z "${RO_GHTOKEN##*[[:space:]]}" ] && echo "- RO_GHTOKEN is missing"
+            [ -z "${RO_GLTOKEN##*[[:space:]]}" ] && echo "- RO_GLTOKEN is missing"
+            [ -z "${MINISIGN_KEY##*[[:space:]]}" ] && echo "- MINISIGN_KEY is missing"
+            exit 1
+          fi
+        continue-on-error: false
+
       - name: Parse Input
         run: |
           ##presets
