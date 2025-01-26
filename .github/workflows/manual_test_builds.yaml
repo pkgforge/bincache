@@ -65,7 +65,24 @@ jobs:
       packages: write
 
     steps:
+      - name: Exit if not called
+        run: |
+          ##presets
+          set +x ; set +e
+          #-------------#
+          if [[ "$(uname -m | tr -d '[:space:]')" == "aarch64" ]]; then
+            if [[ "${{ github.event.inputs.host }}" != "ALL" ]] && [[ "${{ github.event.inputs.host }}" != "aarch64-Linux" ]]; then
+              echo "CONTINUE_GHRUN=FALSE" >> "${GITHUB_ENV}"
+            fi
+          elif [[ "$(uname -m | tr -d '[:space:]')" == "x86_64" ]]; then
+            if [[ "${{ github.event.inputs.host }}" != "ALL" ]] && [[ "${{ github.event.inputs.host }}" != "x86_64-Linux" ]]; then
+              echo "CONTINUE_GHRUN=FALSE" >> "${GITHUB_ENV}"
+            fi
+          fi
+        continue-on-error: false
+
       - name: Validate Required Secrets [${{ matrix.host }}<==>${{ matrix.runner }}]
+        if: env.CONTINUE_GHRUN != 'FALSE'
         env:
           RO_GHTOKEN: ${{ secrets.RO_GHTOKEN }}
           RO_GLTOKEN: ${{ secrets.RO_GLTOKEN }}
@@ -85,6 +102,7 @@ jobs:
         continue-on-error: false
 
       - name: Parse Input [${{ matrix.host }}<==>${{ matrix.runner }}]
+        if: env.CONTINUE_GHRUN != 'FALSE'
         run: |
           ##presets
           set +x ; set +e
@@ -101,7 +119,7 @@ jobs:
            export GHCRPKG_LOCAL
            echo "GHCRPKG_LOCAL=${GHCRPKG_LOCAL}" >> "${GITHUB_ENV}"
           ##Logs
-           if [ "${{ github.event.inputs.logs }}"" == "false" ] ; then
+           if [ "${{ github.event.inputs.logs }}" == "false" ] ; then
              export KEEP_LOGS="NO"
            else
              export KEEP_LOGS="YES"
@@ -114,7 +132,7 @@ jobs:
            export PKG_FAMILY_LOCAL
            echo "PKG_FAMILY_LOCAL=${PKG_FAMILY_LOCAL}" >> "${GITHUB_ENV}"
           ##Rebuild
-           if [ "${{ github.event.inputs.rebuild }}"" == "false" ] ; then
+           if [ "${{ github.event.inputs.rebuild }}" == "false" ] ; then
              export SBUILD_REBUILD="false"
            else
              export SBUILD_REBUILD="true"
@@ -135,6 +153,7 @@ jobs:
         continue-on-error: false
 
       - name: Setup Env [${{ matrix.host }}<==>${{ matrix.runner }}]
+        if: env.CONTINUE_GHRUN != 'FALSE'
         run: |
           ##presets
           set +x ; set +e
@@ -160,6 +179,7 @@ jobs:
         continue-on-error: true
 
       - name: BUILD [${{ matrix.host }}<==>${{ matrix.runner }}]
+        if: env.CONTINUE_GHRUN != 'FALSE'
         env:
           #GHCR_TOKEN: "${{ secrets.GHCR_TOKEN }}" #Needs Actions' Token if we want to make the packages public
           GHCR_TOKEN: "${{ github.token }}"
@@ -197,6 +217,7 @@ jobs:
 
     ##Logs & Artifacts
       - name: Get DateTime [${{ matrix.host }}<==>${{ matrix.runner }}]
+        if: env.CONTINUE_GHRUN != 'FALSE'
         run: |
           #Presets
           set +x ; set +e
@@ -206,6 +227,7 @@ jobs:
         continue-on-error: true
 
       - name: Upload (LOG) Artifacts [${{ matrix.host }}<==>${{ matrix.runner }}]
+        if: env.CONTINUE_GHRUN != 'FALSE'
         uses: actions/upload-artifact@v4
         with:
             name: Bincache_TEST_${{ matrix.host }}
@@ -218,6 +240,7 @@ jobs:
         continue-on-error: true     
 
       - name: Attest Build Provenance [${{ matrix.host }}<==>${{ matrix.runner }}]
+        if: env.CONTINUE_GHRUN != 'FALSE'
         uses: actions/attest-build-provenance@v2.2.0
         with:
           subject-name: "build-logs-test-builds-${{ env.UTC_TIME }}"
