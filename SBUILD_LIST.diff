@@ -5466,6 +5466,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "wezterm",
+    "description": "A GPU-accelerated cross-platform terminal emulator and multiplexer",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/wezterm/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/wezterm/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "wget",
     "description": "Tool for retrieving files using HTTP, HTTPS, and FTP",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/wget/ppkg",
