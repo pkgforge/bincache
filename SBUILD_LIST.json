@@ -292,16 +292,16 @@
     "rebuild": false,
     "pkg_family": "aria2",
     "description": "A multi-protocol (HTTP/HTTPS, FTP, SFTP, BitTorrent & Metalink) & multi-source command-line download utility",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/aria2/abcfy2",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/aria2/static.abcfy2.stable.yaml"
-  },
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/aria2/abcfy2/continuous",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/aria2/static.abcfy2.continuous.yaml"
+  },  
   {
     "_disabled": false,
     "rebuild": false,
     "pkg_family": "aria2",
     "description": "A multi-protocol (HTTP/HTTPS, FTP, SFTP, BitTorrent & Metalink) & multi-source command-line download utility",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/aria2/abcfy2/continuous",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/aria2/static.abcfy2.continuous.yaml"
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/aria2/abcfy2/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/aria2/static.abcfy2.stable.yaml"
   },
   {
     "_disabled": false,
