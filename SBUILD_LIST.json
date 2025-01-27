@@ -294,7 +294,7 @@
     "description": "A multi-protocol (HTTP/HTTPS, FTP, SFTP, BitTorrent & Metalink) & multi-source command-line download utility",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/aria2/abcfy2/continuous",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/aria2/static.abcfy2.continuous.yaml"
-  },  
+  },
   {
     "_disabled": false,
     "rebuild": false,
@@ -1035,6 +1035,14 @@
     "_disabled": false,
     "rebuild": false,
     "pkg_family": "coreutils",
+    "description": "GNU coreutils in V-Lang",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/coreutils/vlang",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/coreutils/static.vlang.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "coreutils",
     "description": "Cross-platform Rust rewrite of the GNU coreutils",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/coreutils_uutils/multicall",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/coreutils/static.multicall.uutils.yaml"
@@ -1046,14 +1054,6 @@
     "description": "Cross-platform Rust rewrite of the GNU coreutils",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/coreutils_uutils/standalone",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/coreutils/static.standalone.uutils.yaml"
-  },
-  {
-    "_disabled": false,
-    "rebuild": false,
-    "pkg_family": "coreutils",
-    "description": "GNU coreutils in V-Lang",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/coreutils/vlang",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/coreutils/static.vlang.source.yaml"
   },
   {
     "_disabled": false,
@@ -5462,6 +5462,14 @@
     "description": "A Weather client for the terminal",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/wego/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/wego/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "wezterm",
+    "description": "A GPU-accelerated cross-platform terminal emulator and multiplexer",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/wezterm/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/wezterm/static.official.source.yaml"
   },
   {
     "_disabled": false,
