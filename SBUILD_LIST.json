@@ -1498,6 +1498,38 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "dropbear",
+    "description": "Lightweight Alternative to OpenSSH",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/dropbear/multicall",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/dropbear/static.multicall.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "dropbear",
+    "description": "Lightweight Alternative to OpenSSH",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/dropbear/multicall/glibc",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/dropbear/static.multicall.glibc.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "dropbear",
+    "description": "Lightweight Alternative to OpenSSH",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/dropbear/standalone",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/dropbear/static.standalone.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "dropbear",
+    "description": "Lightweight Alternative to OpenSSH",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/dropbear/standalone/glibc",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/dropbear/static.standalone.glibc.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "dsieve",
     "description": "Filter and enrich a list of subdomains by level",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/dsieve/official",
@@ -2517,7 +2549,7 @@
     "pkg_family": "hcloud",
     "description": "A command-line interface for Hetzner Cloud",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/hcloud/official",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/hcloud/static.official.stable.yaml"
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/hcloud/static.official.source.yaml"
   },
   {
     "_disabled": false,
@@ -2725,7 +2757,7 @@
     "pkg_family": "invidtui",
     "description": "A TUI based Invidious client",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/invidtui/official",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/invidtui/static.official.stable.yaml"
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/invidtui/static.official.source.yaml"
   },
   {
     "_disabled": false,
@@ -2805,7 +2837,7 @@
     "pkg_family": "jira-cli",
     "description": "Feature-rich interactive Jira command line",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/jira-cli/official",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/jira-cli/static.official.stable.yaml"
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/jira-cli/static.official.source.yaml"
   },
   {
     "_disabled": false,
@@ -2823,6 +2855,22 @@
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/job-security/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/job-security/static.official.source.yaml"
   },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "jq",
+    "description": "Lightweight and flexible command-line JSON processor",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/jq/official/source",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/jq/static.official.source.yaml"
+  },  
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "jq",
+    "description": "Lightweight and flexible command-line JSON processor",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/jq/official/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/jq/static.official.stable.yaml"
+  },  
   {
     "_disabled": false,
     "rebuild": false,
