@@ -3034,6 +3034,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "lddtree",
+    "description": "Read the ELF dependency tree",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/lddtree/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/lddtree/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "less",
     "description": "More advanced file pager than more",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/less/nixpkgs",
@@ -3070,6 +3078,14 @@
     "description": "Tree ldd with an option to bundle dependencies into a single folder",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/libtree/nixpkgs",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/libtree/static.nixpkgs.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "libtree",
+    "description": "Tree ldd with an option to bundle dependencies into a single folder",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/libtree/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/libtree/static.official.source.yaml"
   },
   {
     "_disabled": false,
@@ -3941,7 +3957,7 @@
     "pkg_family": "planor",
     "description": "TUI client for cloud services (AWS, Vultr, Heroku, Render.com, Fleek & More)",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/planor/official",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/planor/static.official.stable.yaml"
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/planor/static.official.source.yaml"
   },
   {
     "_disabled": false,
@@ -4102,6 +4118,14 @@
     "description": "Static Single binary for Qbittorent",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/qbittorrent-nox/userdocs",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/qbittorrent-nox/static.userdocs.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "qemu-user",
+    "description": "QEMU user mode Emulation & Virtualization binaries",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/qemu-user/ziglang",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/qemu-user/static.ziglang.stable.yaml"
   },
   {
     "_disabled": false,
@@ -4278,6 +4302,14 @@
     "description": "Recursive & Line-Oriented Search Tool, combining The Silver Searcher (ag) with the raw speed of grep",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/ripgrep/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/ripgrep/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "rldd",
+    "description": "Print Shared Object Dependencies",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/rldd/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/rldd/static.official.source.yaml"
   },
   {
     "_disabled": false,
