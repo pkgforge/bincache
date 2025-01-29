@@ -618,6 +618,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "bsdutils",
+    "description": "Alternative to GNU coreutils using software from FreeBSD",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/bsdutils/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/bsdutils/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "btop",
     "description": "Modern and colorful command line resource monitor that shows usage and stats",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/btop/official",
@@ -854,6 +862,14 @@
     "description": "Validating and Testing APIs using an OpenAPI file",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/cherrybomb/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/cherrybomb/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "chimerautils",
+    "description": "Chimera Linux userland Tools",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/chimerautils/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/chimerautils/static.official.source.yaml"
   },
   {
     "_disabled": false,
@@ -4058,6 +4074,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "pwait",
+    "description": "Small utility to wait for a process to finish",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/pwait/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/pwait/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "pwninit",
     "description": "Automate starting binary exploit challenges",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/pwninit/official",
@@ -5430,6 +5454,22 @@
     "description": "VIsual editor iMproved (VIM) & related Tools",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/vim/nixpkgs",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/vim/static.nixpkgs.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "vnstat",
+    "description": "Terminal based network traffic monitor",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/vnstat/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/vnstat/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "vnstat",
+    "description": "Terminal based network traffic monitor",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/vnstat/official/glibc",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/vnstat/static.official.glibc.yaml"
   },
   {
     "_disabled": false,
