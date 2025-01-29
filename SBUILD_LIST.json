@@ -3746,6 +3746,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "openssh",
+    "description": "Utilities and servers for secure shell connections",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/openssh/nixpkgs",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/openssh/static.nixpkgs.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "openssl",
     "description": "Toolkit for the Transport Layer Security (TLS) and Secure Sockets Layer (SSL) protocols",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/openssl/nixpkgs",
