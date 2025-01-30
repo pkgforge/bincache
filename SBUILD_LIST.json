@@ -6003,8 +6003,16 @@
     "_disabled": false,
     "rebuild": false,
     "pkg_family": "zsv",
-    "description": "Worlds fastest (simd) CSV parser, with an extensible CLI",
+    "description": "A command-line utility for parsing CSV",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/zsv/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/zsv/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "zsv",
+    "description": "A command-line utility for parsing CSV",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/zsv/ppkg",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/zsv/static.ppkg.source.yaml"
   }
 ]
