@@ -357,7 +357,7 @@ if [[ "${CONTINUE_SBUILD}" == "YES" ]]; then
    check_sane_env
    pushd "${SBUILD_OUTDIR}" >/dev/null 2>&1
      cleanup_containers
-     printf "\n" && timeout -k 5m 120m "${TMPXRUN}" ; printf "\n" && cleanup_containers
+     printf "\n" && timeout -k 5m 150m "${TMPXRUN}" ; printf "\n" && cleanup_containers
      sudo chown -Rv "$(whoami):$(whoami)" "${SBUILD_OUTDIR}" 2>/dev/null
      find "${SBUILD_OUTDIR}" -type f -exec sudo chmod -v +xwr "{}" \; 2>/dev/null
      if [ -d "${SBUILD_OUTDIR}" ] && [ $(du -s "${SBUILD_OUTDIR}" | cut -f1) -gt 10 ]; then
