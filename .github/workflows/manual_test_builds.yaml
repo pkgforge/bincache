@@ -50,6 +50,7 @@ on:
 jobs:
   build:
     strategy:
+      fail-fast: false
       matrix:
         include:
           - host: ${{ inputs.host == 'ALL' && 'aarch64-Linux' || inputs.host }}

@@ -5922,6 +5922,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "z88dk",
+    "description": "Complete Z80/Z180 development kit",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/z88dk/ppkg",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/z88dk/static.ppkg.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "z-tokens",
     "description": "Random Password/Tokens generation and related tools",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/z-tokens/official",
