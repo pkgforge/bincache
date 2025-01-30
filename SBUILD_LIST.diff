@@ -618,6 +618,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "bsdutils",
+    "description": "Alternative to GNU coreutils using software from FreeBSD",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/bsdutils/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/bsdutils/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "btop",
     "description": "Modern and colorful command line resource monitor that shows usage and stats",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/btop/official",
@@ -854,6 +862,14 @@
     "description": "Validating and Testing APIs using an OpenAPI file",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/cherrybomb/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/cherrybomb/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "chimerautils",
+    "description": "Chimera Linux userland Tools",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/chimerautils/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/chimerautils/static.official.source.yaml"
   },
   {
     "_disabled": false,
@@ -3018,6 +3034,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "lddtree",
+    "description": "Read the ELF dependency tree",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/lddtree/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/lddtree/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "less",
     "description": "More advanced file pager than more",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/less/nixpkgs",
@@ -3054,6 +3078,14 @@
     "description": "Tree ldd with an option to bundle dependencies into a single folder",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/libtree/nixpkgs",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/libtree/static.nixpkgs.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "libtree",
+    "description": "Tree ldd with an option to bundle dependencies into a single folder",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/libtree/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/libtree/static.official.source.yaml"
   },
   {
     "_disabled": false,
@@ -3714,6 +3746,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "openssh",
+    "description": "Utilities and servers for secure shell connections",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/openssh/nixpkgs",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/openssh/static.nixpkgs.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "openssl",
     "description": "Toolkit for the Transport Layer Security (TLS) and Secure Sockets Layer (SSL) protocols",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/openssl/nixpkgs",
@@ -3925,7 +3965,7 @@
     "pkg_family": "planor",
     "description": "TUI client for cloud services (AWS, Vultr, Heroku, Render.com, Fleek & More)",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/planor/official",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/planor/static.official.stable.yaml"
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/planor/static.official.source.yaml"
   },
   {
     "_disabled": false,
@@ -4058,6 +4098,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "pwait",
+    "description": "Small utility to wait for a process to finish",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/pwait/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/pwait/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "pwninit",
     "description": "Automate starting binary exploit challenges",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/pwninit/official",
@@ -4078,6 +4126,14 @@
     "description": "Static Single binary for Qbittorent",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/qbittorrent-nox/userdocs",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/qbittorrent-nox/static.userdocs.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "qemu-user",
+    "description": "QEMU user mode Emulation & Virtualization binaries",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/qemu-user/ziglang",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/qemu-user/static.ziglang.stable.yaml"
   },
   {
     "_disabled": false,
@@ -4254,6 +4310,14 @@
     "description": "Recursive & Line-Oriented Search Tool, combining The Silver Searcher (ag) with the raw speed of grep",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/ripgrep/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/ripgrep/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "rldd",
+    "description": "Print Shared Object Dependencies",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/rldd/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/rldd/static.official.source.yaml"
   },
   {
     "_disabled": false,
@@ -5430,6 +5494,22 @@
     "description": "VIsual editor iMproved (VIM) & related Tools",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/vim/nixpkgs",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/vim/static.nixpkgs.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "vnstat",
+    "description": "Terminal based network traffic monitor",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/vnstat/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/vnstat/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "vnstat",
+    "description": "Terminal based network traffic monitor",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/vnstat/official/glibc",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/vnstat/static.official.glibc.yaml"
   },
   {
     "_disabled": false,
