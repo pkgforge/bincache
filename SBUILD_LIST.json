@@ -5925,7 +5925,7 @@
     "pkg_family": "z88dk",
     "description": "Complete Z80/Z180 development kit",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/z88dk/ppkg",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/z88dk/static.ppkg.source.yaml"
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/z88dk/static.ppkg.stable.yaml"
   },
   {
     "_disabled": false,
@@ -6021,6 +6021,6 @@
     "pkg_family": "zsv",
     "description": "A command-line utility for parsing CSV",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/zsv/ppkg",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/zsv/static.ppkg.source.yaml"
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/zsv/static.ppkg.stable.yaml"
   }
 ]
