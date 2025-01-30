@@ -1282,6 +1282,22 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "dash",
+    "description": "POSIX compliant shell that aims to be as small as possible",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/dash/nixpkgs",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/dash/static.nixpkgs.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "dash",
+    "description": "POSIX compliant shell that aims to be as small as possible",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/dash/ppkg",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/dash/static.ppkg.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "datadash",
     "description": "Visualize and graph data in the terminal",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/datadash/official",
@@ -3754,6 +3770,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "openssh",
+    "description": "Utilities and servers for secure shell connections",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/openssh/ppkg",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/openssh/static.ppkg.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "openssl",
     "description": "Toolkit for the Transport Layer Security (TLS) and Secure Sockets Layer (SSL) protocols",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/openssl/nixpkgs",
@@ -4134,6 +4158,14 @@
     "description": "QEMU user mode Emulation & Virtualization binaries",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/qemu-user/ziglang",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/qemu-user/static.ziglang.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "qemu",
+    "description": "QEMU System/User mode Emulation & Virtualization binaries",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/qemu/ppkg",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/qemu/static.ppkg.stable.yaml"
   },
   {
     "_disabled": false,
@@ -5958,5 +5990,13 @@
     "description": "Zstandard (Zstd) compression utilities",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/zstd/nixpkgs",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/zstd/static.nixpkgs.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "zsv",
+    "description": "Worlds fastest (simd) CSV parser, with an extensible CLI",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/zsv/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/zsv/static.official.source.yaml"
   }
 ]
