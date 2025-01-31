@@ -3,7 +3,7 @@ name: 🔫 Kill All Actions 👾
 on:
   workflow_dispatch:
 jobs:
-  linkChecker:
+  KIA:
     runs-on: ubuntu-latest
     permissions:
       actions: write
