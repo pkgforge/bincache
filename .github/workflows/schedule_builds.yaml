@@ -60,9 +60,15 @@ jobs:
            ' | jq . > "${SYSTMP}/pkgforge/SBUILD_LIST.json"
           ##Set Input (100 builds)
           BUILD_LIST="$(jq -c '[.[] | select(._disabled == false) | {pkg_family, ghcr_url: .ghcr_pkg, sbuild_url: .build_script, rebuild}] | .[:100]' "${SYSTMP}/pkgforge/SBUILD_LIST.json")"
-          # Make sure the JSON is properly escaped for GitHub Actions
-          ESCAPED_BUILD_LIST=$(echo "$BUILD_LIST" | jq -c .)
-          echo "build_list=${ESCAPED_BUILD_LIST}" >> "${GITHUB_OUTPUT}"
+          ##Validate Input
+          if ! echo "${BUILD_LIST}" | jq -e 'type == "array" and length > 0' >/dev/null; then
+             echo -e "\n[-] Input Json is likely Invalid\n"
+             echo "${BUILD_LIST}" | jq .
+            exit 1
+          else
+             ESCAPED_BUILD_LIST=$(echo "$BUILD_LIST" | jq -c .)
+             echo "build_list=${ESCAPED_BUILD_LIST}" >> "${GITHUB_OUTPUT}"
+          fi
         continue-on-error: false
 
       - name: Sanity Check Input JSON
@@ -83,9 +89,14 @@ jobs:
       matrix:
         package: ${{ fromJSON(needs.pre-trigger-build.outputs.build_list) }}
     steps:
-      - name: Print Matrix Output
+      - name: Current Package
         run: |
-          echo '${{ toJSON(matrix.package) }}' | jq .
+          echo '${{ toJSON(matrix.package) }}' | jq -r '
+            "Package Family: \(.pkg_family)",
+            "GHCR URL: \(.ghcr_url)",
+            "Build URL: \(.sbuild_url)",
+            "Rebuild: \(.rebuild)"
+          '
         continue-on-error: true
 
       - name: Trigger Matrix Builds
