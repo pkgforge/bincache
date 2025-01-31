@@ -1,4 +1,4 @@
-name: 🧰🛠️ Build Package 📦📀 (${{ github.event.inputs.ghcr-url }})
+name: 🧰🛠️ Build Package 📦📀
 
 permissions:
   contents: write
@@ -179,7 +179,7 @@ jobs:
           echo "USER_AGENT=${USER_AGENT}" >> "${GITHUB_ENV}"
         continue-on-error: true
 
-      - name: BUILD [${{ matrix.host }}<==>${{ matrix.runner }}]
+      - name: BUILD (${{ github.event.inputs.ghcr-url }}) [${{ matrix.host }}<==>${{ matrix.runner }}]
         if: env.CONTINUE_GHRUN != 'FALSE'
         env:
           #GHCR_TOKEN: "${{ secrets.GHCR_TOKEN }}" #Needs Actions' Token if we want to make the packages public
