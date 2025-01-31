@@ -61,8 +61,9 @@ jobs:
           ##Set Input (100 builds)
           BUILD_LIST="$(jq -c '[.[] | select(._disabled == false) | {pkg_family, ghcr_url: .ghcr_pkg, sbuild_url: .build_script, rebuild}] | .[:100]' "${SYSTMP}/pkgforge/SBUILD_LIST.json")"
           ##Validate Input
-          if jq -e . <<<"${BUILD_LIST}" >/dev/null 2>&1; then
-             echo "build_list=$(echo "${BUILD_LIST}" | jq -c .)" >> "${GITHUB_OUTPUT}"
+          if [ -n "${BUILD_LIST}" ] && jq -e . <<<"${BUILD_LIST}" >/dev/null 2>&1; then
+             ESCAPED_BUILD_LIST="$(echo "${BUILD_LIST}" | jq -c . | jq -R .)"
+             echo "build_list=$(echo "${ESCAPED_BUILD_LIST}")" >> "${GITHUB_OUTPUT}"
           else
              echo -e "\n[-] Input Json is likely Invalid\n"
              echo "${BUILD_LIST}" | jq .
@@ -79,9 +80,10 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        package: ${{ fromJson(needs.pre-trigger-build.outputs.build_list || '[]') }}
+        package: ${{ fromJSON(fromJSON(needs.pre-trigger-build.outputs.build_list)) }}
     steps:
       - name: Trigger Matrix Builds
+        if: ${{ toJson(matrix.package) != '{}' }}
         env:
           GH_TOKEN: "${{ github.token }}"
         run: |
