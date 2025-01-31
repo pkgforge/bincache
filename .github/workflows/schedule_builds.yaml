@@ -1,7 +1,8 @@
 name: ⏱️ Schedule Matrix Builds 📈
 on:
   workflow_dispatch:
-
+  schedule:
+    - cron: "30 18 * * *" # 06:30 PM UTC (12:15 AM NPT Mrng Every Day)
 jobs:
   pre-trigger-build:
     runs-on: ubuntu-latest
@@ -79,6 +80,7 @@ jobs:
   trigger-build:
     needs: [pre-trigger-build]
     runs-on: ubuntu-latest
+    timeout-minutes: 250
     permissions:
       actions: write
       contents: read
