@@ -27,4 +27,4 @@ jobs:
             -f debug="false" \
             -f logs="true" \
             -f rebuild="true"
-        continue-on-error: false        
+        continue-on-error: false

@@ -1,4 +1,4 @@
-name: 🧰🛠️ Test (Bincache) Package 📦📀
+name: 🧰🛠️ Build Package 📦📀 (${{ github.event.inputs.ghcr-url }})
 
 permissions:
   contents: write
