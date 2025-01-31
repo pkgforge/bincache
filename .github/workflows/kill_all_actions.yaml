@@ -15,7 +15,7 @@ jobs:
           set +x ; set +e
           #-------------#
           ##Stale
-          kill_all_actions
+          kill_all_actions()
           {
              gh run list --repo "${GITHUB_REPOSITORY}" --json databaseId --jq '.[].databaseId' --limit '1000' --status 'stale' |\
               xargs -I "{}" gh run cancel "{}" --repo "${GITHUB_REPOSITORY}" &
