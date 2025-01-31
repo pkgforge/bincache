@@ -1,27 +1,30 @@
-name: Call Test Package Workflow
+name: Schedule Matrix Builds
 on:
-  workflow_dispatch:  # Keep manual trigger option
+  workflow_dispatch:
 
 jobs:
-  call-test-package:
+  trigger-build:
     runs-on: ubuntu-latest
+    permissions:
+      actions: write  
+      contents: read
+      statuses: write
     steps:
-      - name: Trigger Test Package Workflow
-        uses: actions/github-script@v7
-        with:
-          script: |
-            await github.rest.actions.createWorkflowDispatch({
-              owner: context.repo.owner,
-              repo: context.repo.name,
-              workflow_id: 'manual_test_builds.yaml',  // Replace with your workflow file name
-              ref: 'main',                      // Replace with your branch name
-              inputs: {
-                host: 'ALL',
-                'sbuild-url': 'https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/zsv/static.ppkg.stable.yaml',
-                'ghcr-url': 'ghcr.io/pkgforge/bincache/zsv/ppkg',
-                'pkg-family': 'zsv',
-                debug: 'false',
-                logs: 'true',
-                rebuild: 'true'
-              }
-            });
+      - name: Trigger Matrix Builds
+        env:
+          GH_TOKEN: "${{ github.token }}"
+        run: |
+          ##presets
+          set +x ; set +e
+          #-------------#        
+          gh workflow run "matrix_builds.yaml" \
+            --repo "${GITHUB_REPOSITORY}" \
+            --ref "${GITHUB_REF}" \
+            -f host="ALL" \
+            -f sbuild-url="https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/zsv/static.ppkg.stable.yaml" \
+            -f ghcr-url="ghcr.io/pkgforge/bincache/zsv/ppkg" \
+            -f pkg-family="zsv" \
+            -f debug="false" \
+            -f logs="true" \
+            -f rebuild="true"
+        continue-on-error: false        
