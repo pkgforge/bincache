@@ -68,9 +68,10 @@ jobs:
             exit 1
           else
              echo -e "\n[+] Generated Input Json\n"
-             ESCAPED_BUILD_LIST="$(echo "${BUILD_LIST}" | jq -c '@json')"
-             echo "build_list=${ESCAPED_BUILD_LIST}" >> "${GITHUB_OUTPUT}"
-             echo "${ESCAPED_BUILD_LIST}" | jq -R 'fromjson | fromjson'
+             #ESCAPED_BUILD_LIST="$(echo "${BUILD_LIST}" | jq -c '@json')"
+             #echo "build_list=${ESCAPED_BUILD_LIST}" >> "${GITHUB_OUTPUT}"
+             #echo "${ESCAPED_BUILD_LIST}" | jq -R 'fromjson | fromjson'
+             echo "${BUILD_LIST}" | jq .
           fi
         continue-on-error: false
 
@@ -84,7 +85,8 @@ jobs:
       fail-fast: false
       max-parallel: 20
       matrix:
-        package: ${{ fromJSON(fromJSON(needs.pre-trigger-build.outputs.build_list || '{}')) }}
+        #package: ${{ fromJSON(fromJSON(needs.pre-trigger-build.outputs.build_list || '{}')) }}
+        package: ${{ fromJSON(needs.pre-trigger-build.outputs.build_list) }}
     steps:
       - name: Print Matrix Output
         run: |
