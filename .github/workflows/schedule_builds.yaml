@@ -7,6 +7,8 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
+    outputs:
+      build_list: ${{ steps.set-inputs.outputs.build_list }}
     steps:
       - name: Setup Env
         run: |
@@ -38,7 +40,7 @@ jobs:
           echo "USER_AGENT=${USER_AGENT}" >> "${GITHUB_ENV}"
         continue-on-error: true
               
-      - name: Get Inputs
+      - name: Get & Set Inputs
         id: set-inputs
         run: |
           ##presets
@@ -58,8 +60,15 @@ jobs:
            ' | jq . > "${SYSTMP}/pkgforge/SBUILD_LIST.json"
           ##Set Input (100 builds)
           BUILD_LIST="$(jq -c '[.[] | select(._disabled == false) | {pkg_family, ghcr_url: .ghcr_pkg, sbuild_url: .build_script, rebuild}] | .[:100]' "${SYSTMP}/pkgforge/SBUILD_LIST.json")"
-          echo "build_list=${BUILD_LIST}" >> "${GITHUB_OUTPUT}"
-        continue-on-error: true
+          ##Validate Input
+          if jq -e . <<<"${BUILD_LIST}" >/dev/null 2>&1; then
+             echo "build_list=$(echo "${BUILD_LIST}" | jq -c .)" >> "${GITHUB_OUTPUT}"
+          else
+             echo -e "\n[-] Input Json is likely Invalid\n"
+             echo "${BUILD_LIST}" | jq .
+            exit 1
+          fi
+        continue-on-error: false
 
   trigger-build:
     runs-on: ubuntu-latest
@@ -70,7 +79,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        package: ${{ fromJson(needs.pre-trigger-build.outputs.build_list) }}
+        package: ${{ fromJson(needs.pre-trigger-build.outputs.build_list || '[]') }}
     steps:
       - name: Trigger Matrix Builds
         env:
