@@ -1,0 +1,27 @@
+name: Call Test Package Workflow
+on:
+  workflow_dispatch:  # Keep manual trigger option
+
+jobs:
+  call-test-package:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Test Package Workflow
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.actions.createWorkflowDispatch({
+              owner: context.repo.owner,
+              repo: context.repo.name,
+              workflow_id: 'manual_test_builds.yaml',  // Replace with your workflow file name
+              ref: 'main',                      // Replace with your branch name
+              inputs: {
+                host: 'ALL',
+                'sbuild-url': 'https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/zsv/static.ppkg.stable.yaml',
+                'ghcr-url': 'ghcr.io/pkgforge/bincache/zsv/ppkg',
+                'pkg-family': 'zsv',
+                debug: 'false',
+                logs: 'true',
+                rebuild: 'true'
+              }
+            });
