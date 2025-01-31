@@ -68,8 +68,8 @@ jobs:
             exit 1
           else
              echo -e "\n[+] Generated Input Json\n"
-             ESCAPED_BUILD_LIST="$(echo "${BUILD_LIST}" | jq -c '@json')"
-             echo "build_list=${ESCAPED_BUILD_LIST}" >> "${GITHUB_OUTPUT}"
+             #ESCAPED_BUILD_LIST="$(echo "${BUILD_LIST}" | jq -c '@json')"
+             #echo "build_list=${ESCAPED_BUILD_LIST}" >> "${GITHUB_OUTPUT}"
              #echo "${ESCAPED_BUILD_LIST}" | jq -R 'fromjson | fromjson'
              #echo "${BUILD_LIST}" | jq .
           fi
@@ -81,6 +81,7 @@ jobs:
         continue-on-error: true
 
   trigger-build:
+    needs: [pre-trigger-build]
     runs-on: ubuntu-latest
     permissions:
       actions: write
