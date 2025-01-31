@@ -59,7 +59,7 @@ jobs:
           - host: "${{ inputs.host == 'ALL' && 'x86_64-Linux' || inputs.host }}"
             runner: "${{ inputs.host == 'ALL' && 'ubuntu-latest' || (inputs.host == 'x86_64-Linux' && 'ubuntu-latest' || 'ubuntu-latest') }}"
             ghcr_pkg: "${{ inputs.ghcr-url }}"
-    name: "${{ matrix.host }} ==> (${{ matrix.ghcr }})"
+    name: "${{ matrix.host }} ==> (${{ matrix.ghcr_pkg }})"
     runs-on: "${{ matrix.runner }}"
     timeout-minutes: 200
     permissions:
