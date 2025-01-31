@@ -91,7 +91,7 @@ jobs:
       max-parallel: 20
       matrix:
         #package: ${{ fromJSON(fromJSON(needs.pre-trigger-build.outputs.build_list || '{}')) }}
-        package: ${{ fromJSON(needs.pre-trigger-build.outputs.build_list || '[]') }}
+        package: ${{ fromJSON(needs.pre-trigger-build.set-inputs.outputs.build_list || '[]') }}
     steps:
       - name: Print Matrix Output
         run: |
