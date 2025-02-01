@@ -48,27 +48,42 @@ on:
           - "true"
           - "false"
 jobs:
-  
   preprocess:
     runs-on: ubuntu-latest
     outputs:
-      matrix: ${{ steps.generate-matrix.outputs.matrix }}
+      runner_matrix: ${{ steps.generate-matrix.outputs.runner_matrix }}
     steps:
       - name: Presetup
         id: generate-matrix
         run: |
-          MATRIX=$(jq -n '[
-            {"host": "aarch64-Linux", "runner": "ubuntu-24.04-arm", "ghcr_pkg": "${{ inputs.ghcr-url }}"},
-            {"host": "x86_64-Linux", "runner": "ubuntu-latest", "ghcr_pkg": "${{ inputs.ghcr-url }}"}
-          ] | unique_by(.runner)')
-          echo "matrix=${MATRIX}" >> "${GITHUB_ENV}"
+          ##presets
+          set +x ; set +e
+          #-------------#
+          echo '[' > "./MATRIX.json.tmp"
+           if [[ "${{ github.event.inputs.host }}" == "ALL" ]]; then
+             echo '{"host": "aarch64-Linux", "runner": "ubuntu-24.04-arm", "ghcr_pkg": "${{ inputs.ghcr-url }}"},' >> "./MATRIX.json.tmp"
+             echo '{"host": "x86_64-Linux", "runner": "ubuntu-latest", "ghcr_pkg": "${{ inputs.ghcr-url }}"}' >> "./MATRIX.json.tmp"
+           elif [[ "${{ github.event.inputs.host }}" == "aarch64-Linux" ]]; then
+             echo '{"host": "aarch64-Linux", "runner": "ubuntu-24.04-arm", "ghcr_pkg": "${{ inputs.ghcr-url }}"}' >> "./MATRIX.json.tmp"
+           elif [[ "${{ github.event.inputs.host }}" == "x86_64-Linux" ]]; then
+             echo '{"host": "x86_64-Linux", "runner": "ubuntu-latest", "ghcr_pkg": "${{ inputs.ghcr-url }}"}' >> "./MATRIX.json.tmp"
+           fi
+          echo ']' >> "./MATRIX.json.tmp"
+          jq 'unique_by(.runner)' "./MATRIX.json.tmp" | jq . > "./MATRIX.json"
+          ESCAPED_MATRIX="$(cat "./MATRIX.json" | jq -c .)"
+          echo "runner_matrix=${ESCAPED_MATRIX}" >> "${GITHUB_OUTPUT}"
         continue-on-error: false
 
+      - name: Sanity Check Input JSON
+        run: |
+          echo '${{ steps.generate-matrix.outputs.runner_matrix }}' | jq .
+        continue-on-error: true
+
   build:
-    needs: preprocess
+    needs: [preprocess]
     strategy:
       fail-fast: false
-      matrix: ${{ fromJson(needs.preprocess.outputs.matrix) }}
+      matrix: ${{ fromJson(needs.preprocess.outputs.runner_matrix) }}
     name: "${{ matrix.host }} ==> (${{ matrix.ghcr_pkg }})"
     runs-on: "${{ matrix.runner }}"
     timeout-minutes: 200
