@@ -49,9 +49,6 @@ on:
           - "false"
 jobs:
   build:
-    concurrency:
-      group: ${{ github.event.inputs.host != 'ALL' && github.event.inputs.host || 'no-concurrency' }}
-      cancel-in-progress: true
     strategy:
       fail-fast: false
       matrix:
@@ -84,6 +81,10 @@ jobs:
             if [[ "${{ github.event.inputs.host }}" != "ALL" ]] && [[ "${{ github.event.inputs.host }}" != "x86_64-Linux" ]]; then
               echo "CONTINUE_GHRUN=FALSE" >> "${GITHUB_ENV}"
             fi
+          fi
+          RUNNING_JOBS=$(gh run list --workflow "${{ github.workflow }}" --status "in_progress" --json jobs --jq ".jobs[] | select(.name | contains(\"${{ matrix.host }}\")) | select(.runner_name == \"${{ matrix.runner }}\")")
+          if [[ -n "${RUNNING_JOBS}" ]]; then
+            echo "CONTINUE_GHRUN=FALSE" >> "${GITHUB_ENV}"
           fi
         continue-on-error: false
 
