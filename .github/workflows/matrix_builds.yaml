@@ -49,6 +49,9 @@ on:
           - "false"
 jobs:
   build:
+    concurrency: 
+      group: "${{ github.event.inputs.host }}"
+      cancel-in-progress: false
     strategy:
       fail-fast: false
       matrix:
