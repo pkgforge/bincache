@@ -106,5 +106,5 @@ jobs:
             -f pkg-family="${{ matrix.package.pkg_family }}" \
             -f debug="false" \
             -f logs="true" \
-            -f rebuild="${{ matrix.package.rebuild }}"
+            -f rebuild="true"
         continue-on-error: false
