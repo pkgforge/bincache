@@ -48,17 +48,27 @@ on:
           - "true"
           - "false"
 jobs:
+  
+  preprocess:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.generate-matrix.outputs.matrix }}
+    steps:
+      - name: Presetup
+        id: generate-matrix
+        run: |
+          MATRIX=$(jq -n '[
+            {"host": "aarch64-Linux", "runner": "ubuntu-24.04-arm", "ghcr_pkg": "${{ inputs.ghcr-url }}"},
+            {"host": "x86_64-Linux", "runner": "ubuntu-latest", "ghcr_pkg": "${{ inputs.ghcr-url }}"}
+          ] | unique_by(.runner)')
+          echo "matrix=${MATRIX}" >> "${GITHUB_ENV}"
+        continue-on-error: false
+
   build:
+    needs: preprocess
     strategy:
       fail-fast: false
-      matrix:
-        include:
-          - host: "${{ inputs.host == 'ALL' && 'aarch64-Linux' || inputs.host }}"
-            runner: "${{ inputs.host == 'ALL' && 'ubuntu-24.04-arm' || (inputs.host == 'aarch64-Linux' && 'ubuntu-24.04-arm') }}"
-            ghcr_pkg: "${{ inputs.ghcr-url }}"
-          - host: "${{ inputs.host == 'ALL' && 'x86_64-Linux' || inputs.host }}"
-            runner: "${{ inputs.host == 'ALL' && 'ubuntu-latest' || (inputs.host == 'x86_64-Linux' && 'ubuntu-latest') }}"
-            ghcr_pkg: "${{ inputs.ghcr-url }}"
+      matrix: ${{ fromJson(needs.preprocess.outputs.matrix) }}
     name: "${{ matrix.host }} ==> (${{ matrix.ghcr_pkg }})"
     runs-on: "${{ matrix.runner }}"
     timeout-minutes: 200
