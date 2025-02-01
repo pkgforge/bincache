@@ -53,36 +53,30 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        include:
+        config:
           - host: "aarch64-Linux"
-            run_for: "${{ inputs.host == 'ALL' || inputs.host == 'aarch64-Linux' }}"
+            runner: "ubuntu-24.04-arm"
           - host: "x86_64-Linux"
-            run_for: "${{ inputs.host == 'ALL' || inputs.host == 'x86_64-Linux' }}"
+            runner: "ubuntu-latest"
     steps:
-      - id: Setup
+      - id: Prepare
         run: |
           ##presets
           set +x ; set +e
           #-------------#
           ##Determine if specified any
-          if [[ "${{ matrix.run_for }}" != "true" ]]; then
+          if [[ "${{ inputs.host }}" != "ALL" ]] && [[ "${{ inputs.host }}" != "${{ matrix.config.host }}" ]]; then
             echo "RUN_JOB=false" >> "${GITHUB_OUTPUT}"
             exit 0
           fi
-          ##Determine Host
-          if [[ "${{ matrix.host }}" == "aarch64-Linux" ]]; then
-            RUNNER="ubuntu-24.04-arm"
-          elif  [[ "${{ matrix.host }}" == "x86_64-Linux" ]]; then
-            RUNNER="ubuntu-latest"
-          fi
-          #Set Values
+          ##Set Values
           echo "RUN_JOB=true" >> "${GITHUB_OUTPUT}"
-          echo "RUNNER=${RUNNER}" >> "${GITHUB_OUTPUT}"
-          echo "HOST=${{ matrix.host }}" >> "${GITHUB_OUTPUT}"
+          echo "RUNNER=${{ matrix.config.runner }}" >> "${GITHUB_OUTPUT}"
+          echo "HOST=${{ matrix.config.host }}" >> "${GITHUB_OUTPUT}"
     outputs:
-      runner: ${{ steps.setup.outputs.RUNNER }}
-      run_job: ${{ steps.setup.outputs.RUN_JOB }}
-      host: ${{ steps.setup.outputs.HOST }}
+      runner: ${{ steps.Prepare.outputs.RUNNER }}
+      run_job: ${{ steps.Prepare.outputs.RUN_JOB }}
+      host: ${{ steps.Prepare.outputs.HOST }}
 
   build:
     needs: prepare
