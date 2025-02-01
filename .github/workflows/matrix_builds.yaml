@@ -69,6 +69,8 @@ jobs:
       packages: write
     steps:
       - name: Exit if not called
+        env:
+          GH_TOKEN: "${{ github.token }}"
         run: |
           ##presets
           set +x ; set +e
