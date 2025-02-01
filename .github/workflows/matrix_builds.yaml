@@ -83,7 +83,7 @@ jobs:
     needs: [preprocess]
     strategy:
       fail-fast: false
-      matrix: 
+      matrix:
         package: ${{ fromJson(needs.preprocess.outputs.runner_matrix) }}
     name: "${{ matrix.package.host }} ==> (${{ matrix.package.ghcr_pkg }})"
     runs-on: "${{ matrix.package.runner }}"
@@ -207,6 +207,18 @@ jobs:
           ##User-Agent
           USER_AGENT="$(curl -qfsSL 'https://pub.ajam.dev/repos/Azathothas/Wordlists/Misc/User-Agents/ua_chrome_macos_latest.txt')" && export USER_AGENT="${USER_AGENT}"
           echo "USER_AGENT=${USER_AGENT}" >> "${GITHUB_ENV}"
+        continue-on-error: true
+
+      - name: Disable apparmor_restrict_unprivileged_userns #Required for runimage etc
+        if: env.CONTINUE_GHRUN != 'FALSE'
+        run: |
+          #presets
+          set +x ; set +e
+          #-------------#        
+          echo "kernel.apparmor_restrict_unprivileged_userns=0" | sudo tee "/etc/sysctl.d/98-apparmor-unuserns.conf"
+          echo "0" | sudo tee "/proc/sys/kernel/apparmor_restrict_unprivileged_userns"
+          sudo service procps restart
+          sudo sysctl -p "/etc/sysctl.conf"
         continue-on-error: true
 
       - name: BUILD (${{ github.event.inputs.ghcr-url }}) [${{ matrix.package.host }}<==>${{ matrix.package.runner }}]
