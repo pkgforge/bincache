@@ -4820,8 +4820,56 @@
     "rebuild": false,
     "pkg_family": "soar",
     "description": "The Modern, Bloat-Free Distro-Independent Package Manager",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/soar/official",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/soar/static.official.source.yaml"
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/soar/glibc",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/soar/static.glibc.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "soar",
+    "description": "The Modern, Bloat-Free Distro-Independent Package Manager",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/soar/glibc-v3",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/soar/static.glibc-v3.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "soar",
+    "description": "The Modern, Bloat-Free Distro-Independent Package Manager",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/soar/glibc-v4",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/soar/static.glibc-v4.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "soar",
+    "description": "The Modern, Bloat-Free Distro-Independent Package Manager",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/soar/mimalloc",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/soar/static.mimalloc.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "soar",
+    "description": "The Modern, Bloat-Free Distro-Independent Package Manager",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/soar/musl",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/soar/static.musl.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "soar",
+    "description": "The Modern, Bloat-Free Distro-Independent Package Manager",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/soar/musl-v3",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/soar/static.musl-v3.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "soar",
+    "description": "The Modern, Bloat-Free Distro-Independent Package Manager",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/soar/musl-v4",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/soar/static.musl-v4.source.yaml"
   },
   {
     "_disabled": false,
