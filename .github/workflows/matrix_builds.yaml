@@ -48,41 +48,19 @@ on:
           - "true"
           - "false"
 jobs:
-  prepare:
-    runs-on: ubuntu-latest
+  build:
     strategy:
       fail-fast: false
       matrix:
-        config:
-          - host: "aarch64-Linux"
-            runner: "ubuntu-24.04-arm"
-          - host: "x86_64-Linux"
-            runner: "ubuntu-latest"
-    steps:
-      - id: Prepare
-        run: |
-          ##presets
-          set +x ; set +e
-          #-------------#
-          ##Determine if specified any
-          if [[ "${{ inputs.host }}" != "ALL" ]] && [[ "${{ inputs.host }}" != "${{ matrix.config.host }}" ]]; then
-            echo "RUN_JOB=false" >> "${GITHUB_OUTPUT}"
-            exit 0
-          fi
-          ##Set Values
-          echo "RUN_JOB=true" >> "${GITHUB_OUTPUT}"
-          echo "RUNNER=${{ matrix.config.runner }}" >> "${GITHUB_OUTPUT}"
-          echo "HOST=${{ matrix.config.host }}" >> "${GITHUB_OUTPUT}"
-    outputs:
-      runner: ${{ steps.Prepare.outputs.RUNNER }}
-      run_job: ${{ steps.Prepare.outputs.RUN_JOB }}
-      host: ${{ steps.Prepare.outputs.HOST }}
-
-  build:
-    needs: prepare
-    if: ${{ needs.prepare.outputs.run_job == 'true' }}
-    name: "${{ needs.prepare.outputs.host }} ==> (${{ inputs.ghcr-url }})"
-    runs-on: "${{ needs.prepare.outputs.runner }}"
+        include:
+          - host: "${{ inputs.host == 'ALL' && 'aarch64-Linux' || inputs.host }}"
+            runner: "${{ inputs.host == 'ALL' && 'ubuntu-24.04-arm' || (inputs.host == 'aarch64-Linux' && 'ubuntu-24.04-arm' || 'ubuntu-latest') }}"
+            ghcr_pkg: "${{ inputs.ghcr-url }}"
+          - host: "${{ inputs.host == 'ALL' && 'x86_64-Linux' || inputs.host }}"
+            runner: "${{ inputs.host == 'ALL' && 'ubuntu-latest' || (inputs.host == 'x86_64-Linux' && 'ubuntu-latest' || 'ubuntu-latest') }}"
+            ghcr_pkg: "${{ inputs.ghcr-url }}"
+    name: "${{ matrix.host }} ==> (${{ matrix.ghcr_pkg }})"
+    runs-on: "${{ matrix.runner }}"
     timeout-minutes: 200
     permissions:
       attestations: write
