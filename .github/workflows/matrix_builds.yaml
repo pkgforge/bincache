@@ -54,10 +54,10 @@ jobs:
       matrix:
         include:
           - host: "${{ inputs.host == 'ALL' && 'aarch64-Linux' || inputs.host }}"
-            runner: "${{ inputs.host == 'ALL' && 'ubuntu-24.04-arm' || (inputs.host == 'aarch64-Linux' && 'ubuntu-24.04-arm' || 'ubuntu-latest') }}"
+            runner: "${{ inputs.host == 'ALL' && 'ubuntu-24.04-arm' || (inputs.host == 'aarch64-Linux' && 'ubuntu-24.04-arm') }}"
             ghcr_pkg: "${{ inputs.ghcr-url }}"
           - host: "${{ inputs.host == 'ALL' && 'x86_64-Linux' || inputs.host }}"
-            runner: "${{ inputs.host == 'ALL' && 'ubuntu-latest' || (inputs.host == 'x86_64-Linux' && 'ubuntu-latest' || 'ubuntu-latest') }}"
+            runner: "${{ inputs.host == 'ALL' && 'ubuntu-latest' || (inputs.host == 'x86_64-Linux' && 'ubuntu-latest') }}"
             ghcr_pkg: "${{ inputs.ghcr-url }}"
     name: "${{ matrix.host }} ==> (${{ matrix.ghcr_pkg }})"
     runs-on: "${{ matrix.runner }}"
@@ -83,10 +83,6 @@ jobs:
             if [[ "${{ github.event.inputs.host }}" != "ALL" ]] && [[ "${{ github.event.inputs.host }}" != "x86_64-Linux" ]]; then
               echo "CONTINUE_GHRUN=FALSE" >> "${GITHUB_ENV}"
             fi
-          fi
-          RUNNING_JOBS=$(gh run list --workflow "${{ github.workflow }}" --status "in_progress" --json jobs --jq ".jobs[] | select(.name | contains(\"${{ matrix.host }}\")) | select(.runner_name == \"${{ matrix.runner }}\")")
-          if [[ -n "${RUNNING_JOBS}" ]]; then
-            echo "CONTINUE_GHRUN=FALSE" >> "${GITHUB_ENV}"
           fi
         continue-on-error: false
 
