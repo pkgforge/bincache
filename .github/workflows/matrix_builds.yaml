@@ -53,12 +53,17 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - host: "${{ inputs.host == 'ALL' && 'aarch64-Linux' || inputs.host }}"
-            runner: "${{ inputs.host == 'ALL' && 'ubuntu-24.04-arm' || (inputs.host == 'aarch64-Linux' && 'ubuntu-24.04-arm' || 'ubuntu-latest') }}"
+          - host: "aarch64-Linux"
             ghcr_pkg: "${{ inputs.ghcr-url }}"
-          - host: "${{ inputs.host == 'ALL' && 'x86_64-Linux' || inputs.host }}"
-            runner: "${{ inputs.host == 'ALL' && 'ubuntu-latest' || (inputs.host == 'x86_64-Linux' && 'ubuntu-latest' || 'ubuntu-latest') }}"
+            run_job: "${{ inputs.host == 'ALL' || inputs.host == 'aarch64-Linux' }}"
+            runner: "ubuntu-24.04-arm"
+
+          - host: "x86_64-Linux"
             ghcr_pkg: "${{ inputs.ghcr-url }}"
+            run_job: "${{ inputs.host == 'ALL' || inputs.host == 'x86_64-Linux' }}"
+            runner: "ubuntu-latest"
+
+    if: matrix.run_job == 'true'
     name: "${{ matrix.host }} ==> (${{ matrix.ghcr_pkg }})"
     runs-on: "${{ matrix.runner }}"
     timeout-minutes: 200
