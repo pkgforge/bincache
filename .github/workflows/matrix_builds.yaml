@@ -183,6 +183,7 @@ jobs:
                export SBUILD_FILE_URL
                echo "SBUILD_FILE_URL=${SBUILD_FILE_URL}" >> "${GITHUB_ENV}"
               #Check for x_exec.host
+               export HOST_TRIPLET="$(uname -m)-$(uname -s)"
                if yq e '.x_exec.host != null' "./SBUILD_INPUT" | grep -qi 'true'; then
                  if ! yq '.x_exec.host[]' "./SBUILD_INPUT" | grep -v '^#' | grep -qi "${HOST_TRIPLET,,}"; then
                    echo -e "\n[✗] WARNING: SBUILD (./SBUILD_INPUT) is NOT Supported on ${HOST_TRIPLET}\n"
