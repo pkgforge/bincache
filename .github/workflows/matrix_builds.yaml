@@ -48,24 +48,47 @@ on:
           - "true"
           - "false"
 jobs:
-  build:
+  prepare:
+    runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
         include:
           - host: "aarch64-Linux"
-            ghcr_pkg: "${{ inputs.ghcr-url }}"
-            run_job: "${{ inputs.host == 'ALL' || inputs.host == 'aarch64-Linux' }}"
-            runner: "ubuntu-24.04-arm"
-
+            run_for: "${{ inputs.host == 'ALL' || inputs.host == 'aarch64-Linux' }}"
           - host: "x86_64-Linux"
-            ghcr_pkg: "${{ inputs.ghcr-url }}"
-            run_job: "${{ inputs.host == 'ALL' || inputs.host == 'x86_64-Linux' }}"
-            runner: "ubuntu-latest"
+            run_for: "${{ inputs.host == 'ALL' || inputs.host == 'x86_64-Linux' }}"
+    steps:
+      - id: Setup
+        run: |
+          ##presets
+          set +x ; set +e
+          #-------------#
+          ##Determine if specified any
+          if [[ "${{ matrix.run_for }}" != "true" ]]; then
+            echo "RUN_JOB=false" >> "${GITHUB_OUTPUT}"
+            exit 0
+          fi
+          ##Determine Host
+          if [[ "${{ matrix.host }}" == "aarch64-Linux" ]]; then
+            RUNNER="ubuntu-24.04-arm"
+          elif  [[ "${{ matrix.host }}" == "x86_64-Linux" ]]; then
+            RUNNER="ubuntu-latest"
+          fi
+          #Set Values
+          echo "RUN_JOB=true" >> "${GITHUB_OUTPUT}"
+          echo "RUNNER=${RUNNER}" >> "${GITHUB_OUTPUT}"
+          echo "HOST=${{ matrix.host }}" >> "${GITHUB_OUTPUT}"
+    outputs:
+      runner: ${{ steps.setup.outputs.RUNNER }}
+      run_job: ${{ steps.setup.outputs.RUN_JOB }}
+      host: ${{ steps.setup.outputs.HOST }}
 
-    if: matrix.run_job == 'true'
-    name: "${{ matrix.host }} ==> (${{ matrix.ghcr_pkg }})"
-    runs-on: "${{ matrix.runner }}"
+  build:
+    needs: prepare
+    if: ${{ needs.prepare.outputs.run_job == 'true' }}
+    name: "${{ needs.prepare.outputs.host }} ==> (${{ inputs.ghcr-url }})"
+    runs-on: "${{ needs.prepare.outputs.runner }}"
     timeout-minutes: 200
     permissions:
       attestations: write
