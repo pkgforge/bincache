@@ -2234,6 +2234,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "glib",
+    "description": "A collection of tools for glib",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/glib/ppkg",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/glib/static.ppkg.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "glow",
     "description": "Render markdown on the CLI",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/glow/official",
