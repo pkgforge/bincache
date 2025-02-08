@@ -2746,6 +2746,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "i2pd",
+    "description": "Router for an end-to-end encrypted and anonymous internet",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/i2pd/ppkg",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/i2pd/static.ppkg.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "iamb",
     "description": "A Matrix client for Vim addicts",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/iamb/official",
