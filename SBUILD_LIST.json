@@ -522,6 +522,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "bitcoin",
+    "description": "CLI and Utilities for BitCoin: Decentralized, peer to peer payment network",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/bitcoin/ppkg",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/bitcoin/static.ppkg.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "bleve",
     "description": "CLI for interacting with a Bleve index",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/bleve/official",
@@ -1274,6 +1282,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "dasel",
+    "description": "Select, put and delete data from JSON, TOML, YAML, XML and CSV files with a single tool",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/dasel/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/dasel/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "dash",
     "description": "POSIX compliant shell that aims to be as small as possible",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/dash/nixpkgs",
@@ -1286,14 +1302,6 @@
     "description": "POSIX compliant shell that aims to be as small as possible",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/dash/ppkg",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/dash/static.ppkg.stable.yaml"
-  },  
-  {
-    "_disabled": false,
-    "rebuild": false,
-    "pkg_family": "dasel",
-    "description": "Select, put and delete data from JSON, TOML, YAML, XML and CSV files with a single tool",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/dasel/official",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/dasel/static.official.source.yaml"
   },
   {
     "_disabled": false,
@@ -2226,6 +2234,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "glib",
+    "description": "A collection of tools for glib",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/glib/ppkg",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/glib/static.ppkg.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "glow",
     "description": "Render markdown on the CLI",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/glow/official",
@@ -2902,7 +2918,7 @@
     "description": "Lightweight and flexible command-line JSON processor",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/jq/official/source",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/jq/static.official.source.yaml"
-  },  
+  },
   {
     "_disabled": false,
     "rebuild": false,
@@ -2910,7 +2926,7 @@
     "description": "Lightweight and flexible command-line JSON processor",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/jq/official/stable",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/jq/static.official.stable.yaml"
-  },  
+  },
   {
     "_disabled": false,
     "rebuild": false,
@@ -4178,18 +4194,18 @@
   {
     "_disabled": false,
     "rebuild": false,
-    "pkg_family": "qemu",
-    "description": "QEMU System/User mode Emulation & Virtualization binaries",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/qemu/ppkg",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/qemu/static.ppkg.stable.yaml"
-  },
-  {
-    "_disabled": false,
-    "rebuild": false,
     "pkg_family": "qemu-user",
     "description": "QEMU user mode Emulation & Virtualization binaries",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/qemu-user/ziglang",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/qemu-user/static.ziglang.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "qemu",
+    "description": "QEMU System/User mode Emulation & Virtualization binaries",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/qemu/ppkg",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/qemu/static.ppkg.stable.yaml"
   },
   {
     "_disabled": false,
@@ -4859,7 +4875,7 @@
     "_disabled": false,
     "rebuild": false,
     "pkg_family": "soar",
-    "description": "The Modern, Bloat-Free Distro-Independent Package Manager",
+    "description": "The Modern, Bloat-Free Distro-Independent Package Manager (MUSL-Mimalloc)",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/soar/mimalloc",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/soar/static.mimalloc.source.yaml"
   },
@@ -5986,18 +6002,18 @@
   {
     "_disabled": false,
     "rebuild": false,
-    "pkg_family": "z88dk",
-    "description": "Complete Z80/Z180 development kit",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/z88dk/ppkg",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/z88dk/static.ppkg.stable.yaml"
-  },
-  {
-    "_disabled": false,
-    "rebuild": false,
     "pkg_family": "z-tokens",
     "description": "Random Password/Tokens generation and related tools",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/z-tokens/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/z-tokens/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "z88dk",
+    "description": "Complete Z80/Z180 development kit",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/z88dk/ppkg",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/z88dk/static.ppkg.stable.yaml"
   },
   {
     "_disabled": false,
