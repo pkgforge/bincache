@@ -2555,7 +2555,7 @@
     "_disabled": false,
     "rebuild": false,
     "pkg_family": "guile",
-    "description": null,
+    "description": "Portable, embeddable Scheme implementation Tools",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/guile/ppkg",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/guile/static.ppkg.stable.yaml"
   },
