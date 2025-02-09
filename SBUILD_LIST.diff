@@ -5715,7 +5715,7 @@
     "_disabled": false,
     "rebuild": false,
     "pkg_family": "unix",
-    "description": null,
+    "description": "Old Unix programs running on modern computers",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/unix/rsc-v6unix",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/unix/static.rsc-v6unix.source.yaml"
   },
