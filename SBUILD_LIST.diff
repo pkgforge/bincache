@@ -82,6 +82,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "alacritty",
+    "description": "GPU-accelerated terminal emulator",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/alacritty/ppkg",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/alacritty/static.ppkg.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "albafetch",
     "description": "Faster neofetch alternative, written in C",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/albafetch/official",
@@ -1394,6 +1402,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "desktop-file-utils",
+    "description": "Utilities for working with Desktop Entry files",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/desktop-file-utils/ppkg",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/desktop-file-utils/static.ppkg.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "devbox",
     "description": "CLI tool to easily create isolated shells and containers",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/devbox/official",
@@ -1534,6 +1550,14 @@
     "description": "Drive performance measurement tool",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/dperf/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/dperf/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "dpkg",
+    "description": "Debian package manager tools",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/dpkg/ppkg",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/dpkg/static.ppkg.stable.yaml"
   },
   {
     "_disabled": false,
@@ -1762,6 +1786,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "exif",
+    "description": "Read, write, modify, and display EXIF data on the command-line",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/exif/ppkg",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/exif/static.ppkg.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "exiflooter",
     "description": "Finds geolocation on all image urls and directories",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/exiflooter/official",
@@ -1910,6 +1942,14 @@
     "description": "🚀 Fast and simple Node.js version manager, built in Rust",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/fnm/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/fnm/static.official.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "fontconfig",
+    "description": "Font configuration and customization utilities",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/fontconfig/ppkg",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/fontconfig/static.ppkg.stable.yaml"
   },
   {
     "_disabled": false,
@@ -2458,6 +2498,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "gperftools",
+    "description": "Fast, multi-threaded malloc and nifty performance analysis tools",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/gperftools/ppkg",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/gperftools/static.ppkg.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "gpg-tui",
     "description": "Manage your GnuPG keys with ease! 🔐",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/gpg-tui/official",
@@ -2502,6 +2550,14 @@
     "description": "Global Socket moving data from here to there securely, fast and trough NAT/Firewalls",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/gsocket/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/gsocket/static.official.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "guile",
+    "description": null,
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/guile/ppkg",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/guile/static.ppkg.stable.yaml"
   },
   {
     "_disabled": false,
@@ -2802,10 +2858,26 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "inotify-tools",
+    "description": "Command-line utilities to watch for file events (inotify)",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/inotify-tools/ppkg",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/inotify-tools/static.ppkg.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "interactsh",
     "description": "An Out Of Bounds (OOB) interaction gathering server and client tool",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/interactsh/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/interactsh/static.official.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "intltool",
+    "description": "Tools to internationalize various kinds of data files",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/intltool/ppkg",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/intltool/static.ppkg.stable.yaml"
   },
   {
     "_disabled": false,
@@ -2830,6 +2902,14 @@
     "description": "Upload and install Apple ipa and Android apk in web",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/ipa-server/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/ipa-server/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "iperf",
+    "description": "Tool to measure maximum TCP and UDP bandwidth",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/iperf/ppkg",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/iperf/static.ppkg.stable.yaml"
   },
   {
     "_disabled": false,
@@ -2894,6 +2974,14 @@
     "description": "Feature-rich interactive Jira command line",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/jira-cli/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/jira-cli/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "jless",
+    "description": "Command-line pager for JSON data",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/jless/ppkg",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/jless/static.ppkg.stable.yaml"
   },
   {
     "_disabled": false,
@@ -3074,6 +3162,22 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "lcdf-typetools",
+    "description": "Utilities for manipulating OpenType, PostScript Type 1, and Multiple Master fonts",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/lcdf-typetools/ppkg",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/lcdf-typetools/static.ppkg.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "lcov",
+    "description": null,
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/lcov/ppkg",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/lcov/static.ppkg.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "lddtree",
     "description": "Read the ELF dependency tree",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/lddtree/official",
@@ -3242,6 +3346,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "lua",
+    "description": "Powerful, fast, lightweight, embeddable scripting language",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/lua/ppkg",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/lua/static.ppkg.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "luet",
     "description": "0-dependency Container-based Package Manager",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/luet/official",
@@ -3358,6 +3470,14 @@
     "description": "Markdown shell pre-processor",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/mdsh/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/mdsh/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "mediainfo",
+    "description": "Command-line utility for reading information from media files",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/mediainfo/ppkg",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/mediainfo/static.ppkg.stable.yaml"
   },
   {
     "_disabled": false,
@@ -3490,6 +3610,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "moreutils",
+    "description": "Miscellaneous general-purpose command-line unix Tools",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/moreutils/ppkg",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/moreutils/static.ppkg.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "mqttui",
     "description": "Simple lightweight terminal based MQTT monitor and publisher",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/mqttui/official",
@@ -3542,6 +3670,14 @@
     "description": "Interactive cheatsheet tool for the command-line",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/navi/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/navi/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "ncdu",
+    "description": "Disk usage analyzer with an ncurses interface",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/ncdu/ppkg",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/ncdu/static.ppkg.stable.yaml"
   },
   {
     "_disabled": false,
@@ -3918,6 +4054,14 @@
     "description": "ELF utils that can check files for security relevant properties",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/pax-utils/nixpkgs",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/pax-utils/static.nixpkgs.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "pax-utils",
+    "description": "Tools to Check ELF Files for Security Relevant Properties",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/pax-utils/ppkg",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/pax-utils/static.ppkg.stable.yaml"
   },
   {
     "_disabled": false,
@@ -4390,6 +4534,14 @@
     "description": "Print Shared Object Dependencies",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/rldd/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/rldd/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "rlwrap",
+    "description": "Wrapper to allow the editing of keyboard commands",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/rlwrap/ppkg",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/rlwrap/static.ppkg.stable.yaml"
   },
   {
     "_disabled": false,
@@ -4938,6 +5090,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "spirv-tools",
+    "description": "Tools for processing SPIR-V intermediate shader language modules",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/spirv-tools/ppkg",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/spirv-tools/static.ppkg.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "spk",
     "description": "A small OSINT/Recon tool to find CIDRs that belong to a specific organization",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/spk/official",
@@ -5322,6 +5482,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "tiff",
+    "description": "Tools for reading and writing TIFF data files",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/tiff/ppkg",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/tiff/static.ppkg.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "tinja",
     "description": "CLI tool for testing web pages for template injection vulnerabilities",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/tinja/official",
@@ -5390,6 +5558,14 @@
     "description": "High availability reverse proxy and load balancer",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/traefik/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/traefik/static.official.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "tree",
+    "description": "Display directories as trees (with optional color/HTML output)",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/tree/ppkg",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/tree/static.ppkg.stable.yaml"
   },
   {
     "_disabled": false,
@@ -5550,6 +5726,14 @@
     "description": "Extendable, high-performance executable packer for several executable formats",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/upx/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/upx/static.official.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "usbutils",
+    "description": "Utilities for handling USB devices",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/usbutils/ppkg",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/usbutils/static.ppkg.stable.yaml"
   },
   {
     "_disabled": false,
