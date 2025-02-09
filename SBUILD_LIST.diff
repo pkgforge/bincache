@@ -2555,7 +2555,7 @@
     "_disabled": false,
     "rebuild": false,
     "pkg_family": "guile",
-    "description": null,
+    "description": "Portable, embeddable Scheme implementation Tools",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/guile/ppkg",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/guile/static.ppkg.stable.yaml"
   },
@@ -3171,7 +3171,7 @@
     "_disabled": false,
     "rebuild": false,
     "pkg_family": "lcov",
-    "description": null,
+    "description": "Front-end Tools for GCC's coverage testing tool gcov",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/lcov/ppkg",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/lcov/static.ppkg.stable.yaml"
   },
