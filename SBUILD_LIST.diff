@@ -445,7 +445,7 @@
     "pkg_family": "bed",
     "description": "Binary editor written in Go",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/bed/official",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/bed/static.official.stable.yaml"
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/bed/static.official.source.yaml"
   },
   {
     "_disabled": false,
