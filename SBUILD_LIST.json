@@ -5024,7 +5024,7 @@
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/soar/static.glibc-v4.source.yaml"
   },
   {
-    "_disabled": false,
+    "_disabled": true,
     "rebuild": false,
     "pkg_family": "soar",
     "description": "The Modern, Bloat-Free Distro-Independent Package Manager (MUSL-Mimalloc)",
