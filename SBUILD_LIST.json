@@ -4418,6 +4418,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "rebos",
+    "description": "Tool to mimic NixOS's repeatability, managing packages and services on any Linux distro",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/rebos/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/rebos/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "rebuilderd",
     "description": "Independent verification system of binary packages",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/rebuilderd/official",
