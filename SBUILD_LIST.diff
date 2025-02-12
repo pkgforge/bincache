@@ -5027,14 +5027,6 @@
     "_disabled": false,
     "rebuild": false,
     "pkg_family": "soar",
-    "description": "The Modern, Bloat-Free Distro-Independent Package Manager (MUSL-Mimalloc)",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/soar/mimalloc",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/soar/static.mimalloc.source.yaml"
-  },
-  {
-    "_disabled": false,
-    "rebuild": false,
-    "pkg_family": "soar",
     "description": "The Modern, Bloat-Free Distro-Independent Package Manager",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/soar/musl",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/soar/static.musl.source.yaml"
