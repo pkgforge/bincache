@@ -445,7 +445,7 @@
     "pkg_family": "bed",
     "description": "Binary editor written in Go",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/bed/official",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/bed/static.official.stable.yaml"
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/bed/static.official.source.yaml"
   },
   {
     "_disabled": false,
@@ -1626,6 +1626,38 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "dust",
+    "description": "Disk Usage Analyzer",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/dust/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/dust/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "dwarfs",
+    "description": "Fast high compression read-only file system Tools",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/dwarfs/multicall",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/dwarfs/static.multicall.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "dwarfs",
+    "description": "Fast high compression read-only file system Tools",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/dwarfs/standalone",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/dwarfs/static.standalone.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "dysk",
+    "description": "Linux utility to get information on filesystems, like df but better",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/dysk/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/dysk/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "e2fsprogs",
     "description": "Tools for creating and checking ext2/ext3/ext4 filesystems",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/e2fsprogs/nixpkgs",
@@ -2514,6 +2546,22 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "grep",
+    "description": "Search one or more input files for lines containing a match to a specified pattern",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/grep/glibc",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/grep/static.glibc.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "grep",
+    "description": "Search one or more input files for lines containing a match to a specified pattern",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/grep/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/grep/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "grex",
     "description": "A command-line tool for generating regular expressions from user-provided input strings",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/grex/official",
@@ -2798,6 +2846,14 @@
     "description": "CLI to run HTTP requests defined in simple plain text format",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/hurl/nixpkgs",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/hurl/static.nixpkgs.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "husarnet",
+    "description": "Peer-to-Peer VPN over the Internet with zero configuration",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/husarnet/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/husarnet/static.official.source.yaml"
   },
   {
     "_disabled": false,
@@ -3437,7 +3493,7 @@
     "pkg_family": "matterbridge",
     "description": "Multi-protocols (IRC/XMPP/Mattermost/Slack/Matrix/etc) bridge",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/matterbridge/official",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/matterbridge/static.official.stable.yaml"
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/matterbridge/static.official.source.yaml"
   },
   {
     "_disabled": false,
@@ -3546,10 +3602,18 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "miniserve",
+    "description": "CLI tool to serve files and dirs over HTTP",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/miniserve/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/miniserve/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "minisign",
     "description": "A dead simple tool to sign files and verify signatures",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/minisign/official",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/minisign/static.official.stable.yaml"
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/minisign/static.official.source.yaml"
   },
   {
     "_disabled": false,
@@ -3670,6 +3734,14 @@
     "description": "Interactive cheatsheet tool for the command-line",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/navi/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/navi/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "ncdu",
+    "description": "Disk usage analyzer with an ncurses interface",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/ncdu/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/ncdu/static.official.stable.yaml"
   },
   {
     "_disabled": false,
@@ -4397,7 +4469,7 @@
     "pkg_family": "rclone",
     "description": "A program to sync files to and from various cloud storage providers",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/rclone/official",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/rclone/static.official.source.yaml"
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/rclone/static.official.stable.yaml"
   },
   {
     "_disabled": false,
@@ -4482,6 +4554,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "reptyr",
+    "description": "Reparent a running program to a new terminal",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/reptyr/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/reptyr/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "rescope",
     "description": "A scope generation tool for Burp Suite & ZAP",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/rescope/official",
@@ -4518,6 +4598,14 @@
     "description": "Faster, stricter, configurable, extensible, and beautiful drop-in replacement for golint",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/revive/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/revive/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "rga",
+    "description": "Ripgrep, but also search in PDFs, E-Books, Office documents, zip, tar.gz, and more",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/rga/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/rga/static.official.source.yaml"
   },
   {
     "_disabled": false,
@@ -5032,14 +5120,6 @@
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/soar/static.glibc-v4.source.yaml"
   },
   {
-    "_disabled": true,
-    "rebuild": false,
-    "pkg_family": "soar",
-    "description": "The Modern, Bloat-Free Distro-Independent Package Manager (MUSL-Mimalloc)",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/soar/mimalloc",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/soar/static.mimalloc.source.yaml"
-  },
-  {
     "_disabled": false,
     "rebuild": false,
     "pkg_family": "soar",
@@ -5438,6 +5518,14 @@
     "description": "A Telegram downloader/tools written in Golang",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/tdl/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/tdl/static.official.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "tealdeer",
+    "description": "Fetch and show tldr help pages for many CLI commands",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/tealdeer/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/tealdeer/static.official.source.yaml"
   },
   {
     "_disabled": false,
@@ -6206,6 +6294,14 @@
     "description": "Complete Z80/Z180 development kit",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/z88dk/ppkg",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/z88dk/static.ppkg.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "zapper",
+    "description": "Zaps arguments and environment from the process list",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/zapper/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/zapper/static.official.source.yaml"
   },
   {
     "_disabled": false,
