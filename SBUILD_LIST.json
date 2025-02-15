@@ -1029,7 +1029,7 @@
     "pkg_family": "coreutils",
     "description": "GNU File, Shell, and Text utilities",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/coreutils/multicall",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/coreutils/static.multicall.source.yaml"
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/coreutils/static.multicall.glibc.yaml"
   },
   {
     "_disabled": false,
@@ -5814,6 +5814,22 @@
     "description": "An unofficial inheritor of Neofetch",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/unifetch/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/unifetch/static.official.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "unionfs-fuse",
+    "description": "Tools for union filesystem using fuse",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/unionfs-fuse/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/unionfs-fuse/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "unionfs-fuse3",
+    "description": "Tools for union filesystem using fuse",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/unionfs-fuse3/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/unionfs-fuse3/static.official.source.yaml"
   },
   {
     "_disabled": false,
