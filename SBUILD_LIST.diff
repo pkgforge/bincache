@@ -1842,6 +1842,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "faketty",
+    "description": "Wrapper to exec a command in a pty, even if redirecting the output",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/faketty/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/faketty/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "falconhound",
     "description": "FalconHound is a blue team multi-tool",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/falconhound/official",
@@ -2550,6 +2558,14 @@
     "description": "Search one or more input files for lines containing a match to a specified pattern",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/grep/glibc",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/grep/static.glibc.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "grep",
+    "description": "Search one or more input files for lines containing a match to a specified pattern",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/grep/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/grep/static.official.source.yaml"
   },
   {
     "_disabled": false,
@@ -5798,6 +5814,22 @@
     "description": "An unofficial inheritor of Neofetch",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/unifetch/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/unifetch/static.official.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "unionfs-fuse",
+    "description": "Tools for union filesystem using fuse",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/unionfs-fuse/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/unionfs-fuse/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "unionfs-fuse3",
+    "description": "Tools for union filesystem using fuse",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/unionfs-fuse3/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/unionfs-fuse3/static.official.source.yaml"
   },
   {
     "_disabled": false,
