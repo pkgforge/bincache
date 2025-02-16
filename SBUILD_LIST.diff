@@ -3661,7 +3661,7 @@
     "pkg_family": "mmv",
     "description": "Move/copy/append/link multiple files according to a set of wildcard patterns",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/mmv/official",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/mmv/static.official.stable.yaml"
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/mmv/static.official.source.yaml"
   },
   {
     "_disabled": false,
@@ -3837,7 +3837,7 @@
     "pkg_family": "nfpm",
     "description": "A simple deb, rpm, apk, ipk, and arch linux packager",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/nfpm/official",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/nfpm/static.official.stable.yaml"
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/nfpm/static.official.source.yaml"
   },
   {
     "_disabled": false,
@@ -3925,7 +3925,7 @@
     "pkg_family": "nuclei",
     "description": "Fast and customizable vulnerability scanner based on simple YAML based DSL",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/nuclei/official",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/nuclei/static.official.stable.yaml"
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/nuclei/static.official.source.yaml"
   },
   {
     "_disabled": false,
@@ -4053,7 +4053,7 @@
     "pkg_family": "oras",
     "description": "OCI registry client - manage content like artifacts, images, packages",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/oras/official",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/oras/static.official.source.yaml"
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/oras/static.official.stable.yaml"
   },
   {
     "_disabled": false,
