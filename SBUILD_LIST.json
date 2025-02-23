@@ -2834,6 +2834,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "htop",
+    "description": "Interactive text-mode process viewer",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/htop/official/source",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/htop/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "httprobe",
     "description": "Probing tool for working HTTP and HTTPS servers",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/httprobe/official",
