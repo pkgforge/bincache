@@ -1906,6 +1906,22 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "ffmpeg",
+    "description": "Complete solution to record, convert and stream audio and video",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/ffmpeg/shaka-project/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/ffmpeg/static.shaka-project.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "ffmpeg",
+    "description": "Complete solution to record, convert and stream audio and video",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/ffmpeg/wader/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/ffmpeg/static.wader.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "ffuf",
     "description": "Fast web fuzzer written in Go",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/ffuf/official",
@@ -4052,7 +4068,15 @@
     "rebuild": false,
     "pkg_family": "oras",
     "description": "OCI registry client - manage content like artifacts, images, packages",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/oras/official",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/oras/official/source",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/oras/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "oras",
+    "description": "OCI registry client - manage content like artifacts, images, packages",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/oras/official/stable",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/oras/static.official.stable.yaml"
   },
   {
