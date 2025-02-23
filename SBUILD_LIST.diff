@@ -4053,7 +4053,7 @@
     "pkg_family": "oras",
     "description": "OCI registry client - manage content like artifacts, images, packages",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/oras/official",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/oras/static.official.stable.yaml"
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/oras/static.official.source.yaml"
   },
   {
     "_disabled": false,
