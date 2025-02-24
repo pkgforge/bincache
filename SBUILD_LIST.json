@@ -2850,6 +2850,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "httptap",
+    "description": "View HTTP/HTTPS requests made by any Linux program",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/httptap/official/source",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/httptap/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "httpx",
     "description": "Fast and multi-purpose HTTP toolkit",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/httpx/official",
