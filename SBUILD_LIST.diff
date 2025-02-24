@@ -1908,24 +1908,8 @@
     "rebuild": false,
     "pkg_family": "ffmpeg",
     "description": "Complete solution to record, convert and stream audio and video",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/ffmpeg/shaka-project",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/ffmpeg/static.shaka-project.stable.yaml"
-  },
-  {
-    "_disabled": false,
-    "rebuild": false,
-    "pkg_family": "ffmpeg",
-    "description": "Complete solution to record, convert and stream audio and video",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/ffmpeg/shaka-project/stable",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/ffmpeg/static.shaka-project.stable.yaml"
-  },
-  {
-    "_disabled": false,
-    "rebuild": false,
-    "pkg_family": "ffmpeg",
-    "description": "Complete solution to record, convert and stream audio and video",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/ffmpeg/wader",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/ffmpeg/static.wader.stable.yaml"
   },
   {
     "_disabled": false,
@@ -2846,14 +2830,6 @@
     "description": "Parse and extract HTML from the command line",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/htmlq/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/htmlq/static.official.source.yaml"
-  },
-  {
-    "_disabled": false,
-    "rebuild": false,
-    "pkg_family": "htop",
-    "description": "Interactive text-mode process viewer",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/htop/official",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/htop/static.official.source.yaml"
   },
   {
     "_disabled": false,
@@ -4094,14 +4070,6 @@
     "description": "A full-featured open source SSL VPN solution",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/openvpn/nixpkgs",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/openvpn/static.nixpkgs.stable.yaml"
-  },
-  {
-    "_disabled": false,
-    "rebuild": false,
-    "pkg_family": "oras",
-    "description": "OCI registry client - manage content like artifacts, images, packages",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/oras/official",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/oras/static.official.source.yaml"
   },
   {
     "_disabled": false,
