@@ -2850,6 +2850,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "httptap",
+    "description": "View HTTP/HTTPS requests made by any Linux program",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/httptap/official/source",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/httptap/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "httpx",
     "description": "Fast and multi-purpose HTTP toolkit",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/httpx/official",
@@ -3714,6 +3722,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "mosh",
+    "description": "Mobile shell that supports roaming and intelligent local echo",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/mosh/blinksh/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/mosh/static.blinksh.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "mqttui",
     "description": "Simple lightweight terminal based MQTT monitor and publisher",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/mqttui/official",
@@ -3878,6 +3894,14 @@
     "description": "ngrok Collaborator Link — yet another Burp Collaborator alternative for free with ngrok",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/ngocok/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/ngocok/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "ngrok",
+    "description": "External Tunnel to Internal Assets",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/ngrok/official/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/ngrok/static.official.stable.yaml"
   },
   {
     "_disabled": false,
