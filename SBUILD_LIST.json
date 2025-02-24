@@ -3898,6 +3898,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "ngrok",
+    "description": "External Tunnel to Internal Assets",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/ngrok/official/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/ngrok/static.official.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "ngspice",
     "description": "Mixed-level/Mixed-signal circuit simulator based on Spice3f5, Cider1b1, and Xspice",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/ngspice/ppkg",
