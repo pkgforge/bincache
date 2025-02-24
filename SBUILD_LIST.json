@@ -3722,6 +3722,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "mosh",
+    "description": "Mobile shell that supports roaming and intelligent local echo",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/mosh/blinksh/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/mosh/static.blinksh.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "mqttui",
     "description": "Simple lightweight terminal based MQTT monitor and publisher",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/mqttui/official",
