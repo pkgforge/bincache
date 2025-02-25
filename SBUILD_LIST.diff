@@ -290,6 +290,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "archive-finder",
+    "description": "Scan a list of hosts to locate potential archive files (.zip, .tar, .rar, etc.)",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/archive-finder/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/archive-finder/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "archlinux",
     "description": "Portable Ephemeral ArchLinux Docker Image (DockerC)",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/archlinux/azathothas",
@@ -374,6 +382,14 @@
     "description": "Sync, search and backup tool for shell history",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/atuin/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/atuin/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "await",
+    "description": "Run list of commands in parallel and waits for their termination",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/await/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/await/static.official.source.yaml"
   },
   {
     "_disabled": false,
@@ -1682,6 +1698,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "dynamic-file-searcher",
+    "description": "Scan servers and hosts using dynamic paths",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/dynamic-file-searcher/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/dynamic-file-searcher/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "dysk",
     "description": "Linux utility to get information on filesystems, like df but better",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/dysk/official",
@@ -1950,6 +1974,14 @@
     "description": "Complete solution to record, convert and stream audio and video",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/ffmpeg/wader/stable",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/ffmpeg/static.wader.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "ffuf-workflow",
+    "description": "Automate the process of running FFUF and post-processing its results to extract valid URLs",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/ffuf-workflow/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/ffuf-workflow/static.official.source.yaml"
   },
   {
     "_disabled": false,
@@ -3610,6 +3642,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "massdns",
+    "description": "A high-performance DNS stub resolver for bulk lookups and reconnaissance",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/massdns/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/massdns/static.official.glibc.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "matterbridge",
     "description": "Multi-protocols (IRC/XMPP/Mattermost/Slack/Matrix/etc) bridge",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/matterbridge/official",
@@ -4866,6 +4906,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "routedns",
+    "description": "DNS stub resolver, proxy and router",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/routedns/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/routedns/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "rqbit",
     "description": "A bittorrent command line client and server",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/rqbit/official",
@@ -5110,6 +5158,14 @@
     "description": "Generate ASCII art with terminal, shell, and OS info",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/screenfetch/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/screenfetch/static.official.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "sdns",
+    "description": "A high-performance, recursive DNS resolver server with DNSSEC support",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/sdns/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/sdns/static.official.source.yaml"
   },
   {
     "_disabled": false,
@@ -5362,6 +5418,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "sops",
+    "description": "Editor of encrypted files that supports YAML, JSON, ENV, INI and BINARY formats",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/sops/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/sops/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "sourcemapper",
     "description": "Extract JavaScript source trees from Sourcemap files",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/sourcemapper/official",
@@ -5446,6 +5510,14 @@
     "description": "FUSE filesystem tools to mount squashfs archives",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/squashfuse/nixpkgs",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/squashfuse/static.nixpkgs.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "sshamble",
+    "description": "Unexpected Exposures in SSH",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/sshamble/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/sshamble/static.official.source.yaml"
   },
   {
     "_disabled": false,
@@ -5802,10 +5874,26 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "tinycc",
+    "description": "Fast Tiny C Compiler",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/tinycc/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/tinycc/static.official.glibc.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "tio",
     "description": "A serial device I/O tool for connecting to TTY devices",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/tio/nixpkgs",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/tio/static.nixpkgs.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "tldfinder",
+    "description": "A streamlined tool for discovering private TLDs for security research",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/tldfinder/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/tldfinder/static.official.source.yaml"
   },
   {
     "_disabled": false,
@@ -5990,6 +6078,14 @@
     "description": "Tool to create a one-binary root file system (initramfs) containing a busybox-like set of tools & More",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/u-root/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/u-root/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "udon",
+    "description": "Find assets/domains based on the Google Analytics ID",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/udon/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/udon/static.official.source.yaml"
   },
   {
     "_disabled": false,
