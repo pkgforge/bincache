@@ -3644,8 +3644,16 @@
     "rebuild": false,
     "pkg_family": "massdns",
     "description": "A high-performance DNS stub resolver for bulk lookups and reconnaissance",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/massdns/official",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/massdns/official/glibc",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/massdns/static.official.glibc.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "massdns",
+    "description": "A high-performance DNS stub resolver for bulk lookups and reconnaissance",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/massdns/official/musl",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/massdns/static.official.musl.yaml"
   },
   {
     "_disabled": false,
@@ -5876,8 +5884,16 @@
     "rebuild": false,
     "pkg_family": "tinycc",
     "description": "Fast Tiny C Compiler",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/tinycc/official",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/tinycc/official/glibc",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/tinycc/static.official.glibc.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "tinycc",
+    "description": "Fast Tiny C Compiler",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/tinycc/official/musl",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/tinycc/static.official.musl.yaml"
   },
   {
     "_disabled": false,
