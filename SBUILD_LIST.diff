@@ -3338,6 +3338,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "kunai",
+    "description": "Threat-hunting tool for Linux like Sysmon",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/kunai/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/kunai/static.official.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "ladder",
     "description": "Selfhosted alternative to 12ft.io. and 1ft.io",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/ladder/official",
@@ -4830,6 +4838,14 @@
     "description": "Ripgrep, but also search in PDFs, E-Books, Office documents, zip, tar.gz, and more",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/rga/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/rga/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "rhash",
+    "description": "Utility for calculation and verification of hash sums and magnet links",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/rhash/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/rhash/static.official.source.yaml"
   },
   {
     "_disabled": false,
@@ -6358,6 +6374,14 @@
     "description": "Fetch all the URLs that the Wayback Machine knows about for a domain",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/waybackurls/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/waybackurls/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "wcurl",
+    "description": "A simple wrapper around curl to easily download files",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/wcurl/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/wcurl/static.official.source.yaml"
   },
   {
     "_disabled": false,
