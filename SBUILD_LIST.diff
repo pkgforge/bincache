@@ -122,6 +122,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "aliyun-cli",
+    "description": "Universal Command-Line Interface for Alibaba Cloud",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/aliyun-cli/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/aliyun-cli/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "allxfr",
     "description": "AXFR all the things",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/allxfr/official",
@@ -422,6 +430,14 @@
     "description": "Lightweight CLI download accelerator",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/axel/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/axel/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "axfr2hosts",
+    "description": "Transfer DNS zones (AXFR) and convert A/AAAA/CNAME records into a hosts file for offline use",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/axfr2hosts/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/axfr2hosts/static.official.source.yaml"
   },
   {
     "_disabled": false,
@@ -926,6 +942,14 @@
     "description": "A fast TCP/UDP tunnel transported over HTTP, secured via SSH",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/chisel/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/chisel/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "chromedb",
+    "description": "Read Chromium data (namely, cookies and local storage) straight from disk",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/chromedb/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/chromedb/static.official.source.yaml"
   },
   {
     "_disabled": false,
@@ -1698,6 +1722,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "dyff",
+    "description": "Diff tool for JSON/YAML files",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/dyff/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/dyff/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "dynamic-file-searcher",
     "description": "Scan servers and hosts using dynamic paths",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/dynamic-file-searcher/official",
@@ -1818,6 +1850,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "enumeraga",
+    "description": "Automatic multiprocess tool for a quick enumeration wrapping pentesting tools",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/enumeraga/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/enumeraga/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "enumerepo",
     "description": "List all public repositories for (valid) GitHub usernames",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/enumerepo/official",
@@ -1894,6 +1934,14 @@
     "description": "A modern replacement for ls",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/eza/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/eza/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "f2",
+    "description": "Command-line tool for batch renaming files and directories",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/f2/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/f2/static.official.source.yaml"
   },
   {
     "_disabled": false,
@@ -2018,6 +2066,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "find-suid",
+    "description": "Find setuid binaries on a file system with speed",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/find-suid/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/find-suid/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "findomain",
     "description": "The Fastest Subdomain Enumerator",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/findomain/official",
@@ -2110,6 +2166,14 @@
     "description": "A comprehensive intranet scanning tool",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/fscan/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/fscan/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "fsize",
+    "description": "A more readable alternative to the stat command",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/fsize/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/fsize/static.official.source.yaml"
   },
   {
     "_disabled": false,
@@ -2410,6 +2474,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "gitty",
+    "description": "Download GitHub File & Directory",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/gitty/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/gitty/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "gitui",
     "description": "Blazing fast terminal-ui for git written in rust",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/gitui/official",
@@ -2422,6 +2494,14 @@
     "description": "A collection of tools for glib",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/glib/ppkg",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/glib/static.ppkg.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "globalping-cli",
+    "description": "CLI tool for benchmarking, monitoring, and optimizing internet infrastructure using a global network of probes",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/globalping-cli/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/globalping-cli/static.official.source.yaml"
   },
   {
     "_disabled": false,
@@ -3038,6 +3118,14 @@
     "description": "Generates the tree of the directory listing page",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/indextree/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/indextree/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "ini-file",
+    "description": "CLI tool for modifying .ini files",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/ini-file/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/ini-file/static.official.source.yaml"
   },
   {
     "_disabled": false,
@@ -3770,6 +3858,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "micromamba",
+    "description": "Tiny version of mamba, the fast conda package installer",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/micromamba/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/micromamba/static.official.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "miller",
     "description": "Combination of sed,awk,cut,join,sort utils for CSV, Json, TSV & more",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/miller/official",
@@ -3874,6 +3970,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "morrigan",
+    "description": "Busybox like Penetration Tool Set",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/morrigan/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/morrigan/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "mosh",
     "description": "Mobile shell that supports roaming and intelligent local echo",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/mosh/blinksh/stable",
@@ -3910,6 +4014,14 @@
     "description": "An incredibly fast proxy checker & IP rotator with ease",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/mubeng/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/mubeng/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "mult",
+    "description": "Run a command multiple times and glance at the outputs",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/mult/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/mult/static.official.source.yaml"
   },
   {
     "_disabled": false,
@@ -4402,6 +4514,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "picocrypt",
+    "description": "Small, simple, & Secure Encryption Tool",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/picocrypt/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/picocrypt/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "pier",
     "description": "A Linux script management CLI written in Rust",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/pier/official",
@@ -4570,6 +4690,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "protocurl",
+    "description": "cURL for Protobuf",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/protocurl/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/protocurl/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "proxify",
     "description": "Swiss Army knife Proxy tool for HTTP/HTTPS traffic capture, manipulation and replay",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/proxify/official",
@@ -4654,6 +4782,14 @@
     "description": "QEMU System/User mode Emulation & Virtualization binaries",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/qemu/ppkg",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/qemu/static.ppkg.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "qq",
+    "description": "Interoperable configuration format Transcoder with jq query syntax",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/qq/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/qq/static.official.source.yaml"
   },
   {
     "_disabled": false,
@@ -5226,6 +5362,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "shcopy",
+    "description": "Copy text to clipboard from anywhere using ANSI OSC 52 sequence",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/shcopy/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/shcopy/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "shell2http",
     "description": "HTTP-server to execute shell commands",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/shell2http/official",
@@ -5562,6 +5706,38 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "sshpass",
+    "description": "Non-interactive SSH authentication utility",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/sshpass/glibc",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/sshpass/static.glibc.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "sshpass",
+    "description": "Non-interactive SSH authentication utility",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/sshpass/musl",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/sshpass/static.musl.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "sshpass-go",
+    "description": "sshpass implementation in Go",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/sshpass/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/sshpass-go/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "sshpiperd",
+    "description": "Reverse proxy for SSH",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/sshpiper/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/sshpiperd/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "sshportal",
     "description": "Simple, fun and transparent SSH (and telnet) bastion server",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/sshportal/official",
@@ -5747,7 +5923,7 @@
     "_disabled": false,
     "rebuild": false,
     "pkg_family": "syncthing",
-    "description": "Open Source Continuous File Synchronization",
+    "description": "FOSS Continuous File Synchronisation",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/syncthing/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/syncthing/static.official.stable.yaml"
   },
@@ -5798,6 +5974,14 @@
     "description": "A TOML toolkit written in Rust",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/taplo/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/taplo/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "tar-split",
+    "description": "tar Assembly and Disassembly utility",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/tar-split/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/tar-split/static.official.source.yaml"
   },
   {
     "_disabled": false,
@@ -6406,6 +6590,14 @@
     "description": "A GPU-accelerated cross-platform terminal emulator and multiplexer",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/wezterm/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/wezterm/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "wgcf-cli",
+    "description": "Command-line tool for Cloudflare-WARP API",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/wgcf-cli/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/wgcf-cli/static.official.source.yaml"
   },
   {
     "_disabled": false,
