@@ -556,8 +556,16 @@
     "rebuild": false,
     "pkg_family": "binsider",
     "description": "A toolkit to perform analysis on binaries",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/binsider/official",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/binsider/official/source",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/binsider/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "binsider",
+    "description": "A toolkit to perform analysis on binaries",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/binsider/official/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/binsider/static.official.stable.yaml"
   },
   {
     "_disabled": false,
