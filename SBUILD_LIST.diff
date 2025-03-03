@@ -517,6 +517,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "beszel",
+    "description": "Lightweight server monitoring hub with historical data, docker stats, and alerts",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/beszel/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/beszel/static.official.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "bin",
     "description": "Effortless binary manager",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/bin/official",
