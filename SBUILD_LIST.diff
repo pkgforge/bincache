@@ -556,14 +556,6 @@
     "rebuild": false,
     "pkg_family": "binsider",
     "description": "A toolkit to perform analysis on binaries",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/binsider/official",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/binsider/static.official.source.yaml"
-  },
-  {
-    "_disabled": false,
-    "rebuild": false,
-    "pkg_family": "binsider",
-    "description": "A toolkit to perform analysis on binaries",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/binsider/official/source",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/binsider/static.official.source.yaml"
   },
@@ -622,6 +614,14 @@
     "description": "A TUI bluetooth manager for Linux",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/bluetuith/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/bluetuith/static.official.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "bmake",
+    "description": "Portable version of NetBSD make utility",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/bmake/ppkg",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/bmake/static.ppkg.stable.yaml"
   },
   {
     "_disabled": false,
@@ -3842,6 +3842,22 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "make",
+    "description": "GNU Make build tool to compile programs",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/make/nixpkgs",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/make/static.nixpkgs.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "make",
+    "description": "GNU Make build tool to compile programs",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/make/ppkg",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/make/static.ppkg.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "mani",
     "description": "CLI tool to manage multiple repositories",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/mani/official",
@@ -4318,6 +4334,14 @@
     "description": "Mixed-level/Mixed-signal circuit simulator based on Spice3f5, Cider1b1, and Xspice",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/ngspice/ppkg",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/ngspice/static.ppkg.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "ninja",
+    "description": "Small build system with a focus on speed",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/ninja/ppkg",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/ninja/static.ppkg.stable.yaml"
   },
   {
     "_disabled": false,
@@ -5454,6 +5478,14 @@
     "description": "Task runner for local and remote hosts via ssh & more",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/sake/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/sake/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "samurai",
+    "description": "Ninja-compatible build tool written in C",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/samurai/ppkg",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/samurai/static.ppkg.stable.yaml"
   },
   {
     "_disabled": false,
