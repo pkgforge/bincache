@@ -6061,14 +6061,6 @@
   {
     "_disabled": false,
     "rebuild": false,
-    "pkg_family": "spoof-dpi",
-    "description": "A simple and fast anti-censorship tool written in Go",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/spoof-dpi/official",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/spoof-dpi/static.official.source.yaml"
-  },
-  {
-    "_disabled": false,
-    "rebuild": false,
     "pkg_family": "spoofdpi",
     "description": "Simple and fast anti-censorship tool",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/spoofdpi/official",
