@@ -1461,6 +1461,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "crt",
+    "description": "CLI tool to check Certificate Transparency logs using crt.sh",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/crt/pkgforge-security",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/crt/static.pkgforge-security.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "crtsher",
     "description": "Obtain domains from certificate transparency logs",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/crtsher/official",
@@ -7655,8 +7663,8 @@
     "rebuild": false,
     "pkg_family": "usql",
     "description": "Universal command-line interface for SQL databases",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/usql/official",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/usql/static.official.stable.yaml"
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/usql/glibc",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/usql/static.glibc.source.yaml"
   },
   {
     "_disabled": false,
