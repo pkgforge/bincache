@@ -1981,6 +1981,22 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "duplicut",
+    "description": "Quickly dedupe massive wordlists, without changing the order",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/duplicut/glibc",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/duplicut/static.glibc.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "duplicut",
+    "description": "Quickly dedupe massive wordlists, without changing the order",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/duplicut/musl",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/duplicut/static.musl.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "dura",
     "description": "A background Daemon process that watches your Git repositories and commits your uncommitted changes",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/dura/official",
