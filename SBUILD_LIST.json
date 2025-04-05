@@ -3573,6 +3573,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "hsynz",
+    "description": "Multi-Threaded Delta update using HDiffPatch over HTTP(s) with support for large files, directories, zstd & More",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/hsynz/official/source",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/hsynz/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "htb-cli",
     "description": "Interact with Hackthebox using your terminal",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/htb-cli/official",
