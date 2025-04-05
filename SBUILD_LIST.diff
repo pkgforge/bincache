@@ -1733,6 +1733,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "desync",
+    "description": "Content-Addressable Data Synchronization Tool",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/desync/official/source",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/desync/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "devbox",
     "description": "CLI tool to easily create isolated shells and containers",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/devbox/official",
