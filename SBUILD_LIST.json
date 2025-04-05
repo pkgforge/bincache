@@ -3477,6 +3477,22 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "hdiffpatch",
+    "description": "Fast Binary diff/patch tools with small deltas/differentials and low memory use",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/hdiffpatch/glibc",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/hdiffpatch/static.glibc.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "hdiffpatch",
+    "description": "Fast Binary diff/patch tools with small deltas/differentials and low memory use",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/hdiffpatch/musl",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/hdiffpatch/static.musl.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "headless-terminal",
     "description": "Headless Terminal (ht) - wrap any binary with a terminal interface for easy programmatic access",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/headless-terminal/official",
