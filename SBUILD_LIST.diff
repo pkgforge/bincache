@@ -7741,6 +7741,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "usque",
+    "description": "FOSS reimplementation of the Cloudflare WARP client's MASQUE protocol",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/usque/official/source",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/usque/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "util-linux",
     "description": "Collection of Essential & Extended utilities for managing Linux systems",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/util-linux/nixpkgs",
