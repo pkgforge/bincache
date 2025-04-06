@@ -1581,6 +1581,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "daemonize",
+    "description": "Run a program as a Unix daemon",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/daemonize/official/source",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/daemonize/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "dagger-cli",
     "description": "A portable devkit for CI/CD pipelines",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/dagger-cli/official",
@@ -1793,6 +1801,14 @@
     "description": "Filter list of subdomains by level",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/dlevel/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/dlevel/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "dmon",
+    "description": "Small process daemonization and monitorization tool",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/dmon/official/source",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/dmon/static.official.source.yaml"
   },
   {
     "_disabled": false,
@@ -3097,6 +3113,14 @@
     "description": "Pure Go implementation of jq with yaml support",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/gojq/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/gojq/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "gokr-rsync",
+    "description": "Go Implementation of rsync Client & Server",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/gokr-rsync/official/source",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/gokr-rsync/static.official.source.yaml"
   },
   {
     "_disabled": false,
@@ -4792,6 +4816,14 @@
     "pkg_family": "mubeng",
     "description": "An incredibly fast proxy checker & IP rotator with ease",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/mubeng/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/mubeng/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "mubeng",
+    "description": "An incredibly fast proxy checker & IP rotator with ease",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/mubeng/official/source",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/mubeng/static.official.source.yaml"
   },
   {
@@ -7977,6 +8009,14 @@
     "description": "Command-line tool for Cloudflare-WARP API",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/wgcf-cli/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/wgcf-cli/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "wgcf",
+    "description": "Unofficial CLI for Cloudflare Warp",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/wgcf/official/source",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/wgcf/static.official.source.yaml"
   },
   {
     "_disabled": false,
