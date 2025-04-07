@@ -4815,14 +4815,6 @@
     "rebuild": false,
     "pkg_family": "mubeng",
     "description": "An incredibly fast proxy checker & IP rotator with ease",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/mubeng/official",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/mubeng/static.official.source.yaml"
-  },
-  {
-    "_disabled": false,
-    "rebuild": false,
-    "pkg_family": "mubeng",
-    "description": "An incredibly fast proxy checker & IP rotator with ease",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/mubeng/official/source",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/mubeng/static.official.source.yaml"
   },
