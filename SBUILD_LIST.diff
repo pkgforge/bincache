@@ -76,7 +76,7 @@
     "rebuild": false,
     "pkg_family": "agnos",
     "description": "Easily obtain certificates (including wildcards) from Let's Encrypt using DNS-01 challenges",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/agnos/official",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/agnos/official/source",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/agnos/static.official.source.yaml"
   },
   {
@@ -260,7 +260,7 @@
     "rebuild": false,
     "pkg_family": "anyproxy",
     "description": "TCP stream forwarder & Proxy",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/anyproxy/official",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/anyproxy/official/source",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/anyproxy/static.official.source.yaml"
   },
   {
@@ -508,7 +508,7 @@
     "rebuild": false,
     "pkg_family": "backtrace",
     "description": "Analyze return routes to Chinese ISPs and identify carrier-grade lines",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/backtrace/official",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/backtrace/official/source",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/backtrace/static.official.source.yaml"
   },
   {
@@ -616,6 +616,14 @@
     "pkg_family": "binfmt",
     "description": "Tool to enable/setup binfmt",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/binfmt/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/binfmt/static.official.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "binfmt",
+    "description": "Tool to enable/setup binfmt",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/binfmt/official/stable",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/binfmt/static.official.stable.yaml"
   },
   {
@@ -1079,7 +1087,7 @@
     "rebuild": false,
     "pkg_family": "cftun",
     "description": "Third-party Cloudflare Tunnel client",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/cftun/official",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/cftun/official/source",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/cftun/static.official.source.yaml"
   },
   {
@@ -1247,7 +1255,7 @@
     "rebuild": false,
     "pkg_family": "cloudflare-warp-speedtest",
     "description": "Test the latency and speed of Cloudflare WARP IP addresses",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/cloudflare-warp-speedtest/official",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/cloudflare-warp-speedtest/official/source",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/cloudflare-warp-speedtest/static.official.source.yaml"
   },
   {
@@ -1335,7 +1343,7 @@
     "rebuild": false,
     "pkg_family": "codesearch",
     "description": "Fast, indexed regexp search over large file trees",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/codesearch/official",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/codesearch/official/source",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/codesearch/static.official.source.yaml"
   },
   {
@@ -1639,7 +1647,7 @@
     "rebuild": false,
     "pkg_family": "dae",
     "description": "eBPF-based Linux high-performance Transparent Proxy solution",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/dae/official",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/dae/official/stable",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/dae/static.official.stable.yaml"
   },
   {
@@ -1855,7 +1863,7 @@
     "rebuild": false,
     "pkg_family": "dish",
     "description": "Monitor Services & Send Alerts to Webhooks/Telegram etc",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/dish/official",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/dish/official/source",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/dish/static.official.source.yaml"
   },
   {
@@ -2079,7 +2087,7 @@
     "rebuild": false,
     "pkg_family": "dummyhttp",
     "description": "Super simple HTTP server that replies a fixed body with a fixed response code",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/dummyhttp/official",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/dummyhttp/official/source",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/dummyhttp/static.official.source.yaml"
   },
   {
@@ -2375,7 +2383,7 @@
     "rebuild": false,
     "pkg_family": "ezuri",
     "description": "Simple Linux ELF Runtime Crypter",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/ezuri/official",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/ezuri/official/source",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/ezuri/static.official.source.yaml"
   },
   {
@@ -2535,7 +2543,7 @@
     "rebuild": false,
     "pkg_family": "fim",
     "description": "File Integrity Monitoring tool to track any event over files",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/fim/official",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/fim/official/source",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/fim/static.official.source.yaml"
   },
   {
@@ -2679,7 +2687,7 @@
     "rebuild": false,
     "pkg_family": "ftpgrab",
     "description": "Grab your files periodically from a remote FTP or SFTP server easily",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/ftpgrab/official",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/ftpgrab/official/source",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/ftpgrab/static.official.source.yaml"
   },
   {
@@ -2967,7 +2975,7 @@
     "rebuild": false,
     "pkg_family": "git-who",
     "description": "Git blame for file trees",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/git-who/official",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/git-who/official/source",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/git-who/static.official.source.yaml"
   },
   {
@@ -3543,7 +3551,7 @@
     "rebuild": false,
     "pkg_family": "hakoniwa",
     "description": "Process isolation for Linux using namespaces, resource limits, landlock and seccomp",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/hakoniwa/official",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/hakoniwa/official/source",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/hakoniwa/static.official.source.yaml"
   },
   {
@@ -3887,7 +3895,7 @@
     "rebuild": false,
     "pkg_family": "icann-rdap",
     "description": "ICANN implementation of the Registry Data Access Protocol (RDAP)",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/icann-rdap/official",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/icann-rdap/official/source",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/icann-rdap/static.official.source.yaml"
   },
   {
@@ -3975,7 +3983,7 @@
     "rebuild": false,
     "pkg_family": "ip_compact",
     "description": "Compact a list of IP prefixes",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/ip_compact/official",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/ip_compact/official/source",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/ip_compact/static.official.source.yaml"
   },
   {
@@ -3983,7 +3991,7 @@
     "rebuild": false,
     "pkg_family": "ip_diff",
     "description": "Compare two lists of IP prefixes",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/ip_diff/official",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/ip_diff/official/source",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/ip_diff/static.official.source.yaml"
   },
   {
@@ -3991,7 +3999,7 @@
     "rebuild": false,
     "pkg_family": "ip_match",
     "description": "Match IP addresses against a list of prefixes",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/ip_match/official",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/ip_match/official/source",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/ip_match/static.official.source.yaml"
   },
   {
@@ -4055,7 +4063,7 @@
     "rebuild": false,
     "pkg_family": "ipspinner",
     "description": "Proxy to redirect all incoming requests through different chosen providers",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/ipspinner/official",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/ipspinner/official/source",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/ipspinner/static.official.source.yaml"
   },
   {
@@ -4263,7 +4271,7 @@
     "rebuild": false,
     "pkg_family": "keep-sorted",
     "description": "Language-agnostic Formatter that sorts lines between two markers in a larger file",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/keep-sorted/official",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/keep-sorted/official/source",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/keep-sorted/static.official.source.yaml"
   },
   {
@@ -4351,7 +4359,7 @@
     "rebuild": false,
     "pkg_family": "landrun",
     "description": "Run any Linux process in a secure, unprivileged sandbox using Landlock",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/landrun/official",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/landrun/official/source",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/landrun/static.official.source.yaml"
   },
   {
@@ -4375,7 +4383,7 @@
     "rebuild": false,
     "pkg_family": "lazyjournal",
     "description": "TUI for reading logs from journalctl, file system, Docker/Podman containers & More",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/lazyjournal/official",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/lazyjournal/official/source",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/lazyjournal/static.official.source.yaml"
   },
   {
@@ -5231,7 +5239,7 @@
     "rebuild": false,
     "pkg_family": "nodepass",
     "description": "Elegant, efficient TCP tunneling solution that creates secure communication bridges between network endpoints",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/nodepass/official",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/nodepass/official/source",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/nodepass/static.official.source.yaml"
   },
   {
@@ -5863,7 +5871,7 @@
     "rebuild": false,
     "pkg_family": "proxy-ns",
     "description": "Run programs in a network namespace where all traffic go through proxy",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/proxy-ns/official",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/proxy-ns/official/source",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/proxy-ns/static.official.source.yaml"
   },
   {
@@ -6039,7 +6047,7 @@
     "rebuild": false,
     "pkg_family": "rdap-client",
     "description": "RDAP command line in GO",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/rdap-client/official",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/rdap-client/official/source",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/rdap-client/static.official.source.yaml"
   },
   {
@@ -7959,7 +7967,7 @@
     "rebuild": false,
     "pkg_family": "urx",
     "description": "Extract URLs from OSINT Archives for Security Insights",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/urx/official",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/urx/official/source",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/urx/static.official.source.yaml"
   },
   {
@@ -8087,7 +8095,7 @@
     "rebuild": false,
     "pkg_family": "vmexec",
     "description": "Run a single command in a speedy virtual machine with zero-setup",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/vmexec/official",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/vmexec/official/source",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/vmexec/static.official.source.yaml"
   },
   {
@@ -8151,7 +8159,7 @@
     "rebuild": false,
     "pkg_family": "wait4x",
     "description": "Wait for a port or a service to enter the requested state",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/wait4x/official",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/wait4x/official/source",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/wait4x/static.official.source.yaml"
   },
   {
@@ -8167,7 +8175,7 @@
     "rebuild": false,
     "pkg_family": "warp-plus",
     "description": "Anti Censorship Utility using Cloudflare Warp+Psiphon",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/warp-plus/official",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/warp-plus/official/source",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/warp-plus/static.official.source.yaml"
   },
   {
@@ -8239,7 +8247,7 @@
     "rebuild": false,
     "pkg_family": "wgcf-cli",
     "description": "Command-line tool for Cloudflare-WARP API",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/wgcf-cli/official",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/wgcf-cli/official/source",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/wgcf-cli/static.official.source.yaml"
   },
   {
@@ -8255,7 +8263,7 @@
     "rebuild": false,
     "pkg_family": "wgcfcat",
     "description": "Like netcat, but over Cloudflare WARP",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/wgcfcat/official",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/wgcfcat/official/source",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/wgcfcat/static.official.source.yaml"
   },
   {
@@ -8399,7 +8407,7 @@
     "rebuild": false,
     "pkg_family": "wsl",
     "description": "Whitespace Linter - Forces you to use empty lines",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/wsl/official",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/wsl/official/source",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/wsl/static.official.source.yaml"
   },
   {
