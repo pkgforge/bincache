@@ -1357,6 +1357,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "compiledb-go",
+    "description": "Generate Clang's JSON Compilation Database files for make-based build systems",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/compiledb-go/official/source",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/compiledb-go/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "containerd",
     "description": "An open and reliable container runtime",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/containerd/official",
