@@ -8765,6 +8765,118 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "cntr",
+    "description": "A container debugging tool based on FUSE",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/cntr/official/source",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/cntr/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "container2wasm",
+    "description": "Container to WASM converter",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/container2wasm/official/source",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/container2wasm/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "super-strip",
+    "description": "Remove as much as possible from an ELF file",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/super-strip/pkgforge-dev/source",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/super-strip/static.pkgforge-dev.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "tinywasm",
+    "description": "A tiny, interpreted WebAssembly Runtime written in Rust",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/tinywasm/official/source",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/tinywasm/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "umoci",
+    "description": "Create, Manipulate, and Interact with container images",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/umoci/official/source",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/umoci/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "w2c2",
+    "description": "Translate WebAssembly modules to portable C",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/w2c2/official/source",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/w2c2/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "wabt",
+    "description": "The WebAssembly Binary Toolkit",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/wabt/official/source",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/wabt/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "wacker",
+    "description": "Like Docker, but for WASM",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/wacker/official/source",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/wacker/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "wasm-micro-runtime",
+    "description": "CLI for WebAssembly Micro Runtime (WAMR)",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/wasm-micro-runtime/official/source",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/wasm-micro-runtime/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "wasm-tools",
+    "description": "CLI for low-level manipulation of WebAssembly modules",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/wasm-tools/official/source",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/wasm-tools/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "wasmi",
+    "description": "Efficient and Lightweight WebAssembly interpreter with a focus on constrained and embedded systems",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/wasmi/official/source",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/wasmi/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "wasmtime",
+    "description": "Lightweight WebAssembly runtime that is fast, secure, and standards-compliant",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/wasmtime/official/source",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/wasmtime/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "xcc",
+    "description": "Standalone C compiler/assembler/linker/libc",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/xcc/official/source",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/xcc/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "cup",
+    "description": "Easiest way to check for container image updates",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/cup/official/source",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/cup/static.official.source.yaml"
+  },  
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "zstd",
     "description": "Zstandard (Zstd) compression utilities",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/zstd/nixpkgs",
