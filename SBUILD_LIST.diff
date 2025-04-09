@@ -1325,6 +1325,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "cntr",
+    "description": "A container debugging tool based on FUSE",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/cntr/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/cntr/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "cobalt-cli",
     "description": "Command-line interface wrapper for https://cobalt.tools",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/cobalt-cli/official",
@@ -1369,6 +1377,14 @@
     "description": "Generate Clang's JSON Compilation Database files for make-based build systems",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/compiledb-go/official/source",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/compiledb-go/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "container2wasm",
+    "description": "Container to WASM converter",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/container2wasm/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/container2wasm/static.official.source.yaml"
   },
   {
     "_disabled": false,
@@ -7285,6 +7301,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "super-strip",
+    "description": "Remove as much as possible from an ELF file",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/super-strip/pkgforge-dev",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/super-strip/static.pkgforge-dev.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "supercronic",
     "description": "A crontab-compatible job runner, designed specifically to run in containers",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/supercronic/official",
@@ -7537,6 +7561,14 @@
     "description": "Fast Tiny C Compiler",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/tinycc/official/musl",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/tinycc/static.official.musl.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "tinywasm",
+    "description": "A tiny, interpreted WebAssembly Runtime written in Rust",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/tinywasm/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/tinywasm/static.official.source.yaml"
   },
   {
     "_disabled": false,
@@ -7853,6 +7885,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "umoci",
+    "description": "Create, Manipulate, and Interact with container images",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/umoci/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/umoci/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "unch",
     "description": "Hide message with invisible Unicode characters",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/unch/official",
@@ -8157,6 +8197,30 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "w2c2",
+    "description": "Translate WebAssembly modules to portable C",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/w2c2/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/w2c2/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "wabt",
+    "description": "The WebAssembly Binary Toolkit",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/wabt/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/wabt/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "wacker",
+    "description": "Like Docker, but for WASM",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/wacker/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/wacker/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "wadl-dumper",
     "description": "Dump all available paths and/or endpoints on WADL file",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/wadl-dumper/official",
@@ -8193,6 +8257,38 @@
     "description": "S3 benchmarking tool",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/warp/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/minio-warp/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "wasm-micro-runtime",
+    "description": "CLI for WebAssembly Micro Runtime (WAMR)",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/wasm-micro-runtime/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/wasm-micro-runtime/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "wasm-tools",
+    "description": "CLI for low-level manipulation of WebAssembly modules",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/wasm-tools/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/wasm-tools/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "wasmi",
+    "description": "Efficient and Lightweight WebAssembly interpreter with a focus on constrained and embedded systems",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/wasmi/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/wasmi/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "wasmtime",
+    "description": "Lightweight WebAssembly runtime that is fast, secure, and standards-compliant",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/wasmtime/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/wasmtime/static.official.source.yaml"
   },
   {
     "_disabled": false,
@@ -8465,6 +8561,14 @@
     "description": "The CSV magician",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/xan/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/xan/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "xcc",
+    "description": "Standalone C compiler/assembler/linker/libc",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/xcc/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/xcc/static.official.source.yaml"
   },
   {
     "_disabled": false,
