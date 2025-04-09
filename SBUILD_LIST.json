@@ -615,6 +615,14 @@
     "rebuild": false,
     "pkg_family": "binfmt",
     "description": "Tool to enable/setup binfmt",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/binfmt/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/binfmt/static.official.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "binfmt",
+    "description": "Tool to enable/setup binfmt",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/binfmt/official/stable",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/binfmt/static.official.stable.yaml"
   },
