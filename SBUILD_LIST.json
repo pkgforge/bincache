@@ -5119,7 +5119,7 @@
     "rebuild": false,
     "pkg_family": "netbird",
     "description": "WireGuard-based mesh network",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/netbird/official",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/netbird/official/source",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/netbird/static.official.source.yaml"
   },
   {
