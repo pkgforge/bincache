@@ -909,6 +909,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "bzip3",
+    "description": "Tools for compressing and decompressing bzip3 files",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/bzip3/ppkg",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/bzip3/static.ppkg.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "caddy",
     "description": "A powerful, enterprise-ready, and extensible HTTP/2 + HTTP/3 web server with automatic HTTPS",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/caddy/official",
@@ -1325,6 +1333,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "cntr",
+    "description": "A container debugging tool based on FUSE",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/cntr/official/source",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/cntr/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "cobalt-cli",
     "description": "Command-line interface wrapper for https://cobalt.tools",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/cobalt-cli/official",
@@ -1369,6 +1385,14 @@
     "description": "Generate Clang's JSON Compilation Database files for make-based build systems",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/compiledb-go/official/source",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/compiledb-go/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "container2wasm",
+    "description": "Container to WASM converter",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/container2wasm/official/source",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/container2wasm/static.official.source.yaml"
   },
   {
     "_disabled": false,
@@ -1593,6 +1617,14 @@
     "description": "A Penetration Toolkit for Container Environments",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/ctrsploit/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/ctrsploit/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "cup",
+    "description": "Easiest way to check for container image updates",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/cup/official/source",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/cup/static.official.source.yaml"
   },
   {
     "_disabled": false,
@@ -3149,6 +3181,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "go-sandbox",
+    "description": "Safely run program by unshare/ptrace/pre-forked containers",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/go-sandbox/official/source",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/go-sandbox/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "simplehttpserver",
     "description": "Go alternative of python SimpleHTTPServer",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/go-simplehttpserver/go",
@@ -3705,6 +3745,14 @@
     "description": "Futuristic take on hexdump, made in Rust",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/hex/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/hex/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "hexlog",
+    "description": "Hexdump stdin and/or stdout to stderr",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/hexlog/official/source",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/hexlog/static.official.source.yaml"
   },
   {
     "_disabled": false,
@@ -4449,6 +4497,14 @@
     "description": "A simpler way to declare aws infrastructure that is easy to use and extend",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/libaws/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/libaws-cli/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "libdeflate",
+    "description": "Heavily optimized CLI for DEFLATE/zlib/gzip compression and decompression",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/libdeflate/official/source",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/libdeflate/static.official.source.yaml"
   },
   {
     "_disabled": false,
@@ -5213,6 +5269,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "nitro",
+    "description": "Tiny and Flexible Init system and process Supervisior",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/nitro/official/source",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/nitro/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "nllint",
     "description": "Linter to check newlines at the end of files",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/nllint/official",
@@ -5285,10 +5349,26 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "nq",
+    "description": "Unix command line queue utility",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/nq/official/source",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/nq/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "nrich",
     "description": "Quickly analyze all IPs in a file and see which ones have open ports/vulnerabilities using Shodan",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/nrich/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/nrich/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "nsjail",
+    "description": "Process Isolation Tool that utilizes Linux namespace subsystem, resource limits, and the seccomp-bpf syscall filters",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/nsjail/ppkg",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/nsjail/static.ppkg.stable.yaml"
   },
   {
     "_disabled": false,
@@ -5893,6 +5973,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "pseudocron",
+    "description": "sleep(1) using a cron expression",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/pseudocron/official/source",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/pseudocron/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "psmisc",
     "description": "A set of small useful utilities that use the proc filesystem",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/psmisc/nixpkgs",
@@ -5977,6 +6065,14 @@
     "description": "QEMU System/User mode Emulation & Virtualization binaries",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/qemu/ppkg",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/qemu/static.ppkg.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "qman",
+    "description": "Modern manual page viewer for Terminals",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/qman/ppkg",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/qman/static.ppkg.stable.yaml"
   },
   {
     "_disabled": false,
@@ -6361,6 +6457,14 @@
     "description": "CLI tool for spawning and running containers according to the OCI specification",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/runc/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/runc/static.official.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "runcron",
+    "description": "simple, safe, container-friendly cron alternative",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/runcron/official/source",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/runcron/static.official.source.yaml"
   },
   {
     "_disabled": false,
@@ -6853,6 +6957,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "snooze",
+    "description": "Run a command at a particular time",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/snooze/official/source",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/snooze/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "sns",
     "description": "IIS shortname scanner written in Go",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/sns/official",
@@ -7285,6 +7397,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "super-strip",
+    "description": "Remove as much as possible from an ELF file",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/super-strip/pkgforge-dev/source",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/super-strip/static.pkgforge-dev.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "supercronic",
     "description": "A crontab-compatible job runner, designed specifically to run in containers",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/supercronic/official",
@@ -7541,6 +7661,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "tinywasm",
+    "description": "A tiny, interpreted WebAssembly Runtime written in Rust",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/tinywasm/official/source",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/tinywasm/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "tio",
     "description": "A serial device I/O tool for connecting to TTY devices",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/tio/nixpkgs",
@@ -7669,6 +7797,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "trep",
+    "description": "Selectively stream stdin to stdout/stderr based on regular expressions",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/trep/official/source",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/trep/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "trippy",
     "description": "A network diagnostic tool",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/trippy/official",
@@ -7689,6 +7825,14 @@
     "description": "Inspect a commands effects before modifying your live system",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/try/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/try/static.official.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "tscat",
+    "description": "Timestamp stdin to stdout/stderr",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/tscat/official/source",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/tscat/static.official.source.yaml"
   },
   {
     "_disabled": false,
@@ -7853,6 +7997,22 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "ulexec",
+    "description": "A tool for loading and executing ELF on Linux from memory",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/ulexec/official/source",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/ulexec/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "umoci",
+    "description": "Create, Manipulate, and Interact with container images",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/umoci/official/source",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/umoci/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "unch",
     "description": "Hide message with invisible Unicode characters",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/unch/official",
@@ -7937,6 +8097,14 @@
     "description": "Old Unix programs running on modern computers",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/unix/rsc-v6unix",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/unix/static.rsc-v6unix.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "unixexec",
+    "description": "Attach stdin/stdout of a command to a Unix socket",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/unixexec/official/source",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/unixexec/static.official.source.yaml"
   },
   {
     "_disabled": false,
@@ -8157,6 +8325,30 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "w2c2",
+    "description": "Translate WebAssembly modules to portable C",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/w2c2/official/source",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/w2c2/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "wabt",
+    "description": "The WebAssembly Binary Toolkit",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/wabt/official/source",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/wabt/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "wacker",
+    "description": "Like Docker, but for WASM",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/wacker/official/source",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/wacker/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "wadl-dumper",
     "description": "Dump all available paths and/or endpoints on WADL file",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/wadl-dumper/official",
@@ -8193,6 +8385,38 @@
     "description": "S3 benchmarking tool",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/warp/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/minio-warp/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "wasm-micro-runtime",
+    "description": "CLI for WebAssembly Micro Runtime (WAMR)",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/wasm-micro-runtime/official/source",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/wasm-micro-runtime/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "wasm-tools",
+    "description": "CLI for low-level manipulation of WebAssembly modules",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/wasm-tools/official/source",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/wasm-tools/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "wasmi",
+    "description": "Efficient and Lightweight WebAssembly interpreter with a focus on constrained and embedded systems",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/wasmi/official/source",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/wasmi/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "wasmtime",
+    "description": "Lightweight WebAssembly runtime that is fast, secure, and standards-compliant",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/wasmtime/official/source",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/wasmtime/static.official.source.yaml"
   },
   {
     "_disabled": false,
@@ -8469,6 +8693,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "xcc",
+    "description": "Standalone C compiler/assembler/linker/libc",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/xcc/official/source",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/xcc/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "xclip",
     "description": "Command line interface to the X11 clipboard",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/xclip/ppkg",
@@ -8609,6 +8841,14 @@
     "description": "yataf extracts secrets and paths from files or urls - its best used against javascript files",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/yataf/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/yataf/static.official.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "yaui",
+    "description": "Yet Another Unix Injector using ptrace",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/yaui/official/source",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/yaui/static.official.source.yaml"
   },
   {
     "_disabled": false,
@@ -8762,118 +9002,6 @@
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/zsplit/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/zsplit/static.official.source.yaml"
   },
-  {
-    "_disabled": false,
-    "rebuild": false,
-    "pkg_family": "cntr",
-    "description": "A container debugging tool based on FUSE",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/cntr/official/source",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/cntr/static.official.source.yaml"
-  },
-  {
-    "_disabled": false,
-    "rebuild": false,
-    "pkg_family": "container2wasm",
-    "description": "Container to WASM converter",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/container2wasm/official/source",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/container2wasm/static.official.source.yaml"
-  },
-  {
-    "_disabled": false,
-    "rebuild": false,
-    "pkg_family": "super-strip",
-    "description": "Remove as much as possible from an ELF file",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/super-strip/pkgforge-dev/source",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/super-strip/static.pkgforge-dev.source.yaml"
-  },
-  {
-    "_disabled": false,
-    "rebuild": false,
-    "pkg_family": "tinywasm",
-    "description": "A tiny, interpreted WebAssembly Runtime written in Rust",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/tinywasm/official/source",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/tinywasm/static.official.source.yaml"
-  },
-  {
-    "_disabled": false,
-    "rebuild": false,
-    "pkg_family": "umoci",
-    "description": "Create, Manipulate, and Interact with container images",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/umoci/official/source",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/umoci/static.official.source.yaml"
-  },
-  {
-    "_disabled": false,
-    "rebuild": false,
-    "pkg_family": "w2c2",
-    "description": "Translate WebAssembly modules to portable C",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/w2c2/official/source",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/w2c2/static.official.source.yaml"
-  },
-  {
-    "_disabled": false,
-    "rebuild": false,
-    "pkg_family": "wabt",
-    "description": "The WebAssembly Binary Toolkit",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/wabt/official/source",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/wabt/static.official.source.yaml"
-  },
-  {
-    "_disabled": false,
-    "rebuild": false,
-    "pkg_family": "wacker",
-    "description": "Like Docker, but for WASM",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/wacker/official/source",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/wacker/static.official.source.yaml"
-  },
-  {
-    "_disabled": false,
-    "rebuild": false,
-    "pkg_family": "wasm-micro-runtime",
-    "description": "CLI for WebAssembly Micro Runtime (WAMR)",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/wasm-micro-runtime/official/source",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/wasm-micro-runtime/static.official.source.yaml"
-  },
-  {
-    "_disabled": false,
-    "rebuild": false,
-    "pkg_family": "wasm-tools",
-    "description": "CLI for low-level manipulation of WebAssembly modules",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/wasm-tools/official/source",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/wasm-tools/static.official.source.yaml"
-  },
-  {
-    "_disabled": false,
-    "rebuild": false,
-    "pkg_family": "wasmi",
-    "description": "Efficient and Lightweight WebAssembly interpreter with a focus on constrained and embedded systems",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/wasmi/official/source",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/wasmi/static.official.source.yaml"
-  },
-  {
-    "_disabled": false,
-    "rebuild": false,
-    "pkg_family": "wasmtime",
-    "description": "Lightweight WebAssembly runtime that is fast, secure, and standards-compliant",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/wasmtime/official/source",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/wasmtime/static.official.source.yaml"
-  },
-  {
-    "_disabled": false,
-    "rebuild": false,
-    "pkg_family": "xcc",
-    "description": "Standalone C compiler/assembler/linker/libc",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/xcc/official/source",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/xcc/static.official.source.yaml"
-  },
-  {
-    "_disabled": false,
-    "rebuild": false,
-    "pkg_family": "cup",
-    "description": "Easiest way to check for container image updates",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/cup/official/source",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/cup/static.official.source.yaml"
-  },  
   {
     "_disabled": false,
     "rebuild": false,
