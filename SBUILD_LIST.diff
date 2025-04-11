@@ -3183,14 +3183,6 @@
     "rebuild": false,
     "pkg_family": "go-sandbox",
     "description": "Safely run program by unshare/ptrace/pre-forked containers",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/go-sandbox/official",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/go-sandbox/static.official.source.yaml"
-  },
-  {
-    "_disabled": false,
-    "rebuild": false,
-    "pkg_family": "go-sandbox",
-    "description": "Safely run program by unshare/ptrace/pre-forked containers",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/go-sandbox/official/source",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/go-sandbox/static.official.source.yaml"
   },
@@ -3753,14 +3745,6 @@
     "description": "Futuristic take on hexdump, made in Rust",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/hex/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/hex/static.official.source.yaml"
-  },
-  {
-    "_disabled": false,
-    "rebuild": false,
-    "pkg_family": "hexlog",
-    "description": "Hexdump stdin and/or stdout to stderr",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/hexlog/official",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/hexlog/static.official.source.yaml"
   },
   {
     "_disabled": false,
@@ -4519,14 +4503,6 @@
     "rebuild": false,
     "pkg_family": "libdeflate",
     "description": "Heavily optimized CLI for DEFLATE/zlib/gzip compression and decompression",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/libdeflate/official",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/libdeflate/static.official.source.yaml"
-  },
-  {
-    "_disabled": false,
-    "rebuild": false,
-    "pkg_family": "libdeflate",
-    "description": "Heavily optimized CLI for DEFLATE/zlib/gzip compression and decompression",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/libdeflate/official/source",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/libdeflate/static.official.source.yaml"
   },
@@ -5199,6 +5175,14 @@
     "rebuild": false,
     "pkg_family": "netbird",
     "description": "WireGuard-based mesh network",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/netbird/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/netbird/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "netbird",
+    "description": "WireGuard-based mesh network",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/netbird/official/source",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/netbird/static.official.source.yaml"
   },
@@ -5295,14 +5279,6 @@
     "rebuild": false,
     "pkg_family": "nitro",
     "description": "Tiny and Flexible Init system and process Supervisior",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/nitro/official",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/nitro/static.official.source.yaml"
-  },
-  {
-    "_disabled": false,
-    "rebuild": false,
-    "pkg_family": "nitro",
-    "description": "Tiny and Flexible Init system and process Supervisior",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/nitro/official/source",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/nitro/static.official.source.yaml"
   },
@@ -5377,14 +5353,6 @@
     "description": "Ping with Real-Time Data and Visualizations",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/nping/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/nping/static.official.source.yaml"
-  },
-  {
-    "_disabled": false,
-    "rebuild": false,
-    "pkg_family": "nq",
-    "description": "Unix command line queue utility",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/nq/official",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/nq/static.official.source.yaml"
   },
   {
     "_disabled": false,
@@ -6015,14 +5983,6 @@
     "rebuild": false,
     "pkg_family": "pseudocron",
     "description": "sleep(1) using a cron expression",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/pseudocron/official",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/pseudocron/static.official.source.yaml"
-  },
-  {
-    "_disabled": false,
-    "rebuild": false,
-    "pkg_family": "pseudocron",
-    "description": "sleep(1) using a cron expression",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/pseudocron/official/source",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/pseudocron/static.official.source.yaml"
   },
@@ -6505,14 +6465,6 @@
     "description": "CLI tool for spawning and running containers according to the OCI specification",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/runc/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/runc/static.official.stable.yaml"
-  },
-  {
-    "_disabled": false,
-    "rebuild": false,
-    "pkg_family": "runcron",
-    "description": "simple, safe, container-friendly cron alternative",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/runcron/official",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/runcron/static.official.source.yaml"
   },
   {
     "_disabled": false,
@@ -7009,14 +6961,6 @@
     "description": "Drop-in replacement for Nmap powered by shodan.io",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/smap/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/smap/static.official.source.yaml"
-  },
-  {
-    "_disabled": false,
-    "rebuild": false,
-    "pkg_family": "snooze",
-    "description": "Run a command at a particular time",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/snooze/official",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/snooze/static.official.source.yaml"
   },
   {
     "_disabled": false,
@@ -7863,14 +7807,6 @@
     "rebuild": false,
     "pkg_family": "trep",
     "description": "Selectively stream stdin to stdout/stderr based on regular expressions",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/trep/official",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/trep/static.official.source.yaml"
-  },
-  {
-    "_disabled": false,
-    "rebuild": false,
-    "pkg_family": "trep",
-    "description": "Selectively stream stdin to stdout/stderr based on regular expressions",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/trep/official/source",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/trep/static.official.source.yaml"
   },
@@ -7897,14 +7833,6 @@
     "description": "Inspect a commands effects before modifying your live system",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/try/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/try/static.official.stable.yaml"
-  },
-  {
-    "_disabled": false,
-    "rebuild": false,
-    "pkg_family": "tscat",
-    "description": "Timestamp stdin to stdout/stderr",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/tscat/official",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/tscat/static.official.source.yaml"
   },
   {
     "_disabled": false,
@@ -8079,14 +8007,6 @@
     "rebuild": false,
     "pkg_family": "ulexec",
     "description": "A tool for loading and executing ELF on Linux from memory",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/ulexec/official",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/ulexec/static.official.source.yaml"
-  },
-  {
-    "_disabled": false,
-    "rebuild": false,
-    "pkg_family": "ulexec",
-    "description": "A tool for loading and executing ELF on Linux from memory",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/ulexec/official/source",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/ulexec/static.official.source.yaml"
   },
@@ -8185,14 +8105,6 @@
     "description": "Old Unix programs running on modern computers",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/unix/rsc-v6unix",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/unix/static.rsc-v6unix.source.yaml"
-  },
-  {
-    "_disabled": false,
-    "rebuild": false,
-    "pkg_family": "unixexec",
-    "description": "Attach stdin/stdout of a command to a Unix socket ",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/unixexec/official",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/unixexec/static.official.source.yaml"
   },
   {
     "_disabled": false,
@@ -8937,14 +8849,6 @@
     "description": "yataf extracts secrets and paths from files or urls - its best used against javascript files",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/yataf/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/yataf/static.official.stable.yaml"
-  },
-  {
-    "_disabled": false,
-    "rebuild": false,
-    "pkg_family": "yaui",
-    "description": "Yet Another Unix Injector using ptrace",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/yaui/official",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/yaui/static.official.source.yaml"
   },
   {
     "_disabled": false,
