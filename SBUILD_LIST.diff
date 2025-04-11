@@ -1511,7 +1511,7 @@
     "rebuild": false,
     "pkg_family": "cpuid2cpuflags",
     "description": "Generate CPU_FLAGS_* for your CPU",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/cpuid2cpuflags/official",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/cpuid2cpuflags/official/source",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/cpuid2cpuflags/static.official.source.yaml"
   },
   {
@@ -1519,7 +1519,7 @@
     "rebuild": false,
     "pkg_family": "cpustat",
     "description": "Periodically dump out the current CPU utilisation statistics of running processes",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/cpustat/official",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/cpustat/official/source",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/cpustat/static.official.source.yaml"
   },
   {
@@ -1831,7 +1831,7 @@
     "rebuild": false,
     "pkg_family": "deark",
     "description": "A utility for extracting data from various file formats",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/deark/official",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/deark/official/source",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/deark/static.official.source.yaml"
   },
   {
@@ -1975,7 +1975,7 @@
     "rebuild": false,
     "pkg_family": "dnscrypt-proxy",
     "description": "Flexible DNS proxy, with support for encrypted DNS protocols",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/dnscrypt-proxy/official",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/dnscrypt-proxy/official/source",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/dnscrypt-proxy/static.official.source.yaml"
   },
   {
@@ -2255,7 +2255,7 @@
     "rebuild": false,
     "pkg_family": "e2fsprogs",
     "description": "Tools for creating and checking ext2/ext3/ext4 filesystems",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/e2fsprogs/official",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/e2fsprogs/official/source",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/e2fsprogs/static.official.source.yaml"
   },
   {
@@ -2399,7 +2399,7 @@
     "rebuild": false,
     "pkg_family": "epub2txt2",
     "description": "Extract text from EPUB documents",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/epub2txt2/official",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/epub2txt2/official/source",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/epub2txt2/static.official.source.yaml"
   },
   {
@@ -2711,7 +2711,7 @@
     "rebuild": false,
     "pkg_family": "forkstat",
     "description": "Tool to show process fork/exec/exit activity",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/forkstat/official",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/forkstat/official/source",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/forkstat/static.official.source.yaml"
   },
   {
@@ -4087,7 +4087,7 @@
     "rebuild": false,
     "pkg_family": "ioping",
     "description": "Simple disk I/O latency monitoring tool",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/ioping/official",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/ioping/official/source",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/ioping/static.official.source.yaml"
   },
   {
@@ -4199,7 +4199,7 @@
     "rebuild": false,
     "pkg_family": "ipv6toolkit",
     "description": "SI6 Networks' IPv6 Toolkit",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/ipv6toolkit/official",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/ipv6toolkit/official/source",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/ipv6toolkit/static.official.source.yaml"
   },
   {
@@ -4679,7 +4679,7 @@
     "rebuild": false,
     "pkg_family": "log_proxy",
     "description": "Utility for apps that write their logs to stdout/stderr",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/log_proxy/official",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/log_proxy/official/source",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/log_proxy/static.official.source.yaml"
   },
   {
@@ -4831,7 +4831,7 @@
     "rebuild": false,
     "pkg_family": "mandown",
     "description": "man-page inspired Markdown viewer",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/mandown/official",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/mandown/official/source",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/mandown/static.official.source.yaml"
   },
   {
@@ -4991,7 +4991,7 @@
     "rebuild": false,
     "pkg_family": "mhz",
     "description": "CPU frequency measurement utility",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/mhz/official",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/mhz/official/source",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/mhz/static.official.source.yaml"
   },
   {
@@ -5095,7 +5095,7 @@
     "rebuild": false,
     "pkg_family": "mmlog",
     "description": "Log rotation tool for shell scripts, or apps which generate logging data to STDOUT/STDERR",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/mmlog/official",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/mmlog/official/source",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/mmlog/static.official.source.yaml"
   },
   {
@@ -5279,14 +5279,6 @@
     "rebuild": false,
     "pkg_family": "netbird",
     "description": "WireGuard-based mesh network",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/netbird/official",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/netbird/static.official.source.yaml"
-  },
-  {
-    "_disabled": false,
-    "rebuild": false,
-    "pkg_family": "netbird",
-    "description": "WireGuard-based mesh network",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/netbird/official/source",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/netbird/static.official.source.yaml"
   },
@@ -5319,7 +5311,7 @@
     "rebuild": false,
     "pkg_family": "netproc",
     "description": "Tool to monitor network traffic based on processes",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/netproc/official",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/netproc/official/source",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/netproc/static.official.source.yaml"
   },
   {
@@ -5735,7 +5727,7 @@
     "rebuild": false,
     "pkg_family": "overlayfs-tools",
     "description": "Maintenance tools for overlay-filesystem",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/overlayfs-tools/official",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/overlayfs-tools/official/source",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/overlayfs-tools/static.official.source.yaml"
   },
   {
@@ -5759,7 +5751,7 @@
     "rebuild": false,
     "pkg_family": "pagemon",
     "description": "Interactive memory/page monitoring tool to browse the memory map of a process",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/pagemon/official",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/pagemon/official/source",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/pagemon/static.official.source.yaml"
   },
   {
@@ -5991,7 +5983,7 @@
     "rebuild": false,
     "pkg_family": "powerstat",
     "description": "Measure the power consumption of a machine using the battery stats or the Intel RAPL interface",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/powerstat/official",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/powerstat/official/source",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/powerstat/static.official.source.yaml"
   },
   {
@@ -7103,7 +7095,7 @@
     "rebuild": false,
     "pkg_family": "smemstat",
     "description": "Report memory usage with shared memory divided proportionally",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/smemstat/official",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/smemstat/official/source",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/smemstat/static.official.source.yaml"
   },
   {
@@ -7463,7 +7455,7 @@
     "rebuild": false,
     "pkg_family": "stress-ng",
     "description": "Stress test a computer system in various selectable ways",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/stress-ng/official",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/stress-ng/official/source",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/stress-ng/static.official.source.yaml"
   },
   {
@@ -7831,7 +7823,7 @@
     "rebuild": false,
     "pkg_family": "tinyxxd",
     "description": "Drop-in replacement and standalone version of xxd utility",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/tinyxxd/official",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/tinyxxd/official/source",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/tinyxxd/static.official.source.yaml"
   },
   {
