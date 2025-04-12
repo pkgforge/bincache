@@ -2917,6 +2917,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "gcli",
+    "description": "Portable Github|Gitlab|Gittea/Forgejo/Bugzilla CLI tool",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/gcli/ppkg",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/gcli/static.ppkg.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "gdb",
     "description": "GNU source-level debugger for multiple programming languages",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/gdb/nixpkgs",
