@@ -42,6 +42,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "afio",
+    "description": "Archiver & backup program with fault tolerant compression",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/afio/nixpkgs",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/afio/static.nixpkgs.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "afrog",
     "description": "Security Tool & Vulnerability Scanner for Bug Bounty, Pentest and Red Teaming",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/afrog/official",
@@ -342,6 +350,14 @@
     "description": "Scan a list of hosts to locate potential archive files (.zip, .tar, .rar, etc.)",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/archive-finder/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/archive-finder/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "archivemount",
+    "description": "Mount cpio, .tar.gz, .tar.bz2 Archives",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/archivemount/nixpkgs",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/archivemount/static.nixpkgs.stable.yaml"
   },
   {
     "_disabled": false,
@@ -2481,6 +2497,14 @@
     "description": "Command-line tool for batch renaming files and directories",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/f2/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/f2/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "fakeroot",
+    "description": "A command-line tool for simulating superuser privileges",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/fakeroot/ppkg",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/fakeroot/static.ppkg.stable.yaml"
   },
   {
     "_disabled": false,
