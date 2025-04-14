@@ -2325,6 +2325,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "elftools",
+    "description": "Tools for manipulating ELF Files",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/elftools/official/source",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/elftools/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "elinks",
     "description": "Advanced feature-rich text-mode web browser",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/elinks/official",
@@ -2913,6 +2921,14 @@
     "description": "GNU implementation of the Awk programming language",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/gawk/nixpkgs",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/gawk/static.nixpkgs.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "gcli",
+    "description": "Portable Github|Gitlab|Gittea/Forgejo/Bugzilla CLI tool",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/gcli/ppkg",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/gcli/static.ppkg.stable.yaml"
   },
   {
     "_disabled": false,
@@ -5297,14 +5313,6 @@
     "description": "A set of tools for controlling the network subsystem in Linux",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/net-tools/nixpkgs",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/net-tools/static.nixpkgs.stable.yaml"
-  },
-  {
-    "_disabled": false,
-    "rebuild": false,
-    "pkg_family": "netbird",
-    "description": "WireGuard-based mesh network",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/netbird/official/source",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/netbird/static.official.source.yaml"
   },
   {
     "_disabled": false,
