@@ -1565,6 +1565,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "crane",
+    "description": "Tool for interacting with remote OCI/Images/Registries without daemon & root",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/crane/official/source",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/crane/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "crawley",
     "description": "The unix-way web crawler",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/crawley/official",
@@ -3581,6 +3589,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "graftcp",
+    "description": "Redirect a given program's TCP traffic to SOCKS5 or HTTP proxy without using the LD_PRELOAD trick",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/graftcp/ppkg/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/graftcp/static.ppkg.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "grep",
     "description": "Search one or more input files for lines containing a match to a specified pattern",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/grep/glibc",
@@ -4920,6 +4936,14 @@
     "pkg_family": "manifest-tool",
     "description": "Create and Query container image manifest list/indexes",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/manifest-tool/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/manifest-tool/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "manifest-tool",
+    "description": "Create and Query container image manifest list/indexes",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/manifest-tool/official/source",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/manifest-tool/static.official.source.yaml"
   },
   {
@@ -7173,6 +7197,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "skopeo",
+    "description": "Perform various operations on container images/repositories without dameon & root",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/skopeo/official/source",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/skopeo/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "skupper",
     "description": "Virtual Application Network, enabling rich hybrid cloud communication",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/skupper/official",
@@ -8312,6 +8344,14 @@
     "pkg_family": "undock",
     "description": "Extract contents of a container image in a local folder",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/undock/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/undock/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "undock",
+    "description": "Extract contents of a container image in a local folder",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/undock/official/source",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/undock/static.official.source.yaml"
   },
   {
