@@ -933,6 +933,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "cache",
+    "description": "Wrap any command line tool to provide caching for the output of that too",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/cache/official/source",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/cache/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "caddy",
     "description": "A powerful, enterprise-ready, and extensible HTTP/2 + HTTP/3 web server with automatic HTTPS",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/caddy/official",
@@ -5685,6 +5693,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "ops",
+    "description": "Tool for creating and running a Nanos unikernel",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/ops/ppkg/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/ops/static.ppkg.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "oras",
     "description": "OCI registry client - manage content like artifacts, images, packages",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/oras/official/source",
@@ -6169,6 +6185,14 @@
     "description": "Monitor linux processes without root permissions",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/pspy/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/pspy/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "ptcpdump",
+    "description": "Process-aware, eBPF-based tcpdump",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/ptcpdump/ppkg/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/ptcpdump/static.ppkg.stable.yaml"
   },
   {
     "_disabled": false,
@@ -8535,6 +8559,14 @@
     "rebuild": false,
     "pkg_family": "wabt",
     "description": "The WebAssembly Binary Toolkit",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/wabt/dasimmet/source",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/wabt/static.dasimmet.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "wabt",
+    "description": "The WebAssembly Binary Toolkit",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/wabt/official/source",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/wabt/static.official.source.yaml"
   },
@@ -8929,6 +8961,14 @@
     "description": "Simulate keyboard input and mouse activity, move and resize windows",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/xdotool/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/xdotool/static.official.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "xit",
+    "description": "git alternative written in zig",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/xit/official/source",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/xit/static.official.source.yaml"
   },
   {
     "_disabled": false,
