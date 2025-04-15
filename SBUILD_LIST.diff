@@ -2327,14 +2327,6 @@
     "rebuild": false,
     "pkg_family": "elftools",
     "description": "Tools for manipulating ELF Files",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/elftools/official",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/elftools/static.official.source.yaml"
-  },
-  {
-    "_disabled": false,
-    "rebuild": false,
-    "pkg_family": "elftools",
-    "description": "Tools for manipulating ELF Files",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/elftools/official/source",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/elftools/static.official.source.yaml"
   },
