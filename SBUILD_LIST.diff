@@ -2341,6 +2341,22 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "elfexec",
+    "description": "Execute ELF binary directly from stdin pipe",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/elfexec/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/elfexec/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "elfexec",
+    "description": "Execute ELF binary directly from stdin pipe",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/elfexec/official/source",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/elfexec/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "elftools",
     "description": "Tools for manipulating ELF Files",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/elftools/official/source",
@@ -2361,6 +2377,22 @@
     "description": "Expressive Programming Language & A Versatile Interactive Shell",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/elvish/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/elvish/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "emanutils",
+    "description": "Collection of exec tools",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/emanutils/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/emanutils/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "emanutils",
+    "description": "Collection of exec tools",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/emanutils/official/source",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/emanutils/static.official.source.yaml"
   },
   {
     "_disabled": false,
@@ -2465,6 +2497,14 @@
     "description": "Self-hostable, easy-to-use, lightweight, and feature-rich torrent client",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/exatorrent/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/exatorrent/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "execline",
+    "description": "Non-interactive scripting Tools",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/execline/nixpkgs",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/execline/static.nixpkgs.stable.yaml"
   },
   {
     "_disabled": false,
@@ -7473,6 +7513,22 @@
     "description": "Fast, collaborative live terminal sharing over the web",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/sshx/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/sshx/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "sslscan",
+    "description": "Test SSL/TLS enabled services to discover supported cipher suites",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/sslscan/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/sslscan/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "sslscan",
+    "description": "Test SSL/TLS enabled services to discover supported cipher suites",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/sslscan/official/source",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/sslscan/static.official.source.yaml"
   },
   {
     "_disabled": false,
