@@ -935,14 +935,6 @@
     "rebuild": false,
     "pkg_family": "cache",
     "description": "Wrap any command line tool to provide caching for the output of that too",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/cache/official",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/cache/static.official.source.yaml"
-  },
-  {
-    "_disabled": false,
-    "rebuild": false,
-    "pkg_family": "cache",
-    "description": "Wrap any command line tool to provide caching for the output of that too",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/cache/official/source",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/cache/static.official.source.yaml"
   },
@@ -1559,7 +1551,7 @@
     "rebuild": false,
     "pkg_family": "crane",
     "description": "Tool for interacting with remote OCI/Images/Registries without daemon & root",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/crane/official",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/crane/official/source",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/crane/static.official.source.yaml"
   },
   {
@@ -3575,7 +3567,7 @@
     "rebuild": false,
     "pkg_family": "graftcp",
     "description": "Redirect a given program's TCP traffic to SOCKS5 or HTTP proxy without using the LD_PRELOAD trick",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/graftcp/ppkg",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/graftcp/ppkg/stable",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/graftcp/static.ppkg.stable.yaml"
   },
   {
@@ -4919,7 +4911,7 @@
     "rebuild": false,
     "pkg_family": "manifest-tool",
     "description": "Create and Query container image manifest list/indexes",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/manifest-tool/official",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/manifest-tool/official/source",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/manifest-tool/static.official.source.yaml"
   },
   {
@@ -5727,14 +5719,6 @@
     "rebuild": false,
     "pkg_family": "ops",
     "description": "Tool for creating and running a Nanos unikernel",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/ops/ppkg",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/ops/static.ppkg.stable.yaml"
-  },
-  {
-    "_disabled": false,
-    "rebuild": false,
-    "pkg_family": "ops",
-    "description": "Tool for creating and running a Nanos unikernel",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/ops/ppkg/stable",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/ops/static.ppkg.stable.yaml"
   },
@@ -6225,14 +6209,6 @@
     "description": "Monitor linux processes without root permissions",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/pspy/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/pspy/static.official.source.yaml"
-  },
-  {
-    "_disabled": false,
-    "rebuild": false,
-    "pkg_family": "ptcpdump",
-    "description": "Process-aware, eBPF-based tcpdump",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/ptcpdump/ppkg",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/ptcpdump/static.ppkg.stable.yaml"
   },
   {
     "_disabled": false,
@@ -7167,7 +7143,7 @@
     "rebuild": false,
     "pkg_family": "skopeo",
     "description": "Perform various operations on container images/repositories without dameon & root",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/skopeo/official",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/skopeo/official/source",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/skopeo/static.official.source.yaml"
   },
   {
@@ -8311,7 +8287,7 @@
     "rebuild": false,
     "pkg_family": "undock",
     "description": "Extract contents of a container image in a local folder",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/undock/official",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/undock/official/source",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/undock/static.official.source.yaml"
   },
   {
@@ -8617,14 +8593,6 @@
     "description": "Translate WebAssembly modules to portable C",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/w2c2/official/source",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/w2c2/static.official.source.yaml"
-  },
-  {
-    "_disabled": false,
-    "rebuild": false,
-    "pkg_family": "wabt",
-    "description": "The WebAssembly Binary Toolkit",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/wabt/dasimmet",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/wabt/static.dasimmet.source.yaml"
   },
   {
     "_disabled": false,
@@ -9033,14 +9001,6 @@
     "description": "Simulate keyboard input and mouse activity, move and resize windows",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/xdotool/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/xdotool/static.official.stable.yaml"
-  },
-  {
-    "_disabled": false,
-    "rebuild": false,
-    "pkg_family": "xit",
-    "description": "git alternative written in zig",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/xit/official",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/xit/static.official.source.yaml"
   },
   {
     "_disabled": false,
