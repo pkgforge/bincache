@@ -1517,6 +1517,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "countryfetch",
+    "description": "Neofetch like tool for obtaining information about your Country",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/countryfetch/official/source",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/countryfetch/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "cowitness",
     "description": "mimic an HTTP server and a DNS server, providing complete responses",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/cowitness/official",
@@ -2309,6 +2317,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "ebpf-hide-pid",
+    "description": "Hide any PID/Directory in the Linux kernel",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/ebpf-hide-pid/official/source",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/ebpf-hide-pid/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "ecapture",
     "description": "Capture SSL/TLS text content without a CA certificate using eBPF",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/ecapture/official",
@@ -2501,6 +2517,22 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "execline-multicall",
+    "description": "Non-interactive scripting Tools (Multicall)",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/execline-multicall/ppkg",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/execline-multicall/static.ppkg.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "execline-multicall",
+    "description": "Non-interactive scripting Tools",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/execline-multicall/ppkg/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/execline-multicall/static.ppkg.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "execline",
     "description": "Non-interactive scripting Tools",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/execline/nixpkgs",
@@ -2512,6 +2544,14 @@
     "pkg_family": "execline",
     "description": "Non-interactive scripting Tools",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/execline/ppkg",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/execline/static.ppkg.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "execline",
+    "description": "Non-interactive scripting Tools",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/execline/ppkg/stable",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/execline/static.ppkg.stable.yaml"
   },
   {
@@ -8637,6 +8677,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "voyage",
+    "description": "Resumable & Stateful Subdomain Enumeration tool combining Active & Passive Discovery Methods",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/voyage/official/source",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/voyage/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "vtm",
     "description": "Terminal multiplexer with TUI window manager and multi-party session sharing",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/vtm/official",
@@ -8976,6 +9024,14 @@
     "pkg_family": "wrkflw",
     "description": "Validate and execute GitHub Actions workflows locally",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/wrkflw/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/wrkflw/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "wrkflw",
+    "description": "Validate and execute GitHub Actions workflows locally",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/wrkflw/official/source",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/wrkflw/static.official.source.yaml"
   },
   {
@@ -9344,6 +9400,14 @@
     "pkg_family": "zp",
     "description": "Copy Text/Data from Files/STDOUT buffers directly to the Clipboard",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/zp/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/zp/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "zp",
+    "description": "Copy Text/Data from Files/STDOUT buffers directly to the Clipboard",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/zp/official/source",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/zp/static.official.source.yaml"
   },
   {
