@@ -4807,7 +4807,7 @@
     "rebuild": false,
     "pkg_family": "litestream",
     "description": "Standalone Disaster Recovery Tool for SQLite",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/litestream/official",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/litestream/official/source",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/litestream/static.official.source.yaml"
   },
   {
@@ -5695,7 +5695,7 @@
     "rebuild": false,
     "pkg_family": "ocrs",
     "description": "Extract text from images using OCR",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/ocrs/official",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/ocrs/official/source",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/ocrs/static.official.source.yaml"
   },
   {
@@ -5823,7 +5823,7 @@
     "rebuild": false,
     "pkg_family": "opus-tools",
     "description": "Utilities to encode, inspect, and decode .opus files",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/opus-tools/ppkg",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/opus-tools/ppkg/stable",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/opus-tools/static.ppkg.stable.yaml"
   },
   {
@@ -7031,7 +7031,7 @@
     "rebuild": false,
     "pkg_family": "sccache",
     "description": "Like ccache with cloud storage support",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/sccache/ppkg",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/sccache/ppkg/stable",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/sccache/static.ppkg.stable.yaml"
   },
   {
@@ -7295,7 +7295,7 @@
     "rebuild": false,
     "pkg_family": "sling",
     "description": "Extract data from a source storage/database and Load it in a target storage/database",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/sling/official",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/sling/official/source",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/sling/static.official.source.yaml"
   },
   {
@@ -7783,7 +7783,7 @@
     "rebuild": false,
     "pkg_family": "sugarfree",
     "description": "Analyze and Reduce the entropy of a provided PE file",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/sugarfree/official",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/sugarfree/official/source",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/sugarfree/static.official.source.yaml"
   },
   {
@@ -8447,7 +8447,7 @@
     "rebuild": false,
     "pkg_family": "uncomment",
     "description": "Remove comments from code",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/uncomment/official",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/uncomment/official/source",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/uncomment/static.official.source.yaml"
   },
   {
@@ -8751,7 +8751,7 @@
     "rebuild": false,
     "pkg_family": "vorbis-tools",
     "description": "Tools used to create/alter ogg/vorbis files",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/vorbis-tools/ppkg",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/vorbis-tools/ppkg/stable",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/vorbis-tools/static.ppkg.stable.yaml"
   },
   {
