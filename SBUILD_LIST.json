@@ -2501,6 +2501,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "execline-multicall",
+    "description": "Non-interactive scripting Tools",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/execline-multicall/ppkg/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/execline-multicall/static.ppkg.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "execline",
     "description": "Non-interactive scripting Tools",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/execline/nixpkgs",
@@ -2513,14 +2521,6 @@
     "description": "Non-interactive scripting Tools",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/execline/ppkg/stable",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/execline/static.ppkg.stable.yaml"
-  },
-  {
-    "_disabled": false,
-    "rebuild": false,
-    "pkg_family": "execline-multicall",
-    "description": "Non-interactive scripting Tools",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/execline-multicall/ppkg/stable",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/execline-multicall/static.ppkg.stable.yaml"
   },
   {
     "_disabled": false,
@@ -2577,6 +2577,14 @@
     "description": "Command-line tool for batch renaming files and directories",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/f2/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/f2/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "faac",
+    "description": "Open source MPEG-4 and MPEG-2 AAC encoder",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/faac/nixpkgs",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/faac/static.nixpkgs.stable.yaml"
   },
   {
     "_disabled": false,
@@ -2777,6 +2785,14 @@
     "description": "Standalone utility for service discovery on open ports",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/fingerprintx/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/fingerprintx/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "flac",
+    "description": "Encode/Decode the FLAC lossless audio file format",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/flac/nixpkgs",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/flac/static.nixpkgs.stable.yaml"
   },
   {
     "_disabled": false,
@@ -4605,6 +4621,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "lame",
+    "description": "High quality MPEG Audio Layer III (MP3) encoder",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/lame/nixpkgs",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/lame/static.nixpkgs.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "landrun",
     "description": "Run any Linux process in a secure, unprivileged sandbox using Landlock",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/landrun/official/source",
@@ -4777,6 +4801,14 @@
     "description": "FUSE-based file system for replicating SQLite databases across a cluster of machines",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/litefs/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/litefs/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "litestream",
+    "description": "Standalone Disaster Recovery Tool for SQLite",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/litestream/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/litestream/static.official.source.yaml"
   },
   {
     "_disabled": false,
@@ -5661,6 +5693,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "ocrs",
+    "description": "Extract text from images using OCR",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/ocrs/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/ocrs/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "oksh",
     "description": "Portable OpenBSD ksh, based on the Public Domain Korn Shell (pdksh)",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/oksh/nixpkgs",
@@ -5777,6 +5817,14 @@
     "description": "Tool for creating and running a Nanos unikernel",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/ops/ppkg/stable",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/ops/static.ppkg.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "opus-tools",
+    "description": "Utilities to encode, inspect, and decode .opus files",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/opus-tools/ppkg",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/opus-tools/static.ppkg.stable.yaml"
   },
   {
     "_disabled": false,
@@ -6057,6 +6105,14 @@
     "description": "Draw images in your ANSI terminal with true color",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/pixterm/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/pixterm/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "pkgconf",
+    "description": "Package compiler and linker metadata Toolkit",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/pkgconf/nixpkgs",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/pkgconf/static.nixpkgs.stable.yaml"
   },
   {
     "_disabled": false,
@@ -6965,6 +7021,22 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "sccache",
+    "description": "Like ccache with cloud storage support",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/sccache/nixpkgs",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/sccache/static.nixpkgs.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "sccache",
+    "description": "Like ccache with cloud storage support",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/sccache/ppkg",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/sccache/static.ppkg.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "scilla",
     "description": "DNS, subdomain, port, directory enumeration tool",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/scilla/official",
@@ -7217,6 +7289,14 @@
     "description": "Minify and Secure Docker containers",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/slim/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/slim/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "sling",
+    "description": "Extract data from a source storage/database and Load it in a target storage/database",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/sling/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/sling/static.official.source.yaml"
   },
   {
     "_disabled": false,
@@ -7701,6 +7781,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "sugarfree",
+    "description": "Analyze and Reduce the entropy of a provided PE file",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/sugarfree/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/sugarfree/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "sunbeam",
     "description": "CLI Launcher to Generate powerful UIs from simple scripts",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/sunbeam/official",
@@ -8069,6 +8157,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "tor",
+    "description": "Anonymizing overlay network",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/tor/ppkg",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/tor/static.ppkg.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "toru",
     "description": "Bittorrent streaming CLI for anime torrents, real-time with no waiting for downloads",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/toru/official",
@@ -8261,6 +8357,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "typst",
+    "description": "Powerful & New markup-based typesetting system",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/typst/nixpkgs",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/typst/static.nixpkgs.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "tz",
     "description": "🌐 A time zone helper",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/tz/official",
@@ -8337,6 +8441,14 @@
     "description": "Hide message with invisible Unicode characters",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/unch/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/unch/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "uncomment",
+    "description": "Remove comments from code",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/uncomment/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/uncomment/static.official.source.yaml"
   },
   {
     "_disabled": false,
@@ -8637,6 +8749,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "vorbis-tools",
+    "description": "Tools used to create/alter ogg/vorbis files",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/vorbis-tools/ppkg",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/vorbis-tools/static.ppkg.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "voyage",
     "description": "Resumable & Stateful Subdomain Enumeration tool combining Active & Passive Discovery Methods",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/voyage/official/source",
@@ -8761,6 +8881,14 @@
     "description": "Lightweight WebAssembly runtime that is fast, secure, and standards-compliant",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/wasmtime/official/source",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/wasmtime/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "wavpack",
+    "description": "Tools for Hybrid audio compression format",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/wavpack/nixpkgs",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/wavpack/static.nixpkgs.stable.yaml"
   },
   {
     "_disabled": false,
