@@ -2581,6 +2581,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "faac",
+    "description": "Open source MPEG-4 and MPEG-2 AAC encoder",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/faac/nixpkgs",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/faac/static.nixpkgs.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "fakeroot",
     "description": "A command-line tool for simulating superuser privileges",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/fakeroot/ppkg",
@@ -2777,6 +2785,14 @@
     "description": "Standalone utility for service discovery on open ports",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/fingerprintx/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/fingerprintx/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "flac",
+    "description": "Encode/Decode the FLAC lossless audio file format",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/flac/nixpkgs",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/flac/static.nixpkgs.stable.yaml"
   },
   {
     "_disabled": false,
@@ -4605,6 +4621,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "lame",
+    "description": "High quality MPEG Audio Layer III (MP3) encoder",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/lame/nixpkgs",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/lame/static.nixpkgs.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "landrun",
     "description": "Run any Linux process in a secure, unprivileged sandbox using Landlock",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/landrun/official/source",
@@ -5777,6 +5801,14 @@
     "description": "Tool for creating and running a Nanos unikernel",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/ops/ppkg/stable",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/ops/static.ppkg.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "opus-tools",
+    "description": "Utilities to encode, inspect, and decode .opus files",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/opus-tools/ppkg",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/opus-tools/static.ppkg.stable.yaml"
   },
   {
     "_disabled": false,
@@ -8645,6 +8677,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "vorbis-tools",
+    "description": "Tools used to create/alter ogg/vorbis files",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/vorbis-tools/ppkg",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/vorbis-tools/static.ppkg.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "voyage",
     "description": "Resumable & Stateful Subdomain Enumeration tool combining Active & Passive Discovery Methods",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/voyage/official/source",
@@ -8769,6 +8809,14 @@
     "description": "Lightweight WebAssembly runtime that is fast, secure, and standards-compliant",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/wasmtime/official/source",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/wasmtime/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "wavpack",
+    "description": "Tools for Hybrid audio compression format",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/wavpack/nixpkgs",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/wavpack/static.nixpkgs.stable.yaml"
   },
   {
     "_disabled": false,
