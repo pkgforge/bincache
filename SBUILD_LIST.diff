@@ -4805,6 +4805,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "litestream",
+    "description": "Standalone Disaster Recovery Tool for SQLite",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/litestream/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/litestream/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "lklfuse",
     "description": "Use LKL to mount Linux-supported filesystems in userspace via FUSE",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/lklfuse/official",
@@ -5685,6 +5693,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "ocrs",
+    "description": "Extract text from images using OCR",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/ocrs/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/ocrs/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "oksh",
     "description": "Portable OpenBSD ksh, based on the Public Domain Korn Shell (pdksh)",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/oksh/nixpkgs",
@@ -6089,6 +6105,14 @@
     "description": "Draw images in your ANSI terminal with true color",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/pixterm/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/pixterm/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "pkgconf",
+    "description": "Package compiler and linker metadata Toolkit",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/pkgconf/nixpkgs",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/pkgconf/static.nixpkgs.stable.yaml"
   },
   {
     "_disabled": false,
@@ -6997,6 +7021,22 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "sccache",
+    "description": "Like ccache with cloud storage support",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/sccache/nixpkgs",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/sccache/static.nixpkgs.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "sccache",
+    "description": "Like ccache with cloud storage support",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/sccache/ppkg",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/sccache/static.ppkg.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "scilla",
     "description": "DNS, subdomain, port, directory enumeration tool",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/scilla/official",
@@ -7249,6 +7289,14 @@
     "description": "Minify and Secure Docker containers",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/slim/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/slim/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "sling",
+    "description": "Extract data from a source storage/database and Load it in a target storage/database",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/sling/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/sling/static.official.source.yaml"
   },
   {
     "_disabled": false,
@@ -7729,6 +7777,14 @@
     "description": "Tools for privilege escalation, secure command execution, and sudo policy management",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/sudo/nixpkgs",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/sudo/static.nixpkgs.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "sugarfree",
+    "description": "Analyze and Reduce the entropy of a provided PE file",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/sugarfree/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/sugarfree/static.official.source.yaml"
   },
   {
     "_disabled": false,
@@ -8301,6 +8357,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "typst",
+    "description": "Powerful & New markup-based typesetting system",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/typst/nixpkgs",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/typst/static.nixpkgs.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "tz",
     "description": "🌐 A time zone helper",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/tz/official",
@@ -8377,6 +8441,14 @@
     "description": "Hide message with invisible Unicode characters",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/unch/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/unch/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "uncomment",
+    "description": "Remove comments from code",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/uncomment/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/uncomment/static.official.source.yaml"
   },
   {
     "_disabled": false,
