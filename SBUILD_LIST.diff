@@ -8157,14 +8157,6 @@
   {
     "_disabled": false,
     "rebuild": false,
-    "pkg_family": "tor",
-    "description": "Anonymizing overlay network",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/tor/ppkg",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/tor/static.ppkg.stable.yaml"
-  },
-  {
-    "_disabled": false,
-    "rebuild": false,
     "pkg_family": "toru",
     "description": "Bittorrent streaming CLI for anime torrents, real-time with no waiting for downloads",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/toru/official",
