@@ -5813,6 +5813,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "oils",
+    "description": "Unix shell with JSON-compatible structured data",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/oils/ppkg/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/oils/static.ppkg.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "ops",
     "description": "Tool for creating and running a Nanos unikernel",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/ops/ppkg/stable",
