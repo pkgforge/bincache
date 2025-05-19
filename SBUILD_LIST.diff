@@ -5701,6 +5701,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "oils",
+    "description": "Unix shell with JSON-compatible structured data",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/oils/ppkg/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/oils/static.ppkg.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "oksh",
     "description": "Portable OpenBSD ksh, based on the Public Domain Korn Shell (pdksh)",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/oksh/nixpkgs",
