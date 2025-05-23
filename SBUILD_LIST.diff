@@ -418,6 +418,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "arti",
+    "description": "Tor reimplementation in Rust",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/arti/stalix/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/arti/static.stalix.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "askalono",
     "description": "Tool to detect open source licenses from texts",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/askalono/official",
@@ -2800,6 +2808,14 @@
     "pkg_family": "fish",
     "description": "Smart and User-friendly Command Line Shell",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/fish/stalix",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/fish/static.stalix.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "fish",
+    "description": "Smart and User-friendly Command Line Shell",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/fish/stalix/stable",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/fish/static.stalix.stable.yaml"
   },
   {
@@ -9013,6 +9029,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "wget",
+    "description": "Tool for retrieving files using HTTP, HTTPS, and FTP",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/wget/stalix/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/wget/static.stalix.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "wget2",
     "description": "The successor of GNU Wget, a file and recursive website downloader",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/wget2/ppkg",
@@ -9024,6 +9048,14 @@
     "pkg_family": "wget2",
     "description": "The successor of GNU Wget, a file and recursive website downloader",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/wget2/stalix",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/wget2/static.stalix.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "wget2",
+    "description": "The successor of GNU Wget, a file and recursive website downloader",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/wget2/stalix/stable",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/wget2/static.stalix.stable.yaml"
   },
   {
