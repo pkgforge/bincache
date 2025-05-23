@@ -410,6 +410,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "arti",
+    "description": "Tor reimplementation in Rust",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/arti/stalix/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/arti/static.stalix.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "askalono",
     "description": "Tool to detect open source licenses from texts",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/askalono/official",
@@ -2785,6 +2793,14 @@
     "description": "Standalone utility for service discovery on open ports",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/fingerprintx/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/fingerprintx/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "fish",
+    "description": "Smart and User-friendly Command Line Shell",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/fish/stalix/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/fish/static.stalix.stable.yaml"
   },
   {
     "_disabled": false,
@@ -5701,6 +5717,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "oils",
+    "description": "Unix shell with JSON-compatible structured data",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/oils/ppkg/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/oils/static.ppkg.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "oksh",
     "description": "Portable OpenBSD ksh, based on the Public Domain Korn Shell (pdksh)",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/oksh/nixpkgs",
@@ -5809,14 +5833,6 @@
     "description": "A full-featured open source SSL VPN solution",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/openvpn/nixpkgs",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/openvpn/static.nixpkgs.stable.yaml"
-  },
-  {
-    "_disabled": false,
-    "rebuild": false,
-    "pkg_family": "oils",
-    "description": "Unix shell with JSON-compatible structured data",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/oils/ppkg/stable",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/oils/static.ppkg.stable.yaml"
   },
   {
     "_disabled": false,
@@ -8981,10 +8997,26 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "wget",
+    "description": "Tool for retrieving files using HTTP, HTTPS, and FTP",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/wget/stalix/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/wget/static.stalix.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "wget2",
     "description": "The successor of GNU Wget, a file and recursive website downloader",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/wget2/ppkg",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/wget2/static.ppkg.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "wget2",
+    "description": "The successor of GNU Wget, a file and recursive website downloader",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/wget2/stalix/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/wget2/static.stalix.stable.yaml"
   },
   {
     "_disabled": false,
