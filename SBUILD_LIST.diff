@@ -4733,6 +4733,22 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "libcap-ng",
+    "description": "Tools for working with POSIX capabilities",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/libcap-ng/nixpkgs",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/libcap-ng/static.nixpkgs.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "libcap",
+    "description": "Tools for working with POSIX capabilities",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/libcap/nixpkgs",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/libcap/static.nixpkgs.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "libdeflate",
     "description": "Heavily optimized CLI for DEFLATE/zlib/gzip compression and decompression",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/libdeflate/official/source",
