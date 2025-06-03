@@ -6453,6 +6453,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "qp",
+    "description": "Query installed packages from any ecosystem",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/qp/official/source",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/qp/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "qq",
     "description": "Interoperable configuration format Transcoder with jq query syntax",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/qq/official",
