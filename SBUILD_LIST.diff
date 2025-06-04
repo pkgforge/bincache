@@ -570,6 +570,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "bc",
+    "description": "GNU software calculator",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/bc/nixpkgs",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/bc/static.nixpkgs.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "bearer",
     "description": "Code security scanning tool (SAST)",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/bearer/official",
@@ -609,6 +617,14 @@
     "description": "Lightweight server monitoring hub with historical data, docker stats, and alerts",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/beszel/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/beszel/static.official.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "bin-graph",
+    "description": "Visualize binary files",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/bin-graph/ppkg/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/bin-graph/static.ppkg.stable.yaml"
   },
   {
     "_disabled": false,
@@ -697,6 +713,14 @@
     "description": "Tools for manipulating binaries (linker, assembler, etc.) [alias=bintools]",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/binutils/nixpkgs",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/binutils/static.nixpkgs.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "bison",
+    "description": "Yacc-compatible parser generator",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/bison/nixpkgs",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/bison/static.nixpkgs.stable.yaml"
   },
   {
     "_disabled": false,
@@ -813,6 +837,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "brotli",
+    "description": "Generic-purpose lossless compression tool",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/brotli/nixpkgs",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/brotli/static.nixpkgs.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "brutespray",
     "description": "Bruteforcing from various scanner output & Automatically attempts default creds on found services",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/brutespray/official",
@@ -913,6 +945,14 @@
     "description": "Tiny versions of many common UNIX utilities into a single small executable (Standalone)",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/busybox/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/busybox/static.standalone.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "byacc",
+    "description": "Berkeley YACC",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/byacc/nixpkgs",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/byacc/static.nixpkgs.stable.yaml"
   },
   {
     "_disabled": false,
@@ -1600,7 +1640,7 @@
     "pkg_family": "croc",
     "description": "Easily and securely send things from one computer to another",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/croc/official",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/croc/static.official.stable.yaml"
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/croc/static.official.source.yaml"
   },
   {
     "_disabled": false,
@@ -2597,6 +2637,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "faad2",
+    "description": "Open source MPEG-4 and MPEG-2 AAC decoder",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/faad2/nixpkgs",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/faad2/static.nixpkgs.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "fakeroot",
     "description": "A command-line tool for simulating superuser privileges",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/fakeroot/ppkg",
@@ -2849,6 +2897,14 @@
     "description": "Tool to show process fork/exec/exit activity",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/forkstat/official/source",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/forkstat/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "forkstat",
+    "description": "Tool to show process fork/exec/exit activity",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/forkstat/ppkg/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/forkstat/static.ppkg.stable.yaml"
   },
   {
     "_disabled": false,
@@ -3128,7 +3184,7 @@
     "pkg_family": "gh",
     "description": "GitHub CLI tool",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/gh/official",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/gh/static.official.stable.yaml"
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/gh/static.official.source.yaml"
   },
   {
     "_disabled": false,
@@ -3901,6 +3957,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "hdiffpatch",
+    "description": "Tool to show process fork/exec/exit activity",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/hdiffpatch/ppkg/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/hdiffpatch/static.ppkg.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "headless-terminal",
     "description": "Headless Terminal (ht) - wrap any binary with a terminal interface for easy programmatic access",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/headless-terminal/official",
@@ -4217,6 +4281,14 @@
     "description": "An Out Of Bounds (OOB) interaction gathering server and client tool",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/interactsh/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/interactsh/static.official.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "interception-tools",
+    "description": "Utilities for operating on input events of evdev devices",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/interception-tools/nixpkgs",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/interception-tools/static.nixpkgs.stable.yaml"
   },
   {
     "_disabled": false,
@@ -5269,6 +5341,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "mjpegtools",
+    "description": "Suite of programs for processing MPEG or MJPEG video",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/mjpegtools/nixpkgs",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/mjpegtools/static.nixpkgs.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "mkpasswd",
     "description": "Generate new password, optionally apply it to a user",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/mkpasswd/nixpkgs",
@@ -5353,6 +5433,14 @@
     "description": "Tools for MTD filesystems [mtd-utils]",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/mtdutils/nixpkgs",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/mtd-utils/static.nixpkgs.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "mtools",
+    "description": "Utilities to access MS-DOS disks",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/mtools/nixpkgs",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/mtools/static.nixpkgs.stable.yaml"
   },
   {
     "_disabled": false,
@@ -8280,7 +8368,7 @@
     "pkg_family": "trufflehog",
     "description": "Find, verify, and analyze leaked credentials",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/trufflehog/official",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/trufflehog/static.official.stable.yaml"
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/trufflehog/static.official.source.yaml"
   },
   {
     "_disabled": false,
@@ -8393,6 +8481,14 @@
     "description": "TUI for Mastodon with vim inspired keys",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/tut/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/tut/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "twolame",
+    "description": "MPEG Audio Layer 2 (MP2) encoder",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/twolame/nixpkgs",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/twolame/static.nixpkgs.stable.yaml"
   },
   {
     "_disabled": false,

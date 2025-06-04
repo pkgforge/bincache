@@ -57,6 +57,10 @@ sbuild_builder()
     find "${SYSTMP}" -mindepth 1 \( -type f -o -type d \) -empty -not -path "$(pwd)" -not -path "$(pwd)/*" -delete 2>/dev/null
    fi
    mkdir -p "${SYSTMP}/pkgforge"
+   if [[ "${INSIDE_PODMAN}" == "TRUE" ]]; then
+     export GITHUB_ENV="${SYSTMP}/GITHUB_ENV"
+     touch "${GITHUB_ENV}"
+   fi
   ##Get Initial Inputs
    for attempt in {1..4}; do
     BUILDSCRIPT="$(mktemp --tmpdir="${SYSTMP}/pkgforge" XXXXXXXXX_build.yaml)" && export BUILDSCRIPT="${BUILDSCRIPT}" && break
@@ -305,6 +309,14 @@ sbuild_builder()
         fi
        #} 2>&1 | ts '[%Y-%m-%dT%Hh%Mm%Ss]➜ ' | tee "${TEMP_LOG}"
        } 2>&1 | ts -s '[%H:%M:%S]➜ ' | tee "${TEMP_LOG}"
+      #Common No-Nos 
+       if grep -m1 -Eqi "wrappe.*version.*available.*required" "${TEMP_LOG}" &>/dev/null; then
+          echo -e "\n[✗] FATAL: Found Potential Outlier in Logs\n"
+          grep -Ei "wrappe.*version.*available.*required" "${TEMP_LOG}"
+          [[ "${GHA_MODE}" == "MATRIX" ]] && echo "GHA_BUILD_FAILED=YES" >> "${GITHUB_ENV}"
+         exit 1
+       fi
+      #Dir
        if [ -d "${OCWD}" ]; then
          source "${OCWD}/ENVPATH" ; SBUILD_PKGS=($SBUILD_PKGS)
          if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]]; then
