@@ -1461,6 +1461,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "composefs",
+    "description": "Tools to handle creating and mounting composefs images",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/composefs/ppkg",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/composefs/static.ppkg.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "container2wasm",
     "description": "Container to WASM converter",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/container2wasm/official/source",
@@ -1777,6 +1785,14 @@
     "description": "Finds vulnerable patterns in binary executables",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/cwe_checker/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/cwe_checker/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "cy",
+    "description": "Simple Terminal Multiplexer",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/cy/ppkg",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/cy/static.ppkg.stable.yaml"
   },
   {
     "_disabled": false,
@@ -4437,6 +4453,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "isolate",
+    "description": "Sandbox for securely executing untrusted programs",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/isolate/ppkg",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/isolate/static.ppkg.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "jaeles",
     "description": "The Swiss Army knife for automated Web Application Testing",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/jaeles/official",
@@ -5905,6 +5929,14 @@
     "description": "Generates a risk score based on the results of a Nuclei scan",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/openrisk/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/openrisk/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "openrsync",
+    "description": "BSD-licensed implementation of rsync",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/openrsync/ppkg",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/openrsync/static.ppkg.stable.yaml"
   },
   {
     "_disabled": false,
@@ -7637,6 +7669,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "squashfs-mount",
+    "description": "Setuid instead of FUSE for mounting squashfs files",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/squashfs-mount/ppkg",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/squashfs-mount/static.ppkg.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "squashfs-tools-ng",
     "description": "New Set of Tools for working with SquashFS Images [alias=squashfstools-ng:squashfstoolsng]",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/squashfs-tools-ng/nixpkgs",
@@ -8193,6 +8233,14 @@
     "description": "Fast Tiny C Compiler",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/tinycc/official/musl",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/tinycc/static.official.musl.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "tinyssh",
+    "description": "Minimalistic SSH server",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/tinyssh/ppkg",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/tinyssh/static.ppkg.stable.yaml"
   },
   {
     "_disabled": false,
