@@ -6016,7 +6016,7 @@
     "pkg_family": "ouch",
     "description": "Command-line utility for easily compressing and decompressing files and directories",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/ouch/official",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/ouch/static.official.stable.yaml"
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/ouch/static.official.source.yaml"
   },
   {
     "_disabled": false,
