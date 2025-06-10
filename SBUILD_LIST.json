@@ -621,6 +621,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "bin-graph",
+    "description": "Visualize binary files",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/bin-graph/ppkg/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/bin-graph/static.ppkg.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "bin",
     "description": "Effortless binary manager",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/bin/official",
@@ -657,14 +665,6 @@
     "description": "Tool to enable/setup binfmt",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/binfmt/official/stable",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/binfmt/static.official.stable.yaml"
-  },
-  {
-    "_disabled": false,
-    "rebuild": false,
-    "pkg_family": "bin-graph",
-    "description": "Visualize binary files",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/bin-graph/ppkg/stable",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/bin-graph/static.ppkg.stable.yaml"
   },
   {
     "_disabled": false,
@@ -1641,6 +1641,14 @@
     "description": "Easily and securely send things from one computer to another",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/croc/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/croc/static.official.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "croc",
+    "description": "Easily and securely send things from one computer to another",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/croc/official/source",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/croc/static.official.source.yaml"
   },
   {
     "_disabled": false,
@@ -3185,6 +3193,14 @@
     "description": "GitHub CLI tool",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/gh/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/gh/static.official.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "gh",
+    "description": "GitHub CLI tool",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/gh/official/source",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/gh/static.official.source.yaml"
   },
   {
     "_disabled": false,
@@ -4805,18 +4821,18 @@
   {
     "_disabled": false,
     "rebuild": false,
-    "pkg_family": "libcap",
-    "description": "Tools for working with POSIX capabilities",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/libcap/nixpkgs",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/libcap/static.nixpkgs.stable.yaml"
-  },
-  {
-    "_disabled": false,
-    "rebuild": false,
     "pkg_family": "libcap-ng",
     "description": "Tools for working with POSIX capabilities",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/libcap-ng/nixpkgs",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/libcap-ng/static.nixpkgs.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "libcap",
+    "description": "Tools for working with POSIX capabilities",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/libcap/nixpkgs",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/libcap/static.nixpkgs.stable.yaml"
   },
   {
     "_disabled": false,
@@ -6021,6 +6037,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "ouch",
+    "description": "Command-line utility for easily compressing and decompressing files and directories",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/ouch/official/source",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/ouch/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "outils",
     "description": "Port of some non-standard OpenBSD tools to Linux",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/outils/nixpkgs",
@@ -6513,6 +6537,14 @@
     "description": "Static Single binary for Qbittorent",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/qbittorrent-nox/userdocs",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/qbittorrent-nox/static.userdocs.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "qemu-user",
+    "description": "QEMU user mode Emulation & Virtualization binaries",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/qemu-user/tonistiigi",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/qemu-user/static.tonistiigi.stable.yaml"
   },
   {
     "_disabled": false,
@@ -8293,6 +8325,14 @@
   {
     "_disabled": false,
     "rebuild": false,
+    "pkg_family": "tor",
+    "description": "Anonymizing overlay network",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/tor/ppkg/stable",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/tor/static.ppkg.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
     "pkg_family": "toru",
     "description": "Bittorrent streaming CLI for anime torrents, real-time with no waiting for downloads",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/toru/official",
@@ -8361,6 +8401,14 @@
     "description": "Find, verify, and analyze leaked credentials",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/trufflehog/official",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/trufflehog/static.official.stable.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "trufflehog",
+    "description": "Find, verify, and analyze leaked credentials",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/trufflehog/official/source",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/trufflehog/static.official.source.yaml"
   },
   {
     "_disabled": false,
