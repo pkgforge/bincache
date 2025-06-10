@@ -655,14 +655,6 @@
     "rebuild": false,
     "pkg_family": "binfmt",
     "description": "Tool to enable/setup binfmt",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/binfmt/official",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/binfmt/static.official.stable.yaml"
-  },
-  {
-    "_disabled": false,
-    "rebuild": false,
-    "pkg_family": "binfmt",
-    "description": "Tool to enable/setup binfmt",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/binfmt/official/stable",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/binfmt/static.official.stable.yaml"
   },
@@ -985,14 +977,6 @@
     "description": "Wrap any command line tool to provide caching for the output of that too",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/cache/official/source",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/cache/static.official.source.yaml"
-  },
-  {
-    "_disabled": false,
-    "rebuild": false,
-    "pkg_family": "caddy",
-    "description": "A powerful, enterprise-ready, and extensible HTTP/2 + HTTP/3 web server with automatic HTTPS",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/caddy/official",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/caddy/static.official.stable.yaml"
   },
   {
     "_disabled": false,
