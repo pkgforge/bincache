@@ -655,14 +655,6 @@
     "rebuild": false,
     "pkg_family": "binfmt",
     "description": "Tool to enable/setup binfmt",
-    "ghcr_pkg": "ghcr.io/pkgforge/bincache/binfmt/official",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/binfmt/static.official.stable.yaml"
-  },
-  {
-    "_disabled": false,
-    "rebuild": false,
-    "pkg_family": "binfmt",
-    "description": "Tool to enable/setup binfmt",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/binfmt/official/stable",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/binfmt/static.official.stable.yaml"
   },
@@ -1640,7 +1632,7 @@
     "pkg_family": "croc",
     "description": "Easily and securely send things from one computer to another",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/croc/official",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/croc/static.official.source.yaml"
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/croc/static.official.stable.yaml"
   },
   {
     "_disabled": false,
@@ -3200,7 +3192,7 @@
     "pkg_family": "gh",
     "description": "GitHub CLI tool",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/gh/official",
-    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/gh/static.official.source.yaml"
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/gh/static.official.stable.yaml"
   },
   {
     "_disabled": false,
