@@ -1,1 +1,38 @@
-[]
+[
+  [
+    {
+      "_disabled": false,
+      "rebuild": false,
+      "pkg_family": "ouch",
+      "description": "Command-line utility for easily compressing and decompressing files and directories",
+      "ghcr_pkg": "ghcr.io/pkgforge/bincache/ouch/official/source",
+      "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/ouch/static.official.source.yaml"
+    },
+    {
+      "_disabled": false,
+      "rebuild": false,
+      "pkg_family": "ouch",
+      "description": "Command-line utility for easily compressing and decompressing files and directories",
+      "ghcr_pkg": "ghcr.io/pkgforge/bincache/ouch/official/source",
+      "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/ouch/static.official.source.yaml"
+    }
+  ],
+  [
+    {
+      "_disabled": false,
+      "rebuild": false,
+      "pkg_family": "tor",
+      "description": "Anonymizing overlay network",
+      "ghcr_pkg": "ghcr.io/pkgforge/bincache/tor/ppkg/stable",
+      "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/tor/static.ppkg.stable.yaml"
+    },
+    {
+      "_disabled": false,
+      "rebuild": false,
+      "pkg_family": "tor",
+      "description": "Anonymizing overlay network",
+      "ghcr_pkg": "ghcr.io/pkgforge/bincache/tor/ppkg/stable",
+      "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/tor/static.ppkg.stable.yaml"
+    }
+  ]
+]
