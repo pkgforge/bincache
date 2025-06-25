@@ -2855,6 +2855,14 @@
     "rebuild": false,
     "pkg_family": "fish",
     "description": "Smart and User-friendly Command Line Shell",
+    "ghcr_pkg": "ghcr.io/pkgforge/bincache/fish/official",
+    "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/fish/static.official.source.yaml"
+  },
+  {
+    "_disabled": false,
+    "rebuild": false,
+    "pkg_family": "fish",
+    "description": "Smart and User-friendly Command Line Shell",
     "ghcr_pkg": "ghcr.io/pkgforge/bincache/fish/stalix/stable",
     "build_script": "https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries/fish/static.stalix.stable.yaml"
   },
