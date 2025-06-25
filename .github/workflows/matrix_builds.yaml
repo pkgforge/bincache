@@ -238,6 +238,7 @@ jobs:
            elif echo "${HOST_TRIPLET}" | grep -qiE "x86_64"; then
              DOCKER_PLATFORM="linux/amd64"
            fi
+           echo "DOCKER_PLATFORM_ARCH=${HOST_TRIPLET%%-*}" >> "${GITHUB_ENV}"
            echo "DOCKER_PLATFORM=${DOCKER_PLATFORM}" >> "${GITHUB_ENV}"
           ##GHCRPKG_URL
            GHCRPKG_LOCAL="$(echo "${{ inputs.ghcr-url }}" | tr '[:upper:]' '[:lower:]' | tr -d '[:space:]')"
@@ -286,10 +287,10 @@ jobs:
                    exit 1
                  fi
                 #get build system
-                 if ! yq '.x_exec.bsys' "./SBUILD_INPUT" | grep -v '^#' | grep -qi "docker://"; then
+                 if yq '.x_exec.bsys' "./SBUILD_INPUT" | grep -v '^#' | grep -qi "docker://"; then
                     echo "BUILD_ON_HOST=FALSE" >> "${GITHUB_ENV}"
                     echo "BUILD_SYSTEM=DOCKER" >> "${GITHUB_ENV}"
-                 elif ! yq '.x_exec.bsys' "./SBUILD_INPUT" | grep -v '^#' | grep -qi "host://"; then
+                 elif yq '.x_exec.bsys' "./SBUILD_INPUT" | grep -v '^#' | grep -qi "host://"; then
                     echo "BUILD_ON_HOST=TRUE" >> "${GITHUB_ENV}"
                     echo "BUILD_SYSTEM=HOST" >> "${GITHUB_ENV}"
                  fi
@@ -369,7 +370,7 @@ jobs:
       - name: Set up QEMU [${{ matrix.package.host }}<==>${{ matrix.package.runner }}]
         if: env.CROSS_COMPILING == 'TRUE' && env.CONTINUE_GHRUN != 'FALSE'
         uses: docker/setup-qemu-action@v3
-        continue-on-error: true
+        continue-on-error: false
       - name: Set up Cross Arch [${{ matrix.package.host }}<==>${{ matrix.package.runner }}]
         if: env.CROSS_COMPILING == 'TRUE' && env.CONTINUE_GHRUN != 'FALSE'
         uses: docker/setup-buildx-action@v3
@@ -424,8 +425,8 @@ jobs:
           ##Run
           sudo mkdir -p "/var/lib/containers/tmp-runner01"
           sudo chmod 1777 -v "/var/lib/containers/tmp-runner01"
-          POD_IMAGE="ghcr.io/pkgforge/devscripts/ubuntu-systemd-base:${DOCKER_PLATFORM}"
-          sudo podman run --platform="linux/${DOCKER_PLATFORM}" --detach --privileged \
+          POD_IMAGE="ghcr.io/pkgforge/devscripts/ubuntu-systemd-base:${DOCKER_PLATFORM_ARCH}"
+          sudo podman run --platform="${DOCKER_PLATFORM}" --detach --privileged \
            --device "/dev/fuse" --env-file="env.list" --hostname "$(hostname)" --name="ubuntu-builder" \
            --network="bridge" --pull="always" --systemd="always" --tz="UTC" --ulimit="host" \
            --volume "${HOME}/.minisign:/home/runner/.minisign" \
