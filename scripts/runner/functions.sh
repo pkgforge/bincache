@@ -41,7 +41,8 @@ setup_env()
        DOCKER_PLATFORM="linux/amd64"
      fi
    fi
-   export DOCKER_PLATFORM
+   DOCKER_PLATFORM_ARCH="${HOST_TRIPLET%%-*}"
+   export DOCKER_PLATFORM DOCKER_PLATFORM_ARCH
    echo -e "\n[+] INFO: Adding --platform=\"${DOCKER_PLATFORM}\" to 'docker run' ==> ${INPUT_SBUILD}\n"
    sed -E \
    '
@@ -49,6 +50,12 @@ setup_env()
     /--platform[[:space:]]+[^[:space:]]+/b
     s/\b(docker[[:space:]]+run)([[:space:]]+)/\1 --platform="'"${DOCKER_PLATFORM}"'"\2/g
     s/\b(docker[[:space:]]+container[[:space:]]+run)([[:space:]]+)/\1 --platform="'"${DOCKER_PLATFORM}"'"\2/g
+   ' -i "${INPUT_SBUILD}"
+   echo -e "\n[+] INFO: Fixing Docker Tag ':\$(uname -m)' to ':${DOCKER_PLATFORM_ARCH}' ==> ${INPUT_SBUILD}\n"
+   sed -E \
+   '
+    /:'"${DOCKER_PLATFORM_ARCH}"'"/b
+    s/:\$\(uname -m\)"/:'"${DOCKER_PLATFORM_ARCH}"'"/g
    ' -i "${INPUT_SBUILD}"
  fi
  if [[ -f "${SYSTMP}/GITHUB_ENV" ]]; then
