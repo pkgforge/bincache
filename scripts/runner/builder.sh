@@ -212,7 +212,7 @@ sbuild_builder()
     if [[ "${EXCLUDE_CACHED}" == "YES" ]]; then
      echo -e "[+] Excluding Cached"
      curl -w "(Diff) <== %{url}\n" -qfsSL "https://raw.githubusercontent.com/pkgforge/metadata/refs/heads/main/soarpkgs/data/DIFF_${PKG_REPO}_${HOST_TRIPLET}.json" -o "${SYSTMP}/pkgforge/DIFF.json.tmp"
-     curl -w "(List) <== %{url}\n" "https://raw.githubusercontent.com/pkgforge/${PKG_REPO}/refs/heads/main/SBUILD_LIST.json" -o "${SYSTMP}/pkgforge/SBUILD_LIST.json.tmp"
+     curl -w "(List) <== %{url}\n" -qfsSL "https://raw.githubusercontent.com/pkgforge/${PKG_REPO}/refs/heads/main/SBUILD_LIST.json" -o "${SYSTMP}/pkgforge/SBUILD_LIST.json.tmp"
      jq -n --slurpfile a "${SYSTMP}/pkgforge/DIFF.json.tmp" --slurpfile b "${SYSTMP}/pkgforge/SBUILD_LIST.json.tmp" \
     '
      [$b[] | .[] as $objB | 
@@ -223,7 +223,7 @@ sbuild_builder()
     ' | jq . > "${SYSTMP}/pkgforge/SBUILD_LIST.json"
     else
      echo -e "[+] Including Cached"
-     curl -w "(List) <== %{url}\n" "https://raw.githubusercontent.com/pkgforge/${PKG_REPO}/refs/heads/main/SBUILD_LIST.json" -o "${SYSTMP}/pkgforge/SBUILD_LIST.json"
+     curl -w "(List) <== %{url}\n" -qfsSL "https://raw.githubusercontent.com/pkgforge/${PKG_REPO}/refs/heads/main/SBUILD_LIST.json" -o "${SYSTMP}/pkgforge/SBUILD_LIST.json"
     fi
     jq -r '.[] | select(._disabled == false) | .build_script' "${SYSTMP}/pkgforge/SBUILD_LIST.json" | sort -u -o "${SYSTMP}/pkgforge/SBUILD_URLS"
     sed 's|https://github.com/pkgforge/soarpkgs/blob/main/binaries|https://raw.githubusercontent.com/pkgforge/soarpkgs/refs/heads/main/binaries|g' -i "${SYSTMP}/pkgforge/SBUILD_URLS"
