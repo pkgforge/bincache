@@ -368,11 +368,11 @@ jobs:
         continue-on-error: true
 
       - name: Set up QEMU [${{ matrix.package.host }}<==>${{ matrix.package.runner }}]
-        if: env.CROSS_COMPILING == 'TRUE' && env.CONTINUE_GHRUN != 'FALSE'
+        if: env.CROSS_COMPILING == 'YES' && env.CONTINUE_GHRUN != 'FALSE'
         uses: docker/setup-qemu-action@v3
         continue-on-error: false
       - name: Set up Cross Arch [${{ matrix.package.host }}<==>${{ matrix.package.runner }}]
-        if: env.CROSS_COMPILING == 'TRUE' && env.CONTINUE_GHRUN != 'FALSE'
+        if: env.CROSS_COMPILING == 'YES' && env.CONTINUE_GHRUN != 'FALSE'
         uses: docker/setup-buildx-action@v3
         continue-on-error: true
 
