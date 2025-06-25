@@ -44,13 +44,21 @@ setup_env()
    DOCKER_PLATFORM_ARCH="${HOST_TRIPLET%%-*}"
    export DOCKER_PLATFORM DOCKER_PLATFORM_ARCH
    echo -e "\n[+] INFO: Adding --platform=\"${DOCKER_PLATFORM}\" to 'docker run' ==> ${INPUT_SBUILD}\n"
-   sed -E \
+   awk -v platform="${DOCKER_PLATFORM}" \
    '
-    /--platform[[:space:]]*=[[:space:]]*[^[:space:]]+/b
-    /--platform[[:space:]]+[^[:space:]]+/b
-    s/\b(docker[[:space:]]+run)([[:space:]]+)/\1 --platform="'"${DOCKER_PLATFORM}"'"\2/g
-    s/\b(docker[[:space:]]+container[[:space:]]+run)([[:space:]]+)/\1 --platform="'"${DOCKER_PLATFORM}"'"\2/g
-   ' -i "${INPUT_SBUILD}"
+    /--platform/ { print; next }
+    /docker[[:space:]]+run[[:space:]]/ {
+        sub(/docker[[:space:]]+run[[:space:]]+/, "docker run --platform=\"" platform "\" ")
+        print
+        next
+    }
+    /docker[[:space:]]+container[[:space:]]+run[[:space:]]/ {
+        sub(/docker[[:space:]]+container[[:space:]]+run[[:space:]]+/, "docker container run --platform=\"" platform "\" ")
+        print
+        next
+    }
+    { print }
+   ' "${INPUT_SBUILD}" > "${INPUT_SBUILD}.tmp" && mv "${INPUT_SBUILD}.tmp" "${INPUT_SBUILD}"
    echo -e "\n[+] INFO: Fixing Docker Tag ':\$(uname -m)' to ':${DOCKER_PLATFORM_ARCH}' ==> ${INPUT_SBUILD}\n"
    sed -E \
    '

@@ -348,7 +348,7 @@ jobs:
           sudo sysctl -p "/etc/sysctl.conf"
         continue-on-error: true
 
-      - name: If Cross Compiling on QEMU [${{ matrix.package.host }}<==>${{ matrix.package.runner }}]
+      - name: If Cross Compiling on QEMU HOST [${{ matrix.package.host }}<==>${{ matrix.package.runner }}]
         if: env.CROSS_COMPILING == 'YES' && env.BUILD_SYSTEM == 'HOST' && env.CONTINUE_GHRUN != 'FALSE'
         env:
           #GHCR_TOKEN: "${{ secrets.GHCR_TOKEN }}" #Needs Actions' Token if we want to make the packages public
