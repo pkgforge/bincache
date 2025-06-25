@@ -29,6 +29,28 @@ setup_env()
    export CONTINUE_SBUILD="NO"
   return 1 || exit 1
  fi
+ if [[ "${BUILD_SYSTEM}" == "DOCKER" ]]; then
+   if [[ -z "${DOCKER_PLATFORM+x}" || -z "${DOCKER_PLATFORM//[[:space:]]/}" ]]; then
+     if echo "${HOST_TRIPLET}" | grep -qiE "aarch64"; then
+       DOCKER_PLATFORM="linux/arm64"
+     elif echo "${HOST_TRIPLET}" | grep -qiE "loongarch64"; then
+       DOCKER_PLATFORM="linux/loong64"
+     elif echo "${HOST_TRIPLET}" | grep -qiE "riscv64"; then
+       DOCKER_PLATFORM="linux/riscv64"
+     elif echo "${HOST_TRIPLET}" | grep -qiE "x86_64"; then
+       DOCKER_PLATFORM="linux/amd64"
+     fi
+   fi
+   export DOCKER_PLATFORM
+   echo -e "\n[+] INFO: Adding --platform=\"${DOCKER_PLATFORM}\" to 'docker run' ==> ${INPUT_SBUILD}\n"
+   sed -E \
+   '
+    /--platform[[:space:]]*=[[:space:]]*[^[:space:]]+/b
+    /--platform[[:space:]]+[^[:space:]]+/b
+    s/\b(docker[[:space:]]+run)([[:space:]]+)/\1 --platform="'"${DOCKER_PLATFORM}"'"\2/g
+    s/\b(docker[[:space:]]+container[[:space:]]+run)([[:space:]]+)/\1 --platform="'"${DOCKER_PLATFORM}"'"\2/g
+   ' -i "${INPUT_SBUILD}"
+ fi
  if [[ -f "${SYSTMP}/GITHUB_ENV" ]]; then
    BUILD_DIR="${SYSTMP}/_POD_BRIDGE"
  else
@@ -397,7 +419,7 @@ if [[ "${CONTINUE_SBUILD}" == "YES" ]]; then
          if [[ "$base" == *.no_strip ]]; then
            new_name="${base%.no_strip}"
            mv -fv "{}" "${dir}/${new_name}"
-         else
+         elif [[ "${CROSS_COMPILING} != "YES" ]]; then
            objcopy --remove-section=".comment" --remove-section=".note.*" "{}" 2>/dev/null
            strip --strip-all --verbose "{}" 2>/dev/null
          fi
@@ -632,13 +654,13 @@ if [[ "${SBUILD_SUCCESSFUL}" == "YES" ]]; then
     #Generate Tags
      TAG_URL="https://api.ghcr.pkgforge.dev/$(echo "${GHCRPKG}" | sed ':a; s|^\(https://\)\([^/]\)/\(/\)|\1\2/\3|; ta' | sed -E 's|^ghcr\.io/||; s|^/+||; s|/+?$||' | sed ':a; s|^\(https://\)\([^/]\)/\(/\)|\1\2/\3|; ta')/${PROG}?tags"
      echo -e "[+] Fetching Snapshot Tags <== ${TAG_URL} [\$GHCRPKG]"
-     #readarray -t "SNAPSHOT_TAGS" < <(curl -qfsSL "${TAG_URL}" | grep -i "$(uname -m)" | uniq)
-     readarray -t "SNAPSHOT_TAGS" < <(oras repo tags "${GHCRPKG_URL}" | grep -viE '^\s*(latest|srcbuild)[.-][0-9]{6}T[0-9]{6}[.-]' | grep -i "$(uname -m)" | uniq)
+     #readarray -t "SNAPSHOT_TAGS" < <(curl -qfsSL "${TAG_URL}" | grep -i "${HOST_TRIPLET%%-*}" | uniq)
+     readarray -t "SNAPSHOT_TAGS" < <(oras repo tags "${GHCRPKG_URL}" | grep -viE '^\s*(latest|srcbuild)[.-][0-9]{6}T[0-9]{6}[.-]' | grep -i "${HOST_TRIPLET%%-*}" | uniq)
    else
      TAG_URL="https://api.ghcr.pkgforge.dev/pkgforge/$(echo "${PKG_REPO}/${PKG_FAMILY:-${PKG_NAME}}/${PKG_NAME:-${PKG_FAMILY:-${PKG_ID}}}" | sed ':a; s|^\(https://\)\([^/]\)/\(/\)|\1\2/\3|; ta')/${PROG}?tags"
      echo -e "[+] Fetching Snapshot Tags <== ${TAG_URL} [NO \$GHCRPKG]"
-     #readarray -t "SNAPSHOT_TAGS" < <(curl -qfsSL "${TAG_URL}" | grep -i "$(uname -m)" | uniq)
-     readarray -t "SNAPSHOT_TAGS" < <(oras repo tags "${GHCRPKG_URL}" | grep -viE '^\s*(latest|srcbuild)[.-][0-9]{6}T[0-9]{6}[.-]' | grep -i "$(uname -m)" | uniq)
+     #readarray -t "SNAPSHOT_TAGS" < <(curl -qfsSL "${TAG_URL}" | grep -i "${HOST_TRIPLET%%-*}" | uniq)
+     readarray -t "SNAPSHOT_TAGS" < <(oras repo tags "${GHCRPKG_URL}" | grep -viE '^\s*(latest|srcbuild)[.-][0-9]{6}T[0-9]{6}[.-]' | grep -i "${HOST_TRIPLET%%-*}" | uniq)
    fi
    if [[ -n "${SNAPSHOT_TAGS[*]}" && "${#SNAPSHOT_TAGS[@]}" -gt 0 ]]; then
      echo -e "[+] Snapshots: ${SNAPSHOT_TAGS[*]}"
