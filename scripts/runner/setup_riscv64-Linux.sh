@@ -89,7 +89,7 @@ else
   sudo curl -qfsSL "https://github.com/pkgforge/bin/releases/download/riscv64-Linux/trufflehog" -o "/usr/local/bin/trufflehog"
   sudo chmod +x "/usr/local/bin/trufflehog"
  ##Check Needed CMDs
- for DEP_CMD in eget gh glab minisign oras rclone shellcheck soar zstd; do
+ for DEP_CMD in eget gh glab minisign oras rclone shellcheck soar tss zstd; do
     case "$(command -v "${DEP_CMD}" 2>/dev/null)" in
         "") echo -e "\n[✗] FATAL: ${DEP_CMD} is NOT INSTALLED\n"
            export CONTINUE="NO"
@@ -164,65 +164,71 @@ pushd "$(mktemp -d)" &>/dev/null
  echo -e "[+] PATH = ${PATH}\n"
 #----------------------#
  #Docker
-  if [[ "${INSIDE_PODMAN}" != "TRUE" ]]; then
-   #Doesn't work inside podman
-    if ! command -v docker &> /dev/null; then
-     sudo apt install "docker.io" -y
-    else
-     docker --version
-    fi
-    #Test
-    if ! command -v docker &> /dev/null; then
-       echo -e "\n[-] docker NOT Found\n"
-       export CONTINUE="NO"
-       return 1 || exit 1
-    else
-      sudo systemctl status "docker.service" --no-pager
-      if ! sudo systemctl is-active --quiet docker; then
-       sudo service docker restart &>/dev/null ; sleep 10
+  if [[ "${BUILD_SYSTEM}" == "DOCKER" ]]; then
+    if [[ "${INSIDE_PODMAN}" != "TRUE" ]]; then
+     #Doesn't work inside podman
+      if ! command -v docker &> /dev/null; then
+       sudo apt install "docker.io" -y
+      else
+       docker --version
       fi
-      sudo systemctl status "docker.service" --no-pager
+      #Test
+      if ! command -v docker &> /dev/null; then
+         echo -e "\n[-] docker NOT Found\n"
+         export CONTINUE="NO"
+         return 1 || exit 1
+      else
+        sudo groupadd docker 2>/dev/null ; sudo usermod -aG docker "${USER}" 2>/dev/null
+        sudo service docker restart 2>/dev/null && sleep 10
+        sudo service docker status 2>/dev/null
+        if ! sudo systemctl is-active --quiet docker; then
+         sudo service docker restart &>/dev/null ; sleep 10
+        fi
+        sudo systemctl status "docker.service" --no-pager
+      fi
+      if ! command -v podman &> /dev/null; then
+        sudo apt install podman -y
+      fi
+      sudo apt install aardvark-dns iproute2 jq iptables netavark -y
+      sudo mkdir -p "/etc/containers"
+      echo "[engine]" | sudo tee -a "/etc/containers/containers.conf"
+      echo "lock_type = \"file\"" | sudo tee -a "/etc/containers/containers.conf"
     fi
-    if ! command -v podman &> /dev/null; then
-      sudo apt install podman -y
-    fi
-    sudo apt install aardvark-dns iproute2 jq iptables netavark -y
-    sudo mkdir -p "/etc/containers"
-    echo "[engine]" | sudo tee -a "/etc/containers/containers.conf"
-    echo "lock_type = \"file\"" | sudo tee -a "/etc/containers/containers.conf"
   fi
  #----------------------# 
  ##Nix
-  [[ -f "${HOME}/.bash_profile" ]] && source "${HOME}/.bash_profile"
-  [[ -f "${HOME}/.nix-profile/etc/profile.d/nix.sh" ]] && source "${HOME}/.nix-profile/etc/profile.d/nix.sh"
-  hash -r &>/dev/null
-  if ! command -v nix >/dev/null 2>&1; then
-    pushd "$(mktemp -d)" &>/dev/null
-     curl -qfsSL "https://raw.githubusercontent.com/pkgforge/devscripts/refs/heads/main/Linux/install_nix.sh" -o "./install_nix.sh"
-     dos2unix --quiet "./install_nix.sh" ; chmod +x "./install_nix.sh"
-     bash "./install_nix.sh"
-     [[ -f "${HOME}/.bash_profile" ]] && source "${HOME}/.bash_profile"
-     [[ -f "${HOME}/.nix-profile/etc/profile.d/nix.sh" ]] && source "${HOME}/.nix-profile/etc/profile.d/nix.sh"
-    rm -rf "./install_nix.sh" 2>/dev/null ; popd &>/dev/null
+  if [[ "${BUILD_SYS}" == "host://nix" ]]; then
+    [[ -f "${HOME}/.bash_profile" ]] && source "${HOME}/.bash_profile"
+    [[ -f "${HOME}/.nix-profile/etc/profile.d/nix.sh" ]] && source "${HOME}/.nix-profile/etc/profile.d/nix.sh"
+    hash -r &>/dev/null
+    if ! command -v nix >/dev/null 2>&1; then
+      pushd "$(mktemp -d)" &>/dev/null
+       curl -qfsSL "https://raw.githubusercontent.com/pkgforge/devscripts/refs/heads/main/Linux/install_nix.sh" -o "./install_nix.sh"
+       dos2unix --quiet "./install_nix.sh" ; chmod +x "./install_nix.sh"
+       bash "./install_nix.sh"
+       [[ -f "${HOME}/.bash_profile" ]] && source "${HOME}/.bash_profile"
+       [[ -f "${HOME}/.nix-profile/etc/profile.d/nix.sh" ]] && source "${HOME}/.nix-profile/etc/profile.d/nix.sh"
+      rm -rf "./install_nix.sh" 2>/dev/null ; popd &>/dev/null
+    fi
+    #Test
+     if ! command -v nix &> /dev/null; then
+        echo -e "\n[-] nix NOT Found\n"
+        export CONTINUE="NO"
+        return 1 || exit 1
+     else
+       #Add Env vars
+        export NIXPKGS_ALLOW_BROKEN="1"
+        export NIXPKGS_ALLOW_INSECURE="1"
+        export NIXPKGS_ALLOW_UNFREE="1"
+        export NIXPKGS_ALLOW_UNSUPPORTED_SYSTEM="1"  
+       #Add Tokens
+        echo "access-tokens = github.com=${GITHUB_TOKEN}" | sudo tee -a "/etc/nix/nix.conf" >/dev/null 2>&1
+       #Update Channels
+        nix --version && nix-channel --list && nix-channel --update
+       #Seed Local Data
+        nix derivation show "nixpkgs#hello" --impure --refresh --quiet >/dev/null 2>&1
+     fi
   fi
-  #Test
-   if ! command -v nix &> /dev/null; then
-      echo -e "\n[-] nix NOT Found\n"
-      export CONTINUE="NO"
-      return 1 || exit 1
-   else
-     #Add Env vars
-      export NIXPKGS_ALLOW_BROKEN="1"
-      export NIXPKGS_ALLOW_INSECURE="1"
-      export NIXPKGS_ALLOW_UNFREE="1"
-      export NIXPKGS_ALLOW_UNSUPPORTED_SYSTEM="1"  
-     #Add Tokens
-      echo "access-tokens = github.com=${GITHUB_TOKEN}" | sudo tee -a "/etc/nix/nix.conf" >/dev/null 2>&1
-     #Update Channels
-      nix --version && nix-channel --list && nix-channel --update
-     #Seed Local Data
-      nix derivation show "nixpkgs#hello" --impure --refresh --quiet >/dev/null 2>&1
-   fi
 ##Clean
  if [ "${CONTINUE}" == "YES" ]; then
    echo "INITIALIZED" > "${SYSTMP}/INITIALIZED"

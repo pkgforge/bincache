@@ -313,7 +313,8 @@ sbuild_builder()
           fi
         fi
        #} 2>&1 | ts '[%Y-%m-%dT%Hh%Mm%Ss]➜ ' | tee "${TEMP_LOG}"
-       } 2>&1 | ts -s '[%H:%M:%S]➜ ' | tee "${TEMP_LOG}"
+       #} 2>&1 | ts -s '[%H:%M:%S]➜ ' | tee "${TEMP_LOG}"
+       } 2>&1 | tss --format "[%H:%M:%S.%3f]➜ " --relative --output "${TEMP_LOG}" --force-overwrite
       #Common No-Nos 
        if grep -m1 -Eqi "wrappe.*version.*available.*required" "${TEMP_LOG}" &>/dev/null; then
           echo -e "\n[✗] FATAL: Found Potential Outlier in Logs\n"

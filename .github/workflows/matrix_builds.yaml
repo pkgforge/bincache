@@ -287,10 +287,13 @@ jobs:
                    exit 1
                  fi
                 #get build system
-                 if yq '.x_exec.bsys' "./SBUILD_INPUT" | grep -v '^#' | grep -qi "docker://"; then
+                 BUILD_SYS="$(yq '.x_exec.bsys' "./SBUILD_INPUT" | grep -v '^#' | tr -d '"'\''[:space:]')"
+                 export BUILD_SYS
+                 echo "BUILD_SYS=${BUILD_SYS}" >> "${GITHUB_ENV}"
+                 if echo "${BUILD_SYS}" | grep -qi "docker://"; then
                     echo "BUILD_ON_HOST=FALSE" >> "${GITHUB_ENV}"
                     echo "BUILD_SYSTEM=DOCKER" >> "${GITHUB_ENV}"
-                 elif yq '.x_exec.bsys' "./SBUILD_INPUT" | grep -v '^#' | grep -qi "host://"; then
+                 elif echo "${BUILD_SYS}" | grep -qi "host://"; then
                     echo "BUILD_ON_HOST=TRUE" >> "${GITHUB_ENV}"
                     echo "BUILD_SYSTEM=HOST" >> "${GITHUB_ENV}"
                  fi

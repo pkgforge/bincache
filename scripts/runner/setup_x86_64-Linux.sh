@@ -87,7 +87,7 @@ else
  ##Install Needed CMDs
   bash <(curl -qfsSL "https://raw.githubusercontent.com/pkgforge/devscripts/main/Linux/install_bins_curl.sh")
  ##Check Needed CMDs
- for DEP_CMD in eget gh glab minisign oras rclone shellcheck soar zstd; do
+ for DEP_CMD in eget gh glab minisign oras rclone shellcheck soar tss zstd; do
     case "$(command -v "${DEP_CMD}" 2>/dev/null)" in
         "") echo -e "\n[✗] FATAL: ${DEP_CMD} is NOT INSTALLED\n"
            export CONTINUE="NO"
@@ -212,43 +212,45 @@ if [ "${CONTINUE}" == "YES" ]; then
 ##Langs
 #----------------------#
  #Docker
- install_docker ()
- {
-  #Install 
-   curl -qfsSL "https://get.docker.com" | sed 's/sleep 20//g' | sudo bash
-   sudo groupadd docker 2>/dev/null ; sudo usermod -aG docker "${USER}" 2>/dev/null
-   sudo service docker restart 2>/dev/null && sleep 10
-   sudo service docker status 2>/dev/null
-   sudo systemctl status "docker.service" --no-pager
-  #Test
-   if ! command -v docker &> /dev/null; then
-     echo -e "\n[-] docker NOT Found\n"
-     export CONTINUE="NO"
-     return 1 || exit 1
-   else
+ if [[ "${BUILD_SYSTEM}" == "DOCKER" ]]; then
+   install_docker ()
+   {
+    #Install 
+     curl -qfsSL "https://get.docker.com" | sed 's/sleep 20//g' | sudo bash
+     sudo groupadd docker 2>/dev/null ; sudo usermod -aG docker "${USER}" 2>/dev/null
+     sudo service docker restart 2>/dev/null && sleep 10
+     sudo service docker status 2>/dev/null
+     sudo systemctl status "docker.service" --no-pager
+    #Test
+     if ! command -v docker &> /dev/null; then
+       echo -e "\n[-] docker NOT Found\n"
+       export CONTINUE="NO"
+       return 1 || exit 1
+     else
+       if ! sudo systemctl is-active --quiet docker; then
+        sudo service docker restart >/dev/null 2>&1 ; sleep 10
+       fi
+       sudo systemctl status "docker.service" --no-pager
+       docker --version ; sudo docker run hello-world
+       sudo ldconfig && sudo ldconfig -p
+       #newgrp 2>/dev/null
+     fi
+   }
+   export -f install_docker
+   if command -v docker &> /dev/null; then
+    if [ "$(curl -qfsSL "https://endoflife.date/api/docker-engine.json" | jq -r '.[0].latest')" != "$(docker --version | grep -oP '(?<=version )(\d+\.\d+\.\d+)')" ]; then
+     install_docker
+    else
+     echo -e "\n[+] Latest Docker seems to be already Installed"
+     docker --version
      if ! sudo systemctl is-active --quiet docker; then
       sudo service docker restart >/dev/null 2>&1 ; sleep 10
      fi
      sudo systemctl status "docker.service" --no-pager
-     docker --version ; sudo docker run hello-world
-     sudo ldconfig && sudo ldconfig -p
-     #newgrp 2>/dev/null
+    fi
+   else    
+     install_docker
    fi
- }
- export -f install_docker
- if command -v docker &> /dev/null; then
-  if [ "$(curl -qfsSL "https://endoflife.date/api/docker-engine.json" | jq -r '.[0].latest')" != "$(docker --version | grep -oP '(?<=version )(\d+\.\d+\.\d+)')" ]; then
-   install_docker
-  else
-   echo -e "\n[+] Latest Docker seems to be already Installed"
-   docker --version
-   if ! sudo systemctl is-active --quiet docker; then
-    sudo service docker restart >/dev/null 2>&1 ; sleep 10
-   fi
-   sudo systemctl status "docker.service" --no-pager
-  fi
- else    
-   install_docker
  fi
  ##----------------------# 
  ##Crystal
@@ -315,37 +317,39 @@ if [ "${CONTINUE}" == "YES" ]; then
   sudo ldconfig && sudo ldconfig -p          
  #----------------------# 
  ##Nix
-  [[ -f "${HOME}/.bash_profile" ]] && source "${HOME}/.bash_profile"
-  [[ -f "${HOME}/.nix-profile/etc/profile.d/nix.sh" ]] && source "${HOME}/.nix-profile/etc/profile.d/nix.sh"
-  hash -r &>/dev/null
-  if ! command -v nix >/dev/null 2>&1; then
-    pushd "$(mktemp -d)" &>/dev/null
-     curl -qfsSL "https://raw.githubusercontent.com/pkgforge/devscripts/refs/heads/main/Linux/install_nix.sh" -o "./install_nix.sh"
-     dos2unix --quiet "./install_nix.sh" ; chmod +x "./install_nix.sh"
-     bash "./install_nix.sh"
-     [[ -f "${HOME}/.bash_profile" ]] && source "${HOME}/.bash_profile"
-     [[ -f "${HOME}/.nix-profile/etc/profile.d/nix.sh" ]] && source "${HOME}/.nix-profile/etc/profile.d/nix.sh"
-     [[ -f "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh" ]] && source "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh"
-    rm -rf "./install_nix.sh" 2>/dev/null ; popd &>/dev/null
+  if [[ "${BUILD_SYS}" == "host://nix" ]]; then 
+    [[ -f "${HOME}/.bash_profile" ]] && source "${HOME}/.bash_profile"
+    [[ -f "${HOME}/.nix-profile/etc/profile.d/nix.sh" ]] && source "${HOME}/.nix-profile/etc/profile.d/nix.sh"
+    hash -r &>/dev/null
+    if ! command -v nix >/dev/null 2>&1; then
+      pushd "$(mktemp -d)" &>/dev/null
+       curl -qfsSL "https://raw.githubusercontent.com/pkgforge/devscripts/refs/heads/main/Linux/install_nix.sh" -o "./install_nix.sh"
+       dos2unix --quiet "./install_nix.sh" ; chmod +x "./install_nix.sh"
+       bash "./install_nix.sh"
+       [[ -f "${HOME}/.bash_profile" ]] && source "${HOME}/.bash_profile"
+       [[ -f "${HOME}/.nix-profile/etc/profile.d/nix.sh" ]] && source "${HOME}/.nix-profile/etc/profile.d/nix.sh"
+       [[ -f "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh" ]] && source "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh"
+      rm -rf "./install_nix.sh" 2>/dev/null ; popd &>/dev/null
+    fi
+    #Test
+     if ! command -v nix &> /dev/null; then
+        echo -e "\n[-] nix NOT Found\n"
+        export CONTINUE="NO"
+        return 1 || exit 1
+     else
+       #Add Env vars
+        export NIXPKGS_ALLOW_BROKEN="1"
+        export NIXPKGS_ALLOW_INSECURE="1"
+        export NIXPKGS_ALLOW_UNFREE="1"
+        export NIXPKGS_ALLOW_UNSUPPORTED_SYSTEM="1"
+       #Add Tokens
+        echo "access-tokens = github.com=${GITHUB_TOKEN}" | sudo tee -a "/etc/nix/nix.conf" >/dev/null 2>&1
+       #Update Channels
+        nix --version && nix-channel --list && nix-channel --update
+       #Seed Local Data 
+        nix derivation show "nixpkgs#hello" --impure --refresh --quiet >/dev/null 2>&1
+     fi
   fi
-  #Test
-   if ! command -v nix &> /dev/null; then
-      echo -e "\n[-] nix NOT Found\n"
-      export CONTINUE="NO"
-      return 1 || exit 1
-   else
-     #Add Env vars
-      export NIXPKGS_ALLOW_BROKEN="1"
-      export NIXPKGS_ALLOW_INSECURE="1"
-      export NIXPKGS_ALLOW_UNFREE="1"
-      export NIXPKGS_ALLOW_UNSUPPORTED_SYSTEM="1"
-     #Add Tokens
-      echo "access-tokens = github.com=${GITHUB_TOKEN}" | sudo tee -a "/etc/nix/nix.conf" >/dev/null 2>&1
-     #Update Channels
-      nix --version && nix-channel --list && nix-channel --update
-     #Seed Local Data 
-      nix derivation show "nixpkgs#hello" --impure --refresh --quiet >/dev/null 2>&1
-   fi
  #----------------------# 
  #rust & cargo
   bash <(curl -qfsSL "https://sh.rustup.rs") --no-modify-path -y

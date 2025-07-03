@@ -21,6 +21,7 @@ setup_env()
 {
  ##Version
  SBF_VERSION="1.7.1" && echo -e "[+] SBUILD Functions Version: ${SBF_VERSION}" ; unset SBF_VERSION
+ echo -e "[+] HOST: $(uname -a)"
  ##Input    
  INPUT_SBUILD="${1:-$(echo "$@" | tr -d '[:space:]')}"
  INPUT_SBUILD_PATH="$(realpath ${INPUT_SBUILD})" ; export INPUT_SBUILD="${INPUT_SBUILD_PATH}"
