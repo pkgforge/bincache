@@ -633,7 +633,7 @@ jobs:
 
       - name: Upload (LOG) Artifacts [${{ matrix.package.host }}<==>${{ matrix.package.runner }}]
         if: env.CONTINUE_GHRUN != 'FALSE'
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
             name: Bincache_${{ env.PKG_FAMILY_LOCAL }}_${{ matrix.package.host }}
             path: |
